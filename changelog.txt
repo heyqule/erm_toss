@@ -1,5 +1,5 @@
 ---------------------------------------------------------------------------------------------------
-Version: 0.1.0
-Date: 17. 01. 2021
-    Feature:
-        - Add Protoss units and buildings to enemy race manager
+Version: 1.0.0
+Date: 24. 01. 2021
+  Feature:
+    - Add Protoss units and buildings to enemy race manager

@@ -30,19 +30,20 @@ require "prototypes.building.stargate"
 require "prototypes.building.fleet_beacon"
 require "prototypes.building.arbiter_tribunal"
 
-data:extend({TossProjectileAnimation.create_dragoon_ball()})
-data:extend({TossProjectileAnimation.create_dragoon_hit_effect()})
-data:extend({TossProjectileAnimation.create_corsair_hit_effect()})
-data:extend({TossProjectileAnimation.create_arbiter_stasis()})
-data:extend({TossProjectileAnimation.create_arbiter_stasis_hit_effect()})
-data:extend({TossProjectileAnimation.create_carrier_interceptor()})
-data:extend({TossProjectileAnimation.create_scout_rocket()})
-data:extend({TossProjectileAnimation.create_electric_cloud()})
-data:extend({TossProjectileAnimation.create_archon_hit_effect()})
+data:extend({ TossProjectileAnimation.create_dragoon_ball() })
+data:extend({ TossProjectileAnimation.create_dragoon_hit_effect() })
+data:extend({ TossProjectileAnimation.create_corsair_hit_effect() })
+data:extend({ TossProjectileAnimation.create_arbiter_stasis() })
+data:extend({ TossProjectileAnimation.create_arbiter_stasis_hit_effect() })
+data:extend({ TossProjectileAnimation.create_carrier_interceptor() })
+data:extend({ TossProjectileAnimation.create_scout_rocket() })
+data:extend({ TossProjectileAnimation.create_electric_cloud() })
+data:extend({ TossProjectileAnimation.create_archon_hit_effect() })
+data:extend({ TossProjectileAnimation.create_air_death() })
 
 local level = ErmConfig.get_max_level(settings)
 
-for i=1,level do
+for i = 1, level do
     ErmToss.make_arbiter(i)
     ErmToss.make_zealot(i)
     ErmToss.make_dragoon(i)

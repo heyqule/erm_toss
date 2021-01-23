@@ -67,8 +67,7 @@ function TossSound.zealot_attack(volume)
     return
     {
         audible_distance_modifier = 0.5,
-        variations =
-        {
+        variations = {
             {
                 filename = "__erm_toss__/sound/enemies/zealot/attack.ogg",
                 volume = volume
@@ -103,20 +102,12 @@ function TossSound.building_working_sound(name, volume)
     {
         audible_distance_modifier = 1,
         max_sounds_per_type = 3,
-        sound =
-        {
-            filename = "__erm_toss__/sound/buildings/"..name..".ogg",
+        sound = {
+            filename = "__erm_toss__/sound/buildings/" .. name .. ".ogg",
             volume = volume
         },
         probability = 1 / (15 * 60)
     }
 end
-
-
-
-
-
-
-
 
 return TossSound
