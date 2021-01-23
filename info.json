@@ -1,11 +1,13 @@
-
 {
   "name": "erm_toss",
-  "version": "0.1.0",
-  "date": "2021-01-09",
-  "title": "Toss Units",
+  "version": "1.0.0",
+  "date": "2021-01-24",
+  "title": "ERM - Protoss Units",
   "author": "heyqule",
-  "description": "Add toss to enemy units",
+  "description": "Add protoss to enemy units",
   "factorio_version": "1.1",
-  "dependencies": ["base >= 1.1.0", "enemyracemanager >= 0.2.0"]
+  "dependencies": [
+    "base >= 1.1.0",
+    "enemyracemanager >= 0.3.0"
+  ]
 }

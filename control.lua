@@ -7,8 +7,9 @@
 --
 
 local Game = require('__stdlib__/stdlib/game')
+local ForceHelper = require('__enemyracemanager__/lib/helper/force_helper')
 
-ErmConfig =  require('__enemyracemanager__/lib/global_config')
+ErmConfig = require('__enemyracemanager__/lib/global_config')
 
 local Event = require('__stdlib__/stdlib/event/event')
 local String = require('__stdlib__/stdlib/utils/string')
@@ -27,10 +28,12 @@ local createTossRace = function()
     toss_force.ai_controllable = true;
     toss_force.disable_research()
     toss_force.friendly_fire = false;
+
+    ForceHelper.set_friends(game, FORCE_NAME)
 end
 
 local addRaceSettings = function()
-    if remote.call('enemy_race_manager','get_race', MOD_NAME) then
+    if remote.call('enemy_race_manager', 'get_race', MOD_NAME) then
         return
     end
     local race_settings = {
@@ -45,27 +48,27 @@ local addRaceSettings = function()
         send_attack_threshold_deviation = 0.2,
         next_attack_threshold = 0, -- Used by system to calculate next move
         units = {
-            {'zealot','dragoon'},
-            {'scout','corsair','probe'},
-            {'templar','darktemplar','archon','carrier','arbiter'},
+            { 'zealot', 'dragoon' },
+            { 'scout', 'corsair', 'probe' },
+            { 'templar', 'darktemplar', 'archon', 'carrier', 'arbiter' },
         },
         current_units_tier = {},
         turrets = {
-            {'cannon'},
+            { 'cannon' },
             {},
             {},
         },
         current_turrets_tier = {},
         command_centers = {
-            {'nexus'},
+            { 'nexus' },
             {},
             {}
         },
         current_command_centers_tier = {},
         support_structures = {
-            {'nexus', 'pylon', 'gateway', 'forge'},
-            {'cybernetics_core', 'stargate', 'citadel_adun'},
-            {'templar_archive','fleet_beacon','arbiter_tribunal'},
+            { 'nexus', 'pylon', 'gateway', 'forge' },
+            { 'cybernetics_core', 'stargate', 'citadel_adun' },
+            { 'templar_archive', 'fleet_beacon', 'arbiter_tribunal' },
         },
         current_support_structures_tier = {},
     }
@@ -75,7 +78,7 @@ local addRaceSettings = function()
     race_settings.current_command_centers_tier = race_settings.command_centers[1]
     race_settings.current_support_structures_tier = race_settings.support_structures[1]
 
-    remote.call('enemy_race_manager','register_race', race_settings)
+    remote.call('enemy_race_manager', 'register_race', race_settings)
 end
 
 Event.on_init(function(event)
@@ -90,8 +93,7 @@ Event.on_configuration_changed(function(event)
     createTossRace()
 end)
 
-
-Event.register(defines.events.on_script_trigger_effect, function (event)
+Event.register(defines.events.on_script_trigger_effect, function(event)
     if not event.source_entity then
         return
     end

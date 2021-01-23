@@ -6,7 +6,7 @@ This mod is created as an example race for [Enemy Race Manager](https://github.c
 All graphic and sound assets in this mod are properties of Blizzard Entertainment Inc
 
 # Requirement
-* Enemy Race Manager >= 0.2
+* Enemy Race Manager >= 0.3
 * Factorio Standard Library >= 1.4.6
 * Factorio Base >= 1.1
 
@@ -15,18 +15,37 @@ All unit has same base health point as original SC, Some units have unique healt
 
 Tier 1 Units (Max Resistance 85)
 * Zealot
-    - Melee 15-65
+    - Health 160 * 2
+    - Melee damage 15-65
 * Dragoon
-    - Range 15-80
+    - Health 180 * 1.5
+    - Melee damage 15-80
 
 Tier 2 Units (Max Resistance 90)
 * Scout
-  * Range 10-50
+    - Health 250 * 1.5
+    - Range damage 10-60
+* Corsair
+    - Health 180 * 1.75
+    - Range damage 10-50   
+* Probe (resist 85)
+    - Health 40 * 3
+    - Kill itself to spawn Cannon / Pylon
+        
 
 Tier 3 Units (Max Resistance 95)
-* Probe (resist 85)
-  * Spawns Cannon / Pylon
 * Carrier
-  * Damage 25-70
+    - Health 450
+    - Damage 25-200
 * Arbiter
-  * AOE range 10-40
+    - Health 350
+    - AOE range damage 10-75
+* Templar
+    - Health 80 * 2
+    - AOE range damage 25-100
+* Dark Templar
+    - Health 120 * 2
+    - AOE melee damage 50-120
+* Archon
+    - Health 360 * 1.5    
+    - AOE meele damage 40-80

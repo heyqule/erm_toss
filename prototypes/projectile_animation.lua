@@ -11,16 +11,13 @@ function ProjectileAnimation.create_dragoon_ball()
     return {
         type = "projectile",
         name = "dragoon-projectile",
-        flags = {"not-on-map"},
+        flags = { "not-on-map" },
         acceleration = 0.005,
-        action =
-        {
+        action = {
             type = "direct",
-            action_delivery =
-            {
+            action_delivery = {
                 type = "instant",
-                target_effects =
-                {
+                target_effects = {
                     {
                         type = "create-entity",
                         entity_name = "dragoon-explosion-small"
@@ -28,8 +25,7 @@ function ProjectileAnimation.create_dragoon_ball()
                 }
             }
         },
-        animation =
-        {
+        animation = {
             layers = {
                 {
                     filename = "__erm_toss__/graphics/entity/projectiles/dragoon/dragoon-ball.png",
@@ -49,16 +45,15 @@ function ProjectileAnimation.create_dragoon_hit_effect()
     return {
         type = "explosion",
         name = "dragoon-explosion-small",
-        flags = {"not-on-map"},
-        animations =
-        {
+        flags = { "not-on-map" },
+        animations = {
             {
                 filename = "__erm_toss__/graphics/entity/projectiles/dragoon/dragoon-hit-effect.png",
                 priority = "extra-high",
                 width = 64,
                 height = 64,
                 frame_count = 10,
-                animation_speed=0.5,
+                animation_speed = 0.5,
                 draw_as_glow = true,
             }
         }
@@ -69,18 +64,17 @@ function ProjectileAnimation.create_corsair_hit_effect()
     return {
         type = "explosion",
         name = "corsair-explosion-small",
-        flags = {"not-on-map"},
-        animations =
-        {
+        flags = { "not-on-map" },
+        animations = {
             {
                 filename = "__erm_toss__/graphics/entity/projectiles/dragoon/dragoon-hit-effect.png",
                 priority = "extra-high",
                 width = 64,
                 height = 64,
                 frame_count = 10,
-                animation_speed=0.5,
+                animation_speed = 0.5,
                 draw_as_glow = true,
-                tint = {1, 1, 1}
+                tint = { 1, 1, 1 }
             }
         }
     }
@@ -90,16 +84,13 @@ function ProjectileAnimation.create_arbiter_stasis()
     return {
         type = "projectile",
         name = "stasis-projectile",
-        flags = {"not-on-map"},
+        flags = { "not-on-map" },
         acceleration = 0.005,
-        action =
-        {
+        action = {
             type = "direct",
-            action_delivery =
-            {
+            action_delivery = {
                 type = "instant",
-                target_effects =
-                {
+                target_effects = {
                     {
                         type = "create-entity",
                         entity_name = "stasis-explosion-small"
@@ -107,8 +98,7 @@ function ProjectileAnimation.create_arbiter_stasis()
                 }
             }
         },
-        animation =
-        {
+        animation = {
             layers = {
                 {
                     filename = "__erm_toss__/graphics/entity/projectiles/dragoon/dragoon-ball.png",
@@ -128,16 +118,15 @@ function ProjectileAnimation.create_arbiter_stasis_hit_effect()
     return {
         type = "explosion",
         name = "stasis-explosion-small",
-        flags = {"not-on-map"},
-        animations =
-        {
+        flags = { "not-on-map" },
+        animations = {
             {
                 filename = "__erm_toss__/graphics/entity/projectiles/stasis/stasis.png",
                 priority = "extra-high",
                 width = 128,
                 height = 128,
                 frame_count = 13,
-                animation_speed=0.5,
+                animation_speed = 0.5,
                 draw_as_glow = true,
             }
         }
@@ -148,16 +137,13 @@ function ProjectileAnimation.create_carrier_interceptor()
     return {
         type = "projectile",
         name = "interceptor-projectile",
-        flags = {"not-on-map"},
+        flags = { "not-on-map" },
         acceleration = 0.005,
-        action =
-        {
+        action = {
             type = "direct",
-            action_delivery =
-            {
+            action_delivery = {
                 type = "instant",
-                target_effects =
-                {
+                target_effects = {
                     {
                         type = "create-entity",
                         entity_name = "medium-explosion"
@@ -165,8 +151,7 @@ function ProjectileAnimation.create_carrier_interceptor()
                 }
             }
         },
-        animation =
-        {
+        animation = {
             layers = {
                 {
                     filename = "__erm_toss__/graphics/entity/units/interceptor/interceptor-run.png",
@@ -187,18 +172,15 @@ function ProjectileAnimation.create_scout_rocket()
     {
         type = "projectile",
         name = "scout-rocket",
-        flags = {"not-on-map"},
+        flags = { "not-on-map" },
         acceleration = 0.005,
         turn_speed = 0.003,
         turning_speed_increases_exponentially_with_projectile_speed = true,
-        action =
-        {
+        action = {
             type = "direct",
-            action_delivery =
-            {
+            action_delivery = {
                 type = "instant",
-                target_effects =
-                {
+                target_effects = {
                     {
                         type = "create-entity",
                         entity_name = "explosion"
@@ -226,33 +208,30 @@ function ProjectileAnimation.create_scout_rocket()
             }
         },
         --light = {intensity = 0.5, size = 4},
-        animation =
-        {
+        animation = {
             filename = "__base__/graphics/entity/rocket/rocket.png",
             draw_as_glow = true,
             frame_count = 8,
             line_length = 8,
             width = 9,
             height = 35,
-            shift = {0, 0},
+            shift = { 0, 0 },
             priority = "high"
         },
-        shadow =
-        {
+        shadow = {
             filename = "__base__/graphics/entity/rocket/rocket-shadow.png",
             frame_count = 1,
             width = 7,
             height = 24,
             priority = "high",
-            shift = {0, 0}
+            shift = { 0, 0 }
         },
-        smoke =
-        {
+        smoke = {
             {
                 name = "smoke-fast",
-                deviation = {0.15, 0.15},
+                deviation = { 0.15, 0.15 },
                 frequency = 1,
-                position = {0, 1},
+                position = { 0, 1 },
                 slow_down_factor = 1,
                 starting_frame = 3,
                 starting_frame_deviation = 5,
@@ -269,8 +248,7 @@ function ProjectileAnimation.create_electric_cloud()
         type = "explosion",
         name = "electric-cloud-explosion",
         flags = { "not-on-map" },
-        animations =
-        {
+        animations = {
             {
                 filename = "__erm_toss__/graphics/entity/projectiles/psystorm/psystorm.png",
                 priority = "extra-high",
@@ -279,7 +257,7 @@ function ProjectileAnimation.create_electric_cloud()
                 frame_count = 14,
                 animation_speed = 0.2,
                 scale = 2,
-                show_as_glow = true
+                draw_as_glow = true
             }
         }
     }
@@ -291,8 +269,7 @@ function ProjectileAnimation.create_archon_hit_effect()
         type = "explosion",
         name = "archon-hit-explosion",
         flags = { "not-on-map" },
-        animations =
-        {
+        animations = {
             {
                 filename = "__erm_toss__/graphics/entity/projectiles/archon_attack/archon-hit-effect.png",
                 priority = "extra-high",
@@ -301,8 +278,44 @@ function ProjectileAnimation.create_archon_hit_effect()
                 frame_count = 6,
                 animation_speed = 0.5,
                 scale = 1.5,
-                show_as_glow = true
+                draw_as_glow = true
             }
+        }
+    }
+end
+
+function ProjectileAnimation.create_air_death()
+    return
+    {
+        type = "explosion",
+        name = "protoss-small-air-death",
+        flags = { "not-on-map" },
+        animations = {
+            filename = "__erm_toss__/graphics/entity/units/air-death/air-death.png",
+            width = 220,
+            height = 200,
+            frame_count = 15,
+            direction_count = 1,
+            axially_symmetrical = false,
+            scale = 1.5,
+            animation_speed = 0.5,
+            draw_as_glow = true
+        }
+    },
+    {
+        type = "explosion",
+        name = "protoss-large-air-death",
+        flags = { "not-on-map" },
+        animations = {
+            filename = "__erm_toss__/graphics/entity/units/air-death/air-death.png",
+            width = 220,
+            height = 200,
+            frame_count = 15,
+            direction_count = 1,
+            axially_symmetrical = false,
+            scale = 2.5,
+            animation_speed = 0.5,
+            draw_as_glow = true
         }
     }
 end

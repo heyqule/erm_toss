@@ -11,7 +11,7 @@ local ERM_UnitTint = require('__enemyracemanager__/lib/unit_tint')
 local ERM_DebugHelper = require('__enemyracemanager__/lib/debug_helper')
 local TossSound = require('__erm_toss__/prototypes/sound')
 
-local enemy_autoplace = require ("__enemyracemanager__/lib/enemy-autoplace-utils")
+local enemy_autoplace = require("__enemyracemanager__/lib/enemy-autoplace-utils")
 local name = 'gateway'
 
 -- Hitpoints
@@ -40,42 +40,40 @@ local incremental_cold_resistance = 65
 local unit_scale = 2
 
 local pollution_absorption_absolute = 20
-local spawning_cooldown = {600, 300}
+local spawning_cooldown = { 600, 300 }
 local spawning_radius = 10
-local max_count_of_owned_units = 5
-local max_friends_around_to_spawn = 3
+local max_count_of_owned_units = 3
+local max_friends_around_to_spawn = 2
 local spawn_table = function(level)
     local res = {}
     --Tire 1
-    res[1] = {MOD_NAME..'/zealot/'..level, {{0.0, 0.7},{0.2, 0.7},{0.4, 0.5},{0.6, 0.5},{0.8, 0.2}}}
-    res[2] = {MOD_NAME..'/dragoon/'..level, {{0.0, 0.3},{0.2, 0.3},{0.4, 0.5},{0.6, 0.5},{0.8, 0.2}}}
+    res[1] = { MOD_NAME .. '/zealot/' .. level, { { 0.0, 0.7 }, { 0.2, 0.7 }, { 0.4, 0.5 }, { 0.6, 0.5 }, { 0.8, 0.2 } } }
+    res[2] = { MOD_NAME .. '/dragoon/' .. level, { { 0.0, 0.3 }, { 0.2, 0.3 }, { 0.4, 0.5 }, { 0.6, 0.5 }, { 0.8, 0.2 } } }
     --Tire 3
-    res[3] = {MOD_NAME..'/templar/'..level, {{0.0, 0.0},{0.2, 0.0},{0.4, 0.0},{0.6, 0.0},{0.8, 0.2}}}
-    res[4] = {MOD_NAME..'/darktemplar/'..level, {{0.0, 0.0},{0.2, 0.0},{0.4, 0.0},{0.6, 0.0},{0.8, 0.2}}}
-    res[5] = {MOD_NAME..'/archon/'..level, {{0.0, 0.0},{0.2, 0.0},{0.4, 0.0},{0.6, 0.0},{0.8, 0.2}}}
+    res[3] = { MOD_NAME .. '/templar/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.2 } } }
+    res[4] = { MOD_NAME .. '/darktemplar/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.2 } } }
+    res[5] = { MOD_NAME .. '/archon/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.2 } } }
     return res
 end
 
-local collision_box = {{-3.5, -3.5}, {4, 3.5}}
-local map_generator_bounding_box = {{-4.5, -4.5}, {5, 4.5}}
-local selection_box = {{-3.5, -3.5}, {4, 3.5}}
-
+local collision_box = { { -3.5, -3.5 }, { 4, 3.5 } }
+local map_generator_bounding_box = { { -4.5, -4.5 }, { 5, 4.5 } }
+local selection_box = { { -3.5, -3.5 }, { 4, 3.5 } }
 
 function ErmToss.make_gateway(level)
     level = level or 1
-    if DEBUG_MODE then
-        ERM_DebugHelper.print_translate_to_console(MOD_NAME, name, level)
-    end
+
     data:extend({
         {
             type = "unit-spawner",
-            name = MOD_NAME..'/'..name..'/'..level,
+            name = MOD_NAME .. '/' .. name .. '/' .. level,
+            localised_name = { 'entity-name.' .. MOD_NAME .. '/' .. name, level },
             icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
-            flags = {"placeable-player", "placeable-enemy"},
+            flags = { "placeable-player", "placeable-enemy" },
             max_health = ERM_UnitHelper.get_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level),
-            order=MOD_NAME.."-"..name,
-            subgroup="enemies",
+            order = MOD_NAME .. "-" .. name,
+            subgroup = "enemies",
             working_sound = TossSound.building_working_sound(name, 1),
             dying_sound = TossSound.building_dying_sound(1),
             resistances = {
@@ -98,24 +96,33 @@ function ErmToss.make_gateway(level)
             dying_explosion = "toss-large-building-explosion",
             max_count_of_owned_units = max_count_of_owned_units,
             max_friends_around_to_spawn = max_friends_around_to_spawn,
-            animations =
-            {
+            animations = {
                 layers = {
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/"..name..".png",
+                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
                         width = 128,
                         height = 160,
                         frame_count = 1,
                         animation_speed = 0.18,
                         direction_count = 1,
                         scale = unit_scale
+                    },
+                    {
+                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. "_mask.png",
+                        width = 128,
+                        height = 160,
+                        frame_count = 1,
+                        animation_speed = 0.18,
+                        direction_count = 1,
+                        scale = unit_scale,
+                        draw_as_glow = true,
                     }
                 }
             },
             integration = {
                 layers = {
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/"..name..".png",
+                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
                         height = 160,
@@ -124,16 +131,26 @@ function ErmToss.make_gateway(level)
                         scale = unit_scale
                     },
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/"..name..".png",
+                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
                         height = 160,
                         frame_count = 1,
                         line_length = 1,
                         draw_as_shadow = true,
-                        shift = {0.5, 0.1},
+                        shift = { 0.5, 0.1 },
                         scale = unit_scale
                     },
+                    {
+                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. "_mask.png",
+                        width = 128,
+                        height = 160,
+                        frame_count = 1,
+                        animation_speed = 0.18,
+                        direction_count = 1,
+                        scale = unit_scale,
+                        draw_as_glow = true,
+                    }
                 }
             },
             result_units = spawn_table(level),

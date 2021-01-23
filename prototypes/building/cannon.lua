@@ -10,7 +10,7 @@ local ERM_UnitTint = require('__enemyracemanager__/lib/unit_tint')
 local ERM_DebugHelper = require('__enemyracemanager__/lib/debug_helper')
 local TossSound = require('__erm_toss__/prototypes/sound')
 
-local enemy_autoplace = require ("__enemyracemanager__/lib/enemy-autoplace-utils")
+local enemy_autoplace = require("__enemyracemanager__/lib/enemy-autoplace-utils")
 local name = 'cannon'
 
 -- Hitpoints
@@ -35,9 +35,9 @@ local incremental_electric_resistance = 80
 local base_cold_resistance = 15
 local incremental_cold_resistance = 65
 
-local collision_box = {{-1.5, -1.5}, {1.5, 1.5}}
-local map_generator_bounding_box = {{-3, -3}, {3, 3}}
-local selection_box = {{-1.5, -1.5}, {1.5, 1.5}}
+local collision_box = { { -1.5, -1.5 }, { 1.5, 1.5 } }
+local map_generator_bounding_box = { { -3, -3 }, { 3, 3 } }
+local selection_box = { { -1.5, -1.5 }, { 1.5, 1.5 } }
 
 -- Handles damages
 local damage_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
@@ -47,7 +47,7 @@ local incremental_electric_damage = 70
 -- Handles Attack Speed
 local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local base_attack_speed = 300
-local incremental_attack_speed = 180
+local incremental_attack_speed = 240
 
 local attack_range = 20
 
@@ -69,7 +69,7 @@ local folded_animation = function()
     }
 end
 
-local attack_animation = function ()
+local attack_animation = function()
     return {
         layers = {
             {
@@ -85,21 +85,19 @@ local attack_animation = function ()
     }
 end
 
-
 function ErmToss.make_cannon(level)
     level = level or 1
-    if DEBUG_MODE then
-        ERM_DebugHelper.print_translate_to_console(MOD_NAME, name, level)
-    end
+
     data:extend({
         {
             type = "turret",
-            name = MOD_NAME..'/'..name..'/'..level,
+            name = MOD_NAME .. '/' .. name .. '/' .. level,
+            localised_name = { 'entity-name.' .. MOD_NAME .. '/' .. name, level },
             icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", "placeable-off-grid" },
             max_health = ERM_UnitHelper.get_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level),
-            order=MOD_NAME.."-"..name,
+            order = MOD_NAME .. "-" .. name,
             subgroup = "enemies",
             resistances = {
                 { type = "acid", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance, resistance_mutiplier, level) },
@@ -130,7 +128,7 @@ function ErmToss.make_cannon(level)
             integration = {
                 layers = {
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/"..name..".png",
+                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
                         height = 128,
@@ -139,14 +137,14 @@ function ErmToss.make_cannon(level)
                         scale = unit_scale
                     },
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/"..name..".png",
+                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
                         height = 128,
                         frame_count = 1,
                         line_length = 1,
                         draw_as_shadow = true,
-                        shift = {0.5, 0.1},
+                        shift = { 0.5, 0.1 },
                         scale = unit_scale
                     }
                 }
