@@ -3,7 +3,7 @@
 --- Created by heyqule.
 --- DateTime: 01/09/2020 6:40 PM
 ---
-local ERM_UnitTint = require('__enemyracemanager__/lib/unit_tint')
+local Sprites = require('__stdlib__/stdlib/data/modules/sprites')
 
 local ProjectileAnimation = {}
 
@@ -317,6 +317,19 @@ function ProjectileAnimation.create_air_death()
             animation_speed = 0.5,
             draw_as_glow = true
         }
+    }
+end
+
+function ProjectileAnimation.create_slow_ticker()
+    return
+    {
+        type = "sticker",
+        name = "protoss-slowdown-sticker",
+        flags = {},
+        animation = Sprites.empty_pictures(),
+        duration_in_ticks = 2 * 60,
+        target_movement_modifier = 0.67,
+        vehicle_speed_modifier = 0.67,
     }
 end
 

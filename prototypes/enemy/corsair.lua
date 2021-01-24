@@ -104,7 +104,6 @@ function ErmToss.make_corsair(level)
                 range = attack_range,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
-                warmup = 6,
                 ammo_type = {
                     category = "laser",
                     target_type = "direction",
@@ -120,7 +119,11 @@ function ErmToss.make_corsair(level)
                                 {
                                     type = "damage",
                                     damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level), type = "laser" }
-                                }
+                                },
+                                {
+                                    type = "create-sticker",
+                                    sticker = "protoss-slowdown-sticker"
+                                },
                             }
                         }
                     }
