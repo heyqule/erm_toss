@@ -27,7 +27,8 @@ Tier 2 Units (Max Resistance 90)
     - Range damage 10-60
 * Corsair
     - Health 180 * 1.75
-    - Range damage 10-50   
+    - Range damage 10-40   
+    - slow on hit
 * Probe (resist 85)
     - Health 40 * 3
     - Kill itself to spawn Cannon / Pylon

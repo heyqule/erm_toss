@@ -40,6 +40,7 @@ data:extend({ TossProjectileAnimation.create_scout_rocket() })
 data:extend({ TossProjectileAnimation.create_electric_cloud() })
 data:extend({ TossProjectileAnimation.create_archon_hit_effect() })
 data:extend({ TossProjectileAnimation.create_air_death() })
+data:extend({ TossProjectileAnimation.create_slow_ticker() })
 
 local level = ErmConfig.get_max_level(settings)
 
