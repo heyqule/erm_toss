@@ -224,7 +224,7 @@ function ErmToss.make_archon(level)
             type = "smoke-with-trigger",
             flags = { "not-on-map" },
             show_when_smoke_off = true,
-            particle_count = 2,
+            particle_count = 1,
             --particle_spread = { 3.6 * 1.05, 3.6 * 0.6 * 1.05 },
             --particle_distance_scale_factor = 0.5,
             --particle_scale_factor = { 1, 0.707 },

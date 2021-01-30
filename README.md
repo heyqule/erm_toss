@@ -17,36 +17,46 @@ Tier 1 Units (Max Resistance 85)
 * Zealot
     - Health 160 * 2
     - Melee damage 15-65
+    - Resist: 95
 * Dragoon
     - Health 180 * 1.5
     - Melee damage 15-80
+    - Resist: 90
 
 Tier 2 Units (Max Resistance 90)
 * Scout
     - Health 250 * 1.5
     - Range damage 10-60
+    - Resist: 90
 * Corsair
     - Health 180 * 1.75
     - Range damage 10-40   
     - slow on hit
+    - Resist: 95
 * Probe (resist 85)
     - Health 40 * 3
     - Kill itself to spawn Cannon / Pylon
+    - Resist: 90
         
 
-Tier 3 Units (Max Resistance 95)
+Tier 3 Units 
 * Carrier
     - Health 450
     - Damage 25-200
+    - Resist: 90
 * Arbiter
     - Health 350
     - AOE range damage 10-75
+    - Resist: 90
 * Templar
     - Health 80 * 2
     - AOE range damage 25-100
+    - Resist: 90
 * Dark Templar
     - Health 120 * 2
     - AOE melee damage 50-120
+    - Resist: 95
 * Archon
     - Health 360 * 1.5    
     - AOE meele damage 40-80
+    - Resist: 95
