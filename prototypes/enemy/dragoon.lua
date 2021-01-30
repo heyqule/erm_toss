@@ -20,20 +20,20 @@ local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-
 
 local resistance_mutiplier = settings.startup["enemyracemanager-level-multipliers"].value
 -- Handles acid and poison resistance
-local base_acid_resistance = 25
-local incremental_acid_resistance = 60
+local base_acid_resistance = 20
+local incremental_acid_resistance = 70
 -- Handles physical resistance
 local base_physical_resistance = 0
-local incremental_physical_resistance = 85
+local incremental_physical_resistance = 90
 -- Handles fire and explosive resistance
 local base_fire_resistance = 0
-local incremental_fire_resistance = 85
+local incremental_fire_resistance = 90
 -- Handles laser and electric resistance
-local base_electric_resistance = 25
-local incremental_electric_resistance = 60
+local base_electric_resistance = 20
+local incremental_electric_resistance = 70
 -- Handles cold resistance
-local base_cold_resistance = 25
-local incremental_cold_resistance = 60
+local base_cold_resistance = 20
+local incremental_cold_resistance = 70
 
 -- Handles damages
 local damage_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
@@ -71,7 +71,7 @@ function ErmToss.make_dragoon(level)
             localised_name = { 'entity-name.' .. MOD_NAME .. '/' .. name, level },
             icon = "__erm_toss__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
-            flags = { "placeable-enemy", "placeable-player", "placeable-off-grid", 'not-flammable' },
+            flags = { "placeable-enemy", "placeable-player", "placeable-off-grid" },
             has_belt_immunity = true,
             max_health = ERM_UnitHelper.get_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level),
             order = "erm-" .. name .. '/' .. level,
