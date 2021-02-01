@@ -33,8 +33,8 @@ Tier 2 Units (Max Resistance 90)
     - Range damage 10-40   
     - slow on hit
     - Resist: 95
-* Probe (resist 85)
-    - Health 40 * 3
+* Probe
+    - Health 40 * 5
     - Kill itself to spawn Cannon / Pylon
     - Resist: 90
         
@@ -42,19 +42,19 @@ Tier 2 Units (Max Resistance 90)
 Tier 3 Units 
 * Carrier
     - Health 450
-    - Damage 25-200
+    - Damage 25-125
     - Resist: 90
 * Arbiter
     - Health 350
-    - AOE range damage 10-75
+    - AOE range damage 10-40
     - Resist: 90
 * Templar
     - Health 80 * 2
-    - AOE range damage 25-100
+    - AOE range damage 15-60
     - Resist: 90
 * Dark Templar
     - Health 120 * 2
-    - AOE melee damage 50-120
+    - AOE melee damage 50-100
     - Resist: 95
 * Archon
     - Health 360 * 1.5    

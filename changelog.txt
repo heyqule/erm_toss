@@ -1,5 +1,22 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.1.0
+Date: 31. 01. 2021
+
+  Features:
+    - Added short range photon cannon (16) for probe spawn
+    - Extra long unit's max range can be config via startup setting
+
+  Changes
+    - base cannon now has 32 range.
+    - Adjust over all spawn rate, long range attack units are now tier 3 units
+    - Reduced Templar AOE damage from 25-100 to 15-40
+    - Reduced Archon AOE damage from 15-75 to 10-60
+    - Reduced Carrier damage from 25-200 to 25-125
+    - Reduced DarkTemplar AOE damage from 50-120 to 50-100
+
+---------------------------------------------------------------------------------------------------
 Version: 1.0.0
 Date: 29. 01. 2021
-  Feature:
-    - Add Protoss units and buildings to enemy race manager
+
+  Features:
+    - Added Protoss units and buildings to enemy race manager

@@ -11,6 +11,7 @@ local Sprites = require('__stdlib__/stdlib/data/modules/sprites')
 local ERM_UnitHelper = require('__enemyracemanager__/lib/unit_helper')
 local ERM_UnitTint = require('__enemyracemanager__/lib/unit_tint')
 local ERM_DebugHelper = require('__enemyracemanager__/lib/debug_helper')
+local ERM_Config = require('__enemyracemanager__/lib/global_config')
 local TossSound = require('__erm_toss__/prototypes/sound')
 local name = 'carrier'
 
@@ -39,14 +40,14 @@ local incremental_cold_resistance = 70
 -- Handles damages
 local damage_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local base_electric_damage = 25
-local incremental_electric_damage = 175
+local incremental_electric_damage = 100
 
 -- Handles Attack Speed
 local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local base_attack_speed = 270
 local incremental_attack_speed = 180
 
-local attack_range = 20
+local attack_range = ERM_Config.get_max_attack_range(settings)
 
 local movement_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local base_movement_speed = 0.15
@@ -72,7 +73,7 @@ function ErmToss.make_carrier(level)
             localised_name = { 'entity-name.' .. MOD_NAME .. '/' .. name, level },
             icon = "__erm_toss__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
-            flags = { "placeable-enemy", "placeable-player", "placeable-off-grid", 'not-flammable' },
+            flags = { "placeable-enemy", "placeable-player", "placeable-off-grid" },
             has_belt_immunity = true,
             max_health = ERM_UnitHelper.get_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level),
             order = "erm-" .. name .. '/' .. level,
