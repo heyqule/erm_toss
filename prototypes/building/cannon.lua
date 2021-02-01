@@ -12,6 +12,7 @@ local TossSound = require('__erm_toss__/prototypes/sound')
 
 local enemy_autoplace = require("__enemyracemanager__/lib/enemy-autoplace-utils")
 local name = 'cannon'
+local shortrange_name = 'cannon_shortrange'
 
 -- Hitpoints
 local health_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
@@ -49,7 +50,8 @@ local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipl
 local base_attack_speed = 300
 local incremental_attack_speed = 240
 
-local attack_range = 20
+local attack_range = 30
+local attack_shortrange = 16
 
 -- Animation Settings
 local unit_scale = 1.5
@@ -149,7 +151,7 @@ function ErmToss.make_cannon(level)
                     }
                 }
             },
-            autoplace = enemy_autoplace.enemy_worm_autoplace(0, FORCE_NAME),
+            --autoplace = enemy_autoplace.enemy_worm_autoplace(0, FORCE_NAME), --Disable autoplace?
             attack_from_start_frame = true,
             prepare_range = attack_range,
             allow_turning_when_starting_attack = true,
@@ -157,6 +159,97 @@ function ErmToss.make_cannon(level)
                 type = "projectile",
                 ammo_category = 'cannon-shell',
                 range = attack_range,
+                cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
+                cooldown_deviation = 0.1,
+                ammo_type = {
+                    category = "cannon-shell",
+                    target_type = "direction",
+                    action = {
+                        type = "direct",
+                        action_delivery = {
+                            type = "projectile",
+                            projectile = "dragoon-projectile",
+                            starting_speed = 0.3,
+                            target_effects = {
+                                {
+                                    type = "damage",
+                                    damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level), type = "electric" }
+                                }
+                            }
+                        }
+                    }
+                },
+                sound = TossSound.ball_attack(0.75),
+            }
+        },
+        {
+            type = "turret",
+            name = MOD_NAME .. '/' .. shortrange_name .. '/' .. level,
+            localised_name = { 'entity-name.' .. MOD_NAME .. '/' .. shortrange_name, level },
+            icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
+            icon_size = 64,
+            flags = { "placeable-player", "placeable-enemy", "placeable-off-grid" },
+            max_health = ERM_UnitHelper.get_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level) / 2,
+            order = MOD_NAME .. "-" .. shortrange_name,
+            subgroup = "enemies",
+            resistances = {
+                { type = "acid", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance, resistance_mutiplier, level) },
+                { type = "poison", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance, resistance_mutiplier, level) },
+                { type = "physical", percent = ERM_UnitHelper.get_resistance(base_physical_resistance, incremental_physical_resistance, resistance_mutiplier, level) },
+                { type = "fire", percent = ERM_UnitHelper.get_resistance(base_fire_resistance, incremental_fire_resistance, resistance_mutiplier, level) },
+                { type = "explosion", percent = ERM_UnitHelper.get_resistance(base_fire_resistance, incremental_fire_resistance, resistance_mutiplier, level) },
+                { type = "laser", percent = ERM_UnitHelper.get_resistance(base_electric_resistance, incremental_electric_resistance, resistance_mutiplier, level) },
+                { type = "electric", percent = ERM_UnitHelper.get_resistance(base_electric_resistance, incremental_electric_resistance, resistance_mutiplier, level) },
+                { type = "cold", percent = ERM_UnitHelper.get_resistance(base_cold_resistance, incremental_cold_resistance, resistance_mutiplier, level) }
+            },
+            healing_per_tick = ERM_UnitHelper.get_healing(hitpoint, max_hitpoint_multiplier, health_multiplier, level),
+            collision_box = collision_box,
+            map_generator_bounding_box = map_generator_bounding_box,
+            selection_box = selection_box,
+            shooting_cursor_size = 4,
+            rotation_speed = 1,
+            corpse = "toss-small-base-corpse",
+            dying_explosion = "toss-small-building-explosion",
+            dying_sound = TossSound.building_dying_sound(1),
+            call_for_help_radius = 50,
+            folded_speed = 0.01,
+            folded_speed_secondary = 0.01,
+            folded_animation = folded_animation(),
+            working_sound = TossSound.cannon_idle(0.75),
+            starting_attack_animation = attack_animation(),
+            starting_attack_speed = 0.02,
+            integration = {
+                layers = {
+                    {
+                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
+                        variation_count = 1,
+                        width = 128,
+                        height = 128,
+                        frame_count = 1,
+                        line_length = 1,
+                        scale = unit_scale
+                    },
+                    {
+                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
+                        variation_count = 1,
+                        width = 128,
+                        height = 128,
+                        frame_count = 1,
+                        line_length = 1,
+                        draw_as_shadow = true,
+                        shift = { 0.5, 0.1 },
+                        scale = unit_scale
+                    }
+                }
+            },
+            autoplace = enemy_autoplace.enemy_worm_autoplace(0, FORCE_NAME),
+            attack_from_start_frame = true,
+            prepare_range = attack_range,
+            allow_turning_when_starting_attack = true,
+            attack_parameters = {
+                type = "projectile",
+                ammo_category = 'cannon-shell',
+                range = attack_shortrange,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
                 ammo_type = {

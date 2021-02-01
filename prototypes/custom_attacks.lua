@@ -15,9 +15,9 @@ end
 
 local get_probe_buildable_turrets = function()
     local unit_name = {
-        { 'cannon', 'pylon' },
-        { 'cannon', 'pylon' },
-        { 'cannon', 'pylon' },
+        { 'cannon_shortrange' },
+        { 'cannon_shortrange' },
+        { 'cannon_shortrange', 'pylon' },
     }
     return get_unit(unit_name)
 end
@@ -58,7 +58,7 @@ function CustomAttacks.process_probe(event)
     local unit_name = MOD_NAME .. '/' .. get_probe_buildable_turrets() .. '/' .. level
 
     if not surface.can_place_entity({ name = unit_name, position = position }) then
-        position = surface.find_non_colliding_position(unit_name, event.source_position, 10, 2, true)
+        position = surface.find_non_colliding_position(unit_name, event.source_position, 5, 1, true)
     end
 
     if position then

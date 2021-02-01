@@ -40,14 +40,14 @@ local incremental_cold_resistance = 70
 -- Handles damages
 local damage_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local base_electric_damage = 10
-local incremental_electric_damage = 65
+local incremental_electric_damage = 30
 
 -- Handles Attack Speed
 local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local base_attack_speed = 180
 local incremental_attack_speed = 60
 
-local attack_range = 18
+local attack_range = 16
 
 local movement_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local base_movement_speed = 0.15
@@ -73,7 +73,7 @@ function ErmToss.make_arbiter(level)
             localised_name = { 'entity-name.' .. MOD_NAME .. '/' .. name, level },
             icon = "__erm_toss__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
-            flags = { "placeable-enemy", "placeable-player", "placeable-off-grid", 'not-flammable' },
+            flags = { "placeable-enemy", "placeable-player", "placeable-off-grid" },
             has_belt_immunity = true,
             max_health = ERM_UnitHelper.get_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level),
             order = "erm-" .. name .. '/' .. level,
