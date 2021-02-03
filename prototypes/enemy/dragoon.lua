@@ -52,7 +52,7 @@ local base_movement_speed = 0.075
 local incremental_movement_speed = 0.05
 
 -- Misc Settings
-local vision_distance = 25
+local vision_distance = 30
 local pollution_to_join_attack = 50
 local distraction_cooldown = 20
 

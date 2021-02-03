@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.2.0
+Date: 02. 02. 2021
+
+  Changes:
+    - Adjusted flying units vision to 35, ground unit to 30
+
+---------------------------------------------------------------------------------------------------
 Version: 1.1.0
 Date: 31. 01. 2021
 
@@ -8,11 +15,12 @@ Date: 31. 01. 2021
 
   Changes
     - base cannon now has 32 range.
-    - Adjust over all spawn rate, long range attack units are now tier 3 units
+    - Adjust over all spawn rate, long range attack unit are now tier 3 units
     - Reduced Templar AOE damage from 25-100 to 15-40
     - Reduced Archon AOE damage from 15-75 to 10-60
     - Reduced Carrier damage from 25-200 to 25-125
     - Reduced DarkTemplar AOE damage from 50-120 to 50-100
+    - Change arbiter damage type from electric to cold
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.0.0

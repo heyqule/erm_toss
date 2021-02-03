@@ -11,6 +11,7 @@ local Sprites = require('__stdlib__/stdlib/data/modules/sprites')
 local ERM_UnitHelper = require('__enemyracemanager__/lib/unit_helper')
 local ERM_UnitTint = require('__enemyracemanager__/lib/unit_tint')
 local ERM_DebugHelper = require('__enemyracemanager__/lib/debug_helper')
+local ERM_Config = require('__enemyracemanager__/lib/global_config')
 local TossSound = require('__erm_toss__/prototypes/sound')
 
 local name = 'arbiter'
@@ -47,7 +48,7 @@ local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipl
 local base_attack_speed = 180
 local incremental_attack_speed = 60
 
-local attack_range = 16
+local attack_range = ERM_Config.get_max_attack_range(settings)
 
 local movement_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local base_movement_speed = 0.15
@@ -118,7 +119,7 @@ function ErmToss.make_arbiter(level)
                             starting_speed = 0.3,
                             target_effects = {
                                 type = "damage",
-                                damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level), type = "electric" }
+                                damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level), type = "cold" }
                             }
                         }
                     }
