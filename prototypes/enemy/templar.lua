@@ -25,7 +25,7 @@ local base_acid_resistance = 20
 local incremental_acid_resistance = 70
 -- Handles physical resistance
 local base_physical_resistance = 0
-local incremental_physical_resistance = 90
+local incremental_physical_resistance = 95
 -- Handles fire and explosive resistance
 local base_fire_resistance = 0
 local incremental_fire_resistance = 90
@@ -77,7 +77,7 @@ function ErmToss.make_templar(level)
             flags = { "placeable-enemy", "placeable-player", "placeable-off-grid" },
             has_belt_immunity = false,
             max_health = ERM_UnitHelper.get_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level),
-            order = "erm-" .. name .. '/' .. level,
+            order = MOD_NAME .. '/'  .. name .. '/' .. level,
             subgroup = "enemies",
             shooting_cursor_size = 2,
             resistances = {
@@ -90,7 +90,7 @@ function ErmToss.make_templar(level)
                 { type = "electric", percent = ERM_UnitHelper.get_resistance(base_electric_resistance, incremental_electric_resistance, resistance_mutiplier, level) },
                 { type = "cold", percent = ERM_UnitHelper.get_resistance(base_cold_resistance, incremental_cold_resistance, resistance_mutiplier, level) }
             },
-            healing_per_tick = ERM_UnitHelper.get_healing(hitpoint, max_hitpoint_multiplier, health_multiplier, level) * 0.5,
+            healing_per_tick = ERM_UnitHelper.get_healing(hitpoint, max_hitpoint_multiplier, health_multiplier, level),
             --collision_mask = { "player-layer" },
             collision_box = collision_box,
             selection_box = selection_box,
@@ -159,6 +159,7 @@ function ErmToss.make_templar(level)
                 }
             },
             dying_sound = TossSound.enemy_death(name, 0.75),
+            dying_explosion = 'protoss-templar-death',
             corpse = name .. '-corpse'
         },
         {
@@ -170,20 +171,10 @@ function ErmToss.make_templar(level)
             selection_box = selection_box,
             selectable_in_game = false,
             dying_speed = 0.04,
-            time_before_removed = defines.time.second * 5,
+            time_before_removed = defines.time.second,
             subgroup = "corpses",
             order = "x" .. name .. level,
-            final_render_layer = "lower-object-above-shadow",
-            animation = {
-                filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-death.png",
-                width = 128,
-                height = 128,
-                frame_count = 6,
-                direction_count = 1,
-                axially_symmetrical = false,
-                scale = unit_scale,
-                animation_speed = 0.2
-            },
+            animation = Sprites.empty_pictures(),
         },
         {
             name = name .. "-electric-cloud-" .. level,

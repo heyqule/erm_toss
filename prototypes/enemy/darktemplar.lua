@@ -6,6 +6,7 @@
 -- To change this template use File | Settings | File Templates.
 --
 require('__stdlib__/stdlib/utils/defines/time')
+local Sprites = require('__stdlib__/stdlib/data/modules/sprites')
 
 local ERM_UnitHelper = require('__enemyracemanager__/lib/unit_helper')
 local ERM_UnitTint = require('__enemyracemanager__/lib/unit_tint')
@@ -75,7 +76,7 @@ function ErmToss.make_darktemplar(level)
             flags = { "placeable-enemy", "placeable-player", "placeable-off-grid" },
             has_belt_immunity = false,
             max_health = ERM_UnitHelper.get_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level),
-            order = "erm-" .. name .. '/' .. level,
+            order = MOD_NAME .. '/'  .. name .. '/' .. level,
             subgroup = "enemies",
             shooting_cursor_size = 2,
             resistances = {
@@ -88,7 +89,7 @@ function ErmToss.make_darktemplar(level)
                 { type = "electric", percent = ERM_UnitHelper.get_resistance(base_electric_resistance, incremental_electric_resistance, resistance_mutiplier, level) },
                 { type = "cold", percent = ERM_UnitHelper.get_resistance(base_cold_resistance, incremental_cold_resistance, resistance_mutiplier, level) }
             },
-            healing_per_tick = ERM_UnitHelper.get_healing(hitpoint, max_hitpoint_multiplier, health_multiplier, level) * 0.5,
+            healing_per_tick = ERM_UnitHelper.get_healing(hitpoint, max_hitpoint_multiplier, health_multiplier, level),
             --collision_mask = { "player-layer" },
             collision_box = collision_box,
             selection_box = selection_box,
@@ -157,6 +158,7 @@ function ErmToss.make_darktemplar(level)
                 }
             },
             dying_sound = TossSound.enemy_death(name, 0.75),
+            dying_explosion = 'protoss-zealot-death',
             corpse = name .. '-corpse'
         },
         {
@@ -171,17 +173,7 @@ function ErmToss.make_darktemplar(level)
             time_before_removed = defines.time.second * 5,
             subgroup = "corpses",
             order = "x" .. name .. level,
-            final_render_layer = "lower-object-above-shadow",
-            animation = {
-                filename = "__erm_toss__/graphics/entity/units/zealot/zealot-death.png",
-                width = 128,
-                height = 128,
-                frame_count = 7,
-                direction_count = 1,
-                axially_symmetrical = false,
-                scale = unit_scale,
-                animation_speed = 0.2
-            },
+            animation = Sprites.empty_pictures(),
         }
     })
 end
