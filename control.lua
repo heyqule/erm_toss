@@ -19,15 +19,15 @@ require('__erm_toss__/global')
 -- Constants
 
 
-local createTossRace = function()
-    local toss_force = game.forces[FORCE_NAME]
-    if not toss_force then
-        toss_force = game.create_force(FORCE_NAME)
+local createRace = function()
+    local force = game.forces[FORCE_NAME]
+    if not force then
+        force = game.create_force(FORCE_NAME)
     end
 
-    toss_force.ai_controllable = true;
-    toss_force.disable_research()
-    toss_force.friendly_fire = false;
+    force.ai_controllable = true;
+    force.disable_research()
+    force.friendly_fire = false;
 
     ForceHelper.set_friends(game, FORCE_NAME)
 end
@@ -41,9 +41,9 @@ local addRaceSettings = function()
         version = MOD_VERSION,
         level = 1, -- Race level
         tier = 1, -- Race tier
-        evolution_point = 0,
-        evolution_base_point = 0,
-        angry_meter = 0, -- Build by killing their force (unit = 1, building = 10)
+        evolution_point = 0, -- For internal use
+        evolution_base_point = 0, -- For internal use
+        angry_meter = 0, -- Build by killing their force (Spawner = 20, turrets = 10)
         send_attack_threshold = 2000, -- When threshold reach, sends attack to the base
         send_attack_threshold_deviation = 0.2,
         next_attack_threshold = 0, -- Used by system to calculate next move
@@ -82,7 +82,7 @@ local addRaceSettings = function()
 end
 
 Event.on_init(function(event)
-    createTossRace()
+    createRace()
     addRaceSettings()
 end)
 
@@ -90,7 +90,7 @@ Event.on_load(function(event)
 end)
 
 Event.on_configuration_changed(function(event)
-    createTossRace()
+    createRace()
 end)
 
 Event.register(defines.events.on_script_trigger_effect, function(event)

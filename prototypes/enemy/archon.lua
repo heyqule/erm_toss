@@ -78,7 +78,7 @@ function ErmToss.make_archon(level)
             flags = { "placeable-enemy", "placeable-player", "placeable-off-grid" },
             has_belt_immunity = false,
             max_health = ERM_UnitHelper.get_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level),
-            order = "erm-" .. name .. '/' .. level,
+            order = MOD_NAME .. '/'  .. name .. '/' .. level,
             subgroup = "enemies",
             shooting_cursor_size = 2,
             resistances = {

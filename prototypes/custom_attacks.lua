@@ -63,7 +63,7 @@ function CustomAttacks.process_probe(event)
 
     if position then
         surface.create_entity({ name = unit_name, position = position, force = event.source_entity.force })
-        event.source_entity.damage(1000000, 'neutral', 'self')
+        event.source_entity.damage(100000, 'neutral', 'self')
     end
 end
 

@@ -25,7 +25,7 @@ local base_acid_resistance = 20
 local incremental_acid_resistance = 70
 -- Handles physical resistance
 local base_physical_resistance = 0
-local incremental_physical_resistance = 90
+local incremental_physical_resistance = 95
 -- Handles fire and explosive resistance
 local base_fire_resistance = 0
 local incremental_fire_resistance = 90
@@ -75,7 +75,7 @@ function ErmToss.make_scout(level)
             flags = { "placeable-enemy", "placeable-player", "placeable-off-grid" },
             has_belt_immunity = true,
             max_health = ERM_UnitHelper.get_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level),
-            order = "erm-" .. name .. '/' .. level,
+            order = MOD_NAME .. '/'  .. name .. '/' .. level,
             subgroup = "enemies",
             shooting_cursor_size = 2,
             resistances = {
@@ -88,7 +88,7 @@ function ErmToss.make_scout(level)
                 { type = "electric", percent = ERM_UnitHelper.get_resistance(base_electric_resistance, incremental_electric_resistance, resistance_mutiplier, level) },
                 { type = "cold", percent = ERM_UnitHelper.get_resistance(base_cold_resistance, incremental_cold_resistance, resistance_mutiplier, level) }
             },
-            healing_per_tick = ERM_UnitHelper.get_healing(hitpoint, max_hitpoint_multiplier, health_multiplier, level) * 0.5,
+            healing_per_tick = ERM_UnitHelper.get_healing(hitpoint, max_hitpoint_multiplier, health_multiplier, level),
             collision_mask = {},
             collision_box = collision_box,
             selection_box = selection_box,
@@ -157,6 +157,8 @@ function ErmToss.make_scout(level)
                             scale = unit_scale,
                             animation_speed = 1,
                             draw_as_glow = true,
+                            blend_mode = "additive",
+                            tint = ERM_UnitTint.tint_blue_flame_burner(),
                         }
                     }
                 }
@@ -201,6 +203,8 @@ function ErmToss.make_scout(level)
                         scale = unit_scale,
                         animation_speed = 1,
                         draw_as_glow = true,
+                        blend_mode = "additive",
+                        tint = ERM_UnitTint.tint_blue_flame_burner(),
                     }
                 }
             },

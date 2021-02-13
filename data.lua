@@ -41,8 +41,9 @@ data:extend({ TossProjectileAnimation.create_electric_cloud() })
 data:extend({ TossProjectileAnimation.create_archon_hit_effect() })
 data:extend({ TossProjectileAnimation.create_air_death() })
 data:extend({ TossProjectileAnimation.create_slow_ticker() })
+data:extend({ TossProjectileAnimation.create_ground_death() })
 
-local level = ErmConfig.get_max_level(settings)
+local level = ErmConfig.MAX_LEVELS
 
 for i = 1, level do
     ErmToss.make_arbiter(i)

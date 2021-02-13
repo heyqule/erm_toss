@@ -25,10 +25,10 @@ local base_acid_resistance = 25
 local incremental_acid_resistance = 55
 -- Handles physical resistance
 local base_physical_resistance = 0
-local incremental_physical_resistance = 80
+local incremental_physical_resistance = 85
 -- Handles fire and explosive resistance
 local base_fire_resistance = 0
-local incremental_fire_resistance = 80
+local incremental_fire_resistance = 90
 -- Handles laser and electric resistance
 local base_electric_resistance = 0
 local incremental_electric_resistance = 80
@@ -42,8 +42,8 @@ local unit_scale = 2
 local pollution_absorption_absolute = 20
 local spawning_cooldown = { 600, 300 }
 local spawning_radius = 10
-local max_count_of_owned_units = 3
-local max_friends_around_to_spawn = 2
+local max_count_of_owned_units = 5
+local max_friends_around_to_spawn = 3
 local spawn_table = function(level)
     local res = {}
     --Tire 1
@@ -92,7 +92,7 @@ function ErmToss.make_pylon(level)
                 { type = "electric", percent = ERM_UnitHelper.get_resistance(base_electric_resistance, incremental_electric_resistance, resistance_mutiplier, level) },
                 { type = "cold", percent = ERM_UnitHelper.get_resistance(base_cold_resistance, incremental_cold_resistance, resistance_mutiplier, level) }
             },
-            healing_per_tick = ERM_UnitHelper.get_healing(hitpoint, max_hitpoint_multiplier, health_multiplier, level),
+            healing_per_tick = ERM_UnitHelper.get_building_healing(hitpoint, max_hitpoint_multiplier, health_multiplier, level),
             collision_box = collision_box,
             map_generator_bounding_box = map_generator_bounding_box,
             selection_box = selection_box,

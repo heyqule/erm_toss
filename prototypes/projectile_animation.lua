@@ -333,4 +333,41 @@ function ProjectileAnimation.create_slow_ticker()
     }
 end
 
+function ProjectileAnimation.create_ground_death()
+    return
+        {
+            type = "explosion",
+            name = "protoss-zealot-death",
+            flags = { "not-on-map" },
+            animations = {
+                filename = "__erm_toss__/graphics/entity/units/zealot/zealot-death.png",
+                width = 128,
+                height = 128,
+                frame_count = 7,
+                direction_count = 1,
+                axially_symmetrical = false,
+                scale = 1,
+                animation_speed = 0.2,
+                draw_as_glow = true
+            }
+        },
+        {
+            type = "explosion",
+            name = "protoss-templar-death",
+            flags = { "not-on-map" },
+            animations = {
+                filename = "__erm_toss__/graphics/entity/units/templar/templar-death.png",
+                width = 128,
+                height = 128,
+                frame_count = 6,
+                direction_count = 1,
+                axially_symmetrical = false,
+                scale = unit_scale,
+                animation_speed = 0.2,
+                draw_as_glow = true
+            },
+        }
+end
+
+
 return ProjectileAnimation
