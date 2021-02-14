@@ -54,7 +54,7 @@ local addRaceSettings = function()
         },
         current_units_tier = {},
         turrets = {
-            { 'cannon' },
+            { 'cannon', 'acid-cannon' },
             {},
             {},
         },

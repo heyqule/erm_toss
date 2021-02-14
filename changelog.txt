@@ -8,7 +8,7 @@ Date: 02. 13. 2021
     - All unit physical resistance max out at 95
     - Melee range unit elemental resistance max out at 95
     - Range unit elemental resistance max out at 90
-    - Building fire/explosion resist bump to 90, physical resist to 85
+    - Building fire, explosion resistance bump to 90, physical resist to 85
     - Tweaked spawn rate
     - Added acid spit cannon for base defense
 
@@ -34,7 +34,7 @@ Date: 31. 01. 2021
     - Added short range photon cannon (16) for probe spawn
     - Extra long unit's max range can be config via startup setting
 
-  Changes
+  Changes:
     - base cannon now has 32 range.
     - Adjust over all spawn rate, long range attack unit are now tier 3 units
     - Reduced Templar AOE damage from 25-100 to 15-40
