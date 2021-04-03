@@ -6,6 +6,26 @@ local ErmConfig = require('__enemyracemanager__/lib/global_config')
 
 local TossProjectileAnimation = require('__erm_toss__/prototypes/projectile_animation')
 
+data:extend(
+        {
+    {
+        type = "ammo-category",
+        name = "protoss-cannon-shell"
+    },
+    {
+        type = "ammo-category",
+        name = "protoss-rocket"
+    },
+    {
+        type = "ammo-category",
+        name = "protoss-laser"
+    },
+    {
+        type = "ammo-category",
+        name = "protoss-capsule"
+    },
+})
+
 require "prototypes.enemy.arbiter"
 require "prototypes.enemy.zealot"
 require "prototypes.enemy.dragoon"

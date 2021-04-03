@@ -13,6 +13,7 @@ Date: 04. 02. 2021
 
   Bugfixes:
     - Probe dies when it attempts to build. They can no longer stuck in forest and wasting cpu cycles.
+    - Remove protoss icons from player's bonus windows
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.3.0
