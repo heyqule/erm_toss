@@ -20,8 +20,8 @@ local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-
 
 local resistance_mutiplier = settings.startup["enemyracemanager-level-multipliers"].value
 -- Handles acid and poison resistance
-local base_acid_resistance = 25
-local incremental_acid_resistance = 70
+local base_acid_resistance = 0
+local incremental_acid_resistance = 90
 -- Handles physical resistance
 local base_physical_resistance = 0
 local incremental_physical_resistance = 95
@@ -54,7 +54,7 @@ local incremental_movement_speed = 0.075
 -- Misc settings
 local vision_distance = 30
 
-local pollution_to_join_attack = 10
+local pollution_to_join_attack = 20
 local distraction_cooldown = 20
 
 -- Animation Settings

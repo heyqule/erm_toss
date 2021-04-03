@@ -31,24 +31,6 @@ local CustomAttacks = {}
 --target_position :: Position (optional)
 --target_entity :: LuaEntity (optional)
 --https://lua-api.factorio.com/latest/LuaSurface.html#LuaSurface.create_entity
-function CustomAttacks.process_shuttle(event)
-    local surface = game.surfaces[event.surface_index]
-    local nameToken = String.split(event.source_entity.name, '/')
-    local level = nameToken[3]
-    local position = event.source_position
-    position.x = position.x + 2
-
-    local unit_name = MOD_NAME .. '/' .. get_shuttle_droppable_unit() .. '/' .. level
-
-    if not surface.can_place_entity({ name = unit_name, position = position }) then
-        position = surface.find_non_colliding_position(unit_name, event.source_position, 10, 2, true)
-    end
-
-    if position then
-        surface.create_entity({ name = unit_name, position = position, force = event.source_entity.force })
-    end
-end
-
 function CustomAttacks.process_probe(event)
     local surface = game.surfaces[event.surface_index]
     local nameToken = String.split(event.source_entity.name, '/')
@@ -63,8 +45,9 @@ function CustomAttacks.process_probe(event)
 
     if position then
         surface.create_entity({ name = unit_name, position = position, force = event.source_entity.force })
-        event.source_entity.damage(100000, 'neutral', 'self')
     end
+
+    event.source_entity.die('neutral')
 end
 
 return CustomAttacks
