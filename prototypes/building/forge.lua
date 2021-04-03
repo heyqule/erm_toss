@@ -21,25 +21,25 @@ local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-
 
 local resistance_mutiplier = settings.startup["enemyracemanager-level-multipliers"].value
 -- Handles acid and poison resistance
-local base_acid_resistance = 25
-local incremental_acid_resistance = 55
+local base_acid_resistance = 0
+local incremental_acid_resistance = 75
 -- Handles physical resistance
 local base_physical_resistance = 0
 local incremental_physical_resistance = 85
 -- Handles fire and explosive resistance
-local base_fire_resistance = 0
-local incremental_fire_resistance = 90
+local base_fire_resistance = 10
+local incremental_fire_resistance = 70
 -- Handles laser and electric resistance
-local base_electric_resistance = 0
-local incremental_electric_resistance = 80
+local base_electric_resistance = 25
+local incremental_electric_resistance = 55
 -- Handles cold resistance
-local base_cold_resistance = 15
+local base_cold_resistance = 10
 local incremental_cold_resistance = 65
 
 -- Animation Settings
 local unit_scale = 2
 
-local pollution_absorption_absolute = 20
+local pollution_absorption_absolute = 50
 local spawning_cooldown = { 600, 300 }
 local spawning_radius = 10
 local max_count_of_owned_units = 5
@@ -47,14 +47,14 @@ local max_friends_around_to_spawn = 3
 local spawn_table = function(level)
     local res = {}
     --Tire 1
-    res[1] = { MOD_NAME .. '/zealot/' .. level, { { 0.0, 0.7 }, { 0.2, 0.7 }, { 0.4, 0.6 }, { 0.6, 0.4 }, { 0.8, 0.2 }, { 1.0, 0.2 } } }
-    res[2] = { MOD_NAME .. '/dragoon/' .. level, { { 0.0, 0.2 }, { 0.2, 0.2 }, { 0.4, 0.2 }, { 0.6, 0.2 }, { 0.8, 0.2 }, { 1.0, 0.2 } } }
+    res[1] = { MOD_NAME .. '/zealot/' .. level, { { 0.0, 0.7 }, { 0.2, 0.7 }, { 0.4, 0.6 }, { 0.6, 0.4 }, { 0.8, 0.2 }, { 1.0, 0.25 } } }
+    res[2] = { MOD_NAME .. '/dragoon/' .. level, { { 0.0, 0.2 }, { 0.2, 0.2 }, { 0.4, 0.2 }, { 0.6, 0.2 }, { 0.8, 0.2 }, { 1.0, 0.25 } } }
     --Tire 2
     res[3] = { MOD_NAME .. '/scout/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.1 }, { 0.6, 0.2 }, { 0.8, 0.2 }, { 1.0, 0.1 } } }
-    res[4] = { MOD_NAME .. '/corsair/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.1 }, { 0.6, 0.2 }, { 0.8, 0.2 }, { 1.0, 0.2 } } }
+    res[4] = { MOD_NAME .. '/corsair/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.1 }, { 0.6, 0.2 }, { 0.8, 0.2 }, { 1.0, 0.15 } } }
     --Tire 3
     res[6] = { MOD_NAME .. '/templar/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.05 }, { 1.0, 0.05 } } }
-    res[7] = { MOD_NAME .. '/darktemplar/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.1 }, { 1.0, 0.1 } } }
+    res[7] = { MOD_NAME .. '/darktemplar/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.1 }, { 1.0, 0.05 } } }
     res[8] = { MOD_NAME .. '/archon/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.05 }, { 1.0, 0.05 } } }
     res[9] = { MOD_NAME .. '/carrier/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, { 1.0, 0.05 } } }
     res[10] = { MOD_NAME .. '/arbiter/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, { 1.0, 0.05 } } }
