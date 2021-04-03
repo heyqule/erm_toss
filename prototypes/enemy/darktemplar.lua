@@ -20,8 +20,8 @@ local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-
 
 local resistance_mutiplier = settings.startup["enemyracemanager-level-multipliers"].value
 -- Handles acid and poison resistance
-local base_acid_resistance = 25
-local incremental_acid_resistance = 70
+local base_acid_resistance = 0
+local incremental_acid_resistance = 90
 -- Handles physical resistance
 local base_physical_resistance = 0
 local incremental_physical_resistance = 95
@@ -38,7 +38,7 @@ local incremental_cold_resistance = 70
 -- Handles physical damages
 local damage_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local base_physical_damage = 50
-local incremental_physical_damage = 50
+local incremental_physical_damage = 70
 
 -- Handles Attack Speed
 local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
@@ -54,7 +54,7 @@ local incremental_movement_speed = 0.075
 -- Misc settings
 local vision_distance = 30
 
-local pollution_to_join_attack = 200
+local pollution_to_join_attack = 300
 local distraction_cooldown = 20
 
 -- Animation Settings
@@ -73,7 +73,7 @@ function ErmToss.make_darktemplar(level)
             localised_name = { 'entity-name.' .. MOD_NAME .. '/' .. name, level },
             icon = "__erm_toss__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
-            flags = { "placeable-enemy", "placeable-player", "placeable-off-grid" },
+            flags = { "placeable-enemy", "placeable-player", "placeable-off-grid", "breaths-air" },
             has_belt_immunity = false,
             max_health = ERM_UnitHelper.get_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level),
             order = MOD_NAME .. '/'  .. name .. '/' .. level,
@@ -108,7 +108,7 @@ function ErmToss.make_darktemplar(level)
                     category = "melee",
                     action = {
                         type = "area",
-                        radius = 1,
+                        radius = 2,
                         ignore_collision_condition = true,
                         action_delivery = {
                             type = "instant",

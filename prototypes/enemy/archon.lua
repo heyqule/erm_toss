@@ -18,12 +18,12 @@ local name = 'archon'
 
 local health_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local hitpoint = 360
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.5
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 2
 
 local resistance_mutiplier = settings.startup["enemyracemanager-level-multipliers"].value
 -- Handles acid and poison resistance
-local base_acid_resistance = 25
-local incremental_acid_resistance = 70
+local base_acid_resistance = 0
+local incremental_acid_resistance = 90
 -- Handles physical resistance
 local base_physical_resistance = 0
 local incremental_physical_resistance = 95
@@ -40,7 +40,7 @@ local incremental_cold_resistance = 70
 -- Handles physical damages
 local damage_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local base_electric_damage = 40
-local incremental_electric_damage = 40
+local incremental_electric_damage = 60
 
 -- Handles Attack Speed
 local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
@@ -56,7 +56,7 @@ local incremental_movement_speed = 0.075
 -- Misc settings
 local vision_distance = 30
 
-local pollution_to_join_attack = 300
+local pollution_to_join_attack = 500
 local distraction_cooldown = 20
 
 -- Animation Settings
@@ -247,7 +247,7 @@ function ErmToss.make_archon(level)
                         type = "nested-result",
                         action = {
                             type = "area",
-                            radius = 1,
+                            radius = 3,
                             ignore_collision_condition = true,
                             action_delivery = {
                                 type = "instant",
