@@ -7,7 +7,7 @@
 -- Globals within the mod
 MOD_NAME = 'erm_toss'
 FORCE_NAME = 'enemy_erm_toss'
-MOD_VERSION = 100
+MOD_VERSION = 101
 
 DEBUG_MODE = false
 

@@ -17,12 +17,12 @@ local name = 'scout'
 -- Hitpoints
 local health_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local hitpoint = 250
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.5
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.25
 
 local resistance_mutiplier = settings.startup["enemyracemanager-level-multipliers"].value
 -- Handles acid and poison resistance
-local base_acid_resistance = 20
-local incremental_acid_resistance = 70
+local base_acid_resistance = 0
+local incremental_acid_resistance = 85
 -- Handles physical resistance
 local base_physical_resistance = 0
 local incremental_physical_resistance = 95
@@ -54,7 +54,7 @@ local incremental_movement_speed = 0.1
 
 -- Misc Settings
 local vision_distance = 35
-local pollution_to_join_attack = 100
+local pollution_to_join_attack = 150
 local distraction_cooldown = 20
 
 -- Animation Settings

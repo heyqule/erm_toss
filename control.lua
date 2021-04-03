@@ -8,8 +8,8 @@
 
 local Game = require('__stdlib__/stdlib/game')
 local ForceHelper = require('__enemyracemanager__/lib/helper/force_helper')
-
-ErmConfig = require('__enemyracemanager__/lib/global_config')
+local ErmRaceSettingsHelper = require('__enemyracemanager__/lib/helper/race_settings_helper')
+local ErmConfig = require('__enemyracemanager__/lib/global_config')
 
 local Event = require('__stdlib__/stdlib/event/event')
 local String = require('__stdlib__/stdlib/utils/string')
@@ -66,7 +66,7 @@ local addRaceSettings = function()
         },
         current_command_centers_tier = {},
         support_structures = {
-            { 'nexus', 'pylon', 'gateway', 'forge' },
+            { 'pylon', 'gateway', 'forge' },
             { 'cybernetics_core', 'stargate', 'citadel_adun' },
             { 'templar_archive', 'fleet_beacon', 'arbiter_tribunal' },
         },
@@ -91,6 +91,9 @@ end)
 
 Event.on_configuration_changed(function(event)
     createRace()
+    -- Mod Compatibility Upgrade for race settings
+    Event.dispatch({
+        name = Event.get_event_name(ErmConfig.RACE_SETTING_UPDATE), affected_race = MOD_NAME })
 end)
 
 Event.register(defines.events.on_script_trigger_effect, function(event)
@@ -100,6 +103,25 @@ Event.register(defines.events.on_script_trigger_effect, function(event)
 
     if event.effect_id == PROBE_ATTACK then
         CustomAttacks.process_probe(event)
+    end
+end)
+
+
+---
+--- Modify Race Settings for existing game
+---
+Event.register(Event.generate_event_name(ErmConfig.RACE_SETTING_UPDATE), function(event)
+    local race_setting = remote.call('enemy_race_manager', 'get_race', MOD_NAME)
+    if (event.affected_race == MOD_NAME) and race_setting then
+        if race_setting.version < MOD_VERSION then
+            if race_setting.version < 101 then
+                ErmRaceSettingsHelper.remove_structure_to_tier(race_setting, 1, 'nexus')
+                ErmRaceSettingsHelper.add_turrets_to_tier(race_setting, 1, 'acid-cannon')
+            end
+
+            race_setting.version = MOD_VERSION
+        end
+        remote.call('enemy_race_manager', 'update_race_setting', race_setting)
     end
 end)
 

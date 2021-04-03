@@ -23,8 +23,8 @@ local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-
 
 local resistance_mutiplier = settings.startup["enemyracemanager-level-multipliers"].value
 -- Handles acid and poison resistance
-local base_acid_resistance = 20
-local incremental_acid_resistance = 70
+local base_acid_resistance = 0
+local incremental_acid_resistance = 85
 -- Handles physical resistance
 local base_physical_resistance = 0
 local incremental_physical_resistance = 95
@@ -48,7 +48,7 @@ local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipl
 local base_attack_speed = 180
 local incremental_attack_speed = 60
 
-local attack_range = ERM_Config.get_max_attack_range(settings)
+local attack_range = ERM_Config.get_max_attack_range()
 
 local movement_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local base_movement_speed = 0.15
@@ -56,7 +56,7 @@ local incremental_movement_speed = 0.1
 
 -- Misc Settings
 local vision_distance = 35
-local pollution_to_join_attack = 300
+local pollution_to_join_attack = 400
 local distraction_cooldown = 20
 
 -- Animation Settings
