@@ -100,12 +100,12 @@ function ErmToss.make_corsair(level)
             ai_settings = biter_ai_settings,
             attack_parameters = {
                 type = "projectile",
-                ammo_category = 'rocket',
+                ammo_category = 'protoss-laser',
                 range = attack_range,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
                 ammo_type = {
-                    category = "laser",
+                    category = "protoss-laser",
                     target_type = "direction",
                     action = {
                         type = "direct",
