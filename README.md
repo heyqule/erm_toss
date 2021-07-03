@@ -47,8 +47,8 @@ Weak to acid / poison (-5 resist)
     - Damage 25-125
 
 ###### Arbiter
-    - Health 350 - 7560
-    - AOE range damage 40 - 100
+    - Health 350 - 3850
+    - AOE range damage 10 - 40
 
 ###### Templar
     - Health 80 - 1680
