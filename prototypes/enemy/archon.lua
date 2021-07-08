@@ -101,6 +101,11 @@ function ErmToss.make_archon(level)
             pollution_to_join_attack = pollution_to_join_attack,
             distraction_cooldown = distraction_cooldown,
             ai_settings = biter_ai_settings,
+            light = {
+                intensity = 1,
+                size = 16,
+                color = ERM_UnitTint.tint_archon_light()
+            },
             attack_parameters = {
                 type = "projectile",
                 range = attack_range,

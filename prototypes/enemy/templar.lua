@@ -138,6 +138,19 @@ function ErmToss.make_templar(level)
                             direction_count = 16,
                             scale = unit_scale,
                             animation_speed = 0.6
+                        },
+                        {
+                            filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-attack.png",
+                            width = 128,
+                            height = 128,
+                            frame_count = 5,
+                            axially_symmetrical = false,
+                            direction_count = 16,
+                            scale = unit_scale,
+                            animation_speed = 0.6,
+                            tint = ERM_UnitTint.tint_shadow(),
+                            draw_as_shadow = true,
+                            shift = { 0.4, 0 }
                         }
                     }
                 }
@@ -155,6 +168,19 @@ function ErmToss.make_templar(level)
                         direction_count = 16,
                         scale = unit_scale,
                         animation_speed = 1,
+                    },
+                    {
+                        filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-run.png",
+                        width = 128,
+                        height = 128,
+                        frame_count = 8,
+                        axially_symmetrical = false,
+                        direction_count = 16,
+                        scale = unit_scale,
+                        animation_speed = 1,
+                        tint = ERM_UnitTint.tint_shadow(),
+                        draw_as_shadow = true,
+                        shift = { 0.4, 0 }
                     }
                 }
             },

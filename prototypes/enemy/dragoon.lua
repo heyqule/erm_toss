@@ -136,7 +136,7 @@ function ErmToss.make_dragoon(level)
                             animation_speed = 1,
                         },
                         {
-                            filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-attack-mask.png",
+                            filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-attack.png",
                             width = 96,
                             height = 96,
                             frame_count = 7,
@@ -144,8 +144,10 @@ function ErmToss.make_dragoon(level)
                             direction_count = 1,
                             scale = unit_scale,
                             animation_speed = 1,
+                            tint = ERM_UnitTint.tint_shadow(),
                             draw_as_shadow = true,
-                        }
+                            shift = { 0.2, 0 }
+                        },
                     }
                 }
             },
@@ -164,7 +166,7 @@ function ErmToss.make_dragoon(level)
                         animation_speed = 1,
                     },
                     {
-                        filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-run-mask.png",
+                        filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-run.png",
                         width = 96,
                         height = 96,
                         frame_count = 9,
@@ -172,8 +174,10 @@ function ErmToss.make_dragoon(level)
                         direction_count = 16,
                         scale = unit_scale,
                         animation_speed = 1,
-                        draw_as_shadow = true
-                    }
+                        tint = ERM_UnitTint.tint_shadow(),
+                        draw_as_shadow = true,
+                        shift = { 0.2, 0 }
+                    },
                 }
             },
             dying_sound = TossSound.enemy_death(name, 1),

@@ -144,7 +144,7 @@ function ErmToss.make_probe(level)
                             draw_as_shadow = true,
                             tint = ERM_UnitTint.tint_shadow(),
                             animation_speed = 0.6,
-                            shift = { 0, 1 }
+                            shift = { 0.66, 0 }
                         }
                     }
                 }
@@ -174,7 +174,7 @@ function ErmToss.make_probe(level)
                         tint = ERM_UnitTint.tint_shadow(),
                         draw_as_shadow = true,
                         animation_speed = 1,
-                        shift = { 0, 1 }
+                        shift = { 0.66, 0 }
                     }
                 }
             },

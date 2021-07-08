@@ -137,6 +137,19 @@ function ErmToss.make_darktemplar(level)
                             direction_count = 16,
                             scale = unit_scale,
                             animation_speed = 0.6
+                        },
+                        {
+                            filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-attack.png",
+                            width = 64,
+                            height = 64,
+                            frame_count = 9,
+                            axially_symmetrical = false,
+                            direction_count = 16,
+                            scale = unit_scale,
+                            animation_speed = 0.6,
+                            tint = ERM_UnitTint.tint_shadow(),
+                            draw_as_shadow = true,
+                            shift = { 0.2, 0 }
                         }
                     }
                 }
@@ -154,6 +167,19 @@ function ErmToss.make_darktemplar(level)
                         direction_count = 16,
                         scale = unit_scale,
                         animation_speed = 1,
+                    },
+                    {
+                        filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-run.png",
+                        width = 64,
+                        height = 64,
+                        frame_count = 10,
+                        axially_symmetrical = false,
+                        direction_count = 16,
+                        scale = unit_scale,
+                        animation_speed = 1,
+                        tint = ERM_UnitTint.tint_shadow(),
+                        draw_as_shadow = true,
+                        shift = { 0.2, 0 }
                     }
                 }
             },
