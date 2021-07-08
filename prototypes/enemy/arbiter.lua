@@ -140,7 +140,7 @@ function ErmToss.make_arbiter(level)
                             animation_speed = 1,
                         },
                         {
-                            filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-run-mask.png",
+                            filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-run.png",
                             width = 76,
                             height = 76,
                             frame_count = 1,
@@ -149,6 +149,7 @@ function ErmToss.make_arbiter(level)
                             direction_count = 16,
                             scale = unit_scale,
                             animation_speed = 1,
+                            tint = ERM_UnitTint.tint_shadow(),
                             draw_as_shadow = true,
                             shift = { 4, 0 }
                         },
@@ -186,7 +187,7 @@ function ErmToss.make_arbiter(level)
                         animation_speed = 1,
                     },
                     {
-                        filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-run-mask.png",
+                        filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-run.png",
                         width = 76,
                         height = 76,
                         frame_count = 1,
@@ -195,6 +196,7 @@ function ErmToss.make_arbiter(level)
                         direction_count = 16,
                         scale = unit_scale,
                         animation_speed = 1,
+                        tint = ERM_UnitTint.tint_shadow(),
                         draw_as_shadow = true,
                         shift = { 4, 0 }
                     },

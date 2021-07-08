@@ -145,7 +145,7 @@ function ErmToss.make_carrier(level)
                             scale = unit_scale,
                             animation_speed = 1,
                             draw_as_shadow = true,
-                            shift = { 4, 0 }
+                            shift = { 6, 0 }
                         },
                         {
                             filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-effect.png",
@@ -189,7 +189,7 @@ function ErmToss.make_carrier(level)
                         scale = unit_scale,
                         animation_speed = 1,
                         draw_as_shadow = true,
-                        shift = { 4, 0 }
+                        shift = { 6, 0 }
                     },
                     {
                         filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-effect.png",
