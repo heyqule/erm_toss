@@ -8,17 +8,22 @@ local String = require('__stdlib__/stdlib/utils/string')
 local Math = require('__stdlib__/stdlib/utils/math')
 local Table = require('__stdlib__/stdlib/utils/table')
 
+local ForceHelper = require('__enemyracemanager__/lib/helper/force_helper')
+
+local current_tier
 local get_unit = function(unit_name)
-    local current_tier = remote.call('enemy_race_manager', 'get_race_tier', MOD_NAME)
+    if current_tier == nil then
+        current_tier = remote.call('enemy_race_manager', 'get_race_tier', MOD_NAME)
+    end
     return unit_name[current_tier][Math.random(#unit_name[current_tier])]
 end
 
+local unit_name = {
+    { 'cannon_shortrange' },
+    { 'cannon_shortrange' },
+    { 'cannon_shortrange', 'pylon' },
+}
 local get_probe_buildable_turrets = function()
-    local unit_name = {
-        { 'cannon_shortrange' },
-        { 'cannon_shortrange' },
-        { 'cannon_shortrange', 'pylon' },
-    }
     return get_unit(unit_name)
 end
 
@@ -33,7 +38,7 @@ local CustomAttacks = {}
 --https://lua-api.factorio.com/latest/LuaSurface.html#LuaSurface.create_entity
 function CustomAttacks.process_probe(event)
     local surface = game.surfaces[event.surface_index]
-    local nameToken = String.split(event.source_entity.name, '/')
+    local nameToken = ForceHelper.getNameToken(event.source_entity.name)
     local level = nameToken[3]
     local position = event.source_position
 

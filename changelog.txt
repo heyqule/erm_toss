@@ -1,15 +1,16 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.7.0
-Date: 07. 16. 2021
+Date: 2021-07-10
 
   Changes:
-    - Adjustment on pollution_absorption_absolute. All support building now absorbs 50 unit.
+    - Adjustment on pollution_absorption_absolute. All support building now absorbs 50 units.
+    - Code optimizations
 
   Graphics:
-    - Fix some unit shadows
+    - Fixed some unit shadows
     - Removed original shadow masks to shrink file size
-    - Add light to archon
-    - Fix carrier light color
+    - Added light to archon
+    - Fixed carrier light color
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.6.0

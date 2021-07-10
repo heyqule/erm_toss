@@ -6,6 +6,7 @@
 local Sprites = require('__stdlib__/stdlib/data/modules/sprites')
 
 local ERM_WeaponRig = require('__enemyracemanager__/lib/rig/weapon')
+require('util')
 
 local ProjectileAnimation = {}
 
@@ -171,7 +172,7 @@ end
 
 function ProjectileAnimation.create_scout_rocket()
     return ERM_WeaponRig.remove_damage_from_rocket(
-        table.deepcopy(data.raw['projectile']['rocket']),
+        util.table.deepcopy(data.raw['projectile']['rocket']),
         'scout-rocket'
     )
 end
