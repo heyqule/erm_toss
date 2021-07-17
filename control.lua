@@ -43,7 +43,7 @@ local addRaceSettings = function()
         tier = 1, -- Race tier
         evolution_point = 0, -- For internal use
         evolution_base_point = 0, -- For internal use
-        angry_meter = 0, -- Build by killing their force (Spawner = 20, turrets = 10)
+        attack_meter = 0, -- Build by killing their force (Spawner = 20, turrets = 10)
         send_attack_threshold = 2000, -- When threshold reach, sends attack to the base
         send_attack_threshold_deviation = 0.2,
         next_attack_threshold = 0, -- Used by system to calculate next move
@@ -117,6 +117,10 @@ Event.register(Event.generate_event_name(ErmConfig.RACE_SETTING_UPDATE), functio
             if race_setting.version < 101 then
                 ErmRaceSettingsHelper.remove_structure_to_tier(race_setting, 1, 'nexus')
                 ErmRaceSettingsHelper.add_turrets_to_tier(race_setting, 1, 'acid-cannon')
+            end
+
+            if race_setting.version < 102 then
+                race_setting.attack_meter = 0
             end
 
             race_setting.version = MOD_VERSION
