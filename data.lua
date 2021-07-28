@@ -36,6 +36,7 @@ require "prototypes.enemy.darktemplar"
 require "prototypes.enemy.templar"
 require "prototypes.enemy.archon"
 require "prototypes.enemy.probe"
+require "prototypes.enemy.shuttle"
 
 require "prototypes.building.building_death"
 require "prototypes.building.cannon"
@@ -76,6 +77,7 @@ for i = 1, level do
     ErmToss.make_templar(i)
     ErmToss.make_archon(i)
     ErmToss.make_probe(i)
+    ErmToss.make_shuttle(i)
 
     ErmToss.make_cannon(i)
     ErmToss.make_nexus(i)

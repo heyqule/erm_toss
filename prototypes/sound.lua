@@ -74,8 +74,15 @@ end
 function TossSound.zealot_attack(volume)
     return
     {
-
         filename = "__erm_toss__/sound/enemies/zealot/attack.ogg",
+        volume = volume
+    }
+end
+
+function TossSound.shuttle_drop(volume)
+    return
+    {
+        filename = "__erm_toss__/sound/enemies/shuttle/attack.ogg",
         volume = volume
     }
 end

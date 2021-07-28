@@ -50,7 +50,7 @@ local attack_range = ERM_Config.get_max_attack_range()
 
 local movement_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local base_movement_speed = 0.1
-local incremental_movement_speed = 0.075
+local incremental_movement_speed = 0.1
 
 -- Misc settings
 local vision_distance = 30
@@ -61,7 +61,7 @@ local distraction_cooldown = 20
 -- Animation Settings
 local unit_scale = 1.5
 
-local collision_box = { { -0.5, -0.5 }, { 0.5, 0.5 } }
+local collision_box = { { -0.25, -0.25 }, { 0.25, 0.25 } }
 local selection_box = { { -0.5, -0.5 }, { 0.5, 0.5 } }
 
 function ErmToss.make_templar(level)
@@ -232,6 +232,7 @@ function ErmToss.make_templar(level)
                         type = "nested-result",
                         action = {
                             type = "area",
+                            force = 'not-same',
                             radius = 5,
                             ignore_collision_condition = true,
                             action_delivery = {

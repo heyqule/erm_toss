@@ -48,8 +48,8 @@ local incremental_attack_speed = 60
 local attack_range = 12
 
 local movement_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
-local base_movement_speed = 0.075
-local incremental_movement_speed = 0.05
+local base_movement_speed = 0.1
+local incremental_movement_speed = 0.1
 
 -- Misc Settings
 local vision_distance = 30
@@ -58,7 +58,7 @@ local distraction_cooldown = 20
 
 -- Animation Settings
 local unit_scale = 1.3
-local collision_box = { { -0.25, -0.25 }, { 0.25, 0.25 } }
+local collision_box = { { -0.3, -0.3 }, { 0.3, 0.3 } }
 local selection_box = { { -0.75, -0.75 }, { 0.75, 0.75 } }
 
 function ErmToss.make_dragoon(level)

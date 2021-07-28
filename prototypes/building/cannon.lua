@@ -38,7 +38,7 @@ local base_cold_resistance = 10
 local incremental_cold_resistance = 65
 
 local collision_box = { { -1.5, -1.5 }, { 1.5, 1.5 } }
-local map_generator_bounding_box = { { -3, -3 }, { 3, 3 } }
+local map_generator_bounding_box = { { -2.5, -2.5 }, { 2.5, 2.5 } }
 local selection_box = { { -1.5, -1.5 }, { 1.5, 1.5 } }
 
 -- Handles damages
