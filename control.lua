@@ -7,7 +7,7 @@
 --
 
 local Game = require('__stdlib__/stdlib/game')
-local ForceHelper = require('__enemyracemanager__/lib/helper/force_helper')
+local ErmForceHelper = require('__enemyracemanager__/lib/helper/force_helper')
 local ErmRaceSettingsHelper = require('__enemyracemanager__/lib/helper/race_settings_helper')
 local ErmConfig = require('__enemyracemanager__/lib/global_config')
 
@@ -29,7 +29,7 @@ local createRace = function()
     force.disable_research()
     force.friendly_fire = false;
 
-    ForceHelper.set_friends(game, FORCE_NAME)
+    ErmForceHelper.set_friends(game, FORCE_NAME)
 end
 
 local addRaceSettings = function()
@@ -43,13 +43,11 @@ local addRaceSettings = function()
         tier = 1, -- Race tier
         evolution_point = 0, -- For internal use
         evolution_base_point = 0, -- For internal use
-        attack_meter = 0, -- Build by killing their force (Spawner = 20, turrets = 10)
-        send_attack_threshold = 2000, -- When threshold reach, sends attack to the base
-        send_attack_threshold_deviation = 0.2,
+        attack_meter = 0, -- Build by killing their force (Spawner = 50, turrets = 10, unit = 1)
         next_attack_threshold = 0, -- Used by system to calculate next move
         units = {
             { 'zealot', 'dragoon' },
-            { 'scout', 'corsair', 'probe' },
+            { 'scout', 'corsair', 'probe', 'shuttle' },
             { 'templar', 'darktemplar', 'archon', 'carrier', 'arbiter' },
         },
         current_units_tier = {},
@@ -71,6 +69,12 @@ local addRaceSettings = function()
             { 'templar_archive', 'fleet_beacon', 'arbiter_tribunal' },
         },
         current_support_structures_tier = {},
+        flying_units = {
+            {'scout'}, -- Fast unit that uses in rapid target attack group
+            {'corsair'},
+            {'carrier','arbiter'}
+        },
+        dropship = 'shuttle'
     }
 
     race_settings.current_units_tier = race_settings.units[1]
@@ -97,12 +101,16 @@ Event.on_configuration_changed(function(event)
 end)
 
 Event.register(defines.events.on_script_trigger_effect, function(event)
-    if not event.source_entity then
+    if not event.source_entity or
+            String.find(event.source_entity.name, MOD_NAME, 1, true) == nil
+    then
         return
     end
 
     if event.effect_id == PROBE_ATTACK then
         CustomAttacks.process_probe(event)
+    elseif event.effect_id == SHUTTLE_ATTACK then
+        CustomAttacks.process_shuttle(event)
     end
 end)
 
@@ -115,12 +123,23 @@ Event.register(Event.generate_event_name(ErmConfig.RACE_SETTING_UPDATE), functio
     if (event.affected_race == MOD_NAME) and race_setting then
         if race_setting.version < MOD_VERSION then
             if race_setting.version < 101 then
-                ErmRaceSettingsHelper.remove_structure_to_tier(race_setting, 1, 'nexus')
+                ErmRaceSettingsHelper.remove_structure_from_tier(race_setting, 1, 'nexus')
                 ErmRaceSettingsHelper.add_turrets_to_tier(race_setting, 1, 'acid-cannon')
             end
 
             if race_setting.version < 102 then
+                race_setting.angry_meter = nil
+                race_setting.send_attack_threshold = nil
+                race_setting.send_attack_threshold_deviation = nil
                 race_setting.attack_meter = 0
+
+                race_setting.flying_units = {
+                    {'scout'}, -- Fast unit that uses in rapid target attack group
+                    {'corsair'},
+                    {'carrier','arbiter'}
+                }
+                race_setting.dropship = 'shuttle'
+                ErmRaceSettingsHelper.add_unit_to_tier(race_setting, 2, 'shuttle')
             end
 
             race_setting.version = MOD_VERSION

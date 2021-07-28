@@ -48,8 +48,8 @@ local incremental_attack_speed = 30
 local attack_range = 1
 
 local movement_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
-local base_movement_speed = 0.1
-local incremental_movement_speed = 0.075
+local base_movement_speed = 0.125
+local incremental_movement_speed = 0.1
 
 -- Misc settings
 local vision_distance = 30
@@ -60,7 +60,7 @@ local distraction_cooldown = 20
 -- Animation Settings
 local unit_scale = 1
 
-local collision_box = { { -0.5, -0.5 }, { 0.5, 0.5 } }
+local collision_box = { { -0.25, -0.25 }, { 0.25, 0.25 } }
 local selection_box = { { -0.5, -0.5 }, { 0.5, 0.5 } }
 
 function ErmToss.make_zealot(level)

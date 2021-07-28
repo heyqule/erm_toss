@@ -1,4 +1,18 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.9.0
+Date: 2021-07-29
+
+  Features:
+    - Add shuttle as dropship
+    - it drops zealot, dragoon, darktemplar
+
+  Changes:
+    - Add compatibility for attack meter
+    - Change map bounding box on building, 1 tile for all side
+    - Movement Speed change
+    - change AOE's force = "not-same"
+
+---------------------------------------------------------------------------------------------------
 Version: 1.8.0
 Date: 2021-07-11
 

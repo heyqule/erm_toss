@@ -48,16 +48,17 @@ local spawn_table = function(level)
     local res = {}
     --Tire 1
 
-    res[1] = { MOD_NAME .. '/dragoon/' .. level, { { 0.0, 1 }, { 0.2, 1 }, { 0.4, 1 }, { 0.6, 0.5 }, { 0.8, 0.5 }, { 1.0, 0.5 } } }
+    res[1] = { MOD_NAME .. '/dragoon/' .. level, { { 0.0, 1 }, { 0.2, 1 }, { 0.4, 1 }, { 0.6, 0.4 }, { 0.8, 0.4 }, { 1.0, 0.4 } } }
     --Tire 2
     res[2] = { MOD_NAME .. '/scout/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.3 }, { 0.8, 0.3 }, { 1.0, 0.3 } } }
     res[3] = { MOD_NAME .. '/corsair/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.2 }, { 0.8, 0.2 }, { 1.0, 0.2 } } }
+    res[4] = { MOD_NAME .. '/shuttle/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.1 }, { 0.8, 0.1 }, { 1.0, 0.1 } } }
 
     return res
 end
 
 local collision_box = { { -3, -3.5 }, { 3.25, 2.75 } }
-local map_generator_bounding_box = { { -4, -4 }, { 4, 4 } }
+local map_generator_bounding_box = { { -4, -4.5 }, { 4.25, 3.75 } }
 local selection_box = { { -3, -3.5 }, { 3.25, 2.75 } }
 
 function ErmToss.make_cybernetics_core(level)

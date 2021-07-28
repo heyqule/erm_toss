@@ -47,11 +47,12 @@ local max_friends_around_to_spawn = 3
 local spawn_table = function(level)
     local res = {}
     --Tire 1
-    res[1] = { MOD_NAME .. '/zealot/' .. level, { { 0.0, 0.7 }, { 0.2, 0.7 }, { 0.4, 0.6 }, { 0.6, 0.4 }, { 0.8, 0.2 }, { 1.0, 0.25 } } }
-    res[2] = { MOD_NAME .. '/dragoon/' .. level, { { 0.0, 0.2 }, { 0.2, 0.2 }, { 0.4, 0.2 }, { 0.6, 0.2 }, { 0.8, 0.2 }, { 1.0, 0.25 } } }
+    res[1] = { MOD_NAME .. '/zealot/' .. level, { { 0.0, 0.7 }, { 0.2, 0.7 }, { 0.4, 0.6 }, { 0.6, 0.3 }, { 0.8, 0.2 }, { 1.0, 0.2 } } }
+    res[2] = { MOD_NAME .. '/dragoon/' .. level, { { 0.0, 0.3 }, { 0.2, 0.3 }, { 0.4, 0.4 }, { 0.6, 0.2 }, { 0.8, 0.2 }, { 1.0, 0.2 } } }
     --Tire 2
-    res[3] = { MOD_NAME .. '/scout/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.1 }, { 0.6, 0.2 }, { 0.8, 0.2 }, { 1.0, 0.1 } } }
-    res[4] = { MOD_NAME .. '/corsair/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.1 }, { 0.6, 0.2 }, { 0.8, 0.2 }, { 1.0, 0.15 } } }
+    res[3] = { MOD_NAME .. '/scout/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.2 }, { 0.8, 0.2 }, { 1.0, 0.1 } } }
+    res[4] = { MOD_NAME .. '/corsair/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.2 }, { 0.8, 0.2 }, { 1.0, 0.1 } } }
+    res[5] = { MOD_NAME .. '/shuttle/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.1 }, { 0.8, 0.1 }, { 1.0, 0.1 } } }
     --Tire 3
     res[6] = { MOD_NAME .. '/templar/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.05 }, { 1.0, 0.05 } } }
     res[7] = { MOD_NAME .. '/darktemplar/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.1 }, { 1.0, 0.05 } } }
@@ -62,7 +63,7 @@ local spawn_table = function(level)
 end
 
 local collision_box = { { -3, -3.5 }, { 3.25, 2.75 } }
-local map_generator_bounding_box = { { -4, -4 }, { 4, 4 } }
+local map_generator_bounding_box = { { -4, -4.5 }, { 4.25, 3.75 } }
 local selection_box = { { -3, -3.5 }, { 3.25, 2.75 } }
 
 function ErmToss.make_forge(level)
