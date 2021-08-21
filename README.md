@@ -29,11 +29,11 @@ Weak to acid / poison (-5 resist)
 #### Tier 2 Units
 ###### Scout
     - Health 250 - 3375
-    - Range damage 10-60
+    - Range damage 10 - 90
 
 ###### Corsair
     - Health 180 - 2280
-    - Range damage 10-40   
+    - Range damage 10 - 40   
     - slow on hit
 
 ###### Probe
@@ -42,25 +42,25 @@ Weak to acid / poison (-5 resist)
 
 
 #### Tier 3 Units
-###### Carrier
+###### Carrier AOE 2
     - Health 450 - 4950
-    - Damage 25-125
+    - Damage 25 - 100
 
-###### Arbiter
+###### Arbiter AOE 4
     - Health 350 - 3850
     - AOE range damage 10 - 40
 
-###### Templar
+###### Templar AOE 5
     - Health 80 - 1680
-    - AOE range damage 15 - 60
+    - AOE range damage 15 - 90
 
-###### Dark Templar
+###### Dark Templar AOE 2
     - Health 120 - 2520
     - AOE melee damage 50 - 120
 
-###### Archon
+###### Archon AOE 3
     - Health 360 - 7560
-    - AOE meele damage 40 - 100
+    - AOE meele damage 50 - 175
 
 Physical resistance: 95
 Weak elemental resistance: 85

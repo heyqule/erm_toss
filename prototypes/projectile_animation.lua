@@ -130,6 +130,7 @@ function ProjectileAnimation.create_arbiter_stasis_hit_effect()
                 height = 128,
                 frame_count = 13,
                 animation_speed = 0.5,
+                scale = 2.5,
                 draw_as_glow = true,
             }
         }

@@ -196,7 +196,7 @@ function ErmToss.make_dragoon(level)
             time_before_removed = defines.time.minute * settings.startup["enemyracemanager-enemy-corpse-time"].value,
             subgroup = "corpses",
             order = "x" .. name .. level,
-            final_render_layer = "lower-object-above-shadow",
+            final_render_layer = "corpse",
             animation = {
                 filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-death.png",
                 width = 96,
@@ -207,7 +207,6 @@ function ErmToss.make_dragoon(level)
                 scale = 1.5,
                 animation_speed = 0.2
             },
-            --final_render_layer = "lower-object-above-shadow"
         }
     })
 end
