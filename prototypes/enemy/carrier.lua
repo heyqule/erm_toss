@@ -41,7 +41,7 @@ local incremental_cold_resistance = 70
 -- Handles damages
 local damage_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local base_electric_damage = 25
-local incremental_electric_damage = 100
+local incremental_electric_damage = 65
 
 -- Handles Attack Speed
 local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
@@ -116,8 +116,21 @@ function ErmToss.make_carrier(level)
                             projectile = "interceptor-projectile",
                             starting_speed = 0.3,
                             target_effects = {
-                                type = "damage",
-                                damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level), type = "explosion" }
+                                type = "nested-result",
+                                action = {
+                                    type = "area",
+                                    force = 'not-same',
+                                    radius = 2,
+                                    ignore_collision_condition = true,
+                                    action_delivery = {
+                                        type = "instant",
+                                        target_effects = {
+                                            type = "damage",
+                                            damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level), type = "explosion" }
+                                        },
+                                        apply_damage_to_trees = true
+                                    }
+                                }
                             }
                         }
                     }

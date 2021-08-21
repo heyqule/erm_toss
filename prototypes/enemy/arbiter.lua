@@ -111,17 +111,26 @@ function ErmToss.make_arbiter(level)
                     category = "protoss-cannon-shell",
                     target_type = "direction",
                     action = {
-                        type = "area",
-                        force = 'not-same',
-                        radius = 3,
-                        ignore_collision_condition = true,
+                        type = "direct",
                         action_delivery = {
                             type = "projectile",
                             projectile = "stasis-projectile",
                             starting_speed = 0.3,
                             target_effects = {
-                                type = "damage",
-                                damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level), type = "cold" }
+                                type = "nested-result",
+                                action = {
+                                    type = "area",
+                                    force = 'not-same',
+                                    radius = 4,
+                                    ignore_collision_condition = true,
+                                    action_delivery = {
+                                        type = "instant",
+                                        target_effects = {
+                                            type = "damage",
+                                            damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level), type = "cold" }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

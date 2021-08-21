@@ -71,7 +71,7 @@ function ErmToss.make_templar_archive(level)
             icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy" },
-            max_health = ERM_UnitHelper.get_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level),
+            max_health = ERM_UnitHelper.get_building_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level),
             order = MOD_NAME .. "-" .. name,
             subgroup = "enemies",
             working_sound = TossSound.building_working_sound(name, 1),
