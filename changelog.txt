@@ -3,8 +3,9 @@ Version: 1.10.0
 Date: 2021-09-03
 
   Changes:
-    - Shuttle drop range changed from 12 to 3
-    - Arbiter AOE range from 3 to 4 radius
+    - changed Shuttle drop range from 12 to 3
+    - changed Shuttle drop unit cooldown from 10-5s to 15-10s
+    - changed Arbiter AOE range from 3 to 4 radius
     - Carrier now deal AOE damage of 2 radius. Damage from 125 to 80
     - Archon max damage changed from 100 to 175
     - Scout max damage changed from 60 to 75
