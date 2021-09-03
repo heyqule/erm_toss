@@ -3,9 +3,16 @@ Add Protoss to factorio as biters.
 
 This mod is created as an educational demo for [Enemy Race Manager](https://mods.factorio.com/mod/enemyracemanager)
 
-![Protoss](https://mods-data.factorio.com/assets/656569de2ac0658bd1907a5a8c71f4553a952d6b.png "Protoss")
+Discord:  [https://discord.gg/BwWXygyEyQ](https://discord.gg/BwWXygyEyQ)
 
-All graphic and sound assets in this mod are properties of Blizzard Entertainment Inc
+#####Licenses
+Lua code files are licensed under MIT.
+
+However, Starcraft graphic and sound assets are properties of Blizzard Entertainment Inc.  They are used for educational purposes. The original game is now free to play.
+
+
+![Protoss](https://mods-data.factorio.com/assets/01f1d66653ee245f5abe8d5bacf6d359bb6e9c97.png "Protoss")
+
 
 # Requirement
 * Enemy Race Manager >= 1.7
@@ -13,7 +20,7 @@ All graphic and sound assets in this mod are properties of Blizzard Entertainmen
 * Factorio Base >= 1.1
 
 # Features
-All units have same base health point as original SC, Some units have unique health multiplier to balance bullet damage.
+All unit has same base health point as original SC, Some units have unique health multiplier to balance bullet damage.
 
 Weak to acid / poison (-5 resist)
 
