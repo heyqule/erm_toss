@@ -9,6 +9,7 @@ Date: 2021-09-03
     - Archon max damage changed from 100 to 175
     - Scout max damage changed from 60 to 75
     - Zealot now attack every 0.75s instead of 1s
+    - Added archon to shuttle's droppable unit
 
   Graphics:
     - Change render layer for corpses

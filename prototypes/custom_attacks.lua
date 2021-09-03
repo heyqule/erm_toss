@@ -14,7 +14,7 @@ local CustomAttackHelper = require('__enemyracemanager__/lib/helper/custom_attac
 local droppable_unit_name = {
     { 'zealot', 'zealot', 'dragoon' },
     { 'zealot', 'zealot', 'dragoon', 'dragoon' },
-    { 'zealot', 'zealot', 'dragoon', 'dragoon', 'darktemplar' },
+    { 'zealot', 'zealot', 'dragoon', 'dragoon', 'darktemplar', 'archon' },
 }
 local get_shuttle_droppable_unit = function()
     return CustomAttackHelper.get_unit(droppable_unit_name, MOD_NAME)
