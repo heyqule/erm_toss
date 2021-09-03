@@ -8,7 +8,7 @@ This mod is created as an educational demo for [Enemy Race Manager](https://mods
 All graphic and sound assets in this mod are properties of Blizzard Entertainment Inc
 
 # Requirement
-* Enemy Race Manager >= 1.1
+* Enemy Race Manager >= 1.7
 * Factorio Standard Library >= 1.4.6
 * Factorio Base >= 1.1
 
@@ -19,47 +19,47 @@ Weak to acid / poison (-5 resist)
 
 #### Tier 1 Units
 ###### Zealot
-    - Health 160 - 3360  (level 1 - 20)
+    - Health 160 - 4160  (level 1 - 20)
     - Melee damage 10 - 60 (level 1 - 20)
 ###### Dragoon
-    - Health 180 - 3780
+    - Health 180 - 4680
     - Electric damage 15 - 75
 
 
 #### Tier 2 Units
 ###### Scout
-    - Health 250 - 3375
-    - Range damage 10 - 90
+    - Health 250 - 4156
+    - Range damage 10 - 75
 
 ###### Corsair
-    - Health 180 - 2280
+    - Health 180 - 3555
     - Range damage 10 - 40   
     - slow on hit
 
 ###### Probe
-    - Health 40 - 2040
+    - Health 40 - 2540
     - Kill itself to spawn Cannon / Pylon
 
 
 #### Tier 3 Units
 ###### Carrier AOE 2
-    - Health 450 - 4950
-    - Damage 25 - 100
+    - Health 450 - 6075
+    - Damage 25 - 90
 
 ###### Arbiter AOE 4
-    - Health 350 - 3850
+    - Health 350 - 4725
     - AOE range damage 10 - 40
 
 ###### Templar AOE 5
-    - Health 80 - 1680
+    - Health 80 - 2080
     - AOE range damage 15 - 90
 
 ###### Dark Templar AOE 2
-    - Health 120 - 2520
+    - Health 120 - 3120
     - AOE melee damage 50 - 120
 
 ###### Archon AOE 3
-    - Health 360 - 7560
+    - Health 360 - 9360
     - AOE meele damage 50 - 175
 
 Physical resistance: 95
