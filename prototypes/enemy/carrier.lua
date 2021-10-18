@@ -52,7 +52,7 @@ local attack_range = ERM_Config.get_max_attack_range()
 
 local movement_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local base_movement_speed = 0.15
-local incremental_movement_speed = 0.1
+local incremental_movement_speed = 0.125
 
 -- Misc Settings
 local vision_distance = 35
@@ -104,6 +104,7 @@ function ErmToss.make_carrier(level)
                 type = "projectile",
                 ammo_category = 'protoss-cannon-shell',
                 range = attack_range,
+                min_attack_distance = attack_range - 4,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
                 ammo_type = {

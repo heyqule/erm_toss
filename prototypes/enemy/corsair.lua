@@ -103,6 +103,7 @@ function ErmToss.make_corsair(level)
                 type = "projectile",
                 ammo_category = 'protoss-laser',
                 range = attack_range,
+                min_attack_distance = attack_range - 2,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
                 ammo_type = {
