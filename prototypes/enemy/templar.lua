@@ -103,6 +103,7 @@ function ErmToss.make_templar(level)
             attack_parameters = {
                 type = "projectile",
                 range = attack_range,
+                min_attack_distance = attack_range - 4,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
                 ammo_type = {

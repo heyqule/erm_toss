@@ -102,6 +102,7 @@ function ErmToss.make_probe(level)
             attack_parameters = {
                 type = "projectile",
                 range = attack_range,
+                min_attack_distance = attack_range - 4,
                 cooldown = 10,
                 warmup = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 ammo_type = {
