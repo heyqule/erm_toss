@@ -124,7 +124,7 @@ Event.register(Event.generate_event_name(ErmConfig.RACE_SETTING_UPDATE), functio
         if race_setting.version < MOD_VERSION then
             if race_setting.version < 101 then
                 ErmRaceSettingsHelper.remove_structure_from_tier(race_setting, 1, 'nexus')
-                ErmRaceSettingsHelper.add_turrets_to_tier(race_setting, 1, 'acid-cannon')
+                ErmRaceSettingsHelper.add_turret_to_tier(race_setting, 1, 'acid-cannon')
             end
 
             if race_setting.version < 102 then
