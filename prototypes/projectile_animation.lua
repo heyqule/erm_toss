@@ -260,7 +260,7 @@ function ProjectileAnimation.create_slow_ticker()
     return
     {
         type = "sticker",
-        name = "protoss-slowdown-sticker",
+        name = "5-067-slowdown-sticker",
         flags = {},
         animation = Sprites.empty_pictures(),
         duration_in_ticks = 5 * 60,
