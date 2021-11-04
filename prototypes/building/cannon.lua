@@ -44,7 +44,7 @@ local selection_box = { { -1.5, -1.5 }, { 1.5, 1.5 } }
 -- Handles damages
 local damage_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local base_electric_damage = 1
-local incremental_electric_damage = 10
+local incremental_electric_damage = 9
 
 -- for acid cannon
 local base_acid_damage = 5
@@ -344,6 +344,7 @@ function ErmToss.make_cannon(level)
                 range = attack_shortrange,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
+                damage_modifier = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level),
                 ammo_type = {
                     category = "protoss-damage",
                     target_type = "direction",
@@ -352,13 +353,7 @@ function ErmToss.make_cannon(level)
                         action_delivery = {
                             type = "projectile",
                             projectile = "dragoon-projectile",
-                            starting_speed = 0.3,
-                            target_effects = {
-                                {
-                                    type = "damage",
-                                    damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level), type = "electric" }
-                                }
-                            }
+                            starting_speed = 0.3
                         }
                     }
                 },
