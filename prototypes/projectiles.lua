@@ -8,10 +8,15 @@ local Sprites = require('__stdlib__/stdlib/data/modules/sprites')
 local ERM_WeaponRig = require('__enemyracemanager__/lib/rig/weapon')
 require('util')
 
-local ProjectileAnimation = {}
+local scout_rocket = ERM_WeaponRig.remove_damage_from_rocket(
+        util.table.deepcopy(data.raw['projectile']['rocket']),
+        'scout-rocket'
+)
 
-function ProjectileAnimation.create_dragoon_ball()
-    return {
+data:extend({
+    --- Projectiles
+    scout_rocket,
+    {
         type = "projectile",
         name = "dragoon-projectile",
         flags = { "not-on-map" },
@@ -24,6 +29,11 @@ function ProjectileAnimation.create_dragoon_ball()
                     {
                         type = "create-entity",
                         entity_name = "dragoon-explosion-small"
+                    },
+                    {
+                        type = "damage",
+                        damage = { amount = 15, type = "electric" },
+                        apply_damage_to_trees = true
                     }
                 }
             }
@@ -41,50 +51,8 @@ function ProjectileAnimation.create_dragoon_ball()
                 },
             }
         }
-    }
-end
-
-function ProjectileAnimation.create_dragoon_hit_effect()
-    return {
-        type = "explosion",
-        name = "dragoon-explosion-small",
-        flags = { "not-on-map" },
-        animations = {
-            {
-                filename = "__erm_toss__/graphics/entity/projectiles/dragoon/dragoon-hit-effect.png",
-                priority = "extra-high",
-                width = 64,
-                height = 64,
-                frame_count = 10,
-                animation_speed = 0.5,
-                draw_as_glow = true,
-            }
-        }
-    }
-end
-
-function ProjectileAnimation.create_corsair_hit_effect()
-    return {
-        type = "explosion",
-        name = "corsair-explosion-small",
-        flags = { "not-on-map" },
-        animations = {
-            {
-                filename = "__erm_toss__/graphics/entity/projectiles/dragoon/dragoon-hit-effect.png",
-                priority = "extra-high",
-                width = 64,
-                height = 64,
-                frame_count = 10,
-                animation_speed = 0.5,
-                draw_as_glow = true,
-                tint = { 1, 1, 1 }
-            }
-        }
-    }
-end
-
-function ProjectileAnimation.create_arbiter_stasis()
-    return {
+    },
+    {
         type = "projectile",
         name = "stasis-projectile",
         flags = { "not-on-map" },
@@ -97,6 +65,22 @@ function ProjectileAnimation.create_arbiter_stasis()
                     {
                         type = "create-entity",
                         entity_name = "stasis-explosion-small"
+                    },
+                    {
+                        type = "nested-result",
+                        action = {
+                            type = "area",
+                            force = 'not-same',
+                            radius = 4,
+                            ignore_collision_condition = true,
+                            action_delivery = {
+                                type = "instant",
+                                target_effects = {
+                                    type = "damage",
+                                    damage = { amount = 10, type = "cold" }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -114,31 +98,8 @@ function ProjectileAnimation.create_arbiter_stasis()
                 },
             }
         }
-    }
-end
-
-function ProjectileAnimation.create_arbiter_stasis_hit_effect()
-    return {
-        type = "explosion",
-        name = "stasis-explosion-small",
-        flags = { "not-on-map" },
-        animations = {
-            {
-                filename = "__erm_toss__/graphics/entity/projectiles/stasis/stasis.png",
-                priority = "extra-high",
-                width = 128,
-                height = 128,
-                frame_count = 13,
-                animation_speed = 0.5,
-                scale = 2.5,
-                draw_as_glow = true,
-            }
-        }
-    }
-end
-
-function ProjectileAnimation.create_carrier_interceptor()
-    return {
+    },
+    {
         type = "projectile",
         name = "interceptor-projectile",
         flags = { "not-on-map" },
@@ -151,6 +112,23 @@ function ProjectileAnimation.create_carrier_interceptor()
                     {
                         type = "create-entity",
                         entity_name = "medium-explosion"
+                    },
+                    {
+                        type = "nested-result",
+                        action = {
+                            type = "area",
+                            force = 'not-same',
+                            radius = 2,
+                            ignore_collision_condition = true,
+                            action_delivery = {
+                                type = "instant",
+                                target_effects = {
+                                    type = "damage",
+                                    damage = { amount = 25, type = "explosion" }
+                                },
+                                apply_damage_to_trees = true
+                            }
+                        }
                     }
                 }
             }
@@ -168,18 +146,58 @@ function ProjectileAnimation.create_carrier_interceptor()
                 },
             }
         }
-    }
-end
-
-function ProjectileAnimation.create_scout_rocket()
-    return ERM_WeaponRig.remove_damage_from_rocket(
-        util.table.deepcopy(data.raw['projectile']['rocket']),
-        'scout-rocket'
-    )
-end
-
-function ProjectileAnimation.create_electric_cloud()
-    return
+    },
+    --- Explosions
+    {
+        type = "explosion",
+        name = "dragoon-explosion-small",
+        flags = { "not-on-map" },
+        animations = {
+            {
+                filename = "__erm_toss__/graphics/entity/projectiles/dragoon/dragoon-hit-effect.png",
+                priority = "extra-high",
+                width = 64,
+                height = 64,
+                frame_count = 10,
+                animation_speed = 0.5,
+                draw_as_glow = true,
+            }
+        }
+    },
+    {
+        type = "explosion",
+        name = "corsair-explosion-small",
+        flags = { "not-on-map" },
+        animations = {
+            {
+                filename = "__erm_toss__/graphics/entity/projectiles/dragoon/dragoon-hit-effect.png",
+                priority = "extra-high",
+                width = 64,
+                height = 64,
+                frame_count = 10,
+                animation_speed = 0.5,
+                draw_as_glow = true,
+                tint = { 1, 1, 1 }
+            }
+        }
+    },
+    {
+        type = "explosion",
+        name = "stasis-explosion-small",
+        flags = { "not-on-map" },
+        animations = {
+            {
+                filename = "__erm_toss__/graphics/entity/projectiles/stasis/stasis.png",
+                priority = "extra-high",
+                width = 128,
+                height = 128,
+                frame_count = 13,
+                animation_speed = 0.5,
+                scale = 2.5,
+                draw_as_glow = true,
+            }
+        }
+    },
     {
         type = "explosion",
         name = "electric-cloud-explosion",
@@ -196,11 +214,8 @@ function ProjectileAnimation.create_electric_cloud()
                 draw_as_glow = true
             }
         }
-    }
-end
-
-function ProjectileAnimation.create_archon_hit_effect()
-    return
+    },
+    --- Death Explosion
     {
         type = "explosion",
         name = "archon-hit-explosion",
@@ -217,11 +232,7 @@ function ProjectileAnimation.create_archon_hit_effect()
                 draw_as_glow = true
             }
         }
-    }
-end
-
-function ProjectileAnimation.create_air_death()
-    return
+    },
     {
         type = "explosion",
         name = "protoss-small-air-death",
@@ -253,11 +264,40 @@ function ProjectileAnimation.create_air_death()
             animation_speed = 0.5,
             draw_as_glow = true
         }
-    }
-end
-
-function ProjectileAnimation.create_slow_ticker()
-    return
+    },
+    {
+        type = "explosion",
+        name = "protoss-zealot-death",
+        flags = { "not-on-map" },
+        animations = {
+            filename = "__erm_toss__/graphics/entity/units/zealot/zealot-death.png",
+            width = 128,
+            height = 128,
+            frame_count = 7,
+            direction_count = 1,
+            axially_symmetrical = false,
+            scale = 1,
+            animation_speed = 0.2,
+            draw_as_glow = true
+        }
+    },
+    {
+        type = "explosion",
+        name = "protoss-templar-death",
+        flags = { "not-on-map" },
+        animations = {
+            filename = "__erm_toss__/graphics/entity/units/templar/templar-death.png",
+            width = 128,
+            height = 128,
+            frame_count = 6,
+            direction_count = 1,
+            axially_symmetrical = false,
+            scale = 1,
+            animation_speed = 0.2,
+            draw_as_glow = true
+        },
+    },
+    --- Stickers
     {
         type = "sticker",
         name = "5-067-slowdown-sticker",
@@ -267,43 +307,4 @@ function ProjectileAnimation.create_slow_ticker()
         target_movement_modifier = 0.67,
         vehicle_speed_modifier = 0.67,
     }
-end
-
-function ProjectileAnimation.create_ground_death()
-    return
-        {
-            type = "explosion",
-            name = "protoss-zealot-death",
-            flags = { "not-on-map" },
-            animations = {
-                filename = "__erm_toss__/graphics/entity/units/zealot/zealot-death.png",
-                width = 128,
-                height = 128,
-                frame_count = 7,
-                direction_count = 1,
-                axially_symmetrical = false,
-                scale = 1,
-                animation_speed = 0.2,
-                draw_as_glow = true
-            }
-        },
-        {
-            type = "explosion",
-            name = "protoss-templar-death",
-            flags = { "not-on-map" },
-            animations = {
-                filename = "__erm_toss__/graphics/entity/units/templar/templar-death.png",
-                width = 128,
-                height = 128,
-                frame_count = 6,
-                direction_count = 1,
-                axially_symmetrical = false,
-                scale = unit_scale,
-                animation_speed = 0.2,
-                draw_as_glow = true
-            },
-        }
-end
-
-
-return ProjectileAnimation
+})

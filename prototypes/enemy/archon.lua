@@ -39,8 +39,8 @@ local incremental_cold_resistance = 70
 
 -- Handles physical damages
 local damage_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
-local base_electric_damage = 50
-local incremental_electric_damage = 125
+local base_electric_damage = 1
+local incremental_electric_damage = 2
 
 -- Handles Attack Speed
 local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
@@ -111,8 +111,9 @@ function ErmToss.make_archon(level)
                 range = attack_range,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
+                damage_modifier = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level),
                 ammo_type = {
-                    category = "protoss-capsule",
+                    category = "protoss-damage",
                     target_type = "direction",
                     action = {
                         type = "direct",
@@ -120,13 +121,25 @@ function ErmToss.make_archon(level)
                             type = "instant",
                             target_effects = {
                                 {
-                                    type = "create-smoke",
-                                    show_in_tooltip = true,
-                                    entity_name = name .. "-archon-cloud-" .. level
-                                },
-                                {
                                     type = "create-explosion",
                                     entity_name = "archon-hit-explosion"
+                                },
+                                {
+                                    type = "nested-result",
+                                    action = {
+                                        type = "area",
+                                        force = 'not-same',
+                                        radius = 3,
+                                        ignore_collision_condition = true,
+                                        action_delivery = {
+                                            type = "instant",
+                                            target_effects = {
+                                                type = "damage",
+                                                damage = { amount = 50, type = "electric" }
+                                            },
+                                            apply_damage_to_trees = true
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -222,52 +235,6 @@ function ErmToss.make_archon(level)
             subgroup = "corpses",
             order = "x" .. name .. level,
             animation = Sprites.empty_pictures(),
-        },
-        {
-            name = name .. "-archon-cloud-" .. level,
-            localised_name = {'entity-name.archon-cloud'},
-            type = "smoke-with-trigger",
-            flags = { "not-on-map" },
-            show_when_smoke_off = true,
-            particle_count = 1,
-            --particle_spread = { 3.6 * 1.05, 3.6 * 0.6 * 1.05 },
-            --particle_distance_scale_factor = 0.5,
-            --particle_scale_factor = { 1, 0.707 },
-            --wave_speed = { 1/80, 1/60 },
-            --wave_distance = { 0.3, 0.2 },
-            --spread_duration_variation = 20,
-            --particle_duration_variation = 60 * 3,
-            render_layer = "explosion",
-
-            affected_by_wind = false,
-            duration = 60,
-            --spread_duration = 20,
-
-            animation = Sprites.empty_picture(),
-            action = {
-                type = "direct",
-                action_delivery = {
-                    type = "instant",
-                    target_effects = {
-                        type = "nested-result",
-                        action = {
-                            type = "area",
-                            force = 'not-same',
-                            radius = 3,
-                            ignore_collision_condition = true,
-                            action_delivery = {
-                                type = "instant",
-                                target_effects = {
-                                    type = "damage",
-                                    damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level), type = "electric" }
-                                },
-                                apply_damage_to_trees = true
-                            }
-                        }
-                    }
-                }
-            },
-            action_cooldown = 60
         },
     })
 end

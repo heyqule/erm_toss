@@ -41,8 +41,8 @@ local incremental_cold_resistance = 70
 
 -- Handles damages
 local damage_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
-local base_electric_damage = 10
-local incremental_electric_damage = 30
+local base_electric_damage = 1
+local incremental_electric_damage = 4
 
 -- Handles Attack Speed
 local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
@@ -103,36 +103,21 @@ function ErmToss.make_arbiter(level)
             ai_settings = biter_ai_settings,
             attack_parameters = {
                 type = "projectile",
-                ammo_category = 'protoss-cannon-shell',
+                ammo_category = 'protoss-damage',
                 range = attack_range,
                 min_attack_distance = attack_range - 4,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
+                damage_modifier = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level),
                 ammo_type = {
-                    category = "protoss-cannon-shell",
+                    category = "protoss-damage",
                     target_type = "direction",
                     action = {
                         type = "direct",
                         action_delivery = {
                             type = "projectile",
                             projectile = "stasis-projectile",
-                            starting_speed = 0.3,
-                            target_effects = {
-                                type = "nested-result",
-                                action = {
-                                    type = "area",
-                                    force = 'not-same',
-                                    radius = 4,
-                                    ignore_collision_condition = true,
-                                    action_delivery = {
-                                        type = "instant",
-                                        target_effects = {
-                                            type = "damage",
-                                            damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level), type = "cold" }
-                                        }
-                                    }
-                                }
-                            }
+                            starting_speed = 0.3
                         }
                     }
                 },

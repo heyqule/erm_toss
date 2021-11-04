@@ -27,10 +27,10 @@ Weak to acid / poison (-5 resist)
 #### Tier 1 Units
 ###### Zealot
     - Health 160 - 4160  (level 1 - 20)
-    - Melee damage 10 - 60 (level 1 - 20)
+    - Melee damage 10 - 80 (level 1 - 20)
 ###### Dragoon
     - Health 180 - 4680
-    - Electric damage 15 - 75
+    - Electric damage 15 - 90
 
 
 #### Tier 2 Units
@@ -51,23 +51,23 @@ Weak to acid / poison (-5 resist)
 #### Tier 3 Units
 ###### Carrier AOE 2
     - Health 450 - 6075
-    - Damage 25 - 90
+    - Damage 25 - 100
 
 ###### Arbiter AOE 4
     - Health 350 - 4725
-    - AOE range damage 10 - 40
+    - AOE range damage 10 - 50
 
 ###### Templar AOE 5
     - Health 80 - 2080
-    - AOE range damage 15 - 90
+    - AOE range damage 40 - 200 over 2 seconds
 
 ###### Dark Templar AOE 2
     - Health 120 - 3120
-    - AOE melee damage 50 - 120
+    - AOE melee damage 50 - 125
 
 ###### Archon AOE 3
     - Health 360 - 9360
-    - AOE meele damage 50 - 175
+    - AOE meele damage 50 - 150
 
 Physical resistance: 95
 Weak elemental resistance: 85
