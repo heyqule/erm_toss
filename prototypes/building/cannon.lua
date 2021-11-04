@@ -43,8 +43,8 @@ local selection_box = { { -1.5, -1.5 }, { 1.5, 1.5 } }
 
 -- Handles damages
 local damage_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
-local base_electric_damage = 5
-local incremental_electric_damage = 70
+local base_electric_damage = 1
+local incremental_electric_damage = 10
 
 -- for acid cannon
 local base_acid_damage = 5
@@ -52,10 +52,10 @@ local incremental_acid_damage = 25
 
 -- Handles Attack Speed
 local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
-local base_attack_speed = 300
-local incremental_attack_speed = 240
+local base_attack_speed = 120
+local incremental_attack_speed = 60
 
-local attack_range = 20
+local attack_range = 30
 local acid_attack_range = 30
 local attack_shortrange = ERM_Config.get_max_attack_range()
 
@@ -164,25 +164,20 @@ function ErmToss.make_cannon(level)
             allow_turning_when_starting_attack = true,
             attack_parameters = {
                 type = "projectile",
-                ammo_category = 'protoss-cannon-shell',
+                ammo_category = 'protoss-damage',
                 range = attack_range,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
+                damage_modifier = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level),
                 ammo_type = {
-                    category = "protoss-cannon-shell",
+                    category = "protoss-damage",
                     target_type = "direction",
                     action = {
                         type = "direct",
                         action_delivery = {
                             type = "projectile",
                             projectile = "dragoon-projectile",
-                            starting_speed = 0.3,
-                            target_effects = {
-                                {
-                                    type = "damage",
-                                    damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level), type = "electric" }
-                                }
-                            }
+                            starting_speed = 0.3
                         }
                     }
                 },
@@ -345,12 +340,12 @@ function ErmToss.make_cannon(level)
             allow_turning_when_starting_attack = true,
             attack_parameters = {
                 type = "projectile",
-                ammo_category = 'protoss-cannon-shell',
+                ammo_category = 'protoss-damage',
                 range = attack_shortrange,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
                 ammo_type = {
-                    category = "protoss-cannon-shell",
+                    category = "protoss-damage",
                     target_type = "direction",
                     action = {
                         type = "direct",

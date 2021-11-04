@@ -38,8 +38,8 @@ local incremental_cold_resistance = 70
 
 -- Handles physical damages
 local damage_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
-local base_electric_damage = 15 / 4 / 2
-local incremental_electric_damage = 45 / 4 / 2
+local base_electric_damage = 5
+local incremental_electric_damage = 20
 
 -- Handles Attack Speed
 local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
@@ -107,7 +107,7 @@ function ErmToss.make_templar(level)
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
                 ammo_type = {
-                    category = "biological",
+                    category = "protoss-damage",
                     target_type = "direction",
                     action = {
                         type = "direct",
@@ -117,7 +117,7 @@ function ErmToss.make_templar(level)
                                 {
                                     type = "create-smoke",
                                     show_in_tooltip = true,
-                                    entity_name = name .. "-electric-cloud-" .. level
+                                    entity_name = "electric-cloud-"..level
                                 },
                                 {
                                     type = "create-explosion",
@@ -203,8 +203,9 @@ function ErmToss.make_templar(level)
             order = "x" .. name .. level,
             animation = Sprites.empty_pictures(),
         },
+        --- Damage Modifier doesn't affect smoke-with-trigger attack
         {
-            name = name .. "-electric-cloud-" .. level,
+            name = "electric-cloud-"..level,
             localised_name = {'entity-name.electric-cloud'},
             type = "smoke-with-trigger",
             flags = { "not-on-map" },

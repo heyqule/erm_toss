@@ -40,8 +40,8 @@ local incremental_cold_resistance = 70
 
 -- Handles damages
 local damage_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
-local base_electric_damage = 25
-local incremental_electric_damage = 65
+local base_electric_damage = 1
+local incremental_electric_damage = 3
 
 -- Handles Attack Speed
 local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
@@ -102,13 +102,14 @@ function ErmToss.make_carrier(level)
             ai_settings = biter_ai_settings,
             attack_parameters = {
                 type = "projectile",
-                ammo_category = 'protoss-cannon-shell',
+                ammo_category = 'protoss-damage',
                 range = attack_range,
                 min_attack_distance = attack_range - 4,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
+                damage_modifier = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level),
                 ammo_type = {
-                    category = "protoss-cannon-shell",
+                    category = "protoss-damage",
                     target_type = "direction",
                     action = {
                         type = "direct",
@@ -116,23 +117,6 @@ function ErmToss.make_carrier(level)
                             type = "projectile",
                             projectile = "interceptor-projectile",
                             starting_speed = 0.3,
-                            target_effects = {
-                                type = "nested-result",
-                                action = {
-                                    type = "area",
-                                    force = 'not-same',
-                                    radius = 2,
-                                    ignore_collision_condition = true,
-                                    action_delivery = {
-                                        type = "instant",
-                                        target_effects = {
-                                            type = "damage",
-                                            damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level), type = "explosion" }
-                                        },
-                                        apply_damage_to_trees = true
-                                    }
-                                }
-                            }
                         }
                     }
                 },

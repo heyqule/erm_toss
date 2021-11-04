@@ -102,13 +102,13 @@ function ErmToss.make_shuttle(level)
             ai_settings = biter_ai_settings,
             attack_parameters = {
                 type = "projectile",
-                ammo_category = 'biological',
+                ammo_category = 'protoss-damage',
                 range = attack_range,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
                 warmup = 12,
                 ammo_type = {
-                    category = "biological",
+                    category = "protoss-damage",
                     target_type = "direction",
                     action = {
                         type = "direct",

@@ -101,13 +101,13 @@ function ErmToss.make_scout(level)
             ai_settings = biter_ai_settings,
             attack_parameters = {
                 type = "projectile",
-                ammo_category = 'protoss-rocket',
+                ammo_category = 'protoss-damage',
                 range = attack_range,
                 min_attack_distance = attack_range - 4,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
                 ammo_type = {
-                    category = "protoss-rocket",
+                    category = "protoss-damage",
                     target_type = "direction",
                     action = {
                         type = "direct",

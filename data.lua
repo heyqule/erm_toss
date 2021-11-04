@@ -4,26 +4,14 @@ require('__erm_toss__/global')
 
 local ErmConfig = require('__enemyracemanager__/lib/global_config')
 
-local TossProjectileAnimation = require('__erm_toss__/prototypes/projectile_animation')
+require('__erm_toss__/prototypes/projectiles')
 
 data:extend(
         {
     {
         type = "ammo-category",
-        name = "protoss-cannon-shell"
-    },
-    {
-        type = "ammo-category",
-        name = "protoss-rocket"
-    },
-    {
-        type = "ammo-category",
-        name = "protoss-laser"
-    },
-    {
-        type = "ammo-category",
-        name = "protoss-capsule"
-    },
+        name = "protoss-damage"
+    }
 })
 
 require "prototypes.enemy.arbiter"
@@ -50,19 +38,6 @@ require "prototypes.building.templar_archive"
 require "prototypes.building.stargate"
 require "prototypes.building.fleet_beacon"
 require "prototypes.building.arbiter_tribunal"
-
-data:extend({ TossProjectileAnimation.create_dragoon_ball() })
-data:extend({ TossProjectileAnimation.create_dragoon_hit_effect() })
-data:extend({ TossProjectileAnimation.create_corsair_hit_effect() })
-data:extend({ TossProjectileAnimation.create_arbiter_stasis() })
-data:extend({ TossProjectileAnimation.create_arbiter_stasis_hit_effect() })
-data:extend({ TossProjectileAnimation.create_carrier_interceptor() })
-data:extend({ TossProjectileAnimation.create_scout_rocket() })
-data:extend({ TossProjectileAnimation.create_electric_cloud() })
-data:extend({ TossProjectileAnimation.create_archon_hit_effect() })
-data:extend({ TossProjectileAnimation.create_air_death() })
-data:extend({ TossProjectileAnimation.create_slow_ticker() })
-data:extend({ TossProjectileAnimation.create_ground_death() })
 
 local level = ErmConfig.MAX_LEVELS
 

@@ -37,8 +37,8 @@ local incremental_cold_resistance = 70
 
 -- Handles damages
 local damage_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
-local base_electric_damage = 15
-local incremental_electric_damage = 60
+local base_electric_damage = 1
+local incremental_electric_damage = 5
 
 -- Handles Attack Speed
 local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
@@ -99,27 +99,21 @@ function ErmToss.make_dragoon(level)
             ai_settings = biter_ai_settings,
             attack_parameters = {
                 type = "projectile",
-                ammo_category = 'protoss-cannon-shell',
+                ammo_category = 'protoss-damage',
                 range = attack_range,
                 min_attack_distance = attack_range - 4,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
+                damage_modifier = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level),
                 ammo_type = {
-                    category = "protoss-cannon-shell",
+                    category = "protoss-damage",
                     target_type = "direction",
                     action = {
                         type = "direct",
                         action_delivery = {
                             type = "projectile",
                             projectile = "dragoon-projectile",
-                            starting_speed = 0.3,
-                            target_effects = {
-                                {
-                                    type = "damage",
-                                    damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level), type = "electric" },
-                                    apply_damage_to_trees = true
-                                }
-                            }
+                            starting_speed = 0.3
                         }
                     }
                 },
