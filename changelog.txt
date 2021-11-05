@@ -10,6 +10,7 @@ Date: ???
     - Changed probe spawn rate in nexus
     - Refactor projectiles, move damage calculation to damage_modifier. Some units got minor damage buff.
     - Buff cannon damage and its range from 20 to 30 and its shooting speed at lower level.
+    - Added "not-flammable" to shuttle, carrier and archon
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.11.0
