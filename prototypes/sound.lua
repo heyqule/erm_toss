@@ -9,7 +9,6 @@ local TossSound = {}
 
 function TossSound.enemy_death(name, volume)
     return {
-
         filename = "__erm_toss__/sound/enemies/" .. name .. "/death.ogg",
         volume = volume
     }
