@@ -47,7 +47,7 @@ local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipl
 local base_attack_speed = 90
 local incremental_attack_speed = 45
 
-local attack_range = 5
+local attack_range = 6
 
 local movement_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local base_movement_speed = 0.2
@@ -103,7 +103,7 @@ function ErmToss.make_corsair(level)
                 type = "projectile",
                 ammo_category = 'protoss-damage',
                 range = attack_range,
-                min_attack_distance = attack_range - 2,
+                min_attack_distance = attack_range - 3,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
                 ammo_type = {
