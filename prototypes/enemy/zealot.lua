@@ -54,7 +54,7 @@ local incremental_movement_speed = 0.1
 -- Misc settings
 local vision_distance = 30
 
-local pollution_to_join_attack = 20
+local pollution_to_join_attack = 10
 local distraction_cooldown = 20
 
 -- Animation Settings
