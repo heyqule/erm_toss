@@ -9,7 +9,7 @@ data:extend({
     {
         type = "corpse",
         name = "toss-small-base-corpse",
-        flags = { "placeable-neutral", "placeable-off-grid", "not-on-map" },
+        flags = { "placeable-neutral", "not-on-map" },
         icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
         icon_size = 64,
         collision_box = { { -2, -2 }, { 2, 2 } },
@@ -36,7 +36,7 @@ data:extend({
     {
         type = "corpse",
         name = "toss-large-base-corpse",
-        flags = { "placeable-neutral", "placeable-off-grid", "not-on-map" },
+        flags = { "placeable-neutral",  "not-on-map" },
         icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
         icon_size = 64,
         collision_box = { { -2, -2 }, { 2, 2 } },
