@@ -38,7 +38,7 @@ local incremental_cold_resistance = 70
 -- Handles damages
 local damage_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
 local base_electric_damage = 1
-local incremental_electric_damage = 5
+local incremental_electric_damage = 6
 
 -- Handles Attack Speed
 local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
