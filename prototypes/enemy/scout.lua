@@ -166,8 +166,7 @@ function ErmToss.make_scout(level)
                 }
             },
 
-            render_layer = "air-object",
-            final_render_layer = "air-object",
+            render_layer = "wires-above",
             distance_per_frame = 0.5,
             run_animation = {
                 layers = {
