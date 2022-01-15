@@ -40,18 +40,18 @@ local incremental_cold_resistance = 65
 local unit_scale = 2
 
 local pollution_absorption_absolute = 50
-local spawning_cooldown = { 900, 450 }
+local spawning_cooldown = {780, 480}
 local spawning_radius = 10
 local max_count_of_owned_units = 4
 local max_friends_around_to_spawn = 2
 local spawn_table = function(level)
     local res = {}
     --Tire 1
-    res[1] = { MOD_NAME .. '/zealot/' .. level, { { 0.0, 0.7 }, { 0.2, 0.7 }, { 0.4, 0.5 }, { 0.6, 0.5 }, { 0.8, 0.25 }, { 1.0, 0.0 } } }
-    res[2] = { MOD_NAME .. '/dragoon/' .. level, { { 0.0, 0.3 }, { 0.2, 0.3 }, { 0.4, 0.5 }, { 0.6, 0.5 }, { 0.8, 0.3 }, { 1.0, 0.0 } } }
+    res[1] = { MOD_NAME .. '/zealot/' .. level, { { 0.0, 0.7 }, { 0.2, 0.7 }, { 0.4, 0.5 }, { 0.6, 0.5 }, { 0.8, 0.25 }, { 1.0, 0.1 } } }
+    res[2] = { MOD_NAME .. '/dragoon/' .. level, { { 0.0, 0.3 }, { 0.2, 0.3 }, { 0.4, 0.5 }, { 0.6, 0.5 }, { 0.8, 0.3 }, { 1.0, 0.1 } } }
     --Tire 3
     res[3] = { MOD_NAME .. '/templar/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.1 }, { 1.0, 0.2 } } }
-    res[4] = { MOD_NAME .. '/darktemplar/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.25 }, { 1.0, 0.5 } } }
+    res[4] = { MOD_NAME .. '/darktemplar/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.25 }, { 1.0, 0.3 } } }
     res[5] = { MOD_NAME .. '/archon/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.1 }, { 1.0, 0.3 } } }
     return res
 end

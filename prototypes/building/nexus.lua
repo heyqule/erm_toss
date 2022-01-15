@@ -40,7 +40,7 @@ local incremental_cold_resistance = 65
 local unit_scale = 2
 
 local pollution_absorption_absolute = 200
-local spawning_cooldown = { 600, 300 }
+local spawning_cooldown = {780, 480}
 local spawning_radius = 10
 local max_count_of_owned_units = 7
 local max_friends_around_to_spawn = 5
