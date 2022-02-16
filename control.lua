@@ -104,17 +104,20 @@ Event.on_configuration_changed(function(event)
         name = Event.get_event_name(ErmConfig.RACE_SETTING_UPDATE), affected_race = MOD_NAME })
 end)
 
-Event.register(defines.events.on_script_trigger_effect, function(event)
-    if not event.source_entity or
-            String.find(event.source_entity.name, MOD_NAME, 1, true) == nil
-    then
-        return
+local attack_functions =
+{
+    [PROBE_ATTACK] = function(args)
+        CustomAttacks.process_probe(args)
+    end,
+    [SHUTTLE_ATTACK] = function(args)
+        CustomAttacks.process_shuttle(args)
     end
-
-    if event.effect_id == PROBE_ATTACK then
-        CustomAttacks.process_probe(event)
-    elseif event.effect_id == SHUTTLE_ATTACK then
-        CustomAttacks.process_shuttle(event)
+}
+Event.register(defines.events.on_script_trigger_effect, function(event)
+    if  attack_functions[event.effect_id] and
+            CustomAttacks.valid(event, MOD_NAME)
+    then
+        attack_functions[event.effect_id](event)
     end
 end)
 
