@@ -37,56 +37,52 @@ local createRace = function()
 end
 
 local addRaceSettings = function()
-    if remote.call('enemy_race_manager', 'get_race', MOD_NAME) then
-        return
+    local race_settings = remote.call('enemy_race_manager', 'get_race', MOD_NAME)
+    if race_settings == nil then
+        race_settings = {}
     end
-    local race_settings = {
-        race = MOD_NAME,
-        version = MOD_VERSION,
-        level = 1, -- Race level
-        tier = 1, -- Race tier
-        evolution_point = 0, -- For internal use
-        evolution_base_point = 0, -- For internal use
-        attack_meter = 0, -- Build by killing their force (Spawner = 50, turrets = 10, unit = 1)
-        next_attack_threshold = 0, -- Used by system to calculate next move
-        units = {
-            { 'zealot', 'dragoon' },
-            { 'scout', 'corsair', 'probe', 'shuttle' },
-            { 'templar', 'darktemplar', 'archon', 'carrier', 'arbiter' },
-        },
-        current_units_tier = {},
-        turrets = {
-            { 'cannon', 'acid-cannon' },
-            {},
-            {},
-        },
-        current_turrets_tier = {},
-        command_centers = {
-            { 'nexus' },
-            {},
-            {}
-        },
-        current_command_centers_tier = {},
-        support_structures = {
-            { 'pylon', 'gateway', 'forge' },
-            { 'cybernetics_core', 'stargate', 'citadel_adun' },
-            { 'templar_archive', 'fleet_beacon', 'arbiter_tribunal' },
-        },
-        current_support_structures_tier = {},
-        flying_units = {
-            {'scout'}, -- Fast unit that uses in rapid target attack group
-            {'corsair'},
-            {'carrier','arbiter'}
-        },
-        dropship = 'shuttle'
-    }
 
-    race_settings.current_units_tier = race_settings.units[1]
-    race_settings.current_turrets_tier = race_settings.turrets[1]
-    race_settings.current_command_centers_tier = race_settings.command_centers[1]
-    race_settings.current_support_structures_tier = race_settings.support_structures[1]
+    race_settings.race =  race_settings.race or MOD_NAME
+    race_settings.version =  race_settings.version or MOD_VERSION
+    race_settings.level =  race_settings.level or 1
+    race_settings.tier =  race_settings.tier or 1
+    race_settings.evolution_point =  race_settings.evolution_point or 0
+    race_settings.evolution_base_point =  race_settings.evolution_base_point or 0
+    race_settings.attack_meter = race_settings.attack_meter or 0
+    race_settings.attack_meter_total = race_settings.attack_meter_total or 0
+    race_settings.next_attack_threshold = race_settings.next_attack_threshold or 0
+
+    race_settings.units = {
+        { 'zealot', 'dragoon' },
+        { 'scout', 'corsair', 'probe', 'shuttle' },
+        { 'templar', 'darktemplar', 'archon', 'carrier', 'arbiter' },
+    }
+    race_settings.turrets = {
+        { 'cannon', 'acid-cannon' },
+        {},
+        {},
+    }
+    race_settings.command_centers = {
+        { 'nexus' },
+        {},
+        {}
+    }
+    race_settings.support_structures = {
+        { 'pylon', 'gateway', 'forge' },
+        { 'cybernetics_core', 'stargate', 'citadel_adun' },
+        { 'templar_archive', 'fleet_beacon', 'arbiter_tribunal' },
+    }
+    race_settings.flying_units = {
+        {'scout'}, -- Fast unit that uses in rapid target attack group
+        {'corsair'},
+        {'carrier','arbiter'}
+    }
+    race_settings.dropship = 'shuttle'
 
     remote.call('enemy_race_manager', 'register_race', race_settings)
+
+    Event.dispatch({
+        name = Event.get_event_name(ErmConfig.RACE_SETTING_UPDATE), affected_race = MOD_NAME })
 end
 
 Event.on_init(function(event)
@@ -99,9 +95,7 @@ end)
 
 Event.on_configuration_changed(function(event)
     createRace()
-    -- Mod Compatibility Upgrade for race settings
-    Event.dispatch({
-        name = Event.get_event_name(ErmConfig.RACE_SETTING_UPDATE), affected_race = MOD_NAME })
+    addRaceSettings()
 end)
 
 local attack_functions =
