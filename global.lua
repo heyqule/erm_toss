@@ -13,8 +13,8 @@ DEBUG_MODE = false
 
 
 -- Attack Types for on_script_trigger_effect
-PROBE_ATTACK = 'probe_attack'
-SHUTTLE_ATTACK = 'shuttle_attack'
+PROBE_ATTACK = 'empts-prb'
+SHUTTLE_ATTACK = 'empts-sht'
 
 
 
