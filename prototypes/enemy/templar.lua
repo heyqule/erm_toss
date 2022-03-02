@@ -100,6 +100,7 @@ function ErmToss.make_templar(level)
             pollution_to_join_attack = pollution_to_join_attack,
             distraction_cooldown = distraction_cooldown,
             ai_settings = biter_ai_settings,
+            spawning_time_modifier = 2,
             attack_parameters = {
                 type = "projectile",
                 range = attack_range,

@@ -6,6 +6,7 @@ Date: ???
     - Improved custom attack handling
     - Improved race data handling
     - RU Translation update. (Thank You! SeptiSe7ven)
+    - Tweak spawner time, Tier 2 units takes 1.5x, Tier 3 units takes 2x
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.14.0
