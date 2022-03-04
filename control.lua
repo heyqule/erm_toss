@@ -43,7 +43,6 @@ local addRaceSettings = function()
     end
 
     race_settings.race =  race_settings.race or MOD_NAME
-    race_settings.version =  race_settings.version or MOD_VERSION
     race_settings.level =  race_settings.level or 1
     race_settings.tier =  race_settings.tier or 1
     race_settings.evolution_point =  race_settings.evolution_point or 0
@@ -114,40 +113,5 @@ Event.register(defines.events.on_script_trigger_effect, function(event)
         attack_functions[event.effect_id](event)
     end
 end)
-
-
----
---- Modify Race Settings for existing game
----
-Event.register(Event.generate_event_name(ErmConfig.RACE_SETTING_UPDATE), function(event)
-    local race_setting = remote.call('enemy_race_manager', 'get_race', MOD_NAME)
-    if (event.affected_race == MOD_NAME) and race_setting then
-        if race_setting.version < MOD_VERSION then
-            if race_setting.version < 101 then
-                ErmRaceSettingsHelper.remove_structure_from_tier(race_setting, 1, 'nexus')
-                ErmRaceSettingsHelper.add_turret_to_tier(race_setting, 1, 'acid-cannon')
-            end
-
-            if race_setting.version < 102 then
-                race_setting.angry_meter = nil
-                race_setting.send_attack_threshold = nil
-                race_setting.send_attack_threshold_deviation = nil
-                race_setting.attack_meter = 0
-
-                race_setting.flying_units = {
-                    {'scout'}, -- Fast unit that uses in rapid target attack group
-                    {'corsair'},
-                    {'carrier','arbiter'}
-                }
-                race_setting.dropship = 'shuttle'
-                ErmRaceSettingsHelper.add_unit_to_tier(race_setting, 2, 'shuttle')
-            end
-
-            race_setting.version = MOD_VERSION
-        end
-        remote.call('enemy_race_manager', 'update_race_setting', race_setting)
-    end
-end)
-
 
 
