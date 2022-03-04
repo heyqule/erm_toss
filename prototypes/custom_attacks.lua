@@ -31,6 +31,8 @@ end
 
 local CustomAttacks = {}
 
+CustomAttacks.valid = CustomAttackHelper.valid
+
 function CustomAttacks.process_probe(event)
     CustomAttackHelper.drop_unit(event, MOD_NAME, get_probe_buildable_turrets())
     event.source_entity.die('neutral')
