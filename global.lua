@@ -7,14 +7,13 @@
 -- Globals within the mod
 MOD_NAME = 'erm_toss'
 FORCE_NAME = 'enemy_erm_toss'
-MOD_VERSION = 102
 
 DEBUG_MODE = false
 
 
 -- Attack Types for on_script_trigger_effect
-PROBE_ATTACK = 'probe_attack'
-SHUTTLE_ATTACK = 'shuttle_attack'
+PROBE_ATTACK = 'empts-prb'
+SHUTTLE_ATTACK = 'empts-sht'
 
 
 
