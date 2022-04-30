@@ -72,16 +72,40 @@ local addRaceSettings = function()
         { 'templar_archive', 'fleet_beacon', 'arbiter_tribunal' },
     }
     race_settings.flying_units = {
-        {'scout'}, -- Fast unit that uses in rapid target attack group
+        {'scout'},
         {'corsair'},
         {'carrier','arbiter'}
     }
     race_settings.dropship = 'shuttle'
+    race_settings.droppable_units = {
+        {{ 'zealot', 'dragoon' },{3,1}},
+        {{ 'zealot', 'dragoon', 'lurker' },{2,3}},
+        {{ 'zealot', 'dragoon', 'darktemplar', 'archon' },{4,4,2,1}},
+    }
+    race_settings.construction_buildings = {
+        {{ 'cannon_shortrange'},{1}},
+        {{ 'cannon_shortrange'},{1}},
+        {{ 'cannon_shortrange','pylon'},{2,1}},
+    }
+    race_settings.featured_groups = {
+        --Unit list, spawn ratio, unit_cost
+        {{'zealot', 'dragoon'}, {7, 3}, 20},
+        {{'zealot', 'archon'}, {7, 3}, 25},
+        {{'zealot', 'dragoon','archon'}, {4, 4, 2}, 25},
+        {{'dragoon','templar'}, {8, 2}, 25},
+        {{'darktemplar','templar','archon'}, {4, 1, 2}, 25},
+        {{'zealot','dragoon','darktemplar','templar','archon'}, {4,4,2,1,1}, 20},
+    }
+    race_settings.featured_flying_groups = {
+        {{'scout', 'carrier'}, {4, 2}, 50},
+        {{'corsair', 'arbiter'}, {5, 1}, 60},
+        {{'scout', 'corsair', 'carrier', 'arbiter'}, {4,4,2,1}, 50},
+        {{'scout', 'carrier', 'shuttle'}, {4, 2, 2}, 60}
+    }
+
+    ErmRaceSettingsHelper.process_unit_spawn_rate_cache(race_settings)
 
     remote.call('enemy_race_manager', 'register_race', race_settings)
-
-    Event.dispatch({
-        name = Event.get_event_name(ErmConfig.RACE_SETTING_UPDATE), affected_race = MOD_NAME })
 end
 
 Event.on_init(function(event)
