@@ -17,7 +17,7 @@ However, Starcraft graphic and sound assets are properties of Blizzard Entertain
 
 
 # Requirement
-* Enemy Race Manager >= 1.7
+* Enemy Race Manager >= 1.15
 * Factorio Standard Library >= 1.4.6
 * Factorio Base >= 1.1
 
@@ -27,49 +27,38 @@ All unit has same base health point as original SC, Some units have unique healt
 Weak to acid / poison (-5 resist)
 
 #### Tier 1 Units
-###### Zealot
-    - Health 160 - 4160  (level 1 - 20)
-    - Melee damage 10 - 80 (level 1 - 20)
+###### Zealot 
+- Attack: Melee 
 ###### Dragoon
-    - Health 180 - 4680
-    - Electric damage 15 - 90
+- Attack: Electric
 
 
 #### Tier 2 Units
 ###### Scout
-    - Health 250 - 4156
-    - Range damage 10 - 75
+- Attack: Explosion
 
 ###### Corsair
-    - Health 180 - 3555
-    - Range damage 10 - 40   
-    - slow on hit
+- Attack: Electric (Slow on hit)
 
 ###### Probe
-    - Health 40 - 2540
-    - Kill itself to spawn Cannon / Pylon
+- Build Cannon / Pylon
 
 
 #### Tier 3 Units
-###### Carrier AOE 2
-    - Health 450 - 6075
-    - Damage 25 - 100
+###### Carrier AOE
+- Attack: Explosion (2 radius AOE)
 
-###### Arbiter AOE 4
-    - Health 350 - 4725
-    - AOE range damage 10 - 50
+###### Arbiter AOE
+- Attack: Cold (4 radius AOE)
 
-###### Templar AOE 5
-    - Health 80 - 2080
-    - AOE range damage 40 - 200 over 2 seconds
+###### Templar AOE
+- Attack: Electric (5 radius AOE)
 
-###### Dark Templar AOE 2
-    - Health 120 - 3120
-    - AOE melee damage 50 - 125
+###### Dark Templar
+- Attack: Physical (2 radius AOE)
 
-###### Archon AOE 3
-    - Health 360 - 9360
-    - AOE meele damage 50 - 150
+###### Archon
+- Attack: Electric (3 radius AOE)
 
 Physical resistance: 95
 Weak elemental resistance: 85

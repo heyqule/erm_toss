@@ -88,19 +88,19 @@ local addRaceSettings = function()
         {{ 'cannon_shortrange','pylon'},{2,1}},
     }
     race_settings.featured_groups = {
-        --Unit list, spawn ratio, unit_cost
+        -- Unit list, spawn ratio, unit attack point cost
         {{'zealot', 'dragoon'}, {7, 3}, 20},
         {{'zealot', 'archon'}, {7, 3}, 25},
         {{'zealot', 'dragoon','archon'}, {4, 4, 2}, 25},
-        {{'dragoon','templar'}, {8, 2}, 25},
+        {{'dragoon','templar'}, {4, 1}, 25},
         {{'darktemplar','templar','archon'}, {4, 1, 2}, 25},
         {{'zealot','dragoon','darktemplar','templar','archon'}, {4,4,2,1,1}, 20},
     }
     race_settings.featured_flying_groups = {
-        {{'scout', 'carrier'}, {4, 2}, 50},
+        {{'scout', 'carrier'}, {2, 1}, 50},
         {{'corsair', 'arbiter'}, {5, 1}, 60},
         {{'scout', 'corsair', 'carrier', 'arbiter'}, {4,4,2,1}, 50},
-        {{'scout', 'carrier', 'shuttle'}, {4, 2, 2}, 60}
+        {{'scout', 'carrier', 'shuttle'}, {2, 1, 1}, 60}
     }
 
     ErmRaceSettingsHelper.process_unit_spawn_rate_cache(race_settings)
