@@ -8,7 +8,7 @@ local Sprites = require('__stdlib__/stdlib/data/modules/sprites')
 local ERM_WeaponRig = require('__enemyracemanager__/lib/rig/weapon')
 require('util')
 
-local scout_rocket = ERM_WeaponRig.remove_damage_from_rocket(
+local scout_rocket = ERM_WeaponRig.standardize_rocket_damage(
         util.table.deepcopy(data.raw['projectile']['rocket']),
         'scout-rocket'
 )
@@ -110,10 +110,6 @@ data:extend({
                 type = "instant",
                 target_effects = {
                     {
-                        type = "create-entity",
-                        entity_name = "medium-explosion"
-                    },
-                    {
                         type = "nested-result",
                         action = {
                             type = "area",
@@ -129,7 +125,11 @@ data:extend({
                                 apply_damage_to_trees = true
                             }
                         }
-                    }
+                    },
+                    {
+                        type = "create-entity",
+                        entity_name = "medium-explosion"
+                    },
                 }
             }
         },

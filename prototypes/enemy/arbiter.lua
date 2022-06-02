@@ -118,7 +118,8 @@ function ErmToss.make_arbiter(level)
                         action_delivery = {
                             type = "projectile",
                             projectile = "stasis-projectile",
-                            starting_speed = 0.3
+                            starting_speed = 0.3,
+                            max_range = ERM_Config.get_max_projectile_range(),
                         }
                     }
                 },

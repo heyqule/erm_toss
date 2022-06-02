@@ -118,6 +118,7 @@ function ErmToss.make_carrier(level)
                             type = "projectile",
                             projectile = "interceptor-projectile",
                             starting_speed = 0.3,
+                            max_range = ERM_Config.get_max_projectile_range(4),
                         }
                     }
                 },
