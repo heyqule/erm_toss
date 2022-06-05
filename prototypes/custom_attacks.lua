@@ -4,42 +4,19 @@
 --- DateTime: 12/23/2020 8:27 PM
 ---
 
-local String = require('__stdlib__/stdlib/utils/string')
-local Math = require('__stdlib__/stdlib/utils/math')
-local Table = require('__stdlib__/stdlib/utils/table')
-
-local ForceHelper = require('__enemyracemanager__/lib/helper/force_helper')
 local CustomAttackHelper = require('__enemyracemanager__/lib/helper/custom_attack_helper')
-
-local droppable_unit_name = {
-    { 'zealot', 'zealot', 'dragoon' },
-    { 'zealot', 'zealot', 'dragoon', 'dragoon' },
-    { 'zealot', 'zealot', 'dragoon', 'dragoon', 'darktemplar', 'archon' },
-}
-local get_shuttle_droppable_unit = function()
-    return CustomAttackHelper.get_unit(droppable_unit_name, MOD_NAME)
-end
-
-local probe_building_name = {
-    { 'cannon_shortrange' },
-    { 'cannon_shortrange' },
-    { 'cannon_shortrange', 'pylon' },
-}
-local get_probe_buildable_turrets = function()
-    return CustomAttackHelper.get_unit(probe_building_name, MOD_NAME)
-end
 
 local CustomAttacks = {}
 
 CustomAttacks.valid = CustomAttackHelper.valid
 
 function CustomAttacks.process_probe(event)
-    CustomAttackHelper.drop_unit(event, MOD_NAME, get_probe_buildable_turrets())
+    CustomAttackHelper.drop_unit(event, MOD_NAME, CustomAttackHelper.get_unit(MOD_NAME, 'construction_buildings'))
     event.source_entity.die('neutral')
 end
 
 function CustomAttacks.process_shuttle(event)
-    CustomAttackHelper.drop_unit(event, MOD_NAME, get_shuttle_droppable_unit())
+    CustomAttackHelper.drop_unit(event, MOD_NAME, CustomAttackHelper.get_unit(MOD_NAME, 'droppable_units'))
 end
 
 return CustomAttacks

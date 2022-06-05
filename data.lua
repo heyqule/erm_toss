@@ -39,9 +39,9 @@ require "prototypes.building.stargate"
 require "prototypes.building.fleet_beacon"
 require "prototypes.building.arbiter_tribunal"
 
-local level = ErmConfig.MAX_LEVELS
+local max_level = ErmConfig.MAX_LEVELS
 
-for i = 1, level do
+for i = 1, max_level + ErmConfig.MAX_ELITE_LEVELS do
     ErmToss.make_arbiter(i)
     ErmToss.make_zealot(i)
     ErmToss.make_dragoon(i)
@@ -53,7 +53,9 @@ for i = 1, level do
     ErmToss.make_archon(i)
     ErmToss.make_probe(i)
     ErmToss.make_shuttle(i)
+end
 
+for i = 1, max_level do
     ErmToss.make_cannon(i)
     ErmToss.make_nexus(i)
     ErmToss.make_pylon(i)

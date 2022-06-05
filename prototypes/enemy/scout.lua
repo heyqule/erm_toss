@@ -10,6 +10,7 @@ local Sprites = require('__stdlib__/stdlib/data/modules/sprites')
 
 local ERM_UnitHelper = require('__enemyracemanager__/lib/rig/unit_helper')
 local ERM_UnitTint = require('__enemyracemanager__/lib/rig/unit_tint')
+local ERM_Config = require('__enemyracemanager__/lib/global_config')
 local ERM_DebugHelper = require('__enemyracemanager__/lib/debug_helper')
 local ERMDataHelper = require('__enemyracemanager__/lib/rig/data_helper')
 local TossSound = require('__erm_toss__/prototypes/sound')
@@ -39,8 +40,8 @@ local incremental_cold_resistance = 70
 
 -- Handles damages
 local damage_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
-local base_electric_damage = 10
-local incremental_electric_damage = 90
+local base_electric_damage = 1
+local incremental_electric_damage = 9
 
 -- Handles Attack Speed
 local attack_speed_multiplier = settings.startup["enemyracemanager-level-multipliers"].value
@@ -107,6 +108,7 @@ function ErmToss.make_scout(level)
                 min_attack_distance = attack_range - 4,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, attack_speed_multiplier, level),
                 cooldown_deviation = 0.1,
+                damage_modifier = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level),
                 ammo_type = {
                     category = "protoss-damage",
                     target_type = "direction",
@@ -116,10 +118,7 @@ function ErmToss.make_scout(level)
                             type = "projectile",
                             projectile = "scout-rocket",
                             starting_speed = 0.3,
-                            target_effects = {
-                                type = "damage",
-                                damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, damage_multiplier, level), type = "explosion" }
-                            }
+                            max_range = ERM_Config.get_max_projectile_range(2),
                         }
                     }
                 },
