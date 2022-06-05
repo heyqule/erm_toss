@@ -15,6 +15,7 @@ Date: 2022-06-06
     - {{'zealot','dragoon','darktemplar','templar','archon'}, {4,4,2,1,1}, 20},
     - -----------------------------
     - -- Featured Flying Squad Details ---
+    - {{'scout', 'corsair'}, {1, 1}, 20},
     - {{'scout', 'carrier'}, {2, 1}, 50},
     - {{'corsair', 'arbiter'}, {5, 1}, 60},
     - {{'scout', 'corsair', 'carrier', 'arbiter'}, {4,4,2,1}, 50},
@@ -22,8 +23,10 @@ Date: 2022-06-06
     - ------------------------------------
 
   Changes:
-    - Dropship unit dropping timer changed from 15-10s to 45-30s.
+    - Dropship unit cooldown changed from 15-10s to 45-30s.
     - Changed corsair from laser to electric
+    - Refactored custom attack handling (dropships and proxy builder)
+    - turned off turning_speed_increases_exponentially_with_projectile_speed for rocket
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.15.0

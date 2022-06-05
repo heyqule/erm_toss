@@ -97,6 +97,7 @@ local addRaceSettings = function()
         {{'zealot','dragoon','darktemplar','templar','archon'}, {4,4,2,1,1}, 20},
     }
     race_settings.featured_flying_groups = {
+        {{'scout', 'corsair'}, {1, 1}, 20},
         {{'scout', 'carrier'}, {2, 1}, 50},
         {{'corsair', 'arbiter'}, {5, 1}, 60},
         {{'scout', 'corsair', 'carrier', 'arbiter'}, {4,4,2,1}, 50},
