@@ -5,7 +5,7 @@ Date: 2022-06-06
   Features:
     - Added support for featured squad
     - Added support for elite squad
-    --- Featured Squad Details ---
+    - -- Featured Squad Details ---
     - Unit list, spawn ratio, unit attack point cost
     - {{'zealot', 'dragoon'}, {7, 3}, 20},
     - {{'zealot', 'archon'}, {7, 3}, 25},
@@ -13,13 +13,13 @@ Date: 2022-06-06
     - {{'dragoon','templar'}, {4, 1}, 25},
     - {{'darktemplar','templar','archon'}, {4, 1, 2}, 25},
     - {{'zealot','dragoon','darktemplar','templar','archon'}, {4,4,2,1,1}, 20},
-    ------------------------------
-    --- Featured Flying Squad Details ---
+    - -----------------------------
+    - -- Featured Flying Squad Details ---
     - {{'scout', 'carrier'}, {2, 1}, 50},
     - {{'corsair', 'arbiter'}, {5, 1}, 60},
     - {{'scout', 'corsair', 'carrier', 'arbiter'}, {4,4,2,1}, 50},
     - {{'scout', 'carrier', 'shuttle'}, {2, 1, 1}, 60}
-    -------------------------------------
+    - ------------------------------------
 
   Changes:
     - Dropship unit dropping timer changed from 15-10s to 45-30s.
