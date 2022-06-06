@@ -15,6 +15,7 @@ local scout_rocket = ERM_WeaponRig.standardize_rocket_damage(
 
 scout_rocket['turn_speed'] = 1
 scout_rocket['turning_speed_increases_exponentially_with_projectile_speed'] = false
+scout_rocket['smoke'] = nil
 
 data:extend({
     --- Projectiles
