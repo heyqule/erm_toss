@@ -6,6 +6,11 @@
 local Sprites = require('__stdlib__/stdlib/data/modules/sprites')
 
 local ERM_WeaponRig = require('__enemyracemanager__/lib/rig/weapon')
+
+local smoke_animations = require("__base__/prototypes/entity/smoke-animations")
+
+local smoke_fast_animation = smoke_animations.trivial_smoke_fast
+
 require('util')
 
 local scout_rocket = ERM_WeaponRig.standardize_rocket_damage(
@@ -15,9 +20,18 @@ local scout_rocket = ERM_WeaponRig.standardize_rocket_damage(
 
 scout_rocket['turn_speed'] = 1
 scout_rocket['turning_speed_increases_exponentially_with_projectile_speed'] = false
-scout_rocket['smoke'] = nil
+scout_rocket['smoke'][1]['name'] = "scout-smoke-fast"
+scout_rocket['smoke'][1]['frequency'] = 1 / 5
 
 data:extend({
+    {
+        type = "trivial-smoke",
+        name = "scout-smoke-fast",
+        animation = smoke_fast_animation(),
+        duration = 60,
+        fade_away_duration = 60,
+        color =  {r = 65, g = 150, b = 240, a = 0.5}
+    },
     --- Projectiles
     scout_rocket,
     {
