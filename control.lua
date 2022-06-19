@@ -34,6 +34,8 @@ local createRace = function()
     else
         ErmForceHelper.set_friends(game, FORCE_NAME, true)
     end
+
+    ErmForceHelper.set_neutral_force(game, FORCE_NAME)
 end
 
 local addRaceSettings = function()
@@ -98,10 +100,10 @@ local addRaceSettings = function()
     }
     race_settings.featured_flying_groups = {
         {{'scout', 'corsair'}, {1, 1}, 35},
-        {{'scout', 'carrier'}, {2, 1}, 50},
+        {{'scout', 'carrier'}, {4, 1}, 50},
         {{'corsair', 'arbiter'}, {5, 1}, 60},
         {{'scout', 'corsair', 'carrier', 'arbiter'}, {4,4,2,1}, 50},
-        {{'scout', 'carrier', 'shuttle'}, {2, 1, 1}, 60}
+        {{'scout', 'carrier', 'shuttle'}, {4, 1, 1}, 60}
     }
 
     ErmRaceSettingsHelper.process_unit_spawn_rate_cache(race_settings)
