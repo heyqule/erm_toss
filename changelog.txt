@@ -1,8 +1,15 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.16.3
+Date: 2022-xx-xx
+
+  Changes:
+    - Improve unit performance by changing enemies distraction_cooldown from 20 to 300.
+
+---------------------------------------------------------------------------------------------------
 Version: 1.16.2
 Date: 2022-06-22
 
-  Change:
+  Changes:
     - Added support to set neutral for neutral forces that created from other mods.
     - changed {'scout', 'carrier'} spawn ratio from  {2, 1} to {4, 1}
     - changed {'scout', 'carrier', 'shuttle'} spawn ration from {2,1,1} to {4,1,1}
@@ -12,7 +19,7 @@ Date: 2022-06-22
 Version: 1.16.1
 Date: 2022-06-11
 
-  Change:
+  Changes:
     - reduced smoke from rocket frequency to 1 / 5 to increase performance in large group.
     - changed scout rocket color.
 
@@ -31,14 +38,14 @@ Date: 2022-06-06
     - {{'dragoon','templar'}, {4, 1}, 25},
     - {{'darktemplar','templar','archon'}, {4, 1, 2}, 25},
     - {{'zealot','dragoon','darktemplar','templar','archon'}, {4,4,2,1,1}, 20},
-    - -----------------------------
+    - -- / Featured Squad Details ---
     - -- Featured Flying Squad Details ---
     - {{'scout', 'corsair'}, {1, 1}, 20},
     - {{'scout', 'carrier'}, {2, 1}, 50},
     - {{'corsair', 'arbiter'}, {5, 1}, 60},
     - {{'scout', 'corsair', 'carrier', 'arbiter'}, {4,4,2,1}, 50},
     - {{'scout', 'carrier', 'shuttle'}, {2, 1, 1}, 60}
-    - ------------------------------------
+    - -- / Featured Flying Squad Details ---
 
   Changes:
     - Dropship unit cooldown changed from 15-10s to 45-30s.
