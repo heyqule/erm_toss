@@ -29,6 +29,7 @@ require "prototypes.enemy.shuttle"
 require "prototypes.building.building_death"
 require "prototypes.building.cannon"
 require "prototypes.building.nexus"
+require "prototypes.building.boss_nexus"
 require "prototypes.building.pylon"
 require "prototypes.building.gateway"
 require "prototypes.building.forge"
@@ -53,6 +54,25 @@ for i = 1, max_level + ErmConfig.MAX_ELITE_LEVELS do
     ErmToss.make_archon(i)
     ErmToss.make_probe(i)
     ErmToss.make_shuttle(i)
+end
+
+local boss_level = ErmConfig.BOSS_LEVELS
+
+for i = 1, #boss_level do
+    local level = boss_level[i]
+    ErmToss.make_arbiter(i)
+    ErmToss.make_zealot(i)
+    ErmToss.make_dragoon(i)
+    ErmToss.make_carrier(i)
+    ErmToss.make_scout(i)
+    ErmToss.make_corsair(i)
+    ErmToss.make_darktemplar(i)
+    ErmToss.make_templar(i)
+    ErmToss.make_archon(i)
+    ErmToss.make_probe(i)
+    ErmToss.make_shuttle(i)
+
+    ErmToss.make_boss_nexus(level, ErmConfig.BOSS_BUILDING_HITPOINT[i])
 end
 
 for i = 1, max_level do
