@@ -13,7 +13,7 @@ local ErmConfig = require('__enemyracemanager__/lib/global_config')
 
 local Event = require('__stdlib__/stdlib/event/event')
 local String = require('__stdlib__/stdlib/utils/string')
-local CustomAttacks = require('__erm_toss__/prototypes/custom_attacks')
+local CustomAttacks = require('__erm_toss__/scripts/custom_attacks')
 
 require('__erm_toss__/global')
 -- Constants
@@ -147,4 +147,9 @@ Event.register(defines.events.on_script_trigger_effect, function(event)
     end
 end)
 
-
+local ErmBossAttack = require('scripts/boss_attacks')
+remote.add_interface("erm_toss_boss_attacks", {
+    get_basic_attack = ErmBossAttack.get_basic_attack,
+    get_advanced_attack = ErmBossAttack.get_advanced_attack,
+    get_super_attack = ErmBossAttack.get_super_attack,
+})

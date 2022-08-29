@@ -228,7 +228,7 @@ function ErmToss.make_arbiter(level)
             dying_speed = 0.04,
             time_before_removed = defines.time.second,
             subgroup = "corpses",
-            order = "x" .. name .. level,
+            order = MOD_NAME .. "/" .. name .. level,
             animation = Sprites.empty_pictures(),
         }
     })

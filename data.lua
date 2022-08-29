@@ -4,7 +4,8 @@ require('__erm_toss__/global')
 
 local ErmConfig = require('__enemyracemanager__/lib/global_config')
 
-require('__erm_toss__/prototypes/projectiles')
+require 'prototypes/projectiles'
+require "prototypes/boss-projectiles"
 
 data:extend(
         {
