@@ -18,5 +18,5 @@ ErmBossAttackRemote.basic_attacks =
     projectile_count = {1, 1, 1},
     projectile_spread = {1, 1, 2}
 }
-print(serpent.block(ErmBossAttackRemote))
+
 return ErmBossAttackRemote
