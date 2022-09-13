@@ -137,6 +137,9 @@ local attack_functions =
     end,
     [SHUTTLE_ATTACK] = function(args)
         CustomAttacks.process_shuttle(args)
+    end,
+    [BOSS_SPAWN_ATTACK] = function(args)
+        CustomAttacks.process_boss_unit(args)
     end
 }
 Event.register(defines.events.on_script_trigger_effect, function(event)
