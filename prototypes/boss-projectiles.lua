@@ -8,6 +8,17 @@ local Sprites = require('__stdlib__/stdlib/data/modules/sprites')
 local ERMConfig = require('__enemyracemanager__/lib/global_config')
 local ERMDataHelper = require('__enemyracemanager__/lib/rig/data_helper')
 
+local boss_difficulty = settings.startup['enemyracemanager-boss-difficulty'].value
+local damage_multiplier = {
+    [BOSS_NORMAL] = 1,
+    [BOSS_HARD] = 1.5,
+    [BOSS_GODLIKE] = 2
+}
+
+local get_damage = function(init_dmg, tier ,multiplier)
+    return init_dmg * (1 + tier * multiplier - multiplier) * damage_multiplier[boss_difficulty]
+end
+
 --- Basic Attack #1
 local create_blood_cloud_projectile = function(tier)
     return     {
@@ -15,7 +26,12 @@ local create_blood_cloud_projectile = function(tier)
         name = MOD_NAME.."/blood-cloud-projectile-t"..tier,
         flags = { "not-on-map" },
         acceleration = 0,
-        action = {
+
+        collision_box = {{-0.5,-0.5},{0.5, 0.5}},
+        direction_only = true,
+        force_condition = "enemy",
+        hit_collision_mask =  {"player-layer", "train-layer", ERMDataHelper.getFlyingLayerName()},
+        final_action = {
             type = "direct",
             action_delivery = {
                 type = "instant",
@@ -52,7 +68,12 @@ local create_acid_cloud_projectile = function(tier)
         name = MOD_NAME.."/acid-cloud-projectile-t"..tier,
         flags = { "not-on-map" },
         acceleration = 0,
-        action = {
+
+        collision_box = {{-0.5,-0.5},{0.5, 0.5}},
+        direction_only = true,
+        force_condition = "enemy",
+        hit_collision_mask =  {"player-layer", "train-layer", ERMDataHelper.getFlyingLayerName()},
+        final_action = {
             type = "direct",
             action_delivery = {
                 type = "instant",
@@ -89,7 +110,12 @@ local create_blood_fire_projectile = function(tier)
         name = MOD_NAME.."/blood-fire-projectile-t"..tier,
         flags = { "not-on-map" },
         acceleration = 0,
-        action = {
+
+        collision_box = {{-0.5,-0.5},{0.5, 0.5}},
+        direction_only = true,
+        force_condition = "enemy",
+        hit_collision_mask =  {"player-layer", "train-layer", ERMDataHelper.getFlyingLayerName()},
+        final_action = {
             type = "direct",
             action_delivery = {
                 type = "instant",
@@ -179,7 +205,12 @@ local create_blood_explosion_projectile = function(tier)
         name = MOD_NAME.."/blood-explosion-projectile-t"..tier,
         flags = { "not-on-map" },
         acceleration = 0,
-        action = {
+
+        collision_box = {{-0.5,-0.5},{0.5, 0.5}},
+        direction_only = true,
+        force_condition = "enemy",
+        hit_collision_mask =  {"player-layer", "train-layer", ERMDataHelper.getFlyingLayerName()},
+        final_action = {
             type = "direct",
             action_delivery = {
                 type = "instant",
@@ -227,7 +258,7 @@ local create_swamp_cloud_projectile = function(tier)
         name = MOD_NAME.."/swamp-cloud-projectile-t"..tier,
         flags = { "not-on-map" },
         acceleration = 0,
-        piercing_damage = 999999999,
+
         collision_box = {{-1,-1},{1, 1}},
         direction_only = true,
         force_condition = "enemy",

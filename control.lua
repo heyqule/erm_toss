@@ -81,8 +81,8 @@ local addRaceSettings = function()
     race_settings.dropship = 'shuttle'
     race_settings.droppable_units = {
         {{ 'zealot', 'dragoon' },{3,1}},
-        {{ 'zealot', 'dragoon', 'lurker' },{2,3}},
-        {{ 'zealot', 'dragoon', 'darktemplar', 'archon' },{4,4,2,1}},
+        {{ 'zealot', 'dragoon', 'darktemplar' },{2,3,1}},
+        {{ 'zealot', 'dragoon', 'darktemplar', 'templar', 'archon'  },{2,2,2,2,2}},
     }
     race_settings.construction_buildings = {
         {{ 'cannon_shortrange'},{1}},

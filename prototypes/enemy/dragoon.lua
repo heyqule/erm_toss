@@ -101,6 +101,7 @@ function ErmToss.make_dragoon(level)
             ai_settings = biter_ai_settings,
             attack_parameters = {
                 type = "projectile",
+                range_mode = "bounding-box-to-bounding-box",
                 ammo_category = 'protoss-damage',
                 range = attack_range,
                 min_attack_distance = attack_range - 4,

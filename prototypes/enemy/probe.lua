@@ -103,6 +103,7 @@ function ErmToss.make_probe(level)
             spawning_time_modifier = 1.5,
             attack_parameters = {
                 type = "projectile",
+                range_mode = "bounding-box-to-bounding-box",
                 range = attack_range,
                 min_attack_distance = attack_range - 4,
                 cooldown = 10,

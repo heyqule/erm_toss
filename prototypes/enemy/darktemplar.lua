@@ -103,6 +103,7 @@ function ErmToss.make_darktemplar(level)
             spawning_time_modifier = 2,
             attack_parameters = {
                 type = "projectile",
+                range_mode = "bounding-box-to-bounding-box",
                 range = attack_range,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),
                 cooldown_deviation = 0.1,

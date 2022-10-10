@@ -165,6 +165,7 @@ function ErmToss.make_cannon(level)
             allow_turning_when_starting_attack = true,
             attack_parameters = {
                 type = "projectile",
+                range_mode = "bounding-box-to-bounding-box",
                 ammo_category = 'protoss-damage',
                 range = attack_range,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),
@@ -253,7 +254,8 @@ function ErmToss.make_cannon(level)
             allow_turning_when_starting_attack = true,
             attack_parameters = {
                 type = "projectile",
-                ammo_category = 'biological',
+                range_mode = "bounding-box-to-bounding-box",
+                ammo_category = 'protoss-damage',
                 damage_modifier = ERM_UnitHelper.get_damage(base_acid_damage, incremental_acid_damage,  level),
                 range = acid_attack_range,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),
@@ -262,7 +264,7 @@ function ErmToss.make_cannon(level)
                 use_shooter_direction = true,
                 lead_target_for_projectile_speed = 0.2 * 0.75 * 1.5 * 1.5,
                 ammo_type = {
-                    category = "biological",
+                    category = "protoss-damage",
                     action = {
                         type = "direct",
                         action_delivery = {
@@ -343,6 +345,7 @@ function ErmToss.make_cannon(level)
             allow_turning_when_starting_attack = true,
             attack_parameters = {
                 type = "projectile",
+                range_mode = "bounding-box-to-bounding-box",
                 ammo_category = 'protoss-damage',
                 range = attack_shortrange,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),

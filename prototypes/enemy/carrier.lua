@@ -104,6 +104,7 @@ function ErmToss.make_carrier(level)
             spawning_time_modifier = 2,
             attack_parameters = {
                 type = "projectile",
+                range_mode = "bounding-box-to-bounding-box",
                 ammo_category = 'protoss-damage',
                 range = attack_range,
                 min_attack_distance = attack_range - 4,

@@ -23,19 +23,19 @@ local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-
 
 -- Handles acid and poison resistance
 local base_acid_resistance = 0
-local incremental_acid_resistance = 90
+local incremental_acid_resistance = 75
 -- Handles physical resistance
 local base_physical_resistance = 0
-local incremental_physical_resistance = 95
+local incremental_physical_resistance = 85
 -- Handles fire and explosive resistance
-local base_fire_resistance = 0
-local incremental_fire_resistance = 95
+local base_fire_resistance = 10
+local incremental_fire_resistance = 70
 -- Handles laser and electric resistance
 local base_electric_resistance = 25
-local incremental_electric_resistance = 70
+local incremental_electric_resistance = 55
 -- Handles cold resistance
-local base_cold_resistance = 25
-local incremental_cold_resistance = 70
+local base_cold_resistance = 10
+local incremental_cold_resistance = 65
 
 -- Animation Settings
 local unit_scale = 2
@@ -174,6 +174,10 @@ function ErmToss.make_boss_nexus(level, hitpoint)
             autoplace = nil,
             call_for_help_radius = 50,
             spawn_decorations_on_expansion = false,
+            dying_trigger_effect = {
+                type = "script",
+                effect_id = 'embss-die',
+            }
         }
     })
 end
