@@ -139,13 +139,18 @@ local attack_functions =
         CustomAttacks.process_shuttle(args)
     end,
     [BOSS_SPAWN_ATTACK] = function(args)
-        CustomAttacks.process_boss_unit(args)
+        CustomAttacks.process_boss_units(args)
+    end,
+    [UNITS_SPAWN_ATTACK] = function(args)
+        CustomAttacks.process_batch_units(args)
     end
 }
 Event.register(defines.events.on_script_trigger_effect, function(event)
+    print('controller'..event.effect_id)
     if  attack_functions[event.effect_id] and
             CustomAttacks.valid(event, MOD_NAME)
     then
+        print('controller inner'..event.effect_id)
         attack_functions[event.effect_id](event)
     end
 end)
