@@ -146,11 +146,9 @@ local attack_functions =
     end
 }
 Event.register(defines.events.on_script_trigger_effect, function(event)
-    print('controller'..event.effect_id)
     if  attack_functions[event.effect_id] and
             CustomAttacks.valid(event, MOD_NAME)
     then
-        print('controller inner'..event.effect_id)
         attack_functions[event.effect_id](event)
     end
 end)

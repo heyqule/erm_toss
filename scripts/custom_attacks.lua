@@ -25,7 +25,6 @@ function CustomAttacks.process_boss_units(event)
 end
 
 function CustomAttacks.process_batch_units(event)
-    print('customAttack process_batch_units')
     CustomAttackHelper.drop_batch_units(event, MOD_NAME, ERMConfig.boss_spawn_size * 4)
 end
 
