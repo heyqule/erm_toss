@@ -18,5 +18,6 @@ BOSS_SPAWN_ATTACK = 'empts-bs1'
 
 PROTOSS_MAP_COLOR = {r=0, g=255, b=255}
 
+TRIGGER_BOSS_DIES = 'embss-die'
 
 

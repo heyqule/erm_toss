@@ -176,7 +176,7 @@ function ErmToss.make_boss_nexus(level, hitpoint)
             spawn_decorations_on_expansion = false,
             dying_trigger_effect = {
                 type = "script",
-                effect_id = 'embss-die',
+                effect_id = TRIGGER_BOSS_DIES,
             }
         }
     })
