@@ -20,12 +20,14 @@ function CustomAttacks.process_shuttle(event)
     CustomAttackHelper.drop_unit(event, MOD_NAME, CustomAttackHelper.get_unit(MOD_NAME, 'droppable_units'))
 end
 
-function CustomAttacks.process_boss_units(event)
-    CustomAttackHelper.drop_boss_units(event, MOD_NAME, ERMConfig.boss_spawn_size * 4)
+function CustomAttacks.process_boss_units(event, batch_size)
+    batch_size = batch_size or 4
+    CustomAttackHelper.drop_boss_units(event, MOD_NAME, ERMConfig.boss_spawn_size * batch_size)
 end
 
-function CustomAttacks.process_batch_units(event)
-    CustomAttackHelper.drop_batch_units(event, MOD_NAME, ERMConfig.boss_spawn_size * 4)
+function CustomAttacks.process_batch_units(event, batch_size)
+    batch_size = batch_size or 3
+    CustomAttackHelper.drop_batch_units(event, MOD_NAME, ERMConfig.boss_spawn_size * batch_size)
 end
 
 return CustomAttacks
