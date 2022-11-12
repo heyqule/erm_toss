@@ -1,9 +1,10 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.17.0
-Date: ????-??-??
+Date: 2022-11-15
 
-  Graphic
+  Graphics:
     - Updated graphics. Sprite no longer have unintended holes and black borders
+    - Changed map color of the race to teal.
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.16.3
