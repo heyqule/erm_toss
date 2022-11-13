@@ -7,7 +7,7 @@ Date: 2022-11-15
     - Changed map color of the race to teal.
 
   Changes:
-    - Normal range cannon now have double HP.  Short range unaffected.
+    - Normal range cannon now have double HP.  Level 1 and Short range unaffected..
     - Increased regular cannon damage scale. 150dmg to 240dmg at level 20
 
 ---------------------------------------------------------------------------------------------------
