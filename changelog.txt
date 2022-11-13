@@ -3,11 +3,11 @@ Version: 1.17.0
 Date: 2022-11-15
 
   Graphics:
-    - Updated graphics. Sprite no longer have unintended holes and black borders
+    - Updated graphics. Sprites no longer have unintended holes and black borders!!!
     - Changed map color of the race to teal.
 
   Changes:
-    - Normal range cannon now have double HP.
+    - Normal range cannon now have double HP.  Short range unaffected.
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.16.3
