@@ -6,6 +6,9 @@ Date: 2022-11-15
     - Updated graphics. Sprite no longer have unintended holes and black borders
     - Changed map color of the race to teal.
 
+  Changes:
+    - Normal range cannon now have double HP.
+
 ---------------------------------------------------------------------------------------------------
 Version: 1.16.3
 Date: 2022-07-10

@@ -105,7 +105,7 @@ function ErmToss.make_cannon(level)
             icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
-            max_health = ERM_UnitHelper.get_building_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level),
+            max_health = ERM_UnitHelper.get_building_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level) * 2,
             order = MOD_NAME .. "-" .. name,
             subgroup = "enemies",
             map_color = PROTOSS_MAP_COLOR,
@@ -193,8 +193,9 @@ function ErmToss.make_cannon(level)
             icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
-            max_health = ERM_UnitHelper.get_building_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level),
+            max_health = ERM_UnitHelper.get_building_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level) * 2,
             order = MOD_NAME .. "-" .. name,
+            map_color = PROTOSS_MAP_COLOR,
             subgroup = "enemies",
             resistances = {
                 { type = "acid", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance, resistance_mutiplier, level) },
@@ -285,6 +286,7 @@ function ErmToss.make_cannon(level)
             max_health = ERM_UnitHelper.get_building_health(hitpoint, hitpoint * max_hitpoint_multiplier, health_multiplier, level) / 2,
             order = MOD_NAME .. "-" .. shortrange_name,
             subgroup = "enemies",
+            map_color = ZERG_MAP_COLOR,
             resistances = {
                 { type = "acid", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance, resistance_mutiplier, level) },
                 { type = "poison", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance, resistance_mutiplier, level) },
