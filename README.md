@@ -13,16 +13,15 @@ Lua code files are licensed under GNU LGPLv3
 However, Starcraft graphic and sound assets are properties of Blizzard Entertainment Inc.  They are used for educational purposes. The original game is now free to play.
 
 
-![Protoss](https://mods-data.factorio.com/assets/01f1d66653ee245f5abe8d5bacf6d359bb6e9c97.png "Protoss")
-
-
 # Requirement
 * Enemy Race Manager >= 1.15
 * Factorio Standard Library >= 1.4.6
 * Factorio Base >= 1.1
 
+![Protoss](https://assets-mod.factorio.com/assets/0fbda3f72b75b0e6bc0a36d4f271cd67f21daa8e.png "Protoss")
+
 # Features
-All unit has same base health point as original SC, Some units have unique health multiplier to balance bullet damage.
+All units start with same base health point as original Starcraft. They have unique health multiplier to balance bullet damage on higher levels.
 
 Weak to acid / poison (-5 resist)
 
