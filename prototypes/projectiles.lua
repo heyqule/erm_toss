@@ -17,7 +17,25 @@ local scout_rocket = ERM_WeaponRig.standardize_rocket_damage(
         util.table.deepcopy(data.raw['projectile']['rocket']),
         'scout-rocket'
 )
-
+table.insert(scout_rocket['action']['action_delivery']['target_effects'],  {
+    type = "nested-result",
+    action = {
+        type = "area",
+        force = "not-same",
+        radius = 1,
+        ignore_collision_condition = true,
+        action_delivery = {
+            type = "instant",
+            target_effects = {
+                {
+                    type = "damage",
+                    damage = { amount = 5, type = "explosion" },
+                    apply_damage_to_trees = true,
+                },
+            }
+        }
+    }
+})
 scout_rocket['turn_speed'] = 1
 scout_rocket['turning_speed_increases_exponentially_with_projectile_speed'] = false
 scout_rocket['smoke'][1]['name'] = "scout-smoke-fast"
@@ -95,7 +113,7 @@ data:extend({
                                 type = "instant",
                                 target_effects = {
                                     type = "damage",
-                                    damage = { amount = 10, type = "cold" }
+                                    damage = { amount = 20, type = "cold" }
                                 }
                             }
                         }
@@ -138,7 +156,7 @@ data:extend({
                                 type = "instant",
                                 target_effects = {
                                     type = "damage",
-                                    damage = { amount = 25, type = "explosion" }
+                                    damage = { amount = 40, type = "explosion" }
                                 },
                                 apply_damage_to_trees = true
                             }

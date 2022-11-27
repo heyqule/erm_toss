@@ -40,8 +40,8 @@ local incremental_cold_resistance = 70
 
 -- Handles damages
 
-local base_electric_damage = 10
-local incremental_electric_damage = 30
+local base_electric_damage = 20
+local incremental_electric_damage = 55
 
 -- Handles Attack Speed
 

@@ -7,6 +7,13 @@ Date: ?-?-?
 
   Changes:
     - Refactored Level Strength Multiplier.
+    - Damage buffs. :)
+    - Arbiter damage 50 AOE dmg to 100 AOE dmg @ lvl20
+    - Carrier damage 100 AOE dmg -> 160 AOE dmg @ lvl20
+    - Scout damage new 50 AOE 1 radius @ lvl20
+    - Corsair damage 40 -> 75 @ lvl20
+    - Dragoon damage 105 -> 120 @ lvl20
+
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.17.0
