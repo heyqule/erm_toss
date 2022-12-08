@@ -263,18 +263,6 @@ local create_swamp_cloud_projectile = function(tier, script_attack)
         direction_only = true,
         force_condition = "enemy",
         hit_collision_mask =  {"player-layer", "train-layer", ERMDataHelper.getFlyingLayerName()},
-        action = {
-            type = "direct",
-            action_delivery = {
-                type = "instant",
-                target_effects = {
-                    {
-                        type = "damage",
-                        damage = { amount = 1000 * (1 + tier * 0.5 - 0.5), type = "acid" },
-                    }
-                }
-            }
-        },
         final_action = {
             type = "direct",
             action_delivery = {
