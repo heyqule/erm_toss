@@ -106,7 +106,7 @@ local addRaceSettings = function()
         {{'scout', 'carrier', 'shuttle'}, {4, 1, 1}, 60}
     }
 
-    race_settings.boss_building = 'nexus'
+    race_settings.boss_building = 'warpgate'
     race_settings.pathing_unit = 'zealot'
     race_settings.colliding_unit = 'archon'
     race_settings.boss_tier = race_settings.boss_tier or 1

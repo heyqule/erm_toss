@@ -30,7 +30,7 @@ require "prototypes.enemy.shuttle"
 require "prototypes.building.building_death"
 require "prototypes.building.cannon"
 require "prototypes.building.nexus"
-require "prototypes.building.boss_nexus"
+require "prototypes.building.boss_warpgate"
 require "prototypes.building.pylon"
 require "prototypes.building.gateway"
 require "prototypes.building.forge"
@@ -76,7 +76,7 @@ for i = 1, #boss_level do
     ErmToss.make_probe(level)
     ErmToss.make_shuttle(level)
 
-    ErmToss.make_boss_nexus(level, ErmConfig.BOSS_BUILDING_HITPOINT[i])
+    ErmToss.make_boss_wrapgate(level, ErmConfig.BOSS_BUILDING_HITPOINT[i])
 
     for _, unit in pairs(override_units) do
         print(MOD_NAME..'/'..unit..'/'..level)

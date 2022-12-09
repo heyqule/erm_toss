@@ -286,7 +286,7 @@ local create_swamp_cloud_projectile = function(tier, script_attack)
             }
         },
         animation =  {
-            filename = "__enemyracemanager_assets__/graphics/explosions/circular_effects/cloud-orange.png",
+            filename = "__enemyracemanager_assets__/graphics/explosions/circular_effects/cloud-greyscale.png",
             width = 320,
             height = 319,
             line_length = 9,

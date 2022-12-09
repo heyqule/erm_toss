@@ -13,7 +13,7 @@ local ERM_Config = require('__enemyracemanager__/lib/global_config')
 local TossSound = require('__erm_toss__/prototypes/sound')
 
 local enemy_autoplace = require("__enemyracemanager__/lib/enemy-autoplace-utils")
-local name = 'nexus'
+local name = 'warpgate'
 
 -- Hitpoints
 
@@ -68,7 +68,7 @@ local collision_box = { { -4, -4 }, { 4, 4 } }
 local map_generator_bounding_box = { { -5, -5 }, { 5, 5 } }
 local selection_box = { { -4, -4 }, { 4, 4 } }
 
-function ErmToss.make_boss_nexus(level, hitpoint)
+function ErmToss.make_boss_wrapgate(level, hitpoint)
     level = level or 1
 
     data:extend({
@@ -82,7 +82,7 @@ function ErmToss.make_boss_nexus(level, hitpoint)
             max_health = hitpoint,
             order = MOD_NAME .. "-" .. name,
             subgroup = "enemies",
-            working_sound = TossSound.building_working_sound(name, 1),
+            working_sound = TossSound.building_working_sound('nexus', 1),
             dying_sound = TossSound.building_dying_sound(1),
             resistances = {
                 { type = "acid", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
@@ -108,57 +108,38 @@ function ErmToss.make_boss_nexus(level, hitpoint)
                 layers = {
                     {
                         filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
-                        width = 192,
-                        height = 224,
+                        width = 160,
+                        height = 240,
                         frame_count = 1,
-                        animation_speed = 0.18,
+                        repeat_count = 6,
+                        animation_speed = 0.2,
                         direction_count = 1,
-                        scale = unit_scale
+                        scale = unit_scale,
+                        shift = {0, 2}
                     },
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. "_mask.png",
-                        width = 192,
-                        height = 224,
-                        frame_count = 1,
-                        animation_speed = 0.18,
+                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. "_effect.png",
+                        width = 160,
+                        height = 240,
+                        frame_count = 6,
+                        animation_speed = 0.2,
                         direction_count = 1,
                         scale = unit_scale,
                         draw_as_glow = true,
-                    }
-                }
-            },
-            integration = {
-                layers = {
-                    {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
-                        variation_count = 1,
-                        width = 192,
-                        height = 224,
-                        frame_count = 1,
-                        line_length = 1,
-                        scale = unit_scale
+                        shift = {0, 2}
                     },
                     {
                         filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
-                        variation_count = 1,
-                        width = 192,
-                        height = 224,
+                        width = 160,
+                        height = 240,
                         frame_count = 1,
-                        line_length = 1,
+                        repeat_count = 6,
+                        animation_speed = 0.2,
+                        direction_count = 1,
+                        scale = unit_scale,
                         draw_as_shadow = true,
-                        shift = { 0.5, 0.1 },
-                        scale = unit_scale
+                        shift = {0.5, 2}
                     },
-                    {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. "_mask.png",
-                        width = 192,
-                        height = 224,
-                        frame_count = 1,
-                        animation_speed = 0.18,
-                        direction_count = 1,
-                        scale = unit_scale,
-                        draw_as_glow = true,
-                    }
                 }
             },
             result_units = spawn_table(ERM_Config.MAX_LEVELS),
