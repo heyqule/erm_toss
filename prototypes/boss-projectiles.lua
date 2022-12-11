@@ -20,10 +20,10 @@ local get_damage = function(init_dmg, tier ,multiplier)
 end
 
 --- Basic Attack #1
-local create_blood_cloud_projectile = function(tier)
+local create_psystorm_projectile = function(tier)
     return     {
         type = "projectile",
-        name = MOD_NAME.."/blood-cloud-projectile-t"..tier,
+        name = MOD_NAME.."/psystorm-projectile-t"..tier,
         flags = { "not-on-map" },
         acceleration = 0,
 
@@ -38,34 +38,38 @@ local create_blood_cloud_projectile = function(tier)
                 target_effects = {
                     {
                         type = "create-entity",
-                        entity_name = "blood-cloud-explosion",
+                        entity_name = "psystorm-explosion",
                         trigger_created_entity = false
                     },
                     {
                         type = "create-smoke",
                         show_in_tooltip = true,
-                        entity_name = MOD_NAME .. "/blood-cloud-t" .. tier
+                        entity_name = MOD_NAME .. "/psystorm-t" .. tier
                     },
                 }
             }
         },
         animation = {
-            filename = "__erm_zerg__/graphics/entity/projectiles/spores_2.png",
-            priority = "extra-high",
-            width = 24,
-            height = 24,
-            frame_count = 4,
-            animation_speed = 0.2,
-            scale = 2
+            layers = {
+                {
+                    filename = "__erm_toss__/graphics/entity/projectiles/dragoon/dragoon-ball.png",
+                    frame_count = 5,
+                    width = 32,
+                    height = 32,
+                    scale = 1.5,
+                    priority = "high",
+                    draw_as_glow = true,
+                },
+            }
         }
     }
 end
 
 --- Basic Attack #2
-local create_acid_cloud_projectile = function(tier)
+local create_stasis_projectile = function(tier)
     return   {
         type = "projectile",
-        name = MOD_NAME.."/acid-cloud-projectile-t"..tier,
+        name = MOD_NAME.."/stasis-projectile-t"..tier,
         flags = { "not-on-map" },
         acceleration = 0,
 
@@ -80,34 +84,38 @@ local create_acid_cloud_projectile = function(tier)
                 target_effects = {
                     {
                         type = "create-entity",
-                        entity_name = "acid-cloud-explosion",
+                        entity_name = "stasis-explosion",
                         trigger_created_entity = false
                     },
                     {
                         type = "create-smoke",
                         show_in_tooltip = true,
-                        entity_name = MOD_NAME .. "/acid-cloud-t" .. tier
+                        entity_name = MOD_NAME .. "/stasis-t" .. tier
                     },
                 }
             }
         },
         animation = {
-            filename = "__erm_zerg__/graphics/entity/projectiles/spores_2.png",
-            priority = "extra-high",
-            width = 24,
-            height = 24,
-            frame_count = 4,
-            animation_speed = 0.2,
-            scale = 2
+            layers = {
+                {
+                    filename = "__erm_toss__/graphics/entity/projectiles/protoss-shot.png",
+                    frame_count = 11,
+                    width = 64,
+                    height = 64,
+                    scale = 1,
+                    priority = "high",
+                    draw_as_glow = true,
+                },
+            }
         }
     }
 end
 
 --- Basic Attack #3
-local create_blood_fire_projectile = function(tier)
+local create_cold_fire_projectile = function(tier)
     return   {
         type = "projectile",
-        name = MOD_NAME.."/blood-fire-projectile-t"..tier,
+        name = MOD_NAME.."/cold-fire-projectile-t"..tier,
         flags = { "not-on-map" },
         acceleration = 0,
 
@@ -122,7 +130,7 @@ local create_blood_fire_projectile = function(tier)
                 target_effects = {
                     {
                         type = "create-entity",
-                        entity_name = "erm-small-explosion-blood-1",
+                        entity_name = "erm-small-explosion-cold-1",
                         trigger_created_entity = false
                     },
                     {
@@ -136,7 +144,7 @@ local create_blood_fire_projectile = function(tier)
                                 type = "instant",
                                 target_effects = {
                                     type = "damage",
-                                    damage = { amount = 400 * tier, type = "acid" },
+                                    damage = { amount = 400 * tier, type = "cold" },
                                 }
                             }
                         }
@@ -145,13 +153,17 @@ local create_blood_fire_projectile = function(tier)
             }
         },
         animation = {
-            filename = "__erm_zerg__/graphics/entity/projectiles/spores_2.png",
-            priority = "extra-high",
-            width = 24,
-            height = 24,
-            frame_count = 4,
-            animation_speed = 0.2,
-            scale = 2
+            layers = {
+                {
+                    filename = "__erm_toss__/graphics/entity/projectiles/protoss-shot.png",
+                    frame_count = 11,
+                    width = 64,
+                    height = 64,
+                    scale = 1,
+                    priority = "high",
+                    draw_as_glow = true,
+                },
+            }
         }
     }
 end
@@ -199,10 +211,10 @@ local create_damage_cloud = function (name, tier, target_effects, radius, durati
 end
 
 -- Advanced Attacks
-local create_blood_explosion_projectile = function(tier)
+local create_cold_star_projectile = function(tier)
     return   {
         type = "projectile",
-        name = MOD_NAME.."/blood-explosion-projectile-t"..tier,
+        name = MOD_NAME.."/cold-star-projectile-t"..tier,
         flags = { "not-on-map" },
         acceleration = 0,
 
@@ -217,7 +229,7 @@ local create_blood_explosion_projectile = function(tier)
                 target_effects = {
                     {
                         type = "create-entity",
-                        entity_name = "erm-ball-explosion-blood-1",
+                        entity_name = "erm-circular-effect-cold-1",
                         trigger_created_entity = false
                     },
                     {
@@ -231,7 +243,7 @@ local create_blood_explosion_projectile = function(tier)
                                 type = "instant",
                                 target_effects = {
                                     type = "damage",
-                                    damage = { amount = 1000 * (1 + tier * 0.5 - 0.5) , type = "acid" },
+                                    damage = { amount = 1000 * (1 + tier * 0.5 - 0.5) , type = "cold" },
                                 }
                             }
                         }
@@ -240,22 +252,26 @@ local create_blood_explosion_projectile = function(tier)
             }
         },
         animation = {
-            filename = "__erm_zerg__/graphics/entity/projectiles/spores_2.png",
-            priority = "extra-high",
-            width = 24,
-            height = 24,
-            frame_count = 4,
-            animation_speed = 0.2,
-            scale = 2
+            layers = {
+                {
+                    filename = "__erm_toss__/graphics/entity/projectiles/protoss-shot.png",
+                    frame_count = 11,
+                    width = 64,
+                    height = 64,
+                    scale = 1,
+                    priority = "high",
+                    draw_as_glow = true,
+                },
+            }
         }
     }
 end
 
 -- Super Attacks
-local create_swamp_cloud_projectile = function(tier, script_attack)
+local create_recall_projectile = function(tier, script_attack)
     return   {
         type = "projectile",
-        name = MOD_NAME.."/swamp-cloud-"..script_attack.."-projectile-t"..tier,
+        name = MOD_NAME.."/recall-"..script_attack.."-projectile-t"..tier,
         flags = { "not-on-map" },
         acceleration = 0,
 
@@ -270,13 +286,13 @@ local create_swamp_cloud_projectile = function(tier, script_attack)
                 target_effects = {
                     {
                         type = "create-entity",
-                        entity_name = "erm-circular-effect-cloud-orange-2",
+                        entity_name = "protoss-recall",
                         trigger_created_entity = false
                     },
                     {
                         type = "create-smoke",
                         show_in_tooltip = true,
-                        entity_name = MOD_NAME .. "/swamp-cloud-t" .. tier
+                        entity_name = MOD_NAME .. "/recall-cloud-t" .. tier
                     },
                     {
                         type = "script",
@@ -285,14 +301,18 @@ local create_swamp_cloud_projectile = function(tier, script_attack)
                 }
             }
         },
-        animation =  {
-            filename = "__enemyracemanager_assets__/graphics/explosions/circular_effects/cloud-greyscale.png",
-            width = 320,
-            height = 319,
-            line_length = 9,
-            frame_count = 42,
-            animation_speed = 0.5,
-            scale = 0.2
+        animation = {
+            layers = {
+                {
+                    filename = "__erm_toss__/graphics/entity/projectiles/protoss-shot.png",
+                    frame_count = 11,
+                    width = 64,
+                    height = 64,
+                    scale = 1,
+                    priority = "high",
+                    draw_as_glow = true,
+                },
+            }
         }
     }
 end
@@ -300,33 +320,33 @@ end
 
 for i = 1, ERMConfig.BOSS_MAX_TIERS do
     data:extend({
-        create_blood_cloud_projectile(i),
-        create_damage_cloud('blood-cloud', i,{
+        create_psystorm_projectile(i),
+        create_damage_cloud('psystorm', i,{
             type = "damage",
             --- process 4 ticks per second
-            damage = { amount = 200 * (1 + i * 0.5 - 0.5), type = "acid" },
+            damage = { amount = 200 * (1 + i * 0.5 - 0.5), type = "electric" },
             apply_damage_to_trees = true
-        },  5,60),
-        create_acid_cloud_projectile(i),
-        create_damage_cloud('acid-cloud', i,{{
+        },  5,120),
+        create_stasis_projectile(i),
+        create_damage_cloud('stasis', i,{{
                                                  type = "damage",
                                                  --- process 4 ticks per second
-                                                 damage = { amount = 100 * (1 + i * 0.25 - 0.25), type = "acid" },
+                                                 damage = { amount = 100 * (1 + i * 0.25 - 0.25), type = "electric" },
                                                  apply_damage_to_trees = false
                                              },{
                                                  type = "create-sticker",
                                                  sticker = "5-075-slowdown-sticker",
                                                  show_in_tooltip = true,
                                              }}, 5,60),
-        create_blood_fire_projectile(i),
-        create_blood_explosion_projectile(i),
-        create_swamp_cloud_projectile(i, BOSS_SPAWN_ATTACK),
-        create_swamp_cloud_projectile(i, UNITS_SPAWN_ATTACK),
-        create_damage_cloud('swamp-cloud', i,{{
+        create_cold_fire_projectile(i),
+        create_cold_star_projectile(i),
+        create_recall_projectile(i, BOSS_SPAWN_ATTACK),
+        create_recall_projectile(i, UNITS_SPAWN_ATTACK),
+        create_damage_cloud('recall-cloud', i,{{
             type = "damage",
             --- process 4 ticks per second
-            damage = { amount = 400 * (1 + i * 0.75 - 0.75), type = "acid" },
+            damage = { amount = 200 * (1 + i * 0.75 - 0.75), type = "electric" },
             apply_damage_to_trees = true
-        }},  8,90),
+        }},  8,120),
     })
 end

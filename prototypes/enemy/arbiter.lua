@@ -116,12 +116,31 @@ function ErmToss.make_arbiter(level)
                     category = "protoss-damage",
                     target_type = "direction",
                     action = {
-                        type = "direct",
-                        action_delivery = {
-                            type = "projectile",
-                            projectile = "stasis-projectile",
-                            starting_speed = 0.3,
-                            max_range = ERM_Config.get_max_projectile_range(),
+                        {
+                            type = "direct",
+                            action_delivery = {
+                                type = "projectile",
+                                projectile = "stasis-projectile",
+                                starting_speed = 0.3,
+                                max_range = ERM_Config.get_max_projectile_range(),
+                            }
+                        },
+                        {
+                            type = "direct",
+                            probability = 0.05,
+                            action_delivery = {
+                                type = "instant",
+                                source_effects = {
+                                    {
+                                        type = "script",
+                                        effect_id = ARBITER_UNITS_SPAWN_ATTACK,
+                                    },
+                                    {
+                                        type = "create-explosion",
+                                        entity_name = "protoss-recall-80"
+                                    }
+                                }
+                            }
                         }
                     }
                 },

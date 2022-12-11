@@ -1,9 +1,16 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.18.0
-Date: ?-?-?
+Date: 2022-12-12
+
+  Major Features:
+    - Boss mode support, proof of concept release
 
   Features:
-    - Boss mode support
+    - Corsair have 10% to cast disrupt on enemy, cause -66% units movement for 3s in radius of 5.
+    - Arbiter have 5% to recall units to its position. Unit total depends on Boss Squad setting.
+
+  Graphics:
+    - Updated hit graphic for corsair
 
   Changes:
     - Refactored Level Strength Multiplier.
@@ -13,6 +20,7 @@ Date: ?-?-?
     - Scout damage new 50 AOE 1 radius @ lvl20
     - Corsair damage 40 -> 75 @ lvl20
     - Dragoon damage 105 -> 120 @ lvl20
+    - Corsair regular attack no longer slow down enemy.
 
 
 ---------------------------------------------------------------------------------------------------

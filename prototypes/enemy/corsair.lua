@@ -114,23 +114,52 @@ function ErmToss.make_corsair(level)
                     category = "protoss-damage",
                     target_type = "direction",
                     action = {
-                        type = "direct",
-                        action_delivery = {
-                            type = "instant",
-                            target_effects = {
-                                {
-                                    type = "create-explosion",
-                                    entity_name = 'corsair-explosion-small'
-                                },
-                                {
-                                    type = "damage",
-                                    damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage,  level), type = "electric" }
-                                },
-                                {
-                                    type = "create-sticker",
-                                    show_in_tooltip = true,
-                                    sticker = "5-067-slowdown-sticker"
-                                },
+                        {
+                            type = "direct",
+                            action_delivery = {
+                                type = "instant",
+                                target_effects = {
+                                    {
+                                        type = "create-explosion",
+                                        entity_name = 'corsair-explosion'
+                                    },
+                                    {
+                                        type = "damage",
+                                        damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage,  level), type = "electric" }
+                                    },
+                                }
+                            }
+                        },
+                        {
+                            type = "direct",
+                            ignore_collision_condition = true,
+                            force = 'enemy',
+                            probability = 0.1,
+                            action_delivery = {
+                                type = "instant",
+                                target_effects = {
+                                    {
+                                        type = "create-explosion",
+                                        entity_name = "protoss-disrupt-80"
+                                    },
+                                    {
+                                        type = "nested-result",
+                                        action = {
+                                            type = "area",
+                                            force = 'enemy',
+                                            radius = 3,
+                                            ignore_collision_condition = true,
+                                            action_delivery = {
+                                                type = "instant",
+                                                target_effects =             {
+                                                    type = "create-sticker",
+                                                    sticker = "3-033-slowdown-sticker",
+                                                    show_in_tooltip = true
+                                                },
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

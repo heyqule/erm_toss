@@ -143,6 +143,9 @@ local attack_functions =
     end,
     [UNITS_SPAWN_ATTACK] = function(args)
         CustomAttacks.process_batch_units(args)
+    end,
+    [ARBITER_UNITS_SPAWN_ATTACK] = function(args)
+        CustomAttacks.process_batch_units(args, 1)
     end
 }
 Event.register(defines.events.on_script_trigger_effect, function(event)

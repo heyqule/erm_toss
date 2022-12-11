@@ -119,11 +119,11 @@ function ErmToss.make_templar(level)
                                 {
                                     type = "create-smoke",
                                     show_in_tooltip = true,
-                                    entity_name = MOD_NAME.."/electric-cloud-"..level
+                                    entity_name = MOD_NAME.."/psystorm-"..level
                                 },
                                 {
                                     type = "create-explosion",
-                                    entity_name = "electric-cloud-explosion"
+                                    entity_name = "psystorm-explosion"
                                 }
                             }
                         }
@@ -207,8 +207,8 @@ function ErmToss.make_templar(level)
         },
         --- Damage Modifier doesn't affect smoke-with-trigger attack
         {
-            name = MOD_NAME.."/electric-cloud-"..level,
-            localised_name = {'entity-name.electric-cloud'},
+            name = MOD_NAME.."/psystorm-"..level,
+            localised_name = {'entity-name.psystorm'},
             type = "smoke-with-trigger",
             flags = { "not-on-map" },
             show_when_smoke_off = true,
