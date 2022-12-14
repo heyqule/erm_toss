@@ -8,7 +8,7 @@
 MOD_NAME = 'erm_toss'
 FORCE_NAME = 'enemy_erm_toss'
 
-DEBUG_MODE = true
+DEBUG_MODE = false
 
 
 -- Attack Types for on_script_trigger_effect

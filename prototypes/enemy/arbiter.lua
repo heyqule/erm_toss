@@ -127,7 +127,7 @@ function ErmToss.make_arbiter(level)
                         },
                         {
                             type = "direct",
-                            probability = 0.05,
+                            probability = 0.03,
                             action_delivery = {
                                 type = "instant",
                                 source_effects = {

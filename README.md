@@ -7,16 +7,16 @@ Discord:  [https://discord.gg/BwWXygyEyQ](https://discord.gg/BwWXygyEyQ)
 
 ERM - Features Reel: [https://www.youtube.com/watch?v=phLRReAjxHA](https://www.youtube.com/watch?v=phLRReAjxHA)
 
-#####Licenses
+##### Changes in 1.18
+- Boss mode, proof of concept release.
+- Corsair attack no lower slow target. But it has 10% to cast disrupt, which slow unit in a radius to 33% for 3 seconds.
+- Arbiter have 5% chance to cast recall, which summon some units to its position.
+
+##### Licenses
 Lua code files are licensed under GNU LGPLv3
 
 However, Starcraft graphic and sound assets are properties of Blizzard Entertainment Inc.  They are used for educational purposes. The original game is now free to play.
 
-
-# Requirement
-* Enemy Race Manager >= 1.15
-* Factorio Standard Library >= 1.4.6
-* Factorio Base >= 1.1
 
 ![Protoss](https://assets-mod.factorio.com/assets/0fbda3f72b75b0e6bc0a36d4f271cd67f21daa8e.png "Protoss")
 
@@ -37,7 +37,7 @@ Weak to acid / poison (-5 resist)
 - Attack: Explosion
 
 ###### Corsair
-- Attack: Electric (Slow on hit)
+- Attack: Electric, 10% to cast disrupt, which slow units to 33% for 3s
 
 ###### Probe
 - Build Cannon / Pylon
@@ -48,7 +48,7 @@ Weak to acid / poison (-5 resist)
 - Attack: Explosion (2 radius AOE)
 
 ###### Arbiter AOE
-- Attack: Cold (4 radius AOE)
+- Attack: Cold (4 radius AOE), 5% to cast recall, which summons a few units
 
 ###### Templar AOE
 - Attack: Electric (5 radius AOE)

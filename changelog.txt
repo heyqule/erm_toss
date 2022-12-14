@@ -1,4 +1,12 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.18.1
+Date: 2022-12-??
+
+  Changes:
+    - Fix boss map color
+    - Arbiter's recall from 5% to 3%
+
+---------------------------------------------------------------------------------------------------
 Version: 1.18.0
 Date: 2022-12-12
 
@@ -7,7 +15,7 @@ Date: 2022-12-12
 
   Features:
     - Corsair have 10% to cast disrupt on enemy, cause -66% units movement for 3s in radius of 5.
-    - Arbiter have 5% to recall units to its position. Unit total depends on Boss Squad setting.
+    - Arbiter have 5% to recall units to its position. Unit total depends on Squad setting.
 
   Graphics:
     - Updated hit graphic for corsair
