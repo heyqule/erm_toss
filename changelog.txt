@@ -1,4 +1,38 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.18.1
+Date: 2022-12-16
+
+  Changes:
+    - Fix boss map color
+    - Arbiter's recall from 5% to 3%
+    - Change disrupt slow movement from 3s to 5s.
+
+---------------------------------------------------------------------------------------------------
+Version: 1.18.0
+Date: 2022-12-12
+
+  Major Features:
+    - Boss mode support, proof of concept release
+
+  Features:
+    - Corsair have 10% to cast disrupt on enemy, cause -66% units movement for 3s in radius of 5.
+    - Arbiter have 5% to recall units to its position. Unit total depends on Squad setting.
+
+  Graphics:
+    - Updated hit graphic for corsair
+
+  Changes:
+    - Refactored Level Strength Multiplier for ERM 1.16.
+    - Damage buffs. :)
+    - Arbiter damage 50 AOE dmg to 100 AOE dmg @ lvl20
+    - Carrier damage 100 AOE dmg -> 160 AOE dmg @ lvl20
+    - Scout damage new 50 AOE 1 radius @ lvl20
+    - Corsair damage 40 -> 75 @ lvl20
+    - Dragoon damage 105 -> 120 @ lvl20
+    - Corsair regular attack no longer slow down enemy.
+
+
+---------------------------------------------------------------------------------------------------
 Version: 1.17.0
 Date: 2022-11-15
 

@@ -14,8 +14,12 @@ DEBUG_MODE = false
 -- Attack Types for on_script_trigger_effect
 PROBE_ATTACK = 'empts-prb'
 SHUTTLE_ATTACK = 'empts-sht'
+BOSS_SPAWN_ATTACK = 'empts-bs1'
+UNITS_SPAWN_ATTACK = 'empts-bs2'
+ARBITER_UNITS_SPAWN_ATTACK = 'empts-bs3'
 
 PROTOSS_MAP_COLOR = {r=0, g=255, b=255}
 
+TRIGGER_BOSS_DIES = 'embss-die'
 
 

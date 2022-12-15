@@ -17,7 +17,25 @@ local scout_rocket = ERM_WeaponRig.standardize_rocket_damage(
         util.table.deepcopy(data.raw['projectile']['rocket']),
         'scout-rocket'
 )
-
+table.insert(scout_rocket['action']['action_delivery']['target_effects'],  {
+    type = "nested-result",
+    action = {
+        type = "area",
+        force = "not-same",
+        radius = 1,
+        ignore_collision_condition = true,
+        action_delivery = {
+            type = "instant",
+            target_effects = {
+                {
+                    type = "damage",
+                    damage = { amount = 5, type = "explosion" },
+                    apply_damage_to_trees = true,
+                },
+            }
+        }
+    }
+})
 scout_rocket['turn_speed'] = 1
 scout_rocket['turning_speed_increases_exponentially_with_projectile_speed'] = false
 scout_rocket['smoke'][1]['name'] = "scout-smoke-fast"
@@ -46,7 +64,7 @@ data:extend({
                 target_effects = {
                     {
                         type = "create-entity",
-                        entity_name = "dragoon-explosion-small"
+                        entity_name = "dragoon-explosion"
                     },
                     {
                         type = "damage",
@@ -82,7 +100,7 @@ data:extend({
                 target_effects = {
                     {
                         type = "create-entity",
-                        entity_name = "stasis-explosion-small"
+                        entity_name = "stasis-explosion"
                     },
                     {
                         type = "nested-result",
@@ -95,7 +113,7 @@ data:extend({
                                 type = "instant",
                                 target_effects = {
                                     type = "damage",
-                                    damage = { amount = 10, type = "cold" }
+                                    damage = { amount = 20, type = "cold" }
                                 }
                             }
                         }
@@ -138,7 +156,7 @@ data:extend({
                                 type = "instant",
                                 target_effects = {
                                     type = "damage",
-                                    damage = { amount = 25, type = "explosion" }
+                                    damage = { amount = 40, type = "explosion" }
                                 },
                                 apply_damage_to_trees = true
                             }
@@ -168,7 +186,7 @@ data:extend({
     --- Explosions
     {
         type = "explosion",
-        name = "dragoon-explosion-small",
+        name = "dragoon-explosion",
         flags = { "not-on-map" },
         animations = {
             {
@@ -184,15 +202,15 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "corsair-explosion-small",
+        name = "corsair-explosion",
         flags = { "not-on-map" },
         animations = {
             {
-                filename = "__erm_toss__/graphics/entity/projectiles/dragoon/dragoon-hit-effect.png",
+                filename = "__erm_toss__/graphics/entity/projectiles/corsair-splash.png",
                 priority = "extra-high",
                 width = 64,
                 height = 64,
-                frame_count = 10,
+                frame_count = 7,
                 animation_speed = 0.5,
                 draw_as_glow = true,
                 tint = { 1, 1, 1 }
@@ -201,7 +219,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "stasis-explosion-small",
+        name = "stasis-explosion",
         flags = { "not-on-map" },
         animations = {
             {
@@ -218,7 +236,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "electric-cloud-explosion",
+        name = "psystorm-explosion",
         flags = { "not-on-map" },
         animations = {
             {
@@ -315,6 +333,74 @@ data:extend({
             draw_as_glow = true
         },
     },
+    {
+        type = "explosion",
+        name = "protoss-recall-80",
+        flags = { "not-on-map" },
+        animations = {
+            filename = "__erm_toss__/graphics/entity/projectiles/recall-80.png",
+            width = 100,
+            height = 100,
+            frame_count = 21,
+            direction_count = 1,
+            axially_symmetrical = false,
+            scale = 2,
+            frame_sequence = {1,2,3,4,5,6,7,8,9,10,11,10,9,8,7,6,5,4,3,2,1},
+            animation_speed = 0.2,
+            draw_as_glow = true
+        },
+    },
+    {
+        type = "explosion",
+        name = "protoss-recall",
+        flags = { "not-on-map" },
+        animations = {
+            filename = "__erm_toss__/graphics/entity/projectiles/recall.png",
+            width = 100,
+            height = 100,
+            frame_count = 21,
+            direction_count = 1,
+            axially_symmetrical = false,
+            scale = 2,
+            frame_sequence = {1,2,3,4,5,6,7,8,9,10,11,10,9,8,7,6,5,4,3,2,1},
+            animation_speed = 0.2,
+            draw_as_glow = true
+        },
+    },
+    {
+        type = "explosion",
+        name = "protoss-disrupt-80",
+        flags = { "not-on-map" },
+        animations = {
+            filename = "__erm_toss__/graphics/entity/projectiles/disrupt-80.png",
+            width = 160,
+            height = 160,
+            frame_count = 21,
+            direction_count = 1,
+            axially_symmetrical = false,
+            scale = 1.5,
+            frame_sequence = {1,2,3,4,5,6,7,8,9,10,11,10,9,8,7,6,5,4,3,2,1},
+            animation_speed = 0.2,
+            draw_as_glow = true
+        },
+    },
+    {
+        type = "explosion",
+        name = "protoss-disrupt",
+        flags = { "not-on-map" },
+        animations = {
+            filename = "__erm_toss__/graphics/entity/projectiles/disrupt.png",
+            width = 160,
+            height = 160,
+            frame_count = 21,
+            direction_count = 1,
+            axially_symmetrical = false,
+            scale = 1.5,
+            frame_sequence = {1,2,3,4,5,6,7,8,9,10,11,10,9,8,7,6,5,4,3,2,1},
+            animation_speed = 0.2,
+            draw_as_glow = true
+        },
+    },
     --- Stickers
     {
         type = "sticker",
@@ -324,5 +410,23 @@ data:extend({
         duration_in_ticks = 5 * 60,
         target_movement_modifier = 0.67,
         vehicle_speed_modifier = 0.67,
+    },
+    {
+        type = "sticker",
+        name = "5-033-slowdown-sticker",
+        flags = {},
+        animation = Sprites.empty_pictures(),
+        duration_in_ticks = 5 * 60,
+        target_movement_modifier = 0.33,
+        vehicle_speed_modifier = 0.33,
+    },
+    {
+        type = "sticker",
+        name = "5-010-slowdown-sticker",
+        flags = {},
+        animation = Sprites.empty_pictures(),
+        duration_in_ticks = 5 * 60,
+        target_movement_modifier = 0.1,
+        vehicle_speed_modifier = 0.1,
     }
 })

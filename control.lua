@@ -13,7 +13,7 @@ local ErmConfig = require('__enemyracemanager__/lib/global_config')
 
 local Event = require('__stdlib__/stdlib/event/event')
 local String = require('__stdlib__/stdlib/utils/string')
-local CustomAttacks = require('__erm_toss__/prototypes/custom_attacks')
+local CustomAttacks = require('__erm_toss__/scripts/custom_attacks')
 
 require('__erm_toss__/global')
 -- Constants
@@ -81,8 +81,8 @@ local addRaceSettings = function()
     race_settings.dropship = 'shuttle'
     race_settings.droppable_units = {
         {{ 'zealot', 'dragoon' },{3,1}},
-        {{ 'zealot', 'dragoon', 'lurker' },{2,3}},
-        {{ 'zealot', 'dragoon', 'darktemplar', 'archon' },{4,4,2,1}},
+        {{ 'zealot', 'dragoon', 'darktemplar' },{2,3,1}},
+        {{ 'zealot', 'dragoon', 'darktemplar', 'templar', 'archon'  },{2,2,2,2,2}},
     }
     race_settings.construction_buildings = {
         {{ 'cannon_shortrange'},{1}},
@@ -105,6 +105,12 @@ local addRaceSettings = function()
         {{'scout', 'corsair', 'carrier', 'arbiter'}, {4,4,2,1}, 50},
         {{'scout', 'carrier', 'shuttle'}, {4, 1, 1}, 60}
     }
+
+    race_settings.boss_building = 'warpgate'
+    race_settings.pathing_unit = 'zealot'
+    race_settings.colliding_unit = 'archon'
+    race_settings.boss_tier = race_settings.boss_tier or 1
+    race_settings.boss_kill_count = race_settings.boss_kill_count or 0
 
     ErmRaceSettingsHelper.process_unit_spawn_rate_cache(race_settings)
 
@@ -131,6 +137,15 @@ local attack_functions =
     end,
     [SHUTTLE_ATTACK] = function(args)
         CustomAttacks.process_shuttle(args)
+    end,
+    [BOSS_SPAWN_ATTACK] = function(args)
+        CustomAttacks.process_boss_units(args)
+    end,
+    [UNITS_SPAWN_ATTACK] = function(args)
+        CustomAttacks.process_batch_units(args)
+    end,
+    [ARBITER_UNITS_SPAWN_ATTACK] = function(args)
+        CustomAttacks.process_batch_units(args, 1)
     end
 }
 Event.register(defines.events.on_script_trigger_effect, function(event)
@@ -141,4 +156,7 @@ Event.register(defines.events.on_script_trigger_effect, function(event)
     end
 end)
 
-
+local ErmBossAttack = require('scripts/boss_attacks')
+remote.add_interface("erm_toss_boss_attacks", {
+    get_attack_data = ErmBossAttack.get_attack_data,
+})
