@@ -26,37 +26,37 @@ All units start with same base health point as original Starcraft. They have uni
 Weak to acid / poison (-5 resist)
 
 #### Tier 1 Units
-###### Zealot 
+##### Zealot 
 - Attack: Melee 
-###### Dragoon
+##### Dragoon
 - Attack: Electric
 
 
 #### Tier 2 Units
-###### Scout
+##### Scout
 - Attack: Explosion
 
-###### Corsair
+##### Corsair
 - Attack: Electric, 10% to cast disrupt, which slow units to 33% for 3s
 
-###### Probe
+##### Probe
 - Build Cannon / Pylon
 
 
 #### Tier 3 Units
-###### Carrier AOE
+##### Carrier AOE
 - Attack: Explosion (2 radius AOE)
 
-###### Arbiter AOE
+##### Arbiter AOE
 - Attack: Cold (4 radius AOE), 5% to cast recall, which summons a few units
 
-###### Templar AOE
+##### Templar AOE
 - Attack: Electric (5 radius AOE)
 
-###### Dark Templar
+##### Dark Templar
 - Attack: Physical (2 radius AOE)
 
-###### Archon
+##### Archon
 - Attack: Electric (3 radius AOE)
 
 Physical resistance: 95
