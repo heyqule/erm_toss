@@ -153,7 +153,7 @@ function ErmToss.make_corsair(level)
                                                 type = "instant",
                                                 target_effects =             {
                                                     type = "create-sticker",
-                                                    sticker = "3-033-slowdown-sticker",
+                                                    sticker = "5-033-slowdown-sticker",
                                                     show_in_tooltip = true
                                                 },
                                             }

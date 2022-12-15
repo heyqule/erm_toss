@@ -413,10 +413,10 @@ data:extend({
     },
     {
         type = "sticker",
-        name = "3-033-slowdown-sticker",
+        name = "5-033-slowdown-sticker",
         flags = {},
         animation = Sprites.empty_pictures(),
-        duration_in_ticks = 3 * 60,
+        duration_in_ticks = 5 * 60,
         target_movement_modifier = 0.33,
         vehicle_speed_modifier = 0.33,
     },
