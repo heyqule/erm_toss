@@ -91,12 +91,12 @@ local addRaceSettings = function()
     }
     race_settings.featured_groups = {
         -- Unit list, spawn ratio, unit attack point cost
-        {{'zealot', 'dragoon'}, {7, 3}, 20},
-        {{'zealot', 'archon'}, {7, 3}, 25},
-        {{'zealot', 'dragoon','archon'}, {4, 4, 2}, 25},
-        {{'dragoon','templar'}, {4, 1}, 25},
+        {{'zealot', 'dragoon'}, {6, 3}, 20},
+        {{'zealot', 'archon'}, {6, 3}, 25},
+        {{'zealot', 'dragoon', 'archon'}, {3, 3, 2}, 25},
+        {{'dragoon','templar'}, {3, 1}, 25},
         {{'darktemplar','templar','archon'}, {4, 1, 2}, 25},
-        {{'zealot','dragoon','darktemplar','templar','archon'}, {4,4,2,1,1}, 20},
+        {{'zealot','dragoon','darktemplar','templar','archon'}, {3,3,2,1,1}, 20},
     }
     race_settings.featured_flying_groups = {
         {{'scout', 'corsair'}, {1, 1}, 35},
