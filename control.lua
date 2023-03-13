@@ -39,7 +39,7 @@ local createRace = function()
 end
 
 local addRaceSettings = function()
-    local race_settings = remote.call('enemy_race_manager', 'get_race', MOD_NAME)
+    local race_settings = remote.call('enemyracemanager', 'get_race', MOD_NAME)
     if race_settings == nil then
         race_settings = {}
     end
@@ -91,12 +91,12 @@ local addRaceSettings = function()
     }
     race_settings.featured_groups = {
         -- Unit list, spawn ratio, unit attack point cost
-        {{'zealot', 'dragoon'}, {7, 3}, 20},
-        {{'zealot', 'archon'}, {7, 3}, 25},
-        {{'zealot', 'dragoon','archon'}, {4, 4, 2}, 25},
-        {{'dragoon','templar'}, {4, 1}, 25},
+        {{'zealot', 'dragoon'}, {6, 3}, 20},
+        {{'zealot', 'archon'}, {6, 3}, 25},
+        {{'zealot', 'dragoon', 'archon'}, {3, 3, 2}, 25},
+        {{'dragoon','templar'}, {3, 1}, 25},
         {{'darktemplar','templar','archon'}, {4, 1, 2}, 25},
-        {{'zealot','dragoon','darktemplar','templar','archon'}, {4,4,2,1,1}, 20},
+        {{'zealot','dragoon','darktemplar','templar','archon'}, {3,3,2,1,1}, 20},
     }
     race_settings.featured_flying_groups = {
         {{'scout', 'corsair'}, {1, 1}, 35},
@@ -114,7 +114,7 @@ local addRaceSettings = function()
 
     ErmRaceSettingsHelper.process_unit_spawn_rate_cache(race_settings)
 
-    remote.call('enemy_race_manager', 'register_race', race_settings)
+    remote.call('enemyracemanager', 'register_race', race_settings)
 end
 
 Event.on_init(function(event)
@@ -160,3 +160,7 @@ local ErmBossAttack = require('scripts/boss_attacks')
 remote.add_interface("erm_toss_boss_attacks", {
     get_attack_data = ErmBossAttack.get_attack_data,
 })
+
+local RemoteApi = require('scripts/remote')
+remote.add_interface("erm_toss", RemoteApi)
+

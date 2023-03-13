@@ -79,7 +79,6 @@ for i = 1, #boss_level do
     ErmToss.make_boss_wrapgate(level, ErmConfig.BOSS_BUILDING_HITPOINT[i])
 
     for _, unit in pairs(override_units) do
-        print(MOD_NAME..'/'..unit..'/'..level)
         data.raw['unit'][MOD_NAME..'/'..unit..'/'..level]['ai_settings'] = boss_unit_ai
     end
 end
