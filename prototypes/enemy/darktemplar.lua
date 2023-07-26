@@ -16,7 +16,7 @@ local name = 'darktemplar'
 
 
 local hitpoint = 120
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 2
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 2.5
 
 
 -- Handles acid and poison resistance
@@ -52,7 +52,7 @@ local base_movement_speed = 0.125
 local incremental_movement_speed = 0.1
 
 -- Misc settings
-local vision_distance = 30
+local vision_distance = ERM_UnitHelper.get_vision_distance(attack_range)
 
 local pollution_to_join_attack = 200
 local distraction_cooldown = 300
@@ -141,7 +141,7 @@ function ErmToss.make_darktemplar(level)
                             axially_symmetrical = false,
                             direction_count = 16,
                             scale = unit_scale,
-                            animation_speed = 0.6
+                            animation_speed = 0.5
                         },
                         {
                             filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-attack.png",
@@ -151,7 +151,7 @@ function ErmToss.make_darktemplar(level)
                             axially_symmetrical = false,
                             direction_count = 16,
                             scale = unit_scale,
-                            animation_speed = 0.6,
+                            animation_speed = 0.5,
                             tint = ERM_UnitTint.tint_shadow(),
                             draw_as_shadow = true,
                             shift = { 0.2, 0 }
@@ -171,7 +171,7 @@ function ErmToss.make_darktemplar(level)
                         axially_symmetrical = false,
                         direction_count = 16,
                         scale = unit_scale,
-                        animation_speed = 1,
+                        animation_speed = 0.5,
                     },
                     {
                         filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-run.png",
@@ -181,7 +181,7 @@ function ErmToss.make_darktemplar(level)
                         axially_symmetrical = false,
                         direction_count = 16,
                         scale = unit_scale,
-                        animation_speed = 1,
+                        animation_speed = 0.5,
                         tint = ERM_UnitTint.tint_shadow(),
                         draw_as_shadow = true,
                         shift = { 0.2, 0 }

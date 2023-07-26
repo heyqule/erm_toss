@@ -24,8 +24,12 @@ require "prototypes.enemy.corsair"
 require "prototypes.enemy.darktemplar"
 require "prototypes.enemy.templar"
 require "prototypes.enemy.archon"
+require "prototypes.enemy.darkarchon"
 require "prototypes.enemy.probe"
 require "prototypes.enemy.shuttle"
+require "prototypes.enemy.interceptor"
+require "prototypes.enemy.reaver"
+require "prototypes.enemy.scarab"
 
 require "prototypes.building.building_death"
 require "prototypes.building.cannon"
@@ -40,6 +44,9 @@ require "prototypes.building.templar_archive"
 require "prototypes.building.stargate"
 require "prototypes.building.fleet_beacon"
 require "prototypes.building.arbiter_tribunal"
+require "prototypes.building.robotics_facility"
+require "prototypes.building.robotics_support_bay"
+require "prototypes.building.shield_battery"
 
 local max_level = ErmConfig.MAX_LEVELS
 
@@ -53,8 +60,12 @@ for i = 1, max_level + ErmConfig.MAX_ELITE_LEVELS do
     ErmToss.make_darktemplar(i)
     ErmToss.make_templar(i)
     ErmToss.make_archon(i)
+    ErmToss.make_darkarchon(i)
     ErmToss.make_probe(i)
     ErmToss.make_shuttle(i)
+    ErmToss.make_interceptor(i)
+    ErmToss.make_reaver(i)
+    ErmToss.make_scarab(i)
 end
 
 local boss_level = ErmConfig.BOSS_LEVELS
@@ -73,8 +84,12 @@ for i = 1, #boss_level do
     ErmToss.make_darktemplar(level)
     ErmToss.make_templar(level)
     ErmToss.make_archon(level)
+    ErmToss.make_darkarchon(level)
     ErmToss.make_probe(level)
     ErmToss.make_shuttle(level)
+    ErmToss.make_interceptor(level)
+    ErmToss.make_reaver(level)
+    ErmToss.make_scarab(level)
 
     ErmToss.make_boss_wrapgate(level, ErmConfig.BOSS_BUILDING_HITPOINT[i])
 
@@ -95,6 +110,9 @@ for i = 1, max_level do
     ErmToss.make_stargate(i)
     ErmToss.make_fleet_beacon(i)
     ErmToss.make_arbiter_tribunal(i)
+    ErmToss.make_robotics_facility(i)
+    ErmToss.make_robotics_support_bay(i)
+    ErmToss.make_shield_battery(i)
 end
 
 

@@ -19,7 +19,7 @@ local name = 'scout'
 -- Hitpoints
 
 local hitpoint = 250
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.25
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.5
 
 
 -- Handles acid and poison resistance
@@ -55,7 +55,7 @@ local base_movement_speed = 0.2
 local incremental_movement_speed = 0.15
 
 -- Misc Settings
-local vision_distance = 35
+local vision_distance = ERM_UnitHelper.get_vision_distance(attack_range)
 local pollution_to_join_attack = 150
 local distraction_cooldown = 300
 

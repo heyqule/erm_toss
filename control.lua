@@ -45,6 +45,7 @@ local addRaceSettings = function()
     end
 
     race_settings.race =  race_settings.race or MOD_NAME
+    race_settings.label = {'gui.label-toss'}
     race_settings.level =  race_settings.level or 1
     race_settings.tier =  race_settings.tier or 1
     race_settings.evolution_point =  race_settings.evolution_point or 0
@@ -56,11 +57,11 @@ local addRaceSettings = function()
     race_settings.units = {
         { 'zealot', 'dragoon' },
         { 'scout', 'corsair', 'probe', 'shuttle' },
-        { 'templar', 'darktemplar', 'archon', 'carrier', 'arbiter' },
+        { 'templar', 'darktemplar', 'archon', 'darkarchon', 'carrier', 'arbiter', 'reaver' },
     }
     race_settings.turrets = {
         { 'cannon', 'acid-cannon' },
-        {},
+        { 'shield_battery'},
         {},
     }
     race_settings.command_centers = {
@@ -70,40 +71,45 @@ local addRaceSettings = function()
     }
     race_settings.support_structures = {
         { 'pylon', 'gateway', 'forge' },
-        { 'cybernetics_core', 'stargate', 'citadel_adun' },
-        { 'templar_archive', 'fleet_beacon', 'arbiter_tribunal' },
+        { 'cybernetics_core', 'stargate', 'citadel_adun', 'robotics_facility' },
+        { 'templar_archive', 'fleet_beacon', 'arbiter_tribunal','robotics_support_bay' },
     }
     race_settings.flying_units = {
         {'scout'},
         {'corsair'},
         {'carrier','arbiter'}
     }
+    race_settings.timed_units = {
+        interceptor=true,
+        scarab=true
+    }
     race_settings.dropship = 'shuttle'
     race_settings.droppable_units = {
-        {{ 'zealot', 'dragoon' },{3,1}},
-        {{ 'zealot', 'dragoon', 'darktemplar' },{2,3,1}},
-        {{ 'zealot', 'dragoon', 'darktemplar', 'templar', 'archon'  },{2,2,2,2,2}},
+        {{ 'dragoon' },{1}},
+        {{ 'dragoon', 'darktemplar' },{3,1}},
+        {{ 'dragoon', 'darktemplar', 'templar', 'archon', 'darkarchon', 'reaver'},{4,2,1,2,1,1}},
     }
     race_settings.construction_buildings = {
         {{ 'cannon_shortrange'},{1}},
         {{ 'cannon_shortrange'},{1}},
-        {{ 'cannon_shortrange','pylon'},{2,1}},
+        {{ 'cannon_shortrange','pylon','shield_battery'},{2,1,1}},
     }
     race_settings.featured_groups = {
         -- Unit list, spawn ratio, unit attack point cost
         {{'zealot', 'dragoon'}, {6, 3}, 20},
         {{'zealot', 'archon'}, {6, 3}, 25},
-        {{'zealot', 'dragoon', 'archon'}, {3, 3, 2}, 25},
-        {{'dragoon','templar'}, {3, 1}, 25},
+        {{'zealot', 'dragoon', 'archon', 'reaver'}, {4, 3, 2, 1}, 25},
+        {{'dragoon','templar', 'archon', 'darkarchon'}, {5, 1, 1, 1}, 30},
         {{'darktemplar','templar','archon'}, {4, 1, 2}, 25},
-        {{'zealot','dragoon','darktemplar','templar','archon'}, {3,3,2,1,1}, 20},
+        {{'zealot','dragoon','darktemplar','templar','archon','darkarchon'}, {4,4,2,1,2,1}, 25},
+        {{'zealot','dragoon','darktemplar','templar','archon','darkarchon', 'reaver'}, {4,4,3,2,3,1,1}, 25},
     }
     race_settings.featured_flying_groups = {
         {{'scout', 'corsair'}, {1, 1}, 35},
-        {{'scout', 'carrier'}, {4, 1}, 50},
+        {{'scout', 'carrier'}, {7, 1}, 50},
         {{'corsair', 'arbiter'}, {5, 1}, 60},
-        {{'scout', 'corsair', 'carrier', 'arbiter'}, {4,4,2,1}, 50},
-        {{'scout', 'carrier', 'shuttle'}, {4, 1, 1}, 60}
+        {{'scout', 'corsair', 'carrier', 'arbiter'}, {3,3,1,1}, 50},
+        {{'scout', 'carrier', 'shuttle'}, {5, 1, 1}, 60}
     }
 
     race_settings.boss_building = 'warpgate'
@@ -138,6 +144,15 @@ local attack_functions =
     [SHUTTLE_ATTACK] = function(args)
         CustomAttacks.process_shuttle(args)
     end,
+    [CARRIER_ATTACK] = function(args)
+        CustomAttacks.process_carrier(args)
+    end,
+    [REAVER_ATTACK] = function(args)
+        CustomAttacks.process_reaver(args)
+    end,
+    [SELF_DESTRUCT_ATTACK] = function(args)
+        CustomAttacks.process_self_destruct(args)
+    end,
     [BOSS_SPAWN_ATTACK] = function(args)
         CustomAttacks.process_boss_units(args)
     end,
@@ -154,6 +169,10 @@ Event.register(defines.events.on_script_trigger_effect, function(event)
     then
         attack_functions[event.effect_id](event)
     end
+end)
+
+Event.on_nth_tick(1803, function(event)
+    CustomAttacks.clearTimeToLiveUnits(event)
 end)
 
 local ErmBossAttack = require('scripts/boss_attacks')

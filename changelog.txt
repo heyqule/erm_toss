@@ -1,4 +1,31 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.20.0
+Date: 2023-0?-??
+
+  Features:
+    - Worked with Shinzou to integrate the HD graphic pack and some of its features.
+    - ERM 1.18 Compatibility Changes
+    - Updated unit for dynamic attack range and dynamic vision distance
+    - Introducing darkarchon, raver, shield_battery, robotic, robotic_support_bay
+    - Reaver spawns a scarab every 5 seconds.
+    - Darkarchon, high damage, slow AOE attacker.
+    - shield battery health friendly unit 1000 health in 5 radius every 10 seconds @ L20.
+    - robotics facility has higher chance to spawn shuttles
+    - robotic support bay has higher chance to spawn reaver
+
+  Changes:
+    - Carrier's interceptor is now a timed unit that shoot lasers, 50dmg @ L20.
+    - Carrier spawns up to 8 interceptors by default every 12 seconds @ L20
+    - Shuttle now drop at least 2 zealots. It may drop another 1 higher tier unit, 3 dragoons and 1 reaver.
+    - Reaver's scarab is a timed unit that explodes with 2s warmup.
+    - Pylon and nexus can hold more units
+    - rebalanced spawn tables
+
+  Changes:
+    - Changed boss despawn attack params.
+    - Systematic despawn units use destroy(), instead of die()
+
+---------------------------------------------------------------------------------------------------
 Version: 1.19.0
 Date: 2023-03-12
 

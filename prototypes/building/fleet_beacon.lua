@@ -50,12 +50,12 @@ local spawn_table = function(level)
     res[1] = { MOD_NAME .. '/zealot/' .. level, { { 0.0, 0.7 }, { 0.2, 0.7 }, { 0.4, 0.5 }, { 0.6, 0.25 }, { 0.8, 0.0 }, { 1.0, 0.0 } } }
     res[2] = { MOD_NAME .. '/dragoon/' .. level, { { 0.0, 0.3 }, { 0.2, 0.3 }, { 0.4, 0.5 }, { 0.6, 0.25 }, { 0.8, 0.0 }, { 1.0, 0.0 } } }
     --Tire 2
-    res[3] = { MOD_NAME .. '/scout/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.2 }, { 0.8, 0.45 }, { 1.0, 0.3 } } }
-    res[4] = { MOD_NAME .. '/corsair/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.2 }, { 0.8, 0.45 }, { 1.0, 0.3 } } }
-    res[5] = { MOD_NAME .. '/shuttle/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.1 }, { 0.8, 0.1 }, { 1.0, 0.2 } } }
+    res[3] = { MOD_NAME .. '/scout/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.2 }, { 0.8, 0.45 }, { 1.0, 0.2 } } }
+    res[4] = { MOD_NAME .. '/corsair/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.2 }, { 0.8, 0.45 }, { 1.0, 0.2 } } }
+    res[5] = { MOD_NAME .. '/shuttle/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.1 }, { 0.8, 0.1 }, { 1.0, 0.15 } } }
     --Tire 3
     res[6] = { MOD_NAME .. '/arbiter/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.1 }, { 1.0, 0.1 } } }
-    res[7] = { MOD_NAME .. '/carrier/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, { 1.0, 0.1 } } }
+    res[7] = { MOD_NAME .. '/carrier/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, { 1.0, 0.35 } } }
     return res
 end
 
@@ -104,29 +104,6 @@ function ErmToss.make_fleet_beacon(level)
                 layers = {
                     {
                         filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
-                        width = 192,
-                        height = 160,
-                        frame_count = 1,
-                        animation_speed = 0.18,
-                        direction_count = 1,
-                        scale = unit_scale
-                    },
-                    {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. "_mask.png",
-                        width = 192,
-                        height = 160,
-                        frame_count = 1,
-                        animation_speed = 0.18,
-                        direction_count = 1,
-                        scale = unit_scale,
-                        draw_as_glow = true
-                    }
-                }
-            },
-            integration = {
-                layers = {
-                    {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
                         variation_count = 1,
                         width = 192,
                         height = 160,
@@ -142,7 +119,7 @@ function ErmToss.make_fleet_beacon(level)
                         frame_count = 1,
                         line_length = 1,
                         draw_as_shadow = true,
-                        shift = { 0.5, 0.1 },
+                        shift = { 0.25, 0.1 },
                         scale = unit_scale
                     },
                     {

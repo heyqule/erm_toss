@@ -19,7 +19,7 @@ local name = 'carrier'
 -- Hitpoints
 
 local hitpoint = 450
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.75
 
 
 -- Handles acid and poison resistance
@@ -45,8 +45,8 @@ local incremental_electric_damage = 3
 
 -- Handles Attack Speed
 
-local base_attack_speed = 270
-local incremental_attack_speed = 180
+local base_attack_speed = 960
+local incremental_attack_speed = 360
 
 local attack_range = ERM_Config.get_max_attack_range()
 
@@ -55,7 +55,7 @@ local base_movement_speed = 0.15
 local incremental_movement_speed = 0.125
 
 -- Misc Settings
-local vision_distance = 35
+local vision_distance = ERM_UnitHelper.get_vision_distance(attack_range)
 local pollution_to_join_attack = 300
 local distraction_cooldown = 300
 
@@ -110,6 +110,7 @@ function ErmToss.make_carrier(level)
                 min_attack_distance = attack_range - 4,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),
                 cooldown_deviation = 0.1,
+                warm_up = 120,
                 damage_modifier = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage,  level),
                 ammo_type = {
                     category = "protoss-damage",
@@ -117,14 +118,15 @@ function ErmToss.make_carrier(level)
                     action = {
                         type = "direct",
                         action_delivery = {
-                            type = "projectile",
-                            projectile = "interceptor-projectile",
-                            starting_speed = 0.3,
-                            max_range = ERM_Config.get_max_projectile_range(4),
+                            type = 'instant',
+                            source_effects = {
+                                type = "script",
+                                effect_id = CARRIER_ATTACK,
+                            }
                         }
                     }
                 },
-                sound = TossSound.interceptor_attack(0.75),
+                sound = TossSound.interceptor_attack(0.5),
                 animation = {
                     layers = {
                         {

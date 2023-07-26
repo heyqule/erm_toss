@@ -11,6 +11,7 @@ local Sprites = require('__stdlib__/stdlib/data/modules/sprites')
 local ERM_UnitHelper = require('__enemyracemanager__/lib/rig/unit_helper')
 local ERM_UnitTint = require('__enemyracemanager__/lib/rig/unit_tint')
 local ERM_DebugHelper = require('__enemyracemanager__/lib/debug_helper')
+local ERM_Config = require('__enemyracemanager__/lib/global_config')
 local ERMDataHelper = require('__enemyracemanager__/lib/rig/data_helper')
 local TossSound = require('__erm_toss__/prototypes/sound')
 local name = 'shuttle'
@@ -19,7 +20,7 @@ local name = 'shuttle'
 -- Hitpoints
 
 local hitpoint = 200
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.5
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 2
 
 
 -- Handles acid and poison resistance
@@ -48,14 +49,14 @@ local incremental_cold_resistance = 70
 local base_attack_speed = 2700
 local incremental_attack_speed = 900
 
-local attack_range = 3
+local attack_range = math.ceil(ERM_Config.get_max_attack_range() * 0.5)
 
 
 local base_movement_speed = 0.15
 local incremental_movement_speed = 0.125
 
 -- Misc Settings
-local vision_distance = 35
+local vision_distance = ERM_UnitHelper.get_vision_distance(attack_range)
 local pollution_to_join_attack = 200
 local distraction_cooldown = 300
 

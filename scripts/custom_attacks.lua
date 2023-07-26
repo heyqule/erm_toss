@@ -10,14 +10,38 @@ local ERMConfig = require('__enemyracemanager__/lib/global_config')
 local CustomAttacks = {}
 
 CustomAttacks.valid = CustomAttackHelper.valid
+CustomAttacks.clearTimeToLiveUnits = CustomAttackHelper.clear_time_to_live_units
 
 function CustomAttacks.process_probe(event)
     CustomAttackHelper.drop_unit(event, MOD_NAME, CustomAttackHelper.get_unit(MOD_NAME, 'construction_buildings'))
-    event.source_entity.die('neutral')
+    event.source_entity.destroy()
 end
 
 function CustomAttacks.process_shuttle(event)
-    CustomAttackHelper.drop_unit(event, MOD_NAME, CustomAttackHelper.get_unit(MOD_NAME, 'droppable_units'))
+    local race_settings = CustomAttackHelper.get_race_settings(MOD_NAME)
+    CustomAttackHelper.drop_unit(event, MOD_NAME, 'zealot', 3)
+    if CustomAttackHelper.can_spawn(80) then
+        CustomAttackHelper.drop_unit(event, MOD_NAME, CustomAttackHelper.get_unit(MOD_NAME, 'droppable_units'))
+    end
+    if race_settings.tier == 3 and CustomAttackHelper.can_spawn(10) then
+        CustomAttackHelper.drop_unit(event, MOD_NAME, 'dragoon', 2)
+        CustomAttackHelper.drop_unit(event, MOD_NAME, 'reaver', 1)
+    end
+end
+
+function CustomAttacks.process_carrier(event)
+    CustomAttackHelper.drop_unit(event, MOD_NAME, 'interceptor', 5)
+    if CustomAttackHelper.can_spawn(20) then
+        CustomAttackHelper.drop_unit(event, MOD_NAME, 'interceptor', 3)
+    end
+end
+
+function CustomAttacks.process_reaver(event)
+    CustomAttackHelper.drop_unit(event, MOD_NAME, 'scarab', 1)
+end
+
+function CustomAttacks.process_self_destruct(event)
+    event.source_entity.destroy()
 end
 
 function CustomAttacks.process_boss_units(event, batch_size)

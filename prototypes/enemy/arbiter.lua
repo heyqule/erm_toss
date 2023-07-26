@@ -20,7 +20,7 @@ local name = 'arbiter'
 -- Hitpoints
 
 local hitpoint = 350
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.5
 
 
 -- Handles acid and poison resistance
@@ -56,7 +56,7 @@ local base_movement_speed = 0.15
 local incremental_movement_speed = 0.125
 
 -- Misc Settings
-local vision_distance = 35
+local vision_distance = ERM_UnitHelper.get_vision_distance(attack_range)
 local pollution_to_join_attack = 350
 local distraction_cooldown = 300
 
@@ -233,7 +233,7 @@ function ErmToss.make_arbiter(level)
                     }
                 }
             },
-            dying_sound = TossSound.enemy_death(name, 1),
+            dying_sound = TossSound.enemy_death(name, 0.75),
             dying_explosion = 'protoss-large-air-death',
             corpse = name .. '-corpse'
         },
