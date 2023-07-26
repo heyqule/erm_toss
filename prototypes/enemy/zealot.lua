@@ -16,7 +16,7 @@ local name = 'zealot'
 
 
 local hitpoint = 160
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 2
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 3
 
 
 -- Handles acid and poison resistance
@@ -119,7 +119,7 @@ function ErmToss.make_zealot(level)
                             axially_symmetrical = false,
                             direction_count = 16,
                             scale = unit_scale,
-                            animation_speed = 0.6,
+                            animation_speed = 0.5,
 
                         },
                         {
@@ -130,7 +130,7 @@ function ErmToss.make_zealot(level)
                             axially_symmetrical = false,
                             direction_count = 16,
                             scale = unit_scale,
-                            animation_speed = 0.6,
+                            animation_speed = 0.5,
                             tint = ERM_UnitTint.tint_shadow(),
                             draw_as_shadow = true,
                             shift = { 0.2, 0 }
@@ -149,7 +149,7 @@ function ErmToss.make_zealot(level)
                         axially_symmetrical = false,
                         direction_count = 16,
                         scale = unit_scale,
-                        animation_speed = 1,
+                        animation_speed = 0.5,
                     },
                     {
                         filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-run.png",
@@ -159,7 +159,7 @@ function ErmToss.make_zealot(level)
                         axially_symmetrical = false,
                         direction_count = 16,
                         scale = unit_scale,
-                        animation_speed = 1,
+                        animation_speed = 0.5,
                         tint = ERM_UnitTint.tint_shadow(),
                         draw_as_shadow = true,
                         shift = { 0.2, 0 }

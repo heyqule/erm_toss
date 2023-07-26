@@ -48,7 +48,7 @@ local incremental_electric_damage = 55
 local base_attack_speed = 90
 local incremental_attack_speed = 45
 
-local attack_range = 6
+local attack_range = ERM_Config.get_max_attack_range() * 0.5
 
 
 local base_movement_speed = 0.2

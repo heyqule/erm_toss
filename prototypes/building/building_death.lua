@@ -99,5 +99,45 @@ data:extend({
             scale = 1.25,
             draw_as_glow = true,
         }
+    },
+    {
+        type = "explosion",
+        name = "toss-red-large-building-explosion",
+        icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
+        icon_size = 64,
+        subgroup = 'explosions',
+        flags = { "not-on-map", "hidden" },
+        order = "toss-explosions",
+        render_layer = "explosion",
+        animations = {
+            filename = "__erm_toss__/graphics/entity/buildings/building_red_explode.png",
+            width = 160,
+            height = 160,
+            frame_count = 15,
+            animation_speed = 0.25,
+            direction_count = 1,
+            scale = 2,
+            draw_as_glow = true,
+        }
+    },
+    {
+        type = "explosion",
+        name = "toss-red-small-building-explosion",
+        icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
+        icon_size = 64,
+        subgroup = 'explosions',
+        flags = { "not-on-map", "hidden" },
+        order = "toss-explosions",
+        render_layer = "explosion",
+        animations = {
+            filename = "__erm_toss__/graphics/entity/buildings/building_red_explode.png",
+            width = 160,
+            height = 160,
+            frame_count = 15,
+            animation_speed = 0.25,
+            direction_count = 1,
+            scale = 1.25,
+            draw_as_glow = true,
+        }
     }
 });

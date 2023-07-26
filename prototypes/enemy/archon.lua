@@ -18,7 +18,7 @@ local name = 'archon'
 
 
 local hitpoint = 360
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 2
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 3
 
 
 -- Handles acid and poison resistance
@@ -159,7 +159,7 @@ function ErmToss.make_archon(level)
                             axially_symmetrical = false,
                             direction_count = 16,
                             scale = unit_scale * 1.25,
-                            animation_speed = 1,
+                            animation_speed = 0.5,
                             draw_as_glow = true
                         },
                         {
@@ -170,7 +170,7 @@ function ErmToss.make_archon(level)
                             axially_symmetrical = false,
                             direction_count = 16,
                             scale = unit_scale,
-                            animation_speed = 1,
+                            animation_speed = 0.5,
                             draw_as_glow = true,
                             shift = util.by_pixel(-3, 0)
                         },
@@ -183,7 +183,7 @@ function ErmToss.make_archon(level)
                             axially_symmetrical = false,
                             direction_count = 16,
                             scale = unit_scale,
-                            animation_speed = 1,
+                            animation_speed = 0.5,
                             draw_as_glow = true,
                             shift = util.by_pixel(-3, 0)
                         }
@@ -203,7 +203,7 @@ function ErmToss.make_archon(level)
                         axially_symmetrical = false,
                         direction_count = 16,
                         scale = unit_scale * 1.25,
-                        animation_speed = 1,
+                        animation_speed = 0.5,
                         draw_as_glow = true,
                     },
                     {
@@ -215,14 +215,14 @@ function ErmToss.make_archon(level)
                         axially_symmetrical = false,
                         direction_count = 16,
                         scale = unit_scale,
-                        animation_speed = 1,
+                        animation_speed = 0.5,
                         draw_as_glow = true,
                         shift = util.by_pixel(-3, 0)
                     },
                 }
             },
             dying_sound = TossSound.enemy_death(name, 0.75),
-            dying_explosion = 'protoss-small-air-death',
+            dying_explosion = 'toss-small-building-explosion',
             corpse = name .. '-corpse'
         },
         {

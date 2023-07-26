@@ -42,8 +42,8 @@ local unit_scale = 2
 local pollution_absorption_absolute = 100
 local spawning_cooldown = {780, 480}
 local spawning_radius = 10
-local max_count_of_owned_units = 7
-local max_friends_around_to_spawn = 5
+local max_count_of_owned_units = 9
+local max_friends_around_to_spawn = 6
 local spawn_table = function(level)
     local res = {}
     --Tire 1
@@ -58,8 +58,10 @@ local spawn_table = function(level)
     res[7] = { MOD_NAME .. '/templar/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, {1.0, 0.1} } }
     res[8] = { MOD_NAME .. '/darktemplar/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.1 }, {1.0, 0.1} } }
     res[9] = { MOD_NAME .. '/archon/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, {1.0, 0.1} } }
-    res[10] = { MOD_NAME .. '/carrier/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, {1.0, 0.1} } }
-    res[11] = { MOD_NAME .. '/arbiter/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, {1.0, 0.1} } }
+    res[10] = { MOD_NAME .. '/carrier/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, { 1.0, 0.05 } } }
+    res[11] = { MOD_NAME .. '/arbiter/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, { 1.0, 0.05 } } }
+    res[12] = { MOD_NAME .. '/reaver/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, { 1.0, 0.05 } } }
+    res[13] = { MOD_NAME .. '/darkarchon/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, { 1.0, 0.05 } } }
     return res
 end
 
@@ -116,29 +118,6 @@ function ErmToss.make_pylon(level)
                         scale = unit_scale
                     },
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. "_mask.png",
-                        width = 128,
-                        height = 128,
-                        frame_count = 1,
-                        animation_speed = 0.18,
-                        direction_count = 1,
-                        draw_as_glow = true,
-                        scale = unit_scale
-                    }
-                }
-            },
-            integration = {
-                layers = {
-                    {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
-                        variation_count = 1,
-                        width = 128,
-                        height = 128,
-                        frame_count = 1,
-                        line_length = 1,
-                        scale = unit_scale
-                    },
-                    {
                         filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
@@ -146,7 +125,7 @@ function ErmToss.make_pylon(level)
                         frame_count = 1,
                         line_length = 1,
                         draw_as_shadow = true,
-                        shift = { 0.5, 0.1 },
+                        shift = { 0.25, 0.1 },
                         scale = unit_scale
                     },
                     {

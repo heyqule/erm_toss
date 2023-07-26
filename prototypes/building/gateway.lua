@@ -48,11 +48,12 @@ local spawn_table = function(level)
     local res = {}
     --Tire 1
     res[1] = { MOD_NAME .. '/zealot/' .. level, { { 0.0, 0.7 }, { 0.2, 0.7 }, { 0.4, 0.5 }, { 0.6, 0.5 }, { 0.8, 0.4 }, { 1.0, 0.3 } } }
-    res[2] = { MOD_NAME .. '/dragoon/' .. level, { { 0.0, 0.3 }, { 0.2, 0.3 }, { 0.4, 0.5 }, { 0.6, 0.5 }, { 0.8, 0.4 }, { 1.0, 0.3 } } }
+    res[2] = { MOD_NAME .. '/dragoon/' .. level, { { 0.0, 0.3 }, { 0.2, 0.3 }, { 0.4, 0.5 }, { 0.6, 0.5 }, { 0.8, 0.4 }, { 1.0, 0.25 } } }
     --Tire 3
     res[3] = { MOD_NAME .. '/templar/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, { 1.0, 0.1 } } }
     res[4] = { MOD_NAME .. '/darktemplar/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.1 }, { 1.0 , 0.2 } } }
     res[5] = { MOD_NAME .. '/archon/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, { 1.0, 0.1 } } }
+    res[6] = { MOD_NAME .. '/darkarchon/' .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.1 }, { 1.0, 0.05 } } }
     return res
 end
 
@@ -101,29 +102,6 @@ function ErmToss.make_gateway(level)
                 layers = {
                     {
                         filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
-                        width = 128,
-                        height = 160,
-                        frame_count = 1,
-                        animation_speed = 0.18,
-                        direction_count = 1,
-                        scale = unit_scale
-                    },
-                    {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. "_mask.png",
-                        width = 128,
-                        height = 160,
-                        frame_count = 1,
-                        animation_speed = 0.18,
-                        direction_count = 1,
-                        scale = unit_scale,
-                        draw_as_glow = true,
-                    }
-                }
-            },
-            integration = {
-                layers = {
-                    {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
                         height = 160,
@@ -139,7 +117,7 @@ function ErmToss.make_gateway(level)
                         frame_count = 1,
                         line_length = 1,
                         draw_as_shadow = true,
-                        shift = { 0.5, 0.1 },
+                        shift = { 0.25, 0.1 },
                         scale = unit_scale
                     },
                     {

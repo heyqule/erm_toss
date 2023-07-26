@@ -46,7 +46,7 @@ local incremental_electric_damage = 7
 local base_attack_speed = 120
 local incremental_attack_speed = 60
 
-local attack_range = 12
+local attack_range = math.ceil(ERM_Config.get_max_attack_range() * 0.75)
 
 
 local base_movement_speed = 0.125
@@ -132,7 +132,7 @@ function ErmToss.make_dragoon(level)
                             axially_symmetrical = false,
                             direction_count = 1,
                             scale = unit_scale,
-                            animation_speed = 1,
+                            animation_speed = 0.5,
                         },
                         {
                             filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-attack.png",
@@ -142,7 +142,7 @@ function ErmToss.make_dragoon(level)
                             axially_symmetrical = false,
                             direction_count = 1,
                             scale = unit_scale,
-                            animation_speed = 1,
+                            animation_speed = 0.5,
                             tint = ERM_UnitTint.tint_shadow(),
                             draw_as_shadow = true,
                             shift = { 0.2, 0 }
@@ -162,7 +162,7 @@ function ErmToss.make_dragoon(level)
                         axially_symmetrical = false,
                         direction_count = 16,
                         scale = unit_scale,
-                        animation_speed = 1,
+                        animation_speed = 0.5,
                     },
                     {
                         filename = "__erm_toss__/graphics/entity/units/" .. name .. "/" .. name .. "-run.png",
@@ -172,14 +172,14 @@ function ErmToss.make_dragoon(level)
                         axially_symmetrical = false,
                         direction_count = 16,
                         scale = unit_scale,
-                        animation_speed = 1,
+                        animation_speed = 0.5,
                         tint = ERM_UnitTint.tint_shadow(),
                         draw_as_shadow = true,
                         shift = { 0.2, 0 }
                     },
                 }
             },
-            dying_sound = TossSound.enemy_death(name, 1),
+            dying_sound = TossSound.enemy_death(name, 0.75),
 
             corpse = name .. '-corpse'
         },

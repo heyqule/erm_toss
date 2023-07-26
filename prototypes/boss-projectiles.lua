@@ -11,8 +11,8 @@ local ERMDataHelper = require('__enemyracemanager__/lib/rig/data_helper')
 local boss_difficulty = settings.startup['enemyracemanager-boss-difficulty'].value
 local damage_multiplier = {
     [BOSS_NORMAL] = 1,
-    [BOSS_HARD] = 1.5,
-    [BOSS_GODLIKE] = 2
+    [BOSS_HARD] = 1.2,
+    [BOSS_GODLIKE] = 1.5
 }
 
 local get_damage = function(init_dmg, tier ,multiplier)
@@ -57,7 +57,6 @@ local create_psystorm_projectile = function(tier)
                     width = 32,
                     height = 32,
                     scale = 1.5,
-                    priority = "high",
                     draw_as_glow = true,
                 },
             }
@@ -103,7 +102,6 @@ local create_stasis_projectile = function(tier)
                     width = 64,
                     height = 64,
                     scale = 1,
-                    priority = "high",
                     draw_as_glow = true,
                 },
             }
@@ -160,7 +158,6 @@ local create_cold_fire_projectile = function(tier)
                     width = 64,
                     height = 64,
                     scale = 1,
-                    priority = "high",
                     draw_as_glow = true,
                 },
             }
@@ -259,7 +256,6 @@ local create_cold_star_projectile = function(tier)
                     width = 64,
                     height = 64,
                     scale = 1,
-                    priority = "high",
                     draw_as_glow = true,
                 },
             }
@@ -309,7 +305,6 @@ local create_recall_projectile = function(tier, script_attack)
                     width = 64,
                     height = 64,
                     scale = 1,
-                    priority = "high",
                     draw_as_glow = true,
                 },
             }

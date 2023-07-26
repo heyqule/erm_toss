@@ -3,6 +3,7 @@
 --- Created by heyqule.
 --- DateTime: 01/09/2020 6:40 PM
 ---
+require('__stdlib__/stdlib/utils/defines/time')
 local Sprites = require('__stdlib__/stdlib/data/modules/sprites')
 
 local ERM_WeaponRig = require('__enemyracemanager__/lib/rig/weapon')
@@ -82,10 +83,37 @@ data:extend({
                     width = 32,
                     height = 32,
                     scale = 1.5,
-                    priority = "high",
                     draw_as_glow = true,
                 },
             }
+        }
+    },
+    {
+        type = "projectile",
+        name = "interceptor-laser",
+        flags = { "not-on-map" },
+        acceleration = 0.005,
+        action = {
+            type = "direct",
+            action_delivery = {
+                type = "instant",
+                target_effects = {
+                    {
+                        type = "damage",
+                        damage = { amount = 5, type = "electric" },
+                        apply_damage_to_trees = true
+                    }
+                }
+            }
+        },
+        animation = {
+            filename = "__erm_toss__/graphics/entity/projectiles/protoss-blashcan.png",
+            frame_count = 1,
+            direction_count = 16,
+            width = 32,
+            height = 32,
+            scale = 1,
+            draw_as_glow = true,
         }
     },
     {
@@ -129,56 +157,7 @@ data:extend({
                     width = 32,
                     height = 32,
                     scale = 1.5,
-                    priority = "high",
                     draw_as_glow = true,
-                },
-            }
-        }
-    },
-    {
-        type = "projectile",
-        name = "interceptor-projectile",
-        flags = { "not-on-map" },
-        acceleration = 0.005,
-        action = {
-            type = "direct",
-            action_delivery = {
-                type = "instant",
-                target_effects = {
-                    {
-                        type = "nested-result",
-                        action = {
-                            type = "area",
-                            force = 'not-same',
-                            radius = 2,
-                            ignore_collision_condition = true,
-                            action_delivery = {
-                                type = "instant",
-                                target_effects = {
-                                    type = "damage",
-                                    damage = { amount = 40, type = "explosion" }
-                                },
-                                apply_damage_to_trees = true
-                            }
-                        }
-                    },
-                    {
-                        type = "create-entity",
-                        entity_name = "medium-explosion"
-                    },
-                }
-            }
-        },
-        animation = {
-            layers = {
-                {
-                    filename = "__erm_toss__/graphics/entity/units/interceptor/interceptor-run.png",
-                    frame_count = 1,
-                    width = 32,
-                    height = 32,
-                    scale = 1,
-                    priority = "high",
-                    direction_count = 16,
                 },
             }
         }
@@ -191,7 +170,6 @@ data:extend({
         animations = {
             {
                 filename = "__erm_toss__/graphics/entity/projectiles/dragoon/dragoon-hit-effect.png",
-                priority = "extra-high",
                 width = 64,
                 height = 64,
                 frame_count = 10,
@@ -207,7 +185,6 @@ data:extend({
         animations = {
             {
                 filename = "__erm_toss__/graphics/entity/projectiles/corsair-splash.png",
-                priority = "extra-high",
                 width = 64,
                 height = 64,
                 frame_count = 7,
@@ -224,7 +201,6 @@ data:extend({
         animations = {
             {
                 filename = "__erm_toss__/graphics/entity/projectiles/stasis/stasis.png",
-                priority = "extra-high",
                 width = 128,
                 height = 128,
                 frame_count = 13,
@@ -241,11 +217,10 @@ data:extend({
         animations = {
             {
                 filename = "__erm_toss__/graphics/entity/projectiles/psystorm/psystorm.png",
-                priority = "extra-high",
                 width = 224,
                 height = 224,
                 frame_count = 14,
-                animation_speed = 0.2,
+                animation_speed = 0.4,
                 scale = 2,
                 draw_as_glow = true
             }
@@ -263,7 +238,7 @@ data:extend({
                 width = 80,
                 height = 80,
                 frame_count = 6,
-                animation_speed = 0.5,
+                animation_speed = 0.4,
                 scale = 1.5,
                 draw_as_glow = true
             }
@@ -281,7 +256,7 @@ data:extend({
             direction_count = 1,
             axially_symmetrical = false,
             scale = 1.5,
-            animation_speed = 0.5,
+            animation_speed = 0.4,
             draw_as_glow = true
         }
     },
@@ -297,7 +272,7 @@ data:extend({
             direction_count = 1,
             axially_symmetrical = false,
             scale = 2.5,
-            animation_speed = 0.5,
+            animation_speed = 0.4,
             draw_as_glow = true
         }
     },
@@ -313,7 +288,7 @@ data:extend({
             direction_count = 1,
             axially_symmetrical = false,
             scale = 1,
-            animation_speed = 0.2,
+            animation_speed = 0.4,
             draw_as_glow = true
         }
     },
@@ -329,7 +304,7 @@ data:extend({
             direction_count = 1,
             axially_symmetrical = false,
             scale = 1,
-            animation_speed = 0.2,
+            animation_speed = 0.4,
             draw_as_glow = true
         },
     },
@@ -341,12 +316,12 @@ data:extend({
             filename = "__erm_toss__/graphics/entity/projectiles/recall-80.png",
             width = 100,
             height = 100,
-            frame_count = 21,
+            frame_count = 11,
             direction_count = 1,
             axially_symmetrical = false,
             scale = 2,
-            frame_sequence = {1,2,3,4,5,6,7,8,9,10,11,10,9,8,7,6,5,4,3,2,1},
-            animation_speed = 0.2,
+            run_mode = "forward-then-backward",
+            animation_speed = 0.4,
             draw_as_glow = true
         },
     },
@@ -358,12 +333,12 @@ data:extend({
             filename = "__erm_toss__/graphics/entity/projectiles/recall.png",
             width = 100,
             height = 100,
-            frame_count = 21,
+            frame_count = 11,
             direction_count = 1,
             axially_symmetrical = false,
             scale = 2,
-            frame_sequence = {1,2,3,4,5,6,7,8,9,10,11,10,9,8,7,6,5,4,3,2,1},
-            animation_speed = 0.2,
+            run_mode = "forward-then-backward",
+            animation_speed = 0.4,
             draw_as_glow = true
         },
     },
@@ -375,12 +350,12 @@ data:extend({
             filename = "__erm_toss__/graphics/entity/projectiles/disrupt-80.png",
             width = 160,
             height = 160,
-            frame_count = 21,
+            frame_count = 11,
             direction_count = 1,
             axially_symmetrical = false,
             scale = 1.5,
-            frame_sequence = {1,2,3,4,5,6,7,8,9,10,11,10,9,8,7,6,5,4,3,2,1},
-            animation_speed = 0.2,
+            run_mode = "forward-then-backward",
+            animation_speed = 0.4,
             draw_as_glow = true
         },
     },
@@ -392,20 +367,103 @@ data:extend({
             filename = "__erm_toss__/graphics/entity/projectiles/disrupt.png",
             width = 160,
             height = 160,
-            frame_count = 21,
+            frame_count = 11,
             direction_count = 1,
             axially_symmetrical = false,
             scale = 1.5,
-            frame_sequence = {1,2,3,4,5,6,7,8,9,10,11,10,9,8,7,6,5,4,3,2,1},
-            animation_speed = 0.2,
+            run_mode = "forward-then-backward",
+            animation_speed = 0.4,
             draw_as_glow = true
         },
+    },
+    {
+        type = "explosion",
+        name = "darkarchon-feedback",
+        flags = { "not-on-map" },
+        animations = {
+            {
+                filename = "__erm_toss__/graphics/entity/projectiles/feedback.png",
+                width = 64,
+                height = 64,
+                frame_count = 22,
+                animation_speed = 0.5,
+                scale = 1.5,
+                draw_as_glow = true
+            }
+        }
+    },
+    {
+        type = "explosion",
+        name = "scarab-explosion",
+        flags = {"not-on-map"},
+        animations = {
+            {
+                filename = "__erm_toss__/graphics/entity/projectiles/scarab_explosion.png",
+                width = 80,
+                height = 80,
+                frame_count = 10,
+                animation_speed = 0.4,
+                scale = 1.5,
+                draw_as_glow = true
+            }
+        }
+    },
+    {
+        type = "explosion",
+        name = "shield-battery-explosion",
+        flags = {"not-on-map"},
+        animations = {
+            {
+                filename = "__erm_toss__/graphics/entity/projectiles/shield_battery.png",
+                width = 64,
+                height = 64,
+                frame_count = 15,
+                animation_speed = 0.4,
+                scale = 4,
+                draw_as_glow = true
+            }
+        }
+    },
+    {
+        type = "explosion",
+        name = "demo-darkarchon-maelstrom",
+        flags = {"not-on-map"},
+        animations =         {
+            filename = "__erm_toss__/graphics/entity/projectiles/maelstrom.png",
+            width = 128,
+            height = 128,
+            frame_count = 25,
+            animation_speed = 0.5,
+            scale = 1,
+            draw_as_glow = true
+        }
+    },
+    {
+        type = "sticker",
+        name = "darkarchon-maelstrom",
+        flags = { "not-on-map" },
+        duration_in_ticks = 2 * defines.time.second,
+        damage_interval = defines.time.second / 4,
+        damage_per_tick = { amount = 10, type = "explosion" },
+        single_particle = true,
+        fire_spread_radius = 0,
+        render_layer = "explosion",
+        animation =
+        {
+            filename = "__erm_toss__/graphics/entity/projectiles/maelstrom.png",
+            width = 128,
+            height = 128,
+            frame_count = 25,
+            animation_speed = 0.5,
+            scale = 1,
+            draw_as_glow = true
+        }
     },
     --- Stickers
     {
         type = "sticker",
         name = "5-067-slowdown-sticker",
-        flags = {},
+        flags = {"not-on-map" },
         animation = Sprites.empty_pictures(),
         duration_in_ticks = 5 * 60,
         target_movement_modifier = 0.67,
@@ -414,7 +472,7 @@ data:extend({
     {
         type = "sticker",
         name = "5-033-slowdown-sticker",
-        flags = {},
+        flags = {"not-on-map" },
         animation = Sprites.empty_pictures(),
         duration_in_ticks = 5 * 60,
         target_movement_modifier = 0.33,
@@ -423,7 +481,7 @@ data:extend({
     {
         type = "sticker",
         name = "5-010-slowdown-sticker",
-        flags = {},
+        flags = {"not-on-map" },
         animation = Sprites.empty_pictures(),
         duration_in_ticks = 5 * 60,
         target_movement_modifier = 0.1,
