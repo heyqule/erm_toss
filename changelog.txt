@@ -5,7 +5,7 @@ Date: 2023-0?-??
   Features:
     - Worked with Shinzou to integrate the HD graphic pack and some of its features.
     - ERM 1.18 Compatibility Changes
-    - Updated units to use new dynamic attack range system
+    - Updated unit for dynamic attack range and dynamic vision distance
     - Introducing darkarchon, raver, shield_battery, robotic, robotic_support_bay
     - Reaver spawns a scarab every 5 seconds.
     - Darkarchon, high damage, slow AOE attacker.
