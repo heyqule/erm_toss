@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.20.0
-Date: 2023-0?-??
+Date: 2023-07-26
 
   Features:
     - Worked with Shinzou to integrate the HD graphic pack and some of its features.
