@@ -73,7 +73,7 @@ function ErmToss.make_dragoon(level)
             icon = "__erm_toss__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-enemy", "placeable-player", "placeable-off-grid" },
-            has_belt_immunity = true,
+            has_belt_immunity = false,
             max_health = ERM_UnitHelper.get_health(hitpoint, hitpoint * max_hitpoint_multiplier,  level),
             order = MOD_NAME .. '/'  .. name .. '/' .. level,
             subgroup = "enemies",

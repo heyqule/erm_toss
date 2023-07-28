@@ -1,4 +1,13 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.20.1
+Date: 2023-07-28
+
+  Changes:
+    - Reaver and Dragoon now affect by belts
+    - Applied missing flying unit property on interceptors.
+    - Fixed corsair range.
+
+---------------------------------------------------------------------------------------------------
 Version: 1.20.0
 Date: 2023-07-26
 
@@ -20,8 +29,6 @@ Date: 2023-07-26
     - Reaver's scarab is a timed unit that explodes with 2s warmup.
     - Pylon and nexus can hold more units
     - rebalanced spawn tables
-
-  Changes:
     - Changed boss despawn attack params.
     - Systematic despawn units use destroy(), instead of die()
 
