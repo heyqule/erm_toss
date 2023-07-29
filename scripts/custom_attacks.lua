@@ -19,12 +19,12 @@ end
 
 function CustomAttacks.process_shuttle(event)
     local race_settings = CustomAttackHelper.get_race_settings(MOD_NAME)
-    CustomAttackHelper.drop_unit(event, MOD_NAME, 'zealot', 3)
+    CustomAttackHelper.drop_unit(event, MOD_NAME, 'zealot', 2)
     if CustomAttackHelper.can_spawn(80) then
         CustomAttackHelper.drop_unit(event, MOD_NAME, CustomAttackHelper.get_unit(MOD_NAME, 'droppable_units'))
     end
     if race_settings.tier == 3 and CustomAttackHelper.can_spawn(10) then
-        CustomAttackHelper.drop_unit(event, MOD_NAME, 'dragoon', 2)
+        CustomAttackHelper.drop_unit(event, MOD_NAME, 'dragoon', 1)
         CustomAttackHelper.drop_unit(event, MOD_NAME, 'reaver', 1)
     end
 end
