@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.20.3
+Date: 2023-??-??
+
+  Changes:
+    - increased unit cost for custom attacks groups.
+    - adjusted spawn chance and units for dropship and carrier
+    - Map color is now changeable in startup setting.
+    - K2 Creep can be toggled off.
+
+---------------------------------------------------------------------------------------------------
 Version: 1.20.2
 Date: 2023-07-29
 

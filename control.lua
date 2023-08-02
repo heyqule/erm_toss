@@ -87,29 +87,29 @@ local addRaceSettings = function()
     race_settings.droppable_units = {
         {{ 'dragoon' },{1}},
         {{ 'dragoon', 'darktemplar' },{3,1}},
-        {{ 'dragoon', 'darktemplar', 'templar', 'archon', 'darkarchon', 'reaver'},{4,2,1,2,1,1}},
+        {{ 'dragoon', 'darktemplar', 'templar', 'archon', 'darkarchon', 'reaver'},{9,6,2,1,1,1}},
     }
     race_settings.construction_buildings = {
         {{ 'cannon_shortrange'},{1}},
-        {{ 'cannon_shortrange'},{1}},
-        {{ 'cannon_shortrange','pylon','shield_battery'},{2,1,1}},
+        {{ 'cannon_shortrange', 'shield_battery'},{5,1}},
+        {{ 'cannon_shortrange', 'pylon', 'shield_battery'},{5,2,1}},
     }
     race_settings.featured_groups = {
         -- Unit list, spawn ratio, unit attack point cost
-        {{'zealot', 'dragoon'}, {6, 3}, 20},
-        {{'zealot', 'archon'}, {6, 3}, 25},
-        {{'zealot', 'dragoon', 'archon', 'reaver'}, {4, 3, 2, 1}, 25},
-        {{'dragoon','templar', 'archon', 'darkarchon'}, {5, 1, 1, 1}, 30},
-        {{'darktemplar','templar','archon'}, {4, 1, 2}, 25},
-        {{'zealot','dragoon','darktemplar','templar','archon','darkarchon'}, {4,4,2,1,2,1}, 25},
-        {{'zealot','dragoon','darktemplar','templar','archon','darkarchon', 'reaver'}, {4,4,3,2,3,1,1}, 25},
+        {{'zealot', 'dragoon'}, {6, 3}, 25},
+        {{'zealot', 'archon'}, {6, 3}, 35},
+        {{'zealot', 'dragoon', 'archon', 'reaver'}, {4, 3, 2, 1}, 30},
+        {{'dragoon','templar', 'archon', 'darkarchon'}, {5, 1, 1, 1}, 40},
+        {{'darktemplar','templar','archon'}, {4, 1, 2}, 50},
+        {{'zealot','dragoon','darktemplar','templar','archon','darkarchon'}, {5,5,2,1,2,1}, 25},
+        {{'zealot','dragoon','darktemplar','templar','archon','darkarchon', 'reaver'}, {5,5,3,2,2,1,1}, 25},
     }
     race_settings.featured_flying_groups = {
-        {{'scout', 'corsair'}, {1, 1}, 35},
-        {{'scout', 'carrier'}, {7, 1}, 50},
-        {{'corsair', 'arbiter'}, {5, 1}, 60},
-        {{'scout', 'corsair', 'carrier', 'arbiter'}, {3,3,1,1}, 50},
-        {{'scout', 'carrier', 'shuttle'}, {5, 1, 1}, 60}
+        {{'scout', 'corsair'}, {1, 1}, 60},
+        {{'scout', 'carrier'}, {7, 1}, 75},
+        {{'corsair', 'arbiter'}, {5, 1}, 75},
+        {{'scout', 'corsair', 'carrier', 'arbiter'}, {3,3,1,1}, 75},
+        {{'scout', 'carrier', 'shuttle'}, {5, 1, 1}, 75}
     }
 
     race_settings.boss_building = 'warpgate'
@@ -117,6 +117,10 @@ local addRaceSettings = function()
     race_settings.colliding_unit = 'archon'
     race_settings.boss_tier = race_settings.boss_tier or 1
     race_settings.boss_kill_count = race_settings.boss_kill_count or 0
+
+    if game.active_mods['Krastorio2'] then
+        race_settings.enable_k2_creep = settings.startup['erm_toss-k2-creep'].value
+    end
 
     ErmRaceSettingsHelper.process_unit_spawn_rate_cache(race_settings)
 

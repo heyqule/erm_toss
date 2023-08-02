@@ -22,6 +22,7 @@ UNITS_SPAWN_ATTACK = 'empts-bs2'
 ARBITER_UNITS_SPAWN_ATTACK = 'empts-bs3'
 
 PROTOSS_MAP_COLOR = {r=0, g=255, b=255}
+PROTOSS_TEAM_COLOR = {r=0, g=255, b=255}
 
 TRIGGER_BOSS_DIES = 'embss-die'
 

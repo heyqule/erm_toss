@@ -23,16 +23,22 @@ function CustomAttacks.process_shuttle(event)
     if CustomAttackHelper.can_spawn(80) then
         CustomAttackHelper.drop_unit(event, MOD_NAME, CustomAttackHelper.get_unit(MOD_NAME, 'droppable_units'))
     end
-    if race_settings.tier == 3 and CustomAttackHelper.can_spawn(10) then
+    if race_settings.tier == 3 and CustomAttackHelper.can_spawn(25) then
         CustomAttackHelper.drop_unit(event, MOD_NAME, 'dragoon', 1)
-        CustomAttackHelper.drop_unit(event, MOD_NAME, 'reaver', 1)
+
+        if CustomAttackHelper.can_spawn(10) then
+            CustomAttackHelper.drop_unit(event, MOD_NAME, 'reaver', 1)
+        end
     end
 end
 
 function CustomAttacks.process_carrier(event)
-    CustomAttackHelper.drop_unit(event, MOD_NAME, 'interceptor', 5)
+    CustomAttackHelper.drop_unit(event, MOD_NAME, 'interceptor', 4)
     if CustomAttackHelper.can_spawn(20) then
-        CustomAttackHelper.drop_unit(event, MOD_NAME, 'interceptor', 3)
+        CustomAttackHelper.drop_unit(event, MOD_NAME, 'interceptor', 2)
+    end
+    if CustomAttackHelper.can_spawn(10) then
+        CustomAttackHelper.drop_unit(event, MOD_NAME, 'interceptor', 2)
     end
 end
 

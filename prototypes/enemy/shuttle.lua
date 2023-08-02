@@ -46,7 +46,7 @@ local incremental_cold_resistance = 70
 
 -- Handles Attack Speed
 
-local base_attack_speed = 2700
+local base_attack_speed = 3600
 local incremental_attack_speed = 900
 
 local attack_range = math.ceil(ERM_Config.get_max_attack_range() * 0.5)
@@ -80,7 +80,7 @@ function ErmToss.make_shuttle(level)
             max_health = ERM_UnitHelper.get_health(hitpoint, hitpoint * max_hitpoint_multiplier,  level),
             order = MOD_NAME .. '/'  .. name .. '/' .. level,
             subgroup = "erm-dropship-enemies",
-            map_color = PROTOSS_MAP_COLOR,
+            map_color = ERM_UnitHelper.format_map_color(settings.startup['erm_toss-map-color'].value),
             shooting_cursor_size = 2,
             resistances = {
                 { type = "acid", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
