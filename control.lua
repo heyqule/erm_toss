@@ -175,7 +175,7 @@ Event.register(defines.events.on_script_trigger_effect, function(event)
     end
 end)
 
-Event.on_nth_tick(1803, function(event)
+Event.on_nth_tick(601, function(event)
     CustomAttacks.clearTimeToLiveUnits(event)
 end)
 
