@@ -16,8 +16,8 @@ data:extend(
 })
 
 -- This set of data is used for set up default autoplace calculation.
-data.erm_enemy_races = data.erm_enemy_races or {}
-table.insert(data.erm_enemy_races, {
+data.erm_spawn_specs = data.erm_spawn_specs or {}
+table.insert(data.erm_spawn_specs, {
     name=MOD_NAME,
     force=FORCE_NAME,
     moisture=2, -- 1 = Dry and 2 = Wet
