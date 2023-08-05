@@ -16,6 +16,8 @@ data:extend(
 })
 
 -- This set of data is used for set up default autoplace calculation.
+data.erm_registered_race = data.erm_registered_race or {}
+data.erm_registered_race[MOD_NAME] = true
 data.erm_spawn_specs = data.erm_spawn_specs or {}
 table.insert(data.erm_spawn_specs, {
     mod_name=MOD_NAME,
