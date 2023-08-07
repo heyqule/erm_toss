@@ -129,7 +129,7 @@ function ErmToss.make_scarab(level)
                             target_effects = {
                                 {
                                     type = "create-explosion",
-                                    entity_name = "scarab-explosion"
+                                    entity_name = MOD_NAME..'/scarab-explosion'
                                 },
                                 {
                                     type = "nested-result",
@@ -218,12 +218,12 @@ function ErmToss.make_scarab(level)
                 }
             },
             --dying_sound = TossSound.enemy_death(name, 1),
-            dying_explosion = 'protoss-small-air-death',
-            corpse = name .. '-corpse'
+            dying_explosion = MOD_NAME..'/small-air-death',
+            corpse = MOD_NAME .. '/' .. name .. '-corpse'
         },
         {
             type = "corpse",
-            name = name .. '-corpse',
+            name = MOD_NAME .. '/' .. name .. '-corpse',
             icon = "__erm_toss__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-off-grid", "building-direction-8-way", "not-on-map" },

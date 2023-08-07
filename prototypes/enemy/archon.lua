@@ -125,7 +125,7 @@ function ErmToss.make_archon(level)
                             target_effects = {
                                 {
                                     type = "create-explosion",
-                                    entity_name = "archon-hit-explosion"
+                                    entity_name = MOD_NAME..'/archon-hit-explosion'
                                 },
                                 {
                                     type = "nested-result",
@@ -222,12 +222,12 @@ function ErmToss.make_archon(level)
                 }
             },
             dying_sound = TossSound.enemy_death(name, 0.75),
-            dying_explosion = 'toss-small-building-explosion',
-            corpse = name .. '-corpse'
+            dying_explosion = MOD_NAME..'/small-building-explosion',
+            corpse = MOD_NAME .. '/' .. name .. '-corpse'
         },
         {
             type = "corpse",
-            name = name .. '-corpse',
+            name = MOD_NAME .. '/' .. name .. '-corpse',
             icon = "__erm_toss__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-off-grid", "building-direction-8-way", "not-on-map" },

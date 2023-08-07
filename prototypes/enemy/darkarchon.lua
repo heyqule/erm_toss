@@ -127,7 +127,7 @@ function ErmToss.make_darkarchon(level)
                                 target_effects = {
                                     {
                                         type = "create-explosion",
-                                        entity_name = "darkarchon-feedback"
+                                        entity_name = MOD_NAME..'/darkarchon-feedback'
                                     },
                                     {
                                         type = "nested-result",
@@ -174,7 +174,7 @@ function ErmToss.make_darkarchon(level)
                                                 target_effects = {
                                                     {
                                                         type = "create-sticker",
-                                                        sticker = "darkarchon-maelstrom",
+                                                        sticker = MOD_NAME..'/darkarchon-maelstrom',
                                                         show_in_tooltip = true
                                                     },
                                                 },
@@ -248,12 +248,12 @@ function ErmToss.make_darkarchon(level)
                 }
             },
             dying_sound = TossSound.enemy_death(name, 1),
-            dying_explosion = 'toss-red-small-building-explosion',
-            corpse = name .. '-corpse'
+            dying_explosion = MOD_NAME..'/red-small-building-explosion',
+            corpse = MOD_NAME .. '/' .. name .. '-corpse'
         },
         {
             type = "corpse",
-            name = name .. '-corpse',
+            name = MOD_NAME .. '/' .. name .. '-corpse',
             icon = "__erm_toss__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-off-grid", "building-direction-8-way", "not-on-map" },

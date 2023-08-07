@@ -8,7 +8,7 @@ require('__base__/prototypes/entity/spawner-animation')
 data:extend({
     {
         type = "corpse",
-        name = "toss-small-base-corpse",
+        name = MOD_NAME.."/small-base-corpse",
         flags = { "placeable-neutral", "not-on-map" },
         icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
         icon_size = 64,
@@ -35,7 +35,7 @@ data:extend({
     },
     {
         type = "corpse",
-        name = "toss-large-base-corpse",
+        name = MOD_NAME.."/large-base-corpse",
         flags = { "placeable-neutral",  "not-on-map" },
         icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
         icon_size = 64,
@@ -62,7 +62,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "toss-large-building-explosion",
+        name = MOD_NAME..'/large-building-explosion',
         icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
         icon_size = 64,
         subgroup = 'explosions',
@@ -82,7 +82,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "toss-small-building-explosion",
+        name = MOD_NAME..'/small-building-explosion',
         icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
         icon_size = 64,
         subgroup = 'explosions',
@@ -102,7 +102,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "toss-red-large-building-explosion",
+        name = MOD_NAME.."red-large-building-explosion",
         icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
         icon_size = 64,
         subgroup = 'explosions',
@@ -122,7 +122,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "toss-red-small-building-explosion",
+        name = MOD_NAME.."/red-small-building-explosion",
         icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
         icon_size = 64,
         subgroup = 'explosions',

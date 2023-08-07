@@ -99,8 +99,8 @@ function ErmToss.make_cybernetics_core(level)
             selection_box = selection_box,
             pollution_absorption_absolute = pollution_absorption_absolute,
             pollution_absorption_proportional = 0.01,
-            corpse = "toss-small-base-corpse",
-            dying_explosion = "toss-small-building-explosion",
+            corpse = MOD_NAME.."/small-base-corpse",
+            dying_explosion = MOD_NAME..'/small-building-explosion',
             max_count_of_owned_units = max_count_of_owned_units,
             max_friends_around_to_spawn = max_friends_around_to_spawn,
             animations = {

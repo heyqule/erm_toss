@@ -123,7 +123,7 @@ function ErmToss.make_templar(level)
                                 },
                                 {
                                     type = "create-explosion",
-                                    entity_name = "psystorm-explosion"
+                                    entity_name = MOD_NAME.."/psystorm-explosion"
                                 }
                             }
                         }
@@ -188,12 +188,12 @@ function ErmToss.make_templar(level)
                 }
             },
             dying_sound = TossSound.enemy_death(name, 0.75),
-            dying_explosion = 'protoss-templar-death',
-            corpse = name .. '-corpse'
+            dying_explosion = MOD_NAME..'/templar-death',
+            corpse = MOD_NAME .. '/' .. name .. '-corpse'
         },
         {
             type = "corpse",
-            name = name .. '-corpse',
+            name = MOD_NAME .. '/' .. name .. '-corpse',
             icon = "__erm_toss__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-off-grid", "building-direction-8-way", "not-on-map" },

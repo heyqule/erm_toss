@@ -210,12 +210,12 @@ function ErmToss.make_carrier(level)
                 }
             },
             dying_sound = TossSound.enemy_death(name, 0.75),
-            dying_explosion = 'protoss-large-air-death',
-            corpse = name .. '-corpse'
+            dying_explosion = MOD_NAME..'/large-air-death',
+            corpse = MOD_NAME .. '/' .. name .. '-corpse'
         },
         {
             type = "corpse",
-            name = name .. '-corpse',
+            name = MOD_NAME .. '/' .. name .. '-corpse',
             icon = "__erm_toss__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-off-grid", "building-direction-8-way", "not-on-map" },

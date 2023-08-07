@@ -144,8 +144,8 @@ function ErmToss.make_shield_battery(level)
             selection_box = selection_box,
             shooting_cursor_size = 4,
             rotation_speed = 1,
-            corpse = "toss-small-base-corpse",
-            dying_explosion = "toss-small-building-explosion",
+            corpse = MOD_NAME.."/small-base-corpse",
+            dying_explosion = MOD_NAME..'/small-building-explosion',
             dying_sound = TossSound.building_dying_sound(1),
             call_for_help_radius = 50,
             folded_speed = 0.01,
@@ -176,7 +176,7 @@ function ErmToss.make_shield_battery(level)
                             target_effects = {
                                 {
                                     type = "create-explosion",
-                                    entity_name = "shield-battery-explosion"
+                                    entity_name = MOD_NAME..'/shield-battery-explosion'
                                 },
                                 {
                                     type = "damage",

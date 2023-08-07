@@ -16,7 +16,7 @@ require('util')
 
 local scout_rocket = ERM_WeaponRig.standardize_rocket_damage(
         util.table.deepcopy(data.raw['projectile']['rocket']),
-        'scout-rocket'
+        MOD_NAME..'/scout-rocket'
 )
 table.insert(scout_rocket['action']['action_delivery']['target_effects'],  {
     type = "nested-result",
@@ -55,7 +55,7 @@ data:extend({
     scout_rocket,
     {
         type = "projectile",
-        name = "dragoon-projectile",
+        name = MOD_NAME.."/dragoon-projectile",
         flags = { "not-on-map" },
         acceleration = 0.005,
         action = {
@@ -65,7 +65,7 @@ data:extend({
                 target_effects = {
                     {
                         type = "create-entity",
-                        entity_name = "dragoon-explosion"
+                        entity_name = MOD_NAME.."/dragoon-explosion"
                     },
                     {
                         type = "damage",
@@ -90,7 +90,7 @@ data:extend({
     },
     {
         type = "projectile",
-        name = "interceptor-laser",
+        name = MOD_NAME..'/interceptor-laser',
         flags = { "not-on-map" },
         acceleration = 0.005,
         action = {
@@ -118,7 +118,7 @@ data:extend({
     },
     {
         type = "projectile",
-        name = "stasis-projectile",
+        name = MOD_NAME..'/stasis-projectile',
         flags = { "not-on-map" },
         acceleration = 0.005,
         action = {
@@ -128,7 +128,7 @@ data:extend({
                 target_effects = {
                     {
                         type = "create-entity",
-                        entity_name = "stasis-explosion"
+                        entity_name = MOD_NAME.."/stasis-explosion"
                     },
                     {
                         type = "nested-result",
@@ -165,7 +165,7 @@ data:extend({
     --- Explosions
     {
         type = "explosion",
-        name = "dragoon-explosion",
+        name = MOD_NAME.."/dragoon-explosion",
         flags = { "not-on-map" },
         animations = {
             {
@@ -180,7 +180,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "corsair-explosion",
+        name = MOD_NAME.."/corsair-explosion",
         flags = { "not-on-map" },
         animations = {
             {
@@ -196,7 +196,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "stasis-explosion",
+        name = MOD_NAME.."/stasis-explosion",
         flags = { "not-on-map" },
         animations = {
             {
@@ -212,7 +212,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "psystorm-explosion",
+        name = MOD_NAME.."/psystorm-explosion",
         flags = { "not-on-map" },
         animations = {
             {
@@ -229,7 +229,7 @@ data:extend({
     --- Death Explosion
     {
         type = "explosion",
-        name = "archon-hit-explosion",
+        name = MOD_NAME..'/archon-hit-explosion',
         flags = { "not-on-map" },
         animations = {
             {
@@ -246,7 +246,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "protoss-small-air-death",
+        name = MOD_NAME.."/small-air-death",
         flags = { "not-on-map" },
         animations = {
             filename = "__erm_toss__/graphics/entity/units/air-death/air-death.png",
@@ -262,7 +262,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "protoss-large-air-death",
+        name = MOD_NAME..'/large-air-death',
         flags = { "not-on-map" },
         animations = {
             filename = "__erm_toss__/graphics/entity/units/air-death/air-death.png",
@@ -278,7 +278,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "protoss-zealot-death",
+        name = MOD_NAME..'/zealot-death',
         flags = { "not-on-map" },
         animations = {
             filename = "__erm_toss__/graphics/entity/units/zealot/zealot-death.png",
@@ -294,7 +294,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "protoss-templar-death",
+        name = MOD_NAME.."/templar-death",
         flags = { "not-on-map" },
         animations = {
             filename = "__erm_toss__/graphics/entity/units/templar/templar-death.png",
@@ -310,7 +310,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "protoss-recall-80",
+        name = MOD_NAME..'/recall-80',
         flags = { "not-on-map" },
         animations = {
             filename = "__erm_toss__/graphics/entity/projectiles/recall-80.png",
@@ -327,7 +327,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "protoss-recall",
+        name = MOD_NAME..'/recall',
         flags = { "not-on-map" },
         animations = {
             filename = "__erm_toss__/graphics/entity/projectiles/recall.png",
@@ -344,7 +344,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "protoss-disrupt-80",
+        name = MOD_NAME..'/disrupt-80',
         flags = { "not-on-map" },
         animations = {
             filename = "__erm_toss__/graphics/entity/projectiles/disrupt-80.png",
@@ -361,7 +361,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "protoss-disrupt",
+        name = MOD_NAME.."/disrupt",
         flags = { "not-on-map" },
         animations = {
             filename = "__erm_toss__/graphics/entity/projectiles/disrupt.png",
@@ -378,7 +378,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "darkarchon-feedback",
+        name = MOD_NAME..'/darkarchon-feedback',
         flags = { "not-on-map" },
         animations = {
             {
@@ -394,7 +394,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "scarab-explosion",
+        name = MOD_NAME..'/scarab-explosion',
         flags = {"not-on-map"},
         animations = {
             {
@@ -410,7 +410,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "shield-battery-explosion",
+        name = MOD_NAME..'/shield-battery-explosion',
         flags = {"not-on-map"},
         animations = {
             {
@@ -426,7 +426,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = "demo-darkarchon-maelstrom",
+        name = MOD_NAME.."/demo-darkarchon-maelstrom",
         flags = {"not-on-map"},
         animations =         {
             filename = "__erm_toss__/graphics/entity/projectiles/maelstrom.png",
@@ -440,7 +440,7 @@ data:extend({
     },
     {
         type = "sticker",
-        name = "darkarchon-maelstrom",
+        name = MOD_NAME..'/darkarchon-maelstrom',
         flags = { "not-on-map" },
         duration_in_ticks = 2 * defines.time.second,
         damage_interval = defines.time.second / 4,

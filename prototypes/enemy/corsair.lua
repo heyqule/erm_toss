@@ -121,7 +121,7 @@ function ErmToss.make_corsair(level)
                                 target_effects = {
                                     {
                                         type = "create-explosion",
-                                        entity_name = 'corsair-explosion'
+                                        entity_name = MOD_NAME..'/corsair-explosion'
                                     },
                                     {
                                         type = "damage",
@@ -140,7 +140,7 @@ function ErmToss.make_corsair(level)
                                 target_effects = {
                                     {
                                         type = "create-explosion",
-                                        entity_name = "protoss-disrupt-80"
+                                        entity_name = MOD_NAME..'/disrupt-80'
                                     },
                                     {
                                         type = "nested-result",
@@ -251,12 +251,12 @@ function ErmToss.make_corsair(level)
                 }
             },
             dying_sound = TossSound.enemy_death('scout', 0.75),
-            dying_explosion = 'protoss-small-air-death',
-            corpse = name .. '-corpse'
+            dying_explosion = MOD_NAME..'/small-air-death',
+            corpse = MOD_NAME .. '/' .. name .. '-corpse'
         },
         {
             type = "corpse",
-            name = name .. '-corpse',
+            name = MOD_NAME .. '/' .. name .. '-corpse',
             icon = "__erm_toss__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-off-grid", "building-direction-8-way", "not-on-map" },
