@@ -15,13 +15,4 @@ data:extend {
         default_value = PROTOSS_MAP_COLOR,
         order = "erm_toss-100"
     },
-    {
-        type = "color-setting",
-        name = "erm_toss-team-color",
-        description = "erm_toss-team-color",
-        setting_type = "startup",
-        default_value = PROTOSS_TEAM_COLOR,
-        order = "erm_toss-110",
-        hidden = true
-    },
 }

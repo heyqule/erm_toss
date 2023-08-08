@@ -36,7 +36,7 @@ if mods['erm_toss_hd'] then
             name = "erm_toss-team_color",
             description = "erm_toss-team_color",
             setting_type = "startup",
-            default_value = TOSS_TEAM_COLOR,
+            default_value = PROTOSS_TEAM_COLOR,
             order = "erm_toss-111",
         },
         {
@@ -55,6 +55,14 @@ if mods['erm_toss_hd'] then
             setting_type = "startup",
             default_value = false,
             order = "erm_toss-113",
+        },
+        {
+            type = "bool-setting",
+            name = "erm_toss-enable_floor_decals",
+            description = "erm_toss-enable_floor_decals",
+            setting_type = "startup",
+            default_value = true,
+            order = "erm_toss-115",
         },
     }
 end
