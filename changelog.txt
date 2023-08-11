@@ -1,11 +1,13 @@
 ---------------------------------------------------------------------------------------------------
 Version: 1.21.0
-Date: 2023-08-03
+Date: 2023-08-11
 
   Changes:
     - Refactor default autoplace
     - use new ERM mod registration system
     - Prefix all entities for better compatiblity.
+    - Added team color settings when HD package is installed
+    - Normalize distance_per_frame to 0.2 / 0.5 for units
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.20.3

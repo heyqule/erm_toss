@@ -151,7 +151,7 @@ function ErmToss.make_dragoon(level)
                 }
             },
 
-            distance_per_frame = 0.15,
+            distance_per_frame = 0.2,
             run_animation = {
                 layers = {
                     {

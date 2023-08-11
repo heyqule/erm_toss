@@ -44,7 +44,7 @@ if mods['erm_toss_hd'] then
             name = "erm_toss-team_blend_mode",
             description = "erm_toss-team_blend_mode",
             setting_type = "startup",
-            default_value = 4,
+            default_value = 3,
             order = "erm_toss-112",
             allowed_values = { 1,2,3,4,5,6 },
         },
