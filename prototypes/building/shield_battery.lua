@@ -57,7 +57,7 @@ local incremental_heal_damage = 4
 local base_attack_speed = 900
 local incremental_attack_speed = 300
 
-local attack_range = 30
+local attack_range = ERM_Config.get_max_attack_range() + 16
 
 -- Animation Settings
 local unit_scale = 1.5

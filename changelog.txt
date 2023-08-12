@@ -8,6 +8,8 @@ Date: 2023-08-11
     - Prefix all entities for better compatiblity.
     - Added team color settings when HD package is installed
     - Normalize distance_per_frame to 0.2 / 0.5 for units
+    - Turret max range is now max range config + 16
+    - When scarab dies, it explodes for 25% damage with 2 radius
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.20.3
