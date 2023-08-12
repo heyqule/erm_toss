@@ -125,6 +125,8 @@ local addRaceSettings = function()
     ErmRaceSettingsHelper.process_unit_spawn_rate_cache(race_settings)
 
     remote.call('enemyracemanager', 'register_race', race_settings)
+
+    CustomAttacks.get_race_settings(MOD_NAME, true)
 end
 
 Event.on_init(function(event)
