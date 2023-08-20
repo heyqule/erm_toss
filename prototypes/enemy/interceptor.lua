@@ -24,7 +24,7 @@ local name = 'interceptor'
 
 
 local hitpoint = 80
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.75
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 2
 
 
 -- Handles acid and poison resistance
@@ -187,6 +187,24 @@ function ErmToss.make_interceptor(level)
                         animation_speed = 0.5,
                         shift = { 0.66, 0 }
                     }
+                }
+            },
+            created_effect = {
+                type = "direct",
+                action_delivery = {
+                    type = "instant",
+                    source_effects = {
+                        {
+                            type = "script",
+                            effect_id = TIME_TO_LIVE_CREATED,
+                        }
+                    }
+                }
+            },
+            dying_trigger_effect = {
+                {
+                    type = "script",
+                    effect_id = TIME_TO_LIVE_DIED,
                 }
             },
             dying_sound = TossSound.enemy_death('scout', 0.5),

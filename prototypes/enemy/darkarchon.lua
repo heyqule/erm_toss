@@ -29,12 +29,12 @@ local base_physical_resistance = 0
 local incremental_physical_resistance = 95
 -- Handles fire and explosive resistance
 local base_fire_resistance = 0
-local incremental_fire_resistance = 95
+local incremental_fire_resistance = 90
 -- Handles laser and electric resistance
-local base_electric_resistance = 25
+local base_electric_resistance = 20
 local incremental_electric_resistance = 70
 -- Handles cold resistance
-local base_cold_resistance = 25
+local base_cold_resistance = 20
 local incremental_cold_resistance = 70
 
 -- Handles physical damages

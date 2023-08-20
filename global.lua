@@ -16,7 +16,11 @@ PROBE_ATTACK = 'empts-prb'
 SHUTTLE_ATTACK = 'empts-sht'
 CARRIER_ATTACK = 'empts-car'
 REAVER_ATTACK = 'empts-rea'
+
 SELF_DESTRUCT_ATTACK = 'empts-slf'
+TIME_TO_LIVE_DIED = 'empts-ttld'
+TIME_TO_LIVE_CREATED = 'empts-ttlc'
+
 BOSS_SPAWN_ATTACK = 'empts-bs1'
 UNITS_SPAWN_ATTACK = 'empts-bs2'
 ARBITER_UNITS_SPAWN_ATTACK = 'empts-bs3'

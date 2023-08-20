@@ -22,7 +22,7 @@ local name = 'scarab'
 
 
 local hitpoint = 80
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 2
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 2.5
 
 
 -- Handles acid and poison resistance
@@ -188,32 +188,6 @@ function ErmToss.make_scarab(level)
                     }
                 }
             },
-            dying_effect = {
-                {
-                    type = "nested-result",
-                    action = {
-                        type = "area",
-                        force = 'not-same',
-                        radius = 2,
-                        ignore_collision_condition = true,
-                        action_delivery = {
-                            type = "instant",
-                            target_effects = {
-                                {
-                                    type = "damage",
-                                    damage = { amount = 5, type = "explosion" },
-                                    apply_damage_to_trees = true
-                                },
-                                {
-                                    type = "damage",
-                                    damage = { amount = 5, type = "electric" },
-                                    apply_damage_to_trees = true
-                                }
-                            },
-                        }
-                    }
-                }
-            },
             distance_per_frame = 0.2,
             run_animation = {
                 layers = {
@@ -239,6 +213,48 @@ function ErmToss.make_scarab(level)
                         draw_as_shadow = true,
                         animation_speed = 0.5,
                         shift = { 0.2, 0 }
+                    }
+                }
+            },
+            created_effect = {
+                type = "direct",
+                action_delivery = {
+                    type = "instant",
+                    source_effects = {
+                        {
+                            type = "script",
+                            effect_id = TIME_TO_LIVE_CREATED,
+                        }
+                    }
+                }
+            },
+            dying_trigger_effect = {
+                {
+                    type = "script",
+                    effect_id = TIME_TO_LIVE_DIED,
+                },
+                {
+                    type = "nested-result",
+                    action = {
+                        type = "area",
+                        force = 'not-same',
+                        radius = 3,
+                        ignore_collision_condition = true,
+                        action_delivery = {
+                            type = "instant",
+                            target_effects = {
+                                {
+                                    type = "damage",
+                                    damage = { amount = 5, type = "explosion" },
+                                    apply_damage_to_trees = true
+                                },
+                                {
+                                    type = "damage",
+                                    damage = { amount = 5, type = "electric" },
+                                    apply_damage_to_trees = true
+                                }
+                            },
+                        }
                     }
                 }
             },

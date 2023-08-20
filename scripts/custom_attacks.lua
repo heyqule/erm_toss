@@ -7,11 +7,7 @@
 local CustomAttackHelper = require('__enemyracemanager__/lib/helper/custom_attack_helper')
 local ERMConfig = require('__enemyracemanager__/lib/global_config')
 
-local CustomAttacks = {}
-
-CustomAttacks.valid = CustomAttackHelper.valid
-CustomAttacks.clearTimeToLiveUnits = CustomAttackHelper.clear_time_to_live_units
-CustomAttacks.get_race_settings = CustomAttackHelper.get_race_settings
+local CustomAttacks = CustomAttackHelper
 
 function CustomAttacks.process_probe(event)
     CustomAttackHelper.drop_unit(event, MOD_NAME, CustomAttackHelper.get_unit(MOD_NAME, 'construction_buildings'))
@@ -45,10 +41,6 @@ end
 
 function CustomAttacks.process_reaver(event)
     CustomAttackHelper.drop_unit(event, MOD_NAME, 'scarab', 1)
-end
-
-function CustomAttacks.process_self_destruct(event)
-    event.source_entity.destroy()
 end
 
 function CustomAttacks.process_boss_units(event, batch_size)
