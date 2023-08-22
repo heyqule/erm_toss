@@ -28,6 +28,38 @@ table.insert(data.erm_spawn_specs, {
     temperature=1, --1,2,3 (1 cold, 2. normal, 3 hot)
 })
 
+---
+--- This set of data replace vanilla biters for the menu.  It may interfere with other mods that use vanilla biter.
+---
+data.erm_menu_replacement = data.erm_menu_replacement or {}
+data.erm_menu_replacement[MOD_NAME] = {
+    race = MOD_NAME,
+    level = 3,
+    ["unit"] = {
+        ["small-biter"] = 'zealot',
+        ["small-spitter"] = 'dragoon',
+        ["medium-biter"] = 'dragoon',
+        ["medium-spitter"] = 'archon',
+        ["big-biter"] = 'archon',
+        ["big-spitter"] = 'scout',
+        ["behemoth-biter"] = "darktemplar",
+        ["behemoth-spitter"] = "scout",
+    },
+    ["turret"] = {
+        ["small-worm-turret"] = 'cannon',
+        ["medium-worm-turret"] = 'cannon',
+        ["big-worm-turret"] = 'cannon',
+        ["behemoth-worm-turret"] = 'cannon',
+    },
+    ["turret-scale"] = 0.8,
+    ["unit-spawner"] = {
+        ["biter-spawner"] = 'nexus',
+        ["spitter-spawner"] = 'gateway',
+    },
+    ["unit-spawner-scale"] = 0.8
+}
+
+
 require "prototypes.enemy.arbiter"
 require "prototypes.enemy.zealot"
 require "prototypes.enemy.dragoon"
