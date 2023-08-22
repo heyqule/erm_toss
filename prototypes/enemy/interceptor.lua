@@ -50,14 +50,14 @@ local incremental_electric_damage = 8
 
 -- Handles Attack Speed
 
-local base_attack_speed = 120
+local base_attack_speed = 90
 local incremental_attack_speed = 60
 
 local attack_range = math.ceil(ERM_Config.get_max_attack_range() * 0.25)
 
 
 local base_movement_speed = 0.2
-local incremental_movement_speed = 0.2
+local incremental_movement_speed = 0.3
 
 -- Misc settings
 local vision_distance = ERM_UnitHelper.get_vision_distance(attack_range)
