@@ -164,7 +164,7 @@ function ErmToss.make_corsair(level)
                         }
                     }
                 },
-                sound = TossSound.corsair_attack(0.75),
+                sound = TossSound.corsair_attack(0.66),
                 animation = {
                     layers = {
                         {

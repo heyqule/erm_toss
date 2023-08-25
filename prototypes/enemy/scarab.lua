@@ -159,7 +159,7 @@ function ErmToss.make_scarab(level)
                         }
                     },
                 },
-                sound = TossSound.scarab_attack(0.75),
+                sound = TossSound.scarab_attack(0.66),
                 animation = {
                     layers = {
                         {

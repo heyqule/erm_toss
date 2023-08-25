@@ -129,7 +129,7 @@ function ErmToss.make_templar(level)
                         }
                     },
                 },
-                sound = TossSound.templar_attack(0.75),
+                sound = TossSound.templar_attack(0.66),
                 animation = {
                     layers = {
                         {

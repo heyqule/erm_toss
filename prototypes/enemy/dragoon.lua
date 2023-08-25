@@ -121,7 +121,7 @@ function ErmToss.make_dragoon(level)
                         }
                     }
                 },
-                sound = TossSound.ball_attack(1),
+                sound = TossSound.ball_attack(0.66),
                 animation = {
                     layers = {
                         {

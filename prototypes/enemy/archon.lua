@@ -148,7 +148,7 @@ function ErmToss.make_archon(level)
                         }
                     },
                 },
-                sound = TossSound.archon_attack(0.75),
+                sound = TossSound.archon_attack(0.66),
                 animation = {
                     layers = {
                         {

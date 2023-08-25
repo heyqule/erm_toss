@@ -124,7 +124,7 @@ function ErmToss.make_scout(level)
                         }
                     }
                 },
-                sound = TossSound.ball_attack(0.75),
+                sound = TossSound.ball_attack(0.66),
                 animation = {
                     layers = {
                         {

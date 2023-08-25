@@ -130,7 +130,7 @@ function ErmToss.make_darktemplar(level)
                         }
                     }
                 },
-                sound = TossSound.darktemplar_attack(0.75),
+                sound = TossSound.darktemplar_attack(0.66),
                 animation = {
                     layers = {
                         {

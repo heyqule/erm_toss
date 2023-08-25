@@ -131,7 +131,7 @@ function ErmToss.make_interceptor(level)
                         }
                     }
                 },
-                sound = TossSound.interceptor_projectile(0.2),
+                sound = TossSound.interceptor_projectile(0.5),
                 animation = {
                     layers = {
                         {
@@ -207,7 +207,7 @@ function ErmToss.make_interceptor(level)
                     effect_id = TIME_TO_LIVE_DIED,
                 }
             },
-            dying_sound = TossSound.enemy_death('scout', 0.5),
+            dying_sound = TossSound.enemy_death('scout', 0.75),
             dying_explosion = MOD_NAME..'/small-air-death',
             corpse = MOD_NAME .. '/' .. name .. '-corpse'
         },
