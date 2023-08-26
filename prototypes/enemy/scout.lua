@@ -120,7 +120,7 @@ function ErmToss.make_scout(level)
                             type = "projectile",
                             projectile = MOD_NAME.."/scout-rocket",
                             starting_speed = 0.3,
-                            max_range = ERM_Config.get_max_projectile_range(2),
+                            max_range = ERM_Config.get_max_projectile_range(),
                         }
                     }
                 },

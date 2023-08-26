@@ -10,6 +10,8 @@ Date: 2023-08-??
     - Reaver attacks increase from 13s - 10s to 10s - 5s
     - Increased interceptor movement speed and shooting speed.
     - Increased scarab movement speed
+    - Dragoon projectile is now a directional attack.
+    - Scarab explosion happens as source_effect, so that it's escapable
 
   Bugfixes:
     - Fix the settings in race mod cache did not properly refresh when version upgrades.

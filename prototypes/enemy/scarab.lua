@@ -48,8 +48,8 @@ local incremental_electric_damage = 5
 
 -- Handles Attack Speed
 
-local base_attack_speed = 120
-local incremental_attack_speed = 60
+local base_attack_speed = 90
+local incremental_attack_speed = 45
 
 local attack_range = 1
 
@@ -123,10 +123,10 @@ function ErmToss.make_scarab(level)
                         action_delivery = {
                             type = "instant",
                             source_effects = {
-                                type = "script",
-                                effect_id = SELF_DESTRUCT_ATTACK,
-                            },
-                            target_effects = {
+                                {
+                                    type = "script",
+                                    effect_id = SELF_DESTRUCT_ATTACK,
+                                },
                                 {
                                     type = "create-explosion",
                                     entity_name = MOD_NAME..'/scarab-explosion'

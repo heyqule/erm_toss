@@ -7,8 +7,10 @@ require('__stdlib__/stdlib/utils/defines/time')
 local Sprites = require('__stdlib__/stdlib/data/modules/sprites')
 
 local ERM_WeaponRig = require('__enemyracemanager__/lib/rig/weapon')
+local ERMDataHelper = require('__enemyracemanager__/lib/rig/data_helper')
 
 local smoke_animations = require("__base__/prototypes/entity/smoke-animations")
+
 
 local smoke_fast_animation = smoke_animations.trivial_smoke_fast
 
@@ -58,6 +60,13 @@ data:extend({
         name = MOD_NAME.."/dragoon-projectile",
         flags = { "not-on-map" },
         acceleration = 0.005,
+
+        direction_only = true,
+        collision_box = {{-0.5,-0.5},{0.5,0.5}},
+        force_condition = "not-same",
+        hit_collision_mask = {"player-layer", "train-layer", ERMDataHelper.getFlyingLayerName()},
+        hit_at_collision_position = true,
+
         action = {
             type = "direct",
             action_delivery = {
