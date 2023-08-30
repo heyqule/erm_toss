@@ -56,8 +56,8 @@ local addRaceSettings = function()
 
     race_settings.units = {
         { 'zealot', 'dragoon' },
-        { 'scout', 'corsair', 'probe', 'shuttle' },
-        { 'templar', 'darktemplar', 'archon', 'darkarchon', 'carrier', 'arbiter', 'reaver' },
+        { 'scout', 'corsair', 'probe', 'shuttle', 'darktemplar' },
+        { 'templar', 'archon', 'darkarchon', 'carrier', 'arbiter', 'reaver' },
     }
     race_settings.turrets = {
         { 'cannon', 'acid-cannon' },
