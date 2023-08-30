@@ -92,7 +92,7 @@ function ErmToss.make_reaver(level)
                 { type = "cold", percent = ERM_UnitHelper.get_resistance(base_cold_resistance, incremental_cold_resistance,  level) }
             },
             healing_per_tick = ERM_UnitHelper.get_healing(hitpoint, max_hitpoint_multiplier,  level),
-            collision_mask = ERMDataHelper.getFlyingCollisionMask(),
+            --collision_mask = { "player-layer" },
             collision_box = collision_box,
             selection_box = selection_box,
             sticker_box = selection_box,

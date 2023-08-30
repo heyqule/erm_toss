@@ -7,6 +7,9 @@ Date: 2023-09-01
     - Pollution to attack tweaks
     - Dark templar is now tier 2 unit.
 
+  Bugfixes:
+    - Fixed reaver is using flyer's collision mask.
+
 ---------------------------------------------------------------------------------------------------
 Version: 1.22.0
 Date: 2023-08-26
