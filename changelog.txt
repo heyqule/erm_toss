@@ -3,7 +3,7 @@ Version: 1.22.1
 Date: 2023-09-01
 
   Changes:
-    - Spawn table tweaks
+    - early game unit spawn table tweaks
     - Pollution to attack tweaks
     - Dark templar is now tier 2 unit.
 
