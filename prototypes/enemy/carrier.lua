@@ -48,14 +48,11 @@ local incremental_electric_damage = 3
 local base_attack_speed = 720 -- 12s
 local incremental_attack_speed = 240 -- 8s
 
-local attack_range = ERM_Config.get_max_attack_range()
-
 
 local base_movement_speed = 0.15
 local incremental_movement_speed = 0.125
 
 -- Misc Settings
-local vision_distance = ERM_UnitHelper.get_vision_distance(attack_range)
 local pollution_to_join_attack = 250
 local distraction_cooldown = 300
 
@@ -66,6 +63,8 @@ local selection_box = { { -1.5, -1.25 }, { 1.5, 1.25 } }
 
 function ErmToss.make_carrier(level)
     level = level or 1
+    local attack_range = ERM_UnitHelper.get_attack_range(level)
+    local vision_distance = ERM_UnitHelper.get_vision_distance(attack_range)
 
     data:extend({
         {

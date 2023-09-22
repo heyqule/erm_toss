@@ -53,14 +53,12 @@ local incremental_electric_damage = 8
 local base_attack_speed = 90
 local incremental_attack_speed = 60
 
-local attack_range = math.ceil(ERM_Config.get_max_attack_range() * 0.25)
 
 
 local base_movement_speed = 0.2
 local incremental_movement_speed = 0.3
 
 -- Misc settings
-local vision_distance = ERM_UnitHelper.get_vision_distance(attack_range)
 
 local pollution_to_join_attack = 20
 local distraction_cooldown = 300
@@ -73,6 +71,8 @@ local selection_box = { { -0.75, -0.75 }, { 0.75, 0.75 } }
 
 function ErmToss.make_interceptor(level)
     level = level or 1
+    local attack_range = ERM_UnitHelper.get_attack_range(level,0.25)
+    local vision_distance = ERM_UnitHelper.get_vision_distance(attack_range)
 
     data:extend({
         {

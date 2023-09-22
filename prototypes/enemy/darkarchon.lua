@@ -47,14 +47,12 @@ local incremental_electric_damage = 5
 local base_attack_speed = 600
 local incremental_attack_speed = 300
 
-local attack_range = ERM_Config.get_max_attack_range()
 
 
 local base_movement_speed = 0.125
 local incremental_movement_speed = 0.1
 
 -- Misc settings
-local vision_distance = ERM_UnitHelper.get_vision_distance(attack_range)
 
 local pollution_to_join_attack = 350
 local distraction_cooldown = 300
@@ -67,6 +65,8 @@ local selection_box = { { -1, -1 }, { 1, 1 } }
 
 function ErmToss.make_darkarchon(level)
     level = level or 1
+    local attack_range = ERM_UnitHelper.get_attack_range(level)
+    local vision_distance = ERM_UnitHelper.get_vision_distance(attack_range)
 
     data:extend({
         {
