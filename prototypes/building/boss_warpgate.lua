@@ -82,7 +82,7 @@ function ErmToss.make_boss_wrapgate(level, hitpoint)
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy" },
             max_health = hitpoint,
-            order = MOD_NAME .. "-" .. name,
+            order = MOD_NAME .. '/' .. name .. '/'.. level,
             subgroup = "enemies",
             working_sound = TossSound.building_working_sound('nexus', 1),
             dying_sound = TossSound.building_dying_sound(1),
