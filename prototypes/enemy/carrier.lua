@@ -19,7 +19,7 @@ local name = 'carrier'
 -- Hitpoints
 
 local hitpoint = 450
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.75
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 2
 
 
 -- Handles acid and poison resistance
@@ -53,7 +53,7 @@ local base_movement_speed = 0.15
 local incremental_movement_speed = 0.125
 
 -- Misc Settings
-local pollution_to_join_attack = 250
+local pollution_to_join_attack = 350
 local distraction_cooldown = 300
 
 -- Animation Settings

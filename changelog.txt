@@ -1,4 +1,24 @@
 ---------------------------------------------------------------------------------------------------
+Version: 1.22.3
+Date: 2023-12-10
+
+  Changes:
+    - Zealot pollution_to_join_attack from 7 to 10
+    - Dragoon pollution_to_join_attack from 15 to 20
+    - Shuttle pollution_to_join_attack from 150 to 120
+    - Dark Archon pollution_to_join_attack from 350 to 300
+    - Archon pollution_to_join_attack from 350 to 250
+    - Carriers pollution_to_join_attack from 250 to 35`0
+    - Carriers HP increased by 15%.
+    - Reaver pollution_to_join_attack from 250 to 180
+    - Templar pollution_to_join_attack from 200 to 150
+    - DarkTemplar pollution_to_join_attack from 125 to 80
+    - Arbiter recall chance from 0.03 to 0.05
+
+  Bugfixes:
+    - Fixed ground units projectiles not hitting belt.
+
+---------------------------------------------------------------------------------------------------
 Version: 1.22.2
 Date: 2023-09-22
 

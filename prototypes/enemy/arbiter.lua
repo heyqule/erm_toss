@@ -55,7 +55,7 @@ local base_movement_speed = 0.15
 local incremental_movement_speed = 0.125
 
 -- Misc Settings
-local pollution_to_join_attack = 250
+local pollution_to_join_attack = 350
 local distraction_cooldown = 300
 
 -- Animation Settings
@@ -127,7 +127,7 @@ function ErmToss.make_arbiter(level)
                         },
                         {
                             type = "direct",
-                            probability = 0.03,
+                            probability = 0.05,
                             action_delivery = {
                                 type = "instant",
                                 source_effects = {
