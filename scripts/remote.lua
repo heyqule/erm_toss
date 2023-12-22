@@ -5,7 +5,7 @@
 ---
 require('util')
 local ErmConfig = require('__enemyracemanager__/lib/global_config')
-local CustomAttacks = require('__erm_zerg__/scripts/custom_attacks')
+local CustomAttacks = require('__erm_toss__/scripts/custom_attacks')
 
 local RemoteAPI = {}
 
