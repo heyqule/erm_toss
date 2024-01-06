@@ -160,6 +160,11 @@ for i = 1, max_level do
     ErmToss.make_shield_battery(i)
 end
 
+data.erm_land_scout = data.erm_land_scout or {}
+data.erm_land_scout[MOD_NAME] = 'zealot'
+
+data.erm_aerial_scout = data.erm_aerial_scout or {}
+data.erm_aerial_scout[MOD_NAME] = 'scout'
 
 
 
