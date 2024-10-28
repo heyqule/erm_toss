@@ -8,11 +8,52 @@ require('global')
 data:extend {
     --- Startup Tab
     {
-        type = "color-setting",
-        name = "erm_toss-map-color",
-        description = "erm_toss-map-color",
-        setting_type = "startup",
+        type = 'color-setting',
+        name = 'erm_toss-map-color',
+        description = 'erm_toss-map-color',
+        setting_type = 'startup',
         default_value = PROTOSS_MAP_COLOR,
-        order = "erm_toss-100"
+        order = 'erm_toss-100'
+    },
+    {
+        type = 'bool-setting',
+        name = 'erm_toss-team_color_enable',
+        description = 'erm_toss-team_color_enable',
+        setting_type = 'startup',
+        default_value = true,
+        order = 'erm_toss-110',
+    },
+    {
+        type = 'color-setting',
+        name = 'erm_toss-team_color',
+        description = 'erm_toss-team_color',
+        setting_type = 'startup',
+        default_value = PROTOSS_TEAM_COLOR,
+        order = 'erm_toss-111',
+    },
+    {
+        type = 'int-setting',
+        name = 'erm_toss-team_blend_mode',
+        description = 'erm_toss-team_blend_mode',
+        setting_type = 'startup',
+        default_value = 3,
+        order = 'erm_toss-112',
+        allowed_values = { 1,2,3,4,5,6 },
+    },
+    {
+        type = 'bool-setting',
+        name = 'erm_toss-team_color_preserve_gloss',
+        description = 'erm_toss-team_color_preserve_gloss',
+        setting_type = 'startup',
+        default_value = false,
+        order = 'erm_toss-113',
+    },
+    {
+        type = 'bool-setting',
+        name = 'erm_toss-enable_floor_decals',
+        description = 'erm_toss-enable_floor_decals',
+        setting_type = 'startup',
+        default_value = true,
+        order = 'erm_toss-115',
     },
 }

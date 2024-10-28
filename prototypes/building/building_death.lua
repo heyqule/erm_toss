@@ -4,140 +4,75 @@
 --- DateTime: 12/21/2020 7:32 PM
 ---
 require('__base__/prototypes/entity/spawner-animation')
+local AnimationDB = require('__erm_libs__/prototypes/animation_db')
 
 data:extend({
     {
-        type = "corpse",
-        name = MOD_NAME.."/small-base-corpse",
-        flags = { "placeable-neutral", "not-on-map" },
-        icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
+        type = 'corpse',
+        name = MOD_NAME..'--small-base-corpse',
+        flags = { 'placeable-neutral', 'not-on-map' },
+        icon = '__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png',
         icon_size = 64,
         collision_box = { { -2, -2 }, { 2, 2 } },
         selection_box = { { -2, -2 }, { 2, 2 } },
         selectable_in_game = false,
         dying_speed = 0.04,
-        time_before_removed = defines.time.minute * settings.startup["enemyracemanager-enemy-corpse-time"].value,
-        subgroup = "corpses",
-        order = "c[corpse]-c[small-toss-base-corpse]",
-        final_render_layer = "remnants",
-        animation = {
-            {
-                filename = "__erm_toss__/graphics/entity/buildings/small_rubble.png",
-                variation_count = 1,
-                width = 96,
-                height = 96,
-                frame_count = 1,
-                direction_count = 1,
-                scale = 2
-            }
-        },
-        ground_path = spawner_integration()
+        time_before_removed = defines.time.minute * settings.startup['enemyracemanager-enemy-corpse-time'].value,
+        subgroup = 'corpses',
+        order = 'c[corpse]-c[small-toss-base-corpse]',
+        final_render_layer = 'remnants',
+        animation = AnimationDB.get_single_animation('death','small_rubble','explosion')
     },
     {
-        type = "corpse",
-        name = MOD_NAME.."/large-base-corpse",
-        flags = { "placeable-neutral",  "not-on-map" },
-        icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
+        type = 'corpse',
+        name = MOD_NAME..'--large-base-corpse',
+        flags = { 'placeable-neutral',  'not-on-map' },
+        icon = '__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png',
         icon_size = 64,
         collision_box = { { -2, -2 }, { 2, 2 } },
         selection_box = { { -2, -2 }, { 2, 2 } },
         selectable_in_game = false,
         dying_speed = 0.04,
-        time_before_removed = defines.time.minute * settings.startup["enemyracemanager-enemy-corpse-time"].value,
-        subgroup = "corpses",
-        order = "c[corpse]-c[large-toss-base-corpse]",
-        final_render_layer = "remnants",
-        animation = {
-            {
-                filename = "__erm_toss__/graphics/entity/buildings/large_rubble.png",
-                width = 128,
-                height = 128,
-                variation_count = 1,
-                frame_count = 1,
-                direction_count = 1,
-                scale = 2
-            }
-        },
-        ground_path = spawner_integration()
+        time_before_removed = defines.time.minute * settings.startup['enemyracemanager-enemy-corpse-time'].value,
+        subgroup = 'corpses',
+        order = 'c[corpse]-c[large-toss-base-corpse]',
+        final_render_layer = 'remnants',
+        animation = AnimationDB.get_single_animation('death','large_rubble','explosion'),
     },
     {
-        type = "explosion",
-        name = MOD_NAME..'/large-building-explosion',
-        icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
+        type = 'explosion',
+        name = MOD_NAME..'--large-building-explosion',
+        icon = '__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png',
         icon_size = 64,
         subgroup = 'explosions',
-        flags = { "not-on-map", "hidden" },
-        order = "toss-explosions",
-        render_layer = "explosion",
-        animations = {
-            filename = "__erm_toss__/graphics/entity/buildings/building_explode.png",
-            width = 160,
-            height = 160,
-            frame_count = 15,
-            animation_speed = 0.25,
-            direction_count = 1,
-            scale = 2,
-            draw_as_glow = true,
-        }
+        flags = { 'not-on-map' },
+        hidden = true,
+        order = 'toss-explosions',
+        render_layer = 'explosion',
+        animations = AnimationDB.get_layered_animations('death','large_building','explosion')
     },
     {
-        type = "explosion",
-        name = MOD_NAME..'/small-building-explosion',
-        icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
+        type = 'explosion',
+        name = MOD_NAME..'--small-building-explosion',
+        icon = '__erm_toss__/graphics/entity/icons/buildings/advisor.png',
         icon_size = 64,
         subgroup = 'explosions',
-        flags = { "not-on-map", "hidden" },
-        order = "toss-explosions",
-        render_layer = "explosion",
-        animations = {
-            filename = "__erm_toss__/graphics/entity/buildings/building_explode.png",
-            width = 160,
-            height = 160,
-            frame_count = 15,
-            animation_speed = 0.25,
-            direction_count = 1,
-            scale = 1.25,
-            draw_as_glow = true,
-        }
+        flags = { 'not-on-map' },
+        hidden = true,
+        order = 'toss-explosions',
+        render_layer = 'explosion',
+        animations = AnimationDB.get_layered_animations('death','small_building','explosion')
     },
     {
-        type = "explosion",
-        name = MOD_NAME.."red-large-building-explosion",
-        icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
+        type = 'explosion',
+        name = MOD_NAME..'--darkarchon-explosion',
+        icon = '__erm_toss__/graphics/entity/icons/buildings/advisor.png',
         icon_size = 64,
         subgroup = 'explosions',
-        flags = { "not-on-map", "hidden" },
-        order = "toss-explosions",
-        render_layer = "explosion",
-        animations = {
-            filename = "__erm_toss__/graphics/entity/buildings/building_red_explode.png",
-            width = 160,
-            height = 160,
-            frame_count = 15,
-            animation_speed = 0.25,
-            direction_count = 1,
-            scale = 2,
-            draw_as_glow = true,
-        }
-    },
-    {
-        type = "explosion",
-        name = MOD_NAME.."/red-small-building-explosion",
-        icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
-        icon_size = 64,
-        subgroup = 'explosions',
-        flags = { "not-on-map", "hidden" },
-        order = "toss-explosions",
-        render_layer = "explosion",
-        animations = {
-            filename = "__erm_toss__/graphics/entity/buildings/building_red_explode.png",
-            width = 160,
-            height = 160,
-            frame_count = 15,
-            animation_speed = 0.25,
-            direction_count = 1,
-            scale = 1.25,
-            draw_as_glow = true,
-        }
+        flags = { 'not-on-map' },
+        hidden = true,
+        order = 'toss-explosions',
+        render_layer = 'explosion',
+        animations = AnimationDB.get_layered_animations('death','darkarchon','explosion')
     }
 });

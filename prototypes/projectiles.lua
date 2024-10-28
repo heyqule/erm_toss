@@ -4,12 +4,13 @@
 --- DateTime: 01/09/2020 6:40 PM
 ---
 require('__stdlib__/stdlib/utils/defines/time')
-local Sprites = require('__stdlib__/stdlib/data/modules/sprites')
 
 local ERM_WeaponRig = require('__enemyracemanager__/lib/rig/weapon')
 local ERMDataHelper = require('__enemyracemanager__/lib/rig/data_helper')
 
-local smoke_animations = require("__base__/prototypes/entity/smoke-animations")
+local AnimationDB = require('__erm_toss_hd_assets__/animation_db')
+
+local smoke_animations = require('__base__/prototypes/entity/smoke-animations')
 
 
 local smoke_fast_animation = smoke_animations.trivial_smoke_fast
@@ -18,36 +19,37 @@ require('util')
 
 local scout_rocket = ERM_WeaponRig.standardize_rocket_damage(
         util.table.deepcopy(data.raw['projectile']['rocket']),
-        MOD_NAME..'/scout-rocket'
+        MOD_NAME..'--scout-rocket'
 )
 table.insert(scout_rocket['action']['action_delivery']['target_effects'],  {
-    type = "nested-result",
+    type = 'nested-result',
     action = {
-        type = "area",
-        force = "not-same",
+        type = 'area',
+        force = 'not-same',
         radius = 1,
         ignore_collision_condition = true,
         action_delivery = {
-            type = "instant",
+            type = 'instant',
             target_effects = {
                 {
-                    type = "damage",
-                    damage = { amount = 5, type = "explosion" },
+                    type = 'damage',
+                    damage = { amount = 5, type = 'explosion' },
                     apply_damage_to_trees = true,
                 },
             }
         }
     }
 })
+scout_rocket['animation'] = AnimationDB.get_layered_animations('projectiles','scout_rocket','projectile')
 scout_rocket['turn_speed'] = 1
 scout_rocket['turning_speed_increases_exponentially_with_projectile_speed'] = false
-scout_rocket['smoke'][1]['name'] = "scout-smoke-fast"
+scout_rocket['smoke'][1]['name'] = 'scout-smoke-fast'
 scout_rocket['smoke'][1]['frequency'] = 1 / 5
 
 data:extend({
     {
-        type = "trivial-smoke",
-        name = "scout-smoke-fast",
+        type = 'trivial-smoke',
+        name = 'scout-smoke-fast',
         animation = smoke_fast_animation(),
         duration = 60,
         fade_away_duration = 60,
@@ -56,101 +58,82 @@ data:extend({
     --- Projectiles
     scout_rocket,
     {
-        type = "projectile",
-        name = MOD_NAME.."/dragoon-projectile",
-        flags = { "not-on-map" },
+        type = 'projectile',
+        name = MOD_NAME..'--dragoon-projectile',
+        flags = { 'not-on-map' },
         acceleration = 0.005,
 
         direction_only = true,
         collision_box = {{-0.5,-0.5},{0.5,0.5}},
-        force_condition = "not-same",
-        hit_collision_mask = {"player-layer", "train-layer", "transport-belt-layer", ERMDataHelper.getFlyingLayerName()},
+        force_condition = 'not-same',
+        hit_collision_mask =  { layers = {player = true, train = true, transport_belt = true,  [ERMDataHelper.getFlyingLayerName()] = true}},
         hit_at_collision_position = true,
 
         action = {
-            type = "direct",
+            type = 'direct',
             action_delivery = {
-                type = "instant",
+                type = 'instant',
                 target_effects = {
                     {
-                        type = "create-entity",
-                        entity_name = MOD_NAME.."/dragoon-explosion"
+                        type = 'create-entity',
+                        entity_name = MOD_NAME..'--dragoon-explosion'
                     },
                     {
-                        type = "damage",
-                        damage = { amount = 15, type = "electric" },
+                        type = 'damage',
+                        damage = { amount = 15, type = 'electric' },
                         apply_damage_to_trees = true
                     }
                 }
             }
         },
-        animation = {
-            layers = {
-                {
-                    filename = "__erm_toss__/graphics/entity/projectiles/dragoon/dragoon-ball.png",
-                    frame_count = 5,
-                    width = 32,
-                    height = 32,
-                    scale = 1.5,
-                    draw_as_glow = true,
-                },
-            }
-        }
+        animation = AnimationDB.get_layered_animations('projectiles','dragoon','projectile')
     },
     {
-        type = "projectile",
-        name = MOD_NAME..'/interceptor-laser',
-        flags = { "not-on-map" },
+        type = 'projectile',
+        name = MOD_NAME..'--interceptor-laser',
+        flags = { 'not-on-map' },
         acceleration = 0.005,
         action = {
-            type = "direct",
+            type = 'direct',
             action_delivery = {
-                type = "instant",
+                type = 'instant',
                 target_effects = {
                     {
-                        type = "damage",
-                        damage = { amount = 5, type = "electric" },
+                        type = 'damage',
+                        damage = { amount = 5, type = 'electric' },
                         apply_damage_to_trees = true
                     }
                 }
             }
         },
-        animation = {
-            filename = "__erm_toss__/graphics/entity/projectiles/protoss-blashcan.png",
-            frame_count = 1,
-            direction_count = 16,
-            width = 32,
-            height = 32,
-            scale = 1,
-            draw_as_glow = true,
-        }
+        animation = AnimationDB.get_layered_animations('projectiles','interceptor_laser','projectile')
     },
     {
-        type = "projectile",
-        name = MOD_NAME..'/stasis-projectile',
-        flags = { "not-on-map" },
+        type = 'projectile',
+        name = MOD_NAME..'--stasis-projectile',
+        flags = { 'not-on-map' },
         acceleration = 0.005,
         action = {
-            type = "direct",
+            type = 'direct',
             action_delivery = {
-                type = "instant",
+                type = 'instant',
                 target_effects = {
                     {
-                        type = "create-entity",
-                        entity_name = MOD_NAME.."/stasis-explosion"
+                        type = 'create-entity',
+                        entity_name = MOD_NAME..'--stasis-explosion'
                     },
                     {
-                        type = "nested-result",
+                        type = 'nested-result',
                         action = {
-                            type = "area",
+                            type = 'area',
                             force = 'not-same',
                             radius = 4,
                             ignore_collision_condition = true,
                             action_delivery = {
-                                type = "instant",
+                                type = 'instant',
                                 target_effects = {
-                                    type = "damage",
-                                    damage = { amount = 20, type = "cold" }
+                                    type = 'damage',
+                                    damage = { amount = 20, type = 'cold' }
                                 }
                             }
                         }
@@ -158,287 +141,112 @@ data:extend({
                 }
             }
         },
-        animation = {
-            layers = {
-                {
-                    filename = "__erm_toss__/graphics/entity/projectiles/dragoon/dragoon-ball.png",
-                    frame_count = 5,
-                    width = 32,
-                    height = 32,
-                    scale = 1.5,
-                    draw_as_glow = true,
-                },
-            }
-        }
+        animation = AnimationDB.get_layered_animations('projectiles','stasis','projectile')
     },
     --- Explosions
     {
-        type = "explosion",
-        name = MOD_NAME.."/dragoon-explosion",
-        flags = { "not-on-map" },
-        animations = {
-            {
-                filename = "__erm_toss__/graphics/entity/projectiles/dragoon/dragoon-hit-effect.png",
-                width = 64,
-                height = 64,
-                frame_count = 10,
-                animation_speed = 0.5,
-                draw_as_glow = true,
-            }
-        }
+        type = 'explosion',
+        name = MOD_NAME..'--dragoon-explosion',
+        flags = { 'not-on-map' },
+        animations = AnimationDB.get_layered_animations('projectiles','dragoon','explosion')
     },
     {
-        type = "explosion",
-        name = MOD_NAME.."/corsair-explosion",
-        flags = { "not-on-map" },
-        animations = {
-            {
-                filename = "__erm_toss__/graphics/entity/projectiles/corsair-splash.png",
-                width = 64,
-                height = 64,
-                frame_count = 7,
-                animation_speed = 0.5,
-                draw_as_glow = true,
-                tint = { 1, 1, 1 }
-            }
-        }
+        type = 'explosion',
+        name = MOD_NAME..'--corsair-explosion',
+        flags = { 'not-on-map' },
+        animations = AnimationDB.get_layered_animations('projectiles','corsair','explosion')
     },
     {
-        type = "explosion",
-        name = MOD_NAME.."/stasis-explosion",
-        flags = { "not-on-map" },
-        animations = {
-            {
-                filename = "__erm_toss__/graphics/entity/projectiles/stasis/stasis.png",
-                width = 128,
-                height = 128,
-                frame_count = 13,
-                animation_speed = 0.5,
-                scale = 2.5,
-                draw_as_glow = true,
-            }
-        }
+        type = 'explosion',
+        name = MOD_NAME..'--stasis-explosion',
+        flags = { 'not-on-map' },
+        animations = AnimationDB.get_layered_animations('projectiles','stasis','explosion')
     },
     {
-        type = "explosion",
-        name = MOD_NAME.."/psystorm-explosion",
-        flags = { "not-on-map" },
-        animations = {
-            {
-                filename = "__erm_toss__/graphics/entity/projectiles/psystorm/psystorm.png",
-                width = 224,
-                height = 224,
-                frame_count = 14,
-                animation_speed = 0.4,
-                scale = 2,
-                draw_as_glow = true
-            }
-        }
+        type = 'explosion',
+        name = MOD_NAME..'--psystorm-explosion',
+        flags = { 'not-on-map' },
+        animations = AnimationDB.get_layered_animations('projectiles','psystorm','explosion')
     },
     --- Death Explosion
     {
-        type = "explosion",
-        name = MOD_NAME..'/archon-hit-explosion',
-        flags = { "not-on-map" },
-        animations = {
-            {
-                filename = "__erm_toss__/graphics/entity/projectiles/archon_attack/archon-hit-effect.png",
-                priority = "extra-high",
-                width = 80,
-                height = 80,
-                frame_count = 6,
-                animation_speed = 0.4,
-                scale = 1.5,
-                draw_as_glow = true
-            }
-        }
+        type = 'explosion',
+        name = MOD_NAME..'--archon-hit-explosion',
+        flags = { 'not-on-map' },
+        animations = AnimationDB.get_layered_animations('projectiles','archon_hit','explosion')
     },
     {
-        type = "explosion",
-        name = MOD_NAME.."/small-air-death",
-        flags = { "not-on-map" },
-        animations = {
-            filename = "__erm_toss__/graphics/entity/units/air-death/air-death.png",
-            width = 220,
-            height = 200,
-            frame_count = 15,
-            direction_count = 1,
-            axially_symmetrical = false,
-            scale = 1.5,
-            animation_speed = 0.4,
-            draw_as_glow = true
-        }
+        type = 'explosion',
+        name = MOD_NAME..'--small-air-death',
+        flags = { 'not-on-map' },
+        animations = AnimationDB.get_layered_animations('death','small_air','explosion')
     },
     {
-        type = "explosion",
-        name = MOD_NAME..'/large-air-death',
-        flags = { "not-on-map" },
-        animations = {
-            filename = "__erm_toss__/graphics/entity/units/air-death/air-death.png",
-            width = 220,
-            height = 200,
-            frame_count = 15,
-            direction_count = 1,
-            axially_symmetrical = false,
-            scale = 2.5,
-            animation_speed = 0.4,
-            draw_as_glow = true
-        }
+        type = 'explosion',
+        name = MOD_NAME..'--large-air-death',
+        flags = { 'not-on-map' },
+        animations = AnimationDB.get_layered_animations('death','large_building','explosion')
     },
     {
-        type = "explosion",
-        name = MOD_NAME..'/zealot-death',
-        flags = { "not-on-map" },
-        animations = {
-            filename = "__erm_toss__/graphics/entity/units/zealot/zealot-death.png",
-            width = 128,
-            height = 128,
-            frame_count = 7,
-            direction_count = 1,
-            axially_symmetrical = false,
-            scale = 1,
-            animation_speed = 0.4,
-            draw_as_glow = true
-        }
+        type = 'explosion',
+        name = MOD_NAME..'--zealot-death',
+        flags = { 'not-on-map' },
+        animations = AnimationDB.get_layered_animations('death','zealot','explosion')
     },
     {
-        type = "explosion",
-        name = MOD_NAME.."/templar-death",
-        flags = { "not-on-map" },
-        animations = {
-            filename = "__erm_toss__/graphics/entity/units/templar/templar-death.png",
-            width = 128,
-            height = 128,
-            frame_count = 6,
-            direction_count = 1,
-            axially_symmetrical = false,
-            scale = 1,
-            animation_speed = 0.4,
-            draw_as_glow = true
-        },
+        type = 'explosion',
+        name = MOD_NAME..'--templar-death',
+        flags = { 'not-on-map' },
+        animations = AnimationDB.get_layered_animations('death','templar','explosion')
     },
     {
-        type = "explosion",
-        name = MOD_NAME..'/recall-80',
-        flags = { "not-on-map" },
-        animations = {
-            filename = "__erm_toss__/graphics/entity/projectiles/recall-80.png",
-            width = 100,
-            height = 100,
-            frame_count = 11,
-            direction_count = 1,
-            axially_symmetrical = false,
-            scale = 2,
-            run_mode = "forward-then-backward",
-            animation_speed = 0.4,
-            draw_as_glow = true
-        },
+        type = 'explosion',
+        name = MOD_NAME..'--recall-80',
+        flags = { 'not-on-map' },
+        animations = AnimationDB.get_layered_animations('projectiles','recall_80','explosion')
     },
     {
-        type = "explosion",
-        name = MOD_NAME..'/recall',
-        flags = { "not-on-map" },
-        animations = {
-            filename = "__erm_toss__/graphics/entity/projectiles/recall.png",
-            width = 100,
-            height = 100,
-            frame_count = 11,
-            direction_count = 1,
-            axially_symmetrical = false,
-            scale = 2,
-            run_mode = "forward-then-backward",
-            animation_speed = 0.4,
-            draw_as_glow = true
-        },
+        type = 'explosion',
+        name = MOD_NAME..'--recall',
+        flags = { 'not-on-map' },
+        animations = AnimationDB.get_layered_animations('projectiles','recall','explosion')
     },
     {
-        type = "explosion",
-        name = MOD_NAME..'/disrupt-80',
-        flags = { "not-on-map" },
-        animations = {
-            filename = "__erm_toss__/graphics/entity/projectiles/disrupt-80.png",
-            width = 160,
-            height = 160,
-            frame_count = 11,
-            direction_count = 1,
-            axially_symmetrical = false,
-            scale = 1.5,
-            run_mode = "forward-then-backward",
-            animation_speed = 0.4,
-            draw_as_glow = true
-        },
+        type = 'explosion',
+        name = MOD_NAME..'--disrupt-80',
+        flags = { 'not-on-map' },
+        animations = AnimationDB.get_layered_animations('projectiles','disrupt_80','explosion')
     },
     {
-        type = "explosion",
-        name = MOD_NAME.."/disrupt",
-        flags = { "not-on-map" },
-        animations = {
-            filename = "__erm_toss__/graphics/entity/projectiles/disrupt.png",
-            width = 160,
-            height = 160,
-            frame_count = 11,
-            direction_count = 1,
-            axially_symmetrical = false,
-            scale = 1.5,
-            run_mode = "forward-then-backward",
-            animation_speed = 0.4,
-            draw_as_glow = true
-        },
+        type = 'explosion',
+        name = MOD_NAME..'--disrupt',
+        flags = { 'not-on-map' },
+        animations = AnimationDB.get_layered_animations('projectiles','disrupt','explosion')
     },
     {
-        type = "explosion",
-        name = MOD_NAME..'/darkarchon-feedback',
-        flags = { "not-on-map" },
-        animations = {
-            {
-                filename = "__erm_toss__/graphics/entity/projectiles/feedback.png",
-                width = 64,
-                height = 64,
-                frame_count = 22,
-                animation_speed = 0.5,
-                scale = 1.5,
-                draw_as_glow = true
-            }
-        }
+        type = 'explosion',
+        name = MOD_NAME..'--darkarchon-feedback',
+        flags = { 'not-on-map' },
+        animations = AnimationDB.get_layered_animations('projectiles','darkarchon_feedback','explosion')
     },
     {
-        type = "explosion",
-        name = MOD_NAME..'/scarab-explosion',
-        flags = {"not-on-map"},
-        animations = {
-            {
-                filename = "__erm_toss__/graphics/entity/projectiles/scarab_explosion.png",
-                width = 80,
-                height = 80,
-                frame_count = 10,
-                animation_speed = 0.4,
-                scale = 1.5,
-                draw_as_glow = true
-            }
-        }
+        type = 'explosion',
+        name = MOD_NAME..'--scarab-explosion',
+        flags = {'not-on-map'},
+        animations = AnimationDB.get_layered_animations('projectiles','scarab','explosion')
     },
     {
-        type = "explosion",
-        name = MOD_NAME..'/shield-battery-explosion',
-        flags = {"not-on-map"},
-        animations = {
-            {
-                filename = "__erm_toss__/graphics/entity/projectiles/shield_battery.png",
-                width = 64,
-                height = 64,
-                frame_count = 15,
-                animation_speed = 0.4,
-                scale = 4,
-                draw_as_glow = true
-            }
-        }
+        type = 'explosion',
+        name = MOD_NAME..'--shield-battery-explosion',
+        flags = {'not-on-map'},
+        animations = AnimationDB.get_layered_animations('projectiles','shield_battery','explosion')
     },
     {
-        type = "explosion",
-        name = MOD_NAME.."/demo-darkarchon-maelstrom",
-        flags = {"not-on-map"},
+        type = 'explosion',
+        name = MOD_NAME..'--demo-darkarchon-maelstrom',
+        flags = {'not-on-map'},
         animations =         {
-            filename = "__erm_toss__/graphics/entity/projectiles/maelstrom.png",
+            filename = '__erm_toss__/graphics/entity/projectiles/maelstrom.png',
             width = 128,
             height = 128,
             frame_count = 25,
@@ -448,50 +256,41 @@ data:extend({
         }
     },
     {
-        type = "sticker",
-        name = MOD_NAME..'/darkarchon-maelstrom',
-        flags = { "not-on-map" },
+        type = 'sticker',
+        name = MOD_NAME..'--darkarchon-maelstrom',
+        flags = { 'not-on-map' },
         duration_in_ticks = 2 * defines.time.second,
         damage_interval = defines.time.second / 4,
-        damage_per_tick = { amount = 10, type = "explosion" },
+        damage_per_tick = { amount = 10, type = 'explosion' },
         single_particle = true,
         fire_spread_radius = 0,
-        render_layer = "explosion",
-        animation =
-        {
-            filename = "__erm_toss__/graphics/entity/projectiles/maelstrom.png",
-            width = 128,
-            height = 128,
-            frame_count = 25,
-            animation_speed = 0.5,
-            scale = 1,
-            draw_as_glow = true
-        }
+        render_layer = 'explosion',
+        animation =AnimationDB.get_layered_animations('projectiles','darkarchon_maelstrom','explosion')
     },
     --- Stickers
     {
-        type = "sticker",
-        name = "5-067-slowdown-sticker",
-        flags = {"not-on-map" },
-        animation = Sprites.empty_pictures(),
+        type = 'sticker',
+        name = '5-067-slowdown-sticker',
+        flags = {'not-on-map' },
+        animation = util.empty_sprite(),
         duration_in_ticks = 5 * 60,
         target_movement_modifier = 0.67,
         vehicle_speed_modifier = 0.67,
     },
     {
-        type = "sticker",
-        name = "5-033-slowdown-sticker",
-        flags = {"not-on-map" },
-        animation = Sprites.empty_pictures(),
+        type = 'sticker',
+        name = '5-033-slowdown-sticker',
+        flags = {'not-on-map' },
+        animation = util.empty_sprite(),
         duration_in_ticks = 5 * 60,
         target_movement_modifier = 0.33,
         vehicle_speed_modifier = 0.33,
     },
     {
-        type = "sticker",
-        name = "5-010-slowdown-sticker",
-        flags = {"not-on-map" },
-        animation = Sprites.empty_pictures(),
+        type = 'sticker',
+        name = '5-010-slowdown-sticker',
+        flags = {'not-on-map' },
+        animation = util.empty_sprite(),
         duration_in_ticks = 5 * 60,
         target_movement_modifier = 0.1,
         vehicle_speed_modifier = 0.1,
