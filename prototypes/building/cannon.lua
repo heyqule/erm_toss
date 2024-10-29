@@ -14,7 +14,7 @@ local TossSound = require('__erm_toss__/prototypes/sound')
 
 local AnimationDB = require('__erm_libs__/prototypes/animation_db')
 local Creep = require('prototypes.creep')
-local enemy_autoplace = require('__base__/prototypes/entity/enemy-autoplace-utils')
+local enemy_autoplace = require('__enemyracemanager__/prototypes/enemy-autoplace')
 local name = 'cannon'
 local shortrange_name = 'cannon_shortrange'
 
@@ -138,7 +138,7 @@ function ErmToss.make_cannon(level)
                     }
                 }
             },
-            autoplace = enemy_autoplace.enemy_worm_autoplace(0, FORCE_NAME),
+            autoplace = enemy_autoplace.enemy_worm_autoplace('enemy_autoplace_base(2,3)', FORCE_NAME),
             attack_from_start_frame = true,
             prepare_range = attack_range,
             allow_turning_when_starting_attack = true,
@@ -228,7 +228,7 @@ function ErmToss.make_cannon(level)
                     }
                 }
             },
-            autoplace = enemy_autoplace.enemy_worm_autoplace(0, FORCE_NAME),
+            autoplace = enemy_autoplace.enemy_worm_autoplace('enemy_autoplace_base(2,3)', FORCE_NAME),
             attack_from_start_frame = true,
             prepare_range = acid_attack_range,
             allow_turning_when_starting_attack = true,
@@ -320,7 +320,6 @@ function ErmToss.make_cannon(level)
                     }
                 }
             },
-            --autoplace = enemy_autoplace.enemy_worm_autoplace(0, FORCE_NAME),
             attack_from_start_frame = true,
             prepare_range = attack_range,
             allow_turning_when_starting_attack = true,

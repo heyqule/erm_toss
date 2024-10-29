@@ -14,7 +14,7 @@ local TossSound = require('__erm_toss__/prototypes/sound')
 
 local AnimationDB = require('__erm_libs__/prototypes/animation_db')
 local Creep = require('prototypes.creep')
-local enemy_autoplace = require('__base__/prototypes/entity/enemy-autoplace-utils')
+local enemy_autoplace = require('__enemyracemanager__/prototypes/enemy-autoplace')
 local name = 'templar_archive'
 
 -- Hitpoints
@@ -114,7 +114,7 @@ function ErmToss.make_templar_archive(level)
             -- distance_factor used to be 1, but Twinsen says:
             -- 'The number or spitter spwners should be roughly equal to the number of biter spawners(regardless of difficulty).'
             -- (2018-12-07)
-            autoplace = enemy_autoplace.enemy_spawner_autoplace('enemy_autoplace_base(0, 6)'),
+            autoplace = enemy_autoplace.enemy_spawner_autoplace('enemy_autoplace_base(0, 6)', FORCE_NAME),
             call_for_help_radius = 50,
             spawn_decorations_on_expansion = true,
             spawn_decoration = Creep.getSpawnerCreep(),
