@@ -3,12 +3,12 @@
 --- Created by heyqule.
 --- DateTime: 8/28/2022 8:19 PM
 ---
-local ErmBossAttackRemote = require('__enemyracemanager__/lib/boss_attack_data')
-local ErmBossAttackProcessor = require('__enemyracemanager__/lib/boss_attack_processor')
+local ErmBossAttackRemote = require("__enemyracemanager__/lib/boss_attack_data")
+local ErmBossAttackProcessor = require("__enemyracemanager__/lib/boss_attack_processor")
 
 ErmBossAttackRemote.basic_attacks =
 {
-    projectile_name = {'psystorm','stasis','cold-fire'},
+    projectile_name = {"psystorm","stasis","cold-fire"},
     projectile_type = {
         ErmBossAttackProcessor.TYPE_PROJECTILE,
         ErmBossAttackProcessor.TYPE_PROJECTILE,
@@ -32,7 +32,7 @@ ErmBossAttackRemote.basic_attacks =
 
 ErmBossAttackRemote.advanced_attacks =
 {
-    projectile_name = {'recall-'..UNITS_SPAWN_ATTACK, 'cold-star'},
+    projectile_name = {"recall-"..UNITS_SPAWN_ATTACK, "cold-star"},
     projectile_type = {
         ErmBossAttackProcessor.TYPE_PROJECTILE,
         ErmBossAttackProcessor.TYPE_PROJECTILE,
@@ -51,7 +51,7 @@ ErmBossAttackRemote.advanced_attacks =
 
 ErmBossAttackRemote.super_attacks =
 {
-    projectile_name = {'recall-'..BOSS_SPAWN_ATTACK},
+    projectile_name = {"recall-"..BOSS_SPAWN_ATTACK},
     projectile_type = {
         ErmBossAttackProcessor.TYPE_PROJECTILE,
     },
@@ -70,7 +70,7 @@ ErmBossAttackRemote.super_attacks =
 
 ErmBossAttackRemote.despawn_attacks =
 {
-    projectile_name = {'recall-'..UNITS_SPAWN_ATTACK},
+    projectile_name = {"recall-"..UNITS_SPAWN_ATTACK},
     projectile_type = {
         ErmBossAttackProcessor.TYPE_PROJECTILE,
     },

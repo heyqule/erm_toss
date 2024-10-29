@@ -3,10 +3,11 @@ Version: 2.0.0
 Date: ??-??-??
 
   Features:
-    - Update for Factorio 2.0
+    - Updated for Factorio 2.0
     - Default to HD graphic and removed the classic graphics.
+    - Utilized 2.0 autoplace and noise function system.
     - Replaced leveling system with quality system to determine enemy stats.
-    - [space-age] Added planet Char.  Legendary units spawn in there.  You may encounter boss as well.
+    - [space-age] Added planet Char.  Legendary units spawn in there.  You may encounter bosses as well.
 
   Changes:
     - Sound adjustments to make them sound less busy.

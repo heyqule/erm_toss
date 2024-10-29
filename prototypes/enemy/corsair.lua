@@ -5,22 +5,22 @@
 -- Time: 9:39 PM
 -- To change this template use File | Settings | File Templates.
 --
-require('__stdlib__/stdlib/utils/defines/time')
+require("__stdlib__/stdlib/utils/defines/time")
 
 
-local ERM_UnitHelper = require('__enemyracemanager__/lib/rig/unit_helper')
-local ERM_UnitTint = require('__enemyracemanager__/lib/rig/unit_tint')
-local ERM_DebugHelper = require('__enemyracemanager__/lib/debug_helper')
-local ERM_Config = require('__enemyracemanager__/lib/global_config')
-local ERMDataHelper = require('__enemyracemanager__/lib/rig/data_helper')
-local TossSound = require('__erm_toss__/prototypes/sound')
-local AnimationDB = require('__erm_libs__/prototypes/animation_db')
-local name = 'corsair'
+local ERM_UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
+local ERM_UnitTint = require("__enemyracemanager__/lib/rig/unit_tint")
+local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
+local ERM_Config = require("__enemyracemanager__/lib/global_config")
+local ERMDataHelper = require("__enemyracemanager__/lib/rig/data_helper")
+local TossSound = require("__erm_toss__/prototypes/sound")
+local AnimationDB = require("__erm_libs__/prototypes/animation_db")
+local name = "corsair"
 
 -- Hitpoints
 
 local hitpoint = 180
-local max_hitpoint_multiplier = settings.startup['enemyracemanager-max-hitpoint-multipliers'].value * 1.5
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.5
 
 
 -- Handles acid and poison resistance
@@ -69,27 +69,27 @@ function ErmToss.make_corsair(level)
 
     data:extend({
         {
-            type = 'unit',
-            name = MOD_NAME .. '--' .. name .. '--' .. level,
-            localised_name = { 'entity-name.' .. MOD_NAME .. '--' .. name, tostring(level) },
-            icon = '__erm_toss_hd_assets__/graphics/entity/icons/units/' .. name .. '.png',
+            type = "unit",
+            name = MOD_NAME .. "--" .. name .. "--" .. level,
+            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, tostring(level) },
+            icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
-            flags = { 'placeable-enemy', 'placeable-player', 'placeable-off-grid', 'not-flammable' },
+            flags = { "placeable-enemy", "placeable-player", "placeable-off-grid", "not-flammable" },
             has_belt_immunity = true,
             max_health = ERM_UnitHelper.get_health(hitpoint, hitpoint * max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. '--'  .. name .. '--' .. level,
-            subgroup = 'erm-flying-enemies',
-            map_color = ERM_UnitHelper.format_map_color(settings.startup['erm_toss-map-color'].value),
+            order = MOD_NAME .. "--"  .. name .. "--" .. level,
+            subgroup = "erm-flying-enemies",
+            map_color = ERM_UnitHelper.format_map_color(settings.startup["erm_toss-map-color"].value),
             shooting_cursor_size = 2,
             resistances = {
-                { type = 'acid', percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
-                { type = 'poison', percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
-                { type = 'physical', percent = ERM_UnitHelper.get_resistance(base_physical_resistance, incremental_physical_resistance,  level) },
-                { type = 'fire', percent = ERM_UnitHelper.get_resistance(base_fire_resistance, incremental_fire_resistance,  level) },
-                { type = 'explosion', percent = ERM_UnitHelper.get_resistance(base_fire_resistance, incremental_fire_resistance,  level) },
-                { type = 'laser', percent = ERM_UnitHelper.get_resistance(base_electric_resistance, incremental_electric_resistance,  level) },
-                { type = 'electric', percent = ERM_UnitHelper.get_resistance(base_electric_resistance, incremental_electric_resistance,  level) },
-                { type = 'cold', percent = ERM_UnitHelper.get_resistance(base_cold_resistance, incremental_cold_resistance,  level) }
+                { type = "acid", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
+                { type = "poison", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
+                { type = "physical", percent = ERM_UnitHelper.get_resistance(base_physical_resistance, incremental_physical_resistance,  level) },
+                { type = "fire", percent = ERM_UnitHelper.get_resistance(base_fire_resistance, incremental_fire_resistance,  level) },
+                { type = "explosion", percent = ERM_UnitHelper.get_resistance(base_fire_resistance, incremental_fire_resistance,  level) },
+                { type = "laser", percent = ERM_UnitHelper.get_resistance(base_electric_resistance, incremental_electric_resistance,  level) },
+                { type = "electric", percent = ERM_UnitHelper.get_resistance(base_electric_resistance, incremental_electric_resistance,  level) },
+                { type = "cold", percent = ERM_UnitHelper.get_resistance(base_cold_resistance, incremental_cold_resistance,  level) }
             },
             healing_per_tick = ERM_UnitHelper.get_healing(hitpoint, max_hitpoint_multiplier,  level),
             collision_mask = ERMDataHelper.getFlyingCollisionMask(),
@@ -103,57 +103,57 @@ function ErmToss.make_corsair(level)
             ai_settings = biter_ai_settings,
             spawning_time_modifier = 1.5,
             attack_parameters = {
-                type = 'projectile',
-                range_mode = 'bounding-box-to-bounding-box',
-                ammo_category = 'protoss-damage',
+                type = "projectile",
+                range_mode = "bounding-box-to-bounding-box",
+                ammo_category = "protoss-damage",
                 range = attack_range,
                 min_attack_distance = attack_range - 3,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),
                 cooldown_deviation = 0.1,
                 ammo_type = {
-                    category = 'protoss-damage',
-                    target_type = 'direction',
+                    category = "protoss-damage",
+                    target_type = "direction",
                     action = {
                         {
-                            type = 'direct',
+                            type = "direct",
                             action_delivery = {
-                                type = 'instant',
+                                type = "instant",
                                 target_effects = {
                                     {
-                                        type = 'create-explosion',
-                                        entity_name = MOD_NAME..'--corsair-explosion'
+                                        type = "create-explosion",
+                                        entity_name = MOD_NAME.."--corsair-explosion"
                                     },
                                     {
-                                        type = 'damage',
-                                        damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage,  level), type = 'electric' }
+                                        type = "damage",
+                                        damage = { amount = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage,  level), type = "electric" }
                                     },
                                 }
                             }
                         },
                         {
-                            type = 'direct',
+                            type = "direct",
                             ignore_collision_condition = true,
-                            force = 'enemy',
+                            force = "enemy",
                             probability = 0.1,
                             action_delivery = {
-                                type = 'instant',
+                                type = "instant",
                                 target_effects = {
                                     {
-                                        type = 'create-explosion',
-                                        entity_name = MOD_NAME..'--disrupt-80'
+                                        type = "create-explosion",
+                                        entity_name = MOD_NAME.."--disrupt-80"
                                     },
                                     {
-                                        type = 'nested-result',
+                                        type = "nested-result",
                                         action = {
-                                            type = 'area',
-                                            force = 'enemy',
+                                            type = "area",
+                                            force = "enemy",
                                             radius = 3,
                                             ignore_collision_condition = true,
                                             action_delivery = {
-                                                type = 'instant',
+                                                type = "instant",
                                                 target_effects =             {
-                                                    type = 'create-sticker',
-                                                    sticker = '5-033-slowdown-sticker',
+                                                    type = "create-sticker",
+                                                    sticker = "5-033-slowdown-sticker",
                                                     show_in_tooltip = true
                                                 },
                                             }
@@ -165,28 +165,28 @@ function ErmToss.make_corsair(level)
                     }
                 },
                 sound = TossSound.corsair_attack(0.66),
-                animation = AnimationDB.get_layered_animations('units', name, 'attack')
+                animation = AnimationDB.get_layered_animations("units", name, "attack")
             },
 
-            render_layer = 'wires-above',
+            render_layer = "wires-above",
             distance_per_frame = 0.5,
-            run_animation = AnimationDB.get_layered_animations('units', name, 'run'),
-            dying_sound = TossSound.enemy_death('scout', 0.75),
-            dying_explosion = MOD_NAME..'--small-air-death',
-            corpse = MOD_NAME .. '--' .. name .. '-corpse'
+            run_animation = AnimationDB.get_layered_animations("units", name, "run"),
+            dying_sound = TossSound.enemy_death("scout", 0.75),
+            dying_explosion = MOD_NAME.."--small-air-death",
+            corpse = MOD_NAME .. "--" .. name .. "-corpse"
         },
         {
-            type = 'corpse',
-            name = MOD_NAME .. '--' .. name .. '-corpse',
-            icon = '__erm_toss_hd_assets__/graphics/entity/icons/units/' .. name .. '.png',
+            type = "corpse",
+            name = MOD_NAME .. "--" .. name .. "-corpse",
+            icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
-            flags = { 'placeable-off-grid', 'building-direction-8-way', 'not-on-map' },
+            flags = { "placeable-off-grid", "building-direction-8-way", "not-on-map" },
             selection_box = selection_box,
             selectable_in_game = false,
             dying_speed = 0.04,
             time_before_removed = defines.time.second,
-            subgroup = 'corpses',
-            order = MOD_NAME..'--' .. name .. level,
+            subgroup = "corpses",
+            order = MOD_NAME.."--" .. name .. level,
             animation = util.empty_sprite(),
         }
     })
