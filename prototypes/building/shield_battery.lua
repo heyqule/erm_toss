@@ -115,7 +115,7 @@ function ErmToss.make_shield_battery(level)
             working_sound = TossSound.cannon_idle(1),
             starting_attack_animation = attack_animation(),
             starting_attack_speed = 0.02,
-            autoplace = enemy_autoplace.enemy_spawner_autoplace('enemy_autoplace_base(0, 6)', FORCE_NAME),
+            autoplace = enemy_autoplace.enemy_spawner_autoplace('enemy_autoplace_base(0, 30013)', FORCE_NAME),
             attack_from_start_frame = true,
             prepare_range = attack_range,
             allow_turning_when_starting_attack = true,

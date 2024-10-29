@@ -138,7 +138,7 @@ function ErmToss.make_cannon(level)
                     }
                 }
             },
-            autoplace = enemy_autoplace.enemy_worm_autoplace('enemy_autoplace_base(2,3)', FORCE_NAME),
+            autoplace = enemy_autoplace.enemy_worm_autoplace('enemy_autoplace_base(2,30003)', FORCE_NAME),
             attack_from_start_frame = true,
             prepare_range = attack_range,
             allow_turning_when_starting_attack = true,
@@ -228,7 +228,7 @@ function ErmToss.make_cannon(level)
                     }
                 }
             },
-            autoplace = enemy_autoplace.enemy_worm_autoplace('enemy_autoplace_base(2,3)', FORCE_NAME),
+            autoplace = enemy_autoplace.enemy_worm_autoplace('enemy_autoplace_base(2,30002)', FORCE_NAME),
             attack_from_start_frame = true,
             prepare_range = acid_attack_range,
             allow_turning_when_starting_attack = true,
