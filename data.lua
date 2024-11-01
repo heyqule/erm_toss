@@ -96,7 +96,7 @@ require "prototypes.building.shield_battery"
 
 local max_level = ErmConfig.MAX_LEVELS
 
-for i = 1, max_level + ErmConfig.MAX_ELITE_LEVELS do
+for i = 1, max_level do
     ErmToss.make_arbiter(i)
     ErmToss.make_zealot(i)
     ErmToss.make_dragoon(i)
@@ -114,35 +114,35 @@ for i = 1, max_level + ErmConfig.MAX_ELITE_LEVELS do
     ErmToss.make_scarab(i)
 end
 
-local boss_level = ErmConfig.BOSS_LEVELS
-
-local boss_unit_ai = { destroy_when_commands_fail = true, allow_try_return_to_spawner = false }
-local override_units = {"arbiter","zealot","dragoon","carrier","scout","corsair","darktemplar","templar","archon","probe","shuttle"}
-
-for i = 1, #boss_level do
-    local level = boss_level[i]
-    ErmToss.make_arbiter(level)
-    ErmToss.make_zealot(level)
-    ErmToss.make_dragoon(level)
-    ErmToss.make_carrier(level)
-    ErmToss.make_scout(level)
-    ErmToss.make_corsair(level)
-    ErmToss.make_darktemplar(level)
-    ErmToss.make_templar(level)
-    ErmToss.make_archon(level)
-    ErmToss.make_darkarchon(level)
-    ErmToss.make_probe(level)
-    ErmToss.make_shuttle(level)
-    ErmToss.make_interceptor(level)
-    ErmToss.make_reaver(level)
-    ErmToss.make_scarab(level)
-
-    ErmToss.make_boss_wrapgate(level, ErmConfig.BOSS_BUILDING_HITPOINT[i])
-
-    for _, unit in pairs(override_units) do
-        data.raw["unit"][MOD_NAME.."--"..unit.."--"..level]["ai_settings"] = boss_unit_ai
-    end
-end
+--local boss_level = ErmConfig.BOSS_LEVELS
+--
+--local boss_unit_ai = { destroy_when_commands_fail = true, allow_try_return_to_spawner = false }
+--local override_units = {"arbiter","zealot","dragoon","carrier","scout","corsair","darktemplar","templar","archon","probe","shuttle"}
+--
+--for i = 1, #boss_level do
+--    local level = boss_level[i]
+--    ErmToss.make_arbiter(level)
+--    ErmToss.make_zealot(level)
+--    ErmToss.make_dragoon(level)
+--    ErmToss.make_carrier(level)
+--    ErmToss.make_scout(level)
+--    ErmToss.make_corsair(level)
+--    ErmToss.make_darktemplar(level)
+--    ErmToss.make_templar(level)
+--    ErmToss.make_archon(level)
+--    ErmToss.make_darkarchon(level)
+--    ErmToss.make_probe(level)
+--    ErmToss.make_shuttle(level)
+--    ErmToss.make_interceptor(level)
+--    ErmToss.make_reaver(level)
+--    ErmToss.make_scarab(level)
+--
+--    ErmToss.make_boss_wrapgate(level, ErmConfig.BOSS_BUILDING_HITPOINT[i])
+--
+--    for _, unit in pairs(override_units) do
+--        data.raw["unit"][MOD_NAME.."--"..unit.."--"..level]["ai_settings"] = boss_unit_ai
+--    end
+--end
 
 for i = 1, max_level do
     ErmToss.make_cannon(i)

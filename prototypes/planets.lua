@@ -5,53 +5,108 @@
 ---
 if feature_flags.space_travel then
 
-local planet_map_gen = require("__space-age__.prototypes.planet.planet-map-gen")
 local effects = require("__core__.lualib.surface-render-parameter-effects")
 local asteroid_util = require("__space-age__.prototypes.planet.asteroid-spawn-definitions")
-local planet_catalogue_fulgora = require("__space-age__.prototypes.planet.procession-catalogue-fulgora")
+local procession_graphic_catalogue_types = require("__base__/prototypes/planet/procession-graphic-catalogue-types")
 
-    data:extend({
-        --- Planet
+    -- space warzone :P
+    --local new_foundation = util.table.deepcopy(data.raw['tile']['space-platform-foundation'])
+    --new_foundation['name'] = 'space-platform-foundation-t3'
+    --new_foundation['autoplace'] = {probability_expression = 'expression_in_range_base(-10, 0.7, 11, 11) + noise_layer_noise(19)'}
+
+    local aiur_mapgen = function()
+        return
         {
-            type = "planet",
-            name = "aiur",
-            icon = "__space-age__/graphics/icons/fulgora.png",
-            starmap_icon = "__space-age__/graphics/icons/starmap-planet-fulgora.png",
-            starmap_icon_size = 512,
-            gravity_pull = 10,
-            distance = 30,
-            orientation = 0.45,
-            magnitude = 0.9,
-            label_orientation = 0.35,
-            order = "d[fulgora]",
-            subgroup = "planets",
-            map_gen_settings = planet_map_gen.fulgora(),
-            pollutant_type = nil,
-            solar_power_in_space = 100,
-            platform_procession_set =
-            {
-                arrival = {"planet-to-platform-b"},
-                departure = {"platform-to-planet-a"}
+            aux_climate_control = true,
+            moisture_climate_control = true,
+            property_expression_names =
+            { -- Warning: anything set here overrides any selections made in the map setup screen so the options do nothing.
+                --cliff_elevation = "cliff_elevation_nauvis",
+                --cliffiness = "cliffiness_nauvis",
+                --elevation = "elevation_island"
             },
-            planet_procession_set =
+            cliff_settings =
             {
-                arrival = {"platform-to-planet-b"},
-                departure = {"planet-to-platform-a"}
+                name = "cliff",
+                control = "nauvis_cliff",
+                cliff_smoothing = 0
             },
-            procession_graphic_catalogue = planet_catalogue_fulgora,
-            surface_properties =
+            autoplace_controls =
             {
-                ["day-night-cycle"] = 3 * minute,
-                ["magnetic-field"] = 99,
-                ["solar-power"] = 20,
-                pressure = 800,
-                gravity = 8
+                ["iron-ore"] = {},
+                ["copper-ore"] = {},
+                ["stone"] = {},
+                ["coal"] = {},
+                ["water"] = {},
+                ["trees"] = {},
+                ["erm_toss_enemy_base"] = {},
+                ["rocks"] = {},
+                ["nauvis_cliff"] = {}
+            },
+            autoplace_settings =
+            {
+                ["tile"] =
+                {
+                    settings =
+                    {
+                        ["grass-1"] = {},
+                        ["grass-2"] = {},
+                        ["grass-3"] = {},
+                        ["grass-4"] = {},
+                        ["sand-1"] = {},
+                        ["water"] = {},
+                        ["deepwater"] = {}
+                    }
+                },
+                ["decorative"] =
+                {
+                    settings =
+                    {
+                        ["green-hairy-grass"] = {},
+                        ["green-carpet-grass"] = {},
+                        ["green-small-grass"] = {},
+                        ["green-asterisk"] = {},
+                        ["green-asterisk-mini"] = {},
+                        ["red-asterisk"] = {},
+                        ["dark-mud-decal"] = {},
+                        ["light-mud-decal"] = {},
+                        ["cracked-mud-decal"] = {},
+                        ["green-carpet-grass"] = {},
+                        ["green-hairy-grass"] = {},
+                        ["green-pita"] = {},
+                        ["red-pita"] = {},
+                        ["green-croton"] = {},
+                        ["red-croton"] = {},
+                        ["green-pita-mini"] = {},
+                        ["garballo-mini-dry"] = {},
+                        ["garballo"] = {},
+                        ["green-bush-mini"] = {},
+                        ["medium-rock"] = {},
+                        ["small-rock"] = {},
+                        ["tiny-rock"] = {},
+                        ["medium-sand-rock"] = {},
+                        ["small-sand-rock"] = {},
+                    }
+                },
+                ["entity"] =
+                {
+                    settings =
+                    {
+                        ["iron-ore"] = {},
+                        ["copper-ore"] = {},
+                        ["stone"] = {},
+                        ["coal"] = {},
+                        ["big-sand-rock"] = {},
+                        ["huge-rock"] = {},
+                        ["big-rock"] = {},
+                    }
+                }
             },
             lightning_properties =
             {
-                lightnings_per_chunk_per_tick = 1 / (60 * 10), --cca once per chunk every 10 seconds (600 ticks)
-                search_radius = 10.0,
-                lightning_types = {"lightning"},
+                lightnings_per_chunk_per_tick = 1 / (30 * 60), --cca once per chunk every 30 seconds
+                search_radius = 16.0,
+                lightning_types = {"erm_toss--lightning"},
                 priority_rules =
                 {
                     {
@@ -63,31 +118,6 @@ local planet_catalogue_fulgora = require("__space-age__.prototypes.planet.proces
                         type = "prototype",
                         string = "lightning-attractor",
                         priority_bonus = 1000
-                    },
-                    {
-                        type = "id",
-                        string = "fulgoran-ruin-vault",
-                        priority_bonus = 95
-                    },
-                    {
-                        type = "id",
-                        string = "fulgoran-ruin-colossal",
-                        priority_bonus = 94
-                    },
-                    {
-                        type = "id",
-                        string = "fulgoran-ruin-huge",
-                        priority_bonus = 93
-                    },
-                    {
-                        type = "id",
-                        string = "fulgoran-ruin-big",
-                        priority_bonus = 92
-                    },
-                    {
-                        type = "id",
-                        string = "fulgoran-ruin-medium",
-                        priority_bonus = 91
                     },
                     {
                         type = "prototype",
@@ -222,110 +252,97 @@ local planet_catalogue_fulgora = require("__space-age__.prototypes.planet.proces
                     },
                 }
             },
+        }
+    end
+
+    --- Aiur intense lighting lore lol
+    local lightning = util.table.deepcopy(data.raw['lightning']['lightning'])
+    lightning.name = 'erm_toss--lightning'
+    lightning.damage = 250
+    lightning.energy = "2000MJ"
+
+    data:extend({
+        lightning,
+        --- Planet
+        {
+            type = "planet",
+            name = "aiur",
+            icon = "__base__/graphics/icons/nauvis.png",
+            starmap_icon = "__base__/graphics/icons/starmap-planet-nauvis.png",
+            starmap_icon_size = 512,
+            gravity_pull = 10,
+            distance = 20,
+            orientation = 0.45,
+            magnitude = 1,
+            order = "a[aiur]",
+            --subgroup = "planets", subgroup planets doesn't exist in base, so do we hide this somehow?
+            map_seed_offset = 0,
+            map_gen_settings = aiur_mapgen(),
+            pollutant_type = "pollution",
+            solar_power_in_space = 300,
+            planet_procession_set =
+            {
+                arrival = {"default-b"},
+                departure = {"default-rocket-a"}
+            },
+            surface_properties =
+            {
+                ["day-night-cycle"] = 7 * minute
+            },
             surface_render_parameters =
             {
-                clouds =
-                {
-                    shape_noise_texture =
-                    {
-                        filename = "__core__/graphics/clouds-noise.png",
-                        size = 2048
-                    },
-                    detail_noise_texture =
-                    {
-                        filename = "__core__/graphics/clouds-detail-noise.png",
-                        size = 2048
-                    },
-
-                    warp_sample_1 = { scale = 0.8 / 16 },
-                    warp_sample_2 = { scale = 3.75 * 0.8 / 32, wind_speed_factor = 0 },
-                    warped_shape_sample = { scale = 2 * 0.18 / 32 },
-                    additional_density_sample = { scale = 1.5 * 0.18 / 32, wind_speed_factor = 1.77 },
-                    detail_sample_1 = { scale = 1.709 / 32, wind_speed_factor = 0.2 / 1.709 },
-                    detail_sample_2 = { scale = 2.179 / 32, wind_speed_factor = 0.33 / 2.179 },
-
-                    scale = 1,
-                    movement_speed_multiplier = 0.75,
-                    opacity = 0.25,
-                    opacity_at_night = 0.25,
-                    density_at_night = 1,
-                    detail_factor = 1.5,
-                    detail_factor_at_night = 2,
-                    shape_warp_strength = 0.06,
-                    shape_warp_weight = 0.4,
-                    detail_sample_morph_duration = 0,
-                },
-
-                -- Should be based on the default day/night times, ie
-                -- sun starts to set at 0.25
-                -- sun fully set at 0.45
-                -- sun starts to rise at 0.55
-                -- sun fully risen at 0.75
-                -- On fulgora night looks a bit longer to look right with the lightning.
-                day_night_cycle_color_lookup =
-                {
-                    {0.0, "__space-age__/graphics/lut/fulgora-1-noon.png"},
-                    {0.2, "__space-age__/graphics/lut/fulgora-1-noon.png"},
-                    {0.3, "__space-age__/graphics/lut/fulgora-2-afternoon.png"},
-                    {0.4, "__space-age__/graphics/lut/fulgora-3-after-sunset.png"},
-                    {0.6, "__space-age__/graphics/lut/fulgora-4-before-dawn.png"},
-                    {0.7, "__space-age__/graphics/lut/fulgora-5-morning.png"},
-                },
-
-                terrain_tint_effect =
-                {
-                    noise_texture =
-                    {
-                        filename = "__space-age__/graphics/terrain/vulcanus/tint-noise.png",
-                        size = 4096
-                    },
-
-                    offset = { 0.2, 0, 0.4, 0.8 },
-                    intensity = { 0.2, 0.4, 0.3, 0.25 },
-                    scale_u = { 1.85, 1.85, 1.85, 1.85 },
-                    scale_v = { 1, 1, 1, 1 },
-
-                    global_intensity = 0.3,
-                    global_scale = 0.25,
-                    zoom_factor = 3.8,
-                    zoom_intensity = 0.75
-                }
+                clouds = effects.default_clouds_effect_properties()
             },
-            asteroid_spawn_influence = 1,
-            asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.nauvis_fulgora, 0.9),
             persistent_ambient_sounds =
             {
-                base_ambience = {filename = "__space-age__/sound/wind/base-wind-fulgora.ogg", volume = 0.5},
-                wind = {filename = "__space-age__/sound/wind/wind-fulgora.ogg", volume = 0.8},
+                base_ambience = { filename = "__base__/sound/world/world_base_wind.ogg", volume = 0.3 },
+                wind = { filename = "__base__/sound/wind/wind.ogg", volume = 0.8 },
                 crossfade =
                 {
-                    order = {"wind", "base_ambience"},
+                    order = { "wind", "base_ambience" },
                     curve_type = "cosine",
-                    from = {control = 0.35, volume_percentage = 0.0},
-                    to = {control = 2, volume_percentage = 100.0}
-                },
-                semi_persistent =
+                    from = { control = 0.35, volume_percentage = 0.0 },
+                    to = { control = 2, volume_percentage = 100.0 }
+                }
+            },
+            procession_graphic_catalogue =
+            {
                 {
-                    {
-                        sound = {variations = sound_variations("__space-age__/sound/world/semi-persistent/distant-thunder", 4, 0.6)},
-                        delay_mean_seconds = 33,
-                        delay_variance_seconds = 7
-                    },
-                    {
-                        sound =
-                        {
-                            variations = sound_variations("__space-age__/sound/world/semi-persistent/sand-wind-gust", 5, 0.45),
-                            advanced_volume_control =
+                    index = procession_graphic_catalogue_types.planet_hatch_emission_in_1,
+                    sprite = util.sprite_load("__base__/graphics/entity/cargo-hubs/hatches/planet-lower-hatch-pod-emission-A",
                             {
-                                fades = {fade_in = {curve_type = "cosine", from = {control = 0.5, volume_percentage = 0.0}, to = {1.5, 100.0}}}
-                            }
-                        },
-                        delay_mean_seconds = 15,
-                        delay_variance_seconds = 9,
-                    },
+                                priority = "medium",
+                                draw_as_glow = true,
+                                blend_mode = "additive",
+                                scale = 0.5,
+                                shift = util.by_pixel(-16, 96) --32 x ({0.5, -3.5} + {0, 0.5})
+                            })
+                },
+                {
+                    index = procession_graphic_catalogue_types.planet_hatch_emission_in_2,
+                    sprite = util.sprite_load("__base__/graphics/entity/cargo-hubs/hatches/planet-lower-hatch-pod-emission-B",
+                            {
+                                priority = "medium",
+                                draw_as_glow = true,
+                                blend_mode = "additive",
+                                scale = 0.5,
+                                shift = util.by_pixel(-64, 96) --32 x ({2, -3.5} + {0, 0.5})
+                            })
+                },
+                {
+                    index = procession_graphic_catalogue_types.planet_hatch_emission_in_3,
+                    sprite = util.sprite_load("__base__/graphics/entity/cargo-hubs/hatches/planet-lower-hatch-pod-emission-C",
+                            {
+                                priority = "medium",
+                                draw_as_glow = true,
+                                blend_mode = "additive",
+                                scale = 0.5,
+                                shift = util.by_pixel(-40, 64) --32 x ({1.25, -2.5} + {0, 0.5})
+                            })
                 }
             }
-        },        --- space connection
+        },
+        --- space connection
         {
             type = "space-connection",
             name = "aiur-nauvis",
@@ -334,7 +351,7 @@ local planet_catalogue_fulgora = require("__space-age__.prototypes.planet.proces
             to = "nauvis",
             order = "aiur-nauvis",
             length = 30000,
-            asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.nauvis_vulcanus)
+            asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.nauvis_fulgora)
         },
         {
             type = "space-connection",
@@ -344,7 +361,36 @@ local planet_catalogue_fulgora = require("__space-age__.prototypes.planet.proces
             to = "fulgora",
             order = "aiur-fulgora",
             length = 15000,
-            asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.nauvis_vulcanus)
+            asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.nauvis_fulgora)
+        },
+        --- unlock tech
+        {
+            type = "technology",
+            name = "planet-discovery-char",
+            icons = util.technology_icon_constant_planet("__base__/graphics/icons/nauvis.png"),
+            icon_size = 256,
+            essential = true,
+            effects =
+            {
+                {
+                    type = "unlock-space-location",
+                    space_location = "aiur",
+                    use_icon_overlay_constant = true
+                },
+            },
+            prerequisites = {"space-platform-thruster", "landfill"},
+            unit =
+            {
+                count = 1000,
+                ingredients =
+                {
+                    {"automation-science-pack", 1},
+                    {"logistic-science-pack", 1},
+                    {"chemical-science-pack", 1},
+                    {"space-science-pack", 1}
+                },
+                time = 60
+            }
         },
     })
 

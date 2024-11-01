@@ -21,7 +21,7 @@ local shortrange_name = "cannon_shortrange"
 -- Hitpoints
 
 local hitpoint = 200
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 4
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value
 
 
 -- Handles acid and poison resistance
@@ -84,7 +84,7 @@ function ErmToss.make_cannon(level)
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
-            max_health = ERM_UnitHelper.get_building_health(hitpoint, hitpoint * max_hitpoint_multiplier,  level),
+            max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level, true),
             order = MOD_NAME .. "--" .. name .. "--".. level,
             subgroup = "enemies",
             map_color = ERM_UnitHelper.format_map_color(settings.startup["erm_toss-map-color"].value),
@@ -178,7 +178,7 @@ function ErmToss.make_cannon(level)
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
-            max_health = ERM_UnitHelper.get_building_health(hitpoint, hitpoint * max_hitpoint_multiplier,  level),
+            max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level, true),
             order = MOD_NAME .. "--" .. name .. "--".. level,
             map_color = ERM_UnitHelper.format_map_color(settings.startup["erm_toss-map-color"].value),
             subgroup = "enemies",
@@ -274,7 +274,7 @@ function ErmToss.make_cannon(level)
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
-            max_health = ERM_UnitHelper.get_building_health(hitpoint, hitpoint * max_hitpoint_multiplier,  level) / 2,
+            max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level, true) / 2,
             order = MOD_NAME .. "-" .. shortrange_name,
             subgroup = "enemies",
             map_color = ERM_UnitHelper.format_map_color(settings.startup["erm_toss-map-color"].value),

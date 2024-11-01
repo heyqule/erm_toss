@@ -22,13 +22,13 @@ data:extend{
     {
         type = "noise-expression",
         name = "erm_toss_base_radius",
-        expression = "sqrt(var("control:"..AUTOCONTROL_NAME..":size")) * (15 + 4 * erm_toss_base_intensity)"
+        expression = "sqrt(var('control:"..AUTOCONTROL_NAME..":size')) * (15 + 4 * erm_toss_base_intensity)"
     },
     {
         type = "noise-expression",
         name = "erm_toss_base_frequency",
         -- bases_per_km2 = 10 + 3 * erm_toss_base_intensity
-        expression = "(0.00001 + 0.000003 * erm_toss_base_intensity) * var("control:"..AUTOCONTROL_NAME..":frequency")"
+        expression = "(0.00001 + 0.000003 * erm_toss_base_intensity) * var('control:"..AUTOCONTROL_NAME..":frequency')"
     },
     {
         type = "noise-expression",

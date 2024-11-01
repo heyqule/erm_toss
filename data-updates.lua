@@ -18,6 +18,6 @@ local nauvis = data.raw.planet.nauvis
 nauvis.map_gen_settings.autoplace_controls[AUTOCONTROL_NAME] = {}
 
 if feature_flags.space_travel then
-    local vulcanus = data.raw.planet.vulcanus
-    vulcanus.map_gen_settings.autoplace_controls[AUTOCONTROL_NAME] = {}
+    local fulgora = data.raw.planet.fulgora
+    fulgora.map_gen_settings.autoplace_controls[AUTOCONTROL_NAME] = {}
 end

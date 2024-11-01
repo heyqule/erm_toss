@@ -83,7 +83,7 @@ function ErmToss.make_nexus(level)
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy" },
-            max_health = ERM_UnitHelper.get_building_health(hitpoint, hitpoint * max_hitpoint_multiplier,  level),
+            max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
             order = MOD_NAME .. "--" .. name .. "--".. level,
             subgroup = "enemies",
             map_color = ERM_UnitHelper.format_map_color(settings.startup["erm_toss-map-color"].value),

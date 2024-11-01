@@ -5,7 +5,7 @@
 ---
 require("__stdlib__/stdlib/utils/defines/time")
 
-local ERM_WeaponRig = require("__enemyracemanager__/lib/rig/weapon")
+local WeaponRig = require("__enemyracemanager__/lib/rig/weapon")
 local ERMDataHelper = require("__enemyracemanager__/lib/rig/data_helper")
 
 local AnimationDB = require("__erm_toss_hd_assets__/animation_db")
@@ -17,7 +17,7 @@ local smoke_fast_animation = smoke_animations.trivial_smoke_fast
 
 require("util")
 
-local scout_rocket = ERM_WeaponRig.standardize_rocket_damage(
+local scout_rocket = WeaponRig.standardize_rocket_damage(
         util.table.deepcopy(data.raw["projectile"]["rocket"]),
         MOD_NAME.."--scout-rocket"
 )
