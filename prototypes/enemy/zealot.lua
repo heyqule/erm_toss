@@ -105,7 +105,7 @@ function ErmToss.make_zealot(level)
                 type = "projectile",
                 range_mode = "bounding-box-to-bounding-box",
                 range = attack_range,
-                ammo_category = "protoss-damage",
+                ammo_category = "erm-protoss-damage",
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),
                 cooldown_deviation = 0.1,
                 damage_modifier = ERM_UnitHelper.get_damage(base_physical_damage, incremental_physical_damage,  level),

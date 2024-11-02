@@ -103,7 +103,7 @@ function ErmToss.make_dragoon(level)
             attack_parameters = {
                 type = "projectile",
                 range_mode = "bounding-box-to-bounding-box",
-                ammo_category = "protoss-damage",
+                ammo_category = "erm-protoss-damage",
                 range = attack_range,
                 min_attack_distance = attack_range - 4,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),

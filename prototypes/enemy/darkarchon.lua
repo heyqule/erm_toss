@@ -117,9 +117,9 @@ function ErmToss.make_darkarchon(level)
                 cooldown_deviation = 0.1,
                 damage_modifier = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage,  level),
                 warm_up = 2 * defines.time.second,
-                ammo_category = "protoss-damage",
+                ammo_category = "erm-protoss-damage",
                 ammo_type = {
-                    category = "protoss-damage",
+                    category = "erm-protoss-damage",
                     target_type = "entity",
                     action = {
                         {

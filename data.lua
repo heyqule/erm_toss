@@ -12,7 +12,7 @@ data:extend(
         {
     {
         type = "ammo-category",
-        name = "protoss-damage"
+        name = "erm-protoss-damage"
     }
 })
 

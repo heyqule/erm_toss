@@ -108,7 +108,7 @@ function ErmToss.make_templar(level)
                 min_attack_distance = attack_range - 4,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),
                 cooldown_deviation = 0.1,
-                ammo_category = "protoss-damage",
+                ammo_category = "erm-protoss-damage",
                 ammo_type = {
                     target_type = "direction",
                     action = {

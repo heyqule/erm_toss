@@ -105,7 +105,7 @@ function ErmToss.make_reaver(level)
             attack_parameters = {
                 type = "projectile",
                 range_mode = "bounding-box-to-bounding-box",
-                ammo_category = "protoss-damage",
+                ammo_category = "erm-protoss-damage",
                 range = attack_range,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),
                 cooldown_deviation = 0.1,

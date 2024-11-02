@@ -119,7 +119,7 @@ function ErmToss.make_interceptor(level)
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, level),
                 cooldown_deviation = 0.1,
                 damage_modifier = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, level),
-                ammo_category = "protoss-damage",
+                ammo_category = "erm-protoss-damage",
                 ammo_type = {
                     target_type = "direction",
                     action = {

@@ -116,7 +116,7 @@ function ErmToss.make_scarab(level)
                 cooldown = 10,
                 warmup = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),
                 damage_modifier = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage,  level),
-                ammo_category = "protoss-damage",
+                ammo_category = "erm-protoss-damage",
                 ammo_type = {
                     target_type = "direction",
                     action = {

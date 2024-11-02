@@ -105,7 +105,7 @@ function ErmToss.make_carrier(level)
             attack_parameters = {
                 type = "projectile",
                 range_mode = "bounding-box-to-bounding-box",
-                ammo_category = "protoss-damage",
+                ammo_category = "erm-protoss-damage",
                 range = attack_range,
                 min_attack_distance = attack_range - 4,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),
@@ -113,7 +113,7 @@ function ErmToss.make_carrier(level)
                 warm_up = 120,
                 damage_modifier = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage,  level),
                 ammo_type = {
-                    category = "protoss-damage",
+                    category = "erm-protoss-damage",
                     target_type = "direction",
                     action = {
                         type = "direct",
