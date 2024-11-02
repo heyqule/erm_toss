@@ -275,8 +275,7 @@ local procession_graphic_catalogue_types = require("__base__/prototypes/planet/p
             orientation = 0.45,
             magnitude = 1,
             order = "a[aiur]",
-            hidden_in_factoriopedia = true,
-            --subgroup = "planets", subgroup planets doesn't exist in base, so do we hide this somehow?
+            subgroup = "planets",
             map_seed_offset = 0,
             map_gen_settings = aiur_mapgen(),
             pollutant_type = "pollution",
@@ -288,7 +287,7 @@ local procession_graphic_catalogue_types = require("__base__/prototypes/planet/p
             },
             surface_properties =
             {
-                ["day-night-cycle"] = 7 * minute
+                ["day-night-cycle"] = 8 * minute
             },
             surface_render_parameters =
             {
