@@ -115,12 +115,10 @@ local addRaceSettings = function()
     race_settings.boss_building = "warpgate"
     race_settings.pathing_unit = "zealot"
     race_settings.colliding_unit = "archon"
+    race_settings.home_planet = "aiur"
     race_settings.boss_tier = race_settings.boss_tier or 1
     race_settings.boss_kill_count = race_settings.boss_kill_count or 0
 
-    --if game.active_mods["Krastorio2"] then
-    --    race_settings.enable_k2_creep = settings.startup["erm_toss-k2-creep"].value
-    --end
 
     remote.call("enemyracemanager", "register_race", race_settings)
 
