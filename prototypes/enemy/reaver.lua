@@ -4,7 +4,7 @@
 --- DateTime: 7/20/2023 8:48 PM
 ---
 
-require("__stdlib__/stdlib/utils/defines/time")
+
 
 
 local ERM_UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
@@ -141,7 +141,7 @@ function ErmToss.make_reaver(level)
             selection_box = selection_box,
             selectable_in_game = false,
             dying_speed = 0.04,
-            time_before_removed = defines.time.second,
+            time_before_removed = second,
             subgroup = "corpses",
             order = MOD_NAME.."--" .. name .. level,
             animation = util.empty_sprite(),

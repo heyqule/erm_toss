@@ -4,7 +4,7 @@
 --- DateTime: 7/20/2023 8:47 PM
 ---
 
-require("__stdlib__/stdlib/utils/defines/time")
+
 
 
 local ERM_UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
@@ -116,7 +116,7 @@ function ErmToss.make_darkarchon(level)
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),
                 cooldown_deviation = 0.1,
                 damage_modifier = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage,  level),
-                warm_up = 2 * defines.time.second,
+                warm_up = 2 * second,
                 ammo_category = "erm-protoss-damage",
                 ammo_type = {
                     category = "erm-protoss-damage",
@@ -207,7 +207,7 @@ function ErmToss.make_darkarchon(level)
             selection_box = selection_box,
             selectable_in_game = false,
             dying_speed = 0.04,
-            time_before_removed = defines.time.second,
+            time_before_removed = second,
             subgroup = "corpses",
             order = MOD_NAME.."--" .. name .. level,
             animation = util.empty_sprite(),

@@ -11,7 +11,7 @@
 -- Time: 9:39 PM
 -- To change this template use File | Settings | File Templates.
 --
-require("__stdlib__/stdlib/utils/defines/time")
+
 
 
 local ERM_UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
@@ -110,7 +110,7 @@ function ErmToss.make_interceptor(level)
             distraction_cooldown = distraction_cooldown,
             ai_settings = biter_ai_settings,
             spawning_time_modifier = 1.5,
-            min_pursue_time = 120 * defines.time.second,
+            min_pursue_time = 120 * second,
             attack_parameters = {
                 type = "projectile",
                 range_mode = "bounding-box-to-bounding-box",
@@ -169,7 +169,7 @@ function ErmToss.make_interceptor(level)
             selection_box = selection_box,
             selectable_in_game = false,
             dying_speed = 0.04,
-            time_before_removed = defines.time.second,
+            time_before_removed = second,
             subgroup = "corpses",
             order = MOD_NAME.."--" .. name .. level,
             animation = util.empty_sprite(),

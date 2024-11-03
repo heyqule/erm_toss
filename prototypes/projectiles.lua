@@ -3,7 +3,7 @@
 --- Created by heyqule.
 --- DateTime: 01/09/2020 6:40 PM
 ---
-require("__stdlib__/stdlib/utils/defines/time")
+
 
 local WeaponRig = require("__enemyracemanager__/lib/rig/weapon")
 local ERMDataHelper = require("__enemyracemanager__/lib/rig/data_helper")
@@ -259,8 +259,8 @@ data:extend({
         type = "sticker",
         name = MOD_NAME.."--darkarchon-maelstrom",
         flags = { "not-on-map" },
-        duration_in_ticks = 2 * defines.time.second,
-        damage_interval = defines.time.second / 4,
+        duration_in_ticks = 2 * second,
+        damage_interval = second / 4,
         damage_per_tick = { amount = 10, type = "explosion" },
         single_particle = true,
         fire_spread_radius = 0,

@@ -366,10 +366,20 @@ local procession_graphic_catalogue_types = require("__base__/prototypes/planet/p
         --- unlock tech
         {
             type = "technology",
-            name = "planet-discovery-char",
-            icons = util.technology_icon_constant_planet("__base__/graphics/icons/nauvis.png"),
-            icon_size = 256,
-            essential = true,
+            name = "planet-discovery-aiur",
+            icons = {
+                {
+                    icon = "__base__/graphics/icons/nauvis.png",
+                    icon_size = 64,
+                },
+                {
+                    icon = "__core__/graphics/icons/technology/constants/constant-planet.png",
+                    icon_size = 128,
+                    scale = 0.5,
+                    shift = {50, 50}
+                }
+            },
+            essential = false,
             effects =
             {
                 {
