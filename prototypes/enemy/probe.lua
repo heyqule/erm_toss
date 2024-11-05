@@ -13,6 +13,7 @@ local ERM_UnitTint = require("__enemyracemanager__/lib/rig/unit_tint")
 local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
 local ERM_Config = require("__enemyracemanager__/lib/global_config")
 local TossSound = require("__erm_toss__/prototypes/sound")
+local biter_ai_settings = require ("__base__.prototypes.entity.biter-ai-settings")
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
 local name = "probe"
 
