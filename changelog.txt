@@ -7,7 +7,8 @@ Date: ??-??-??
     - Default to HD graphic and removed the classic graphics.
     - Utilized 2.0 autoplace and noise function system.
     - Replaced leveling system with quality system to determine enemy stats.
-    - [space-age] Added planet Char.  Legendary units spawn in there.  You may encounter bosses as well.
+    - [space-age] Added planet Aiur.  Only legendary units spawn in there.
+    - [space-age] They have some small bases on Fulgora.  They are there to harvest the lightning.
 
   Changes:
     - Sound adjustments to make them sound less busy.
