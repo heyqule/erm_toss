@@ -21,7 +21,7 @@ local shortrange_name = "cannon_shortrange"
 -- Hitpoints
 
 local hitpoint = 200
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.5
 
 
 -- Handles acid and poison resistance

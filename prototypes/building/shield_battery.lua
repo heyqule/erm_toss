@@ -26,7 +26,7 @@ local name = "shield_battery"
 -- Hitpoints
 
 local hitpoint = 300
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.5
 
 
 -- Handles acid and poison resistance
