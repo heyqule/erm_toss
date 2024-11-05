@@ -139,7 +139,7 @@ function ErmToss.make_cannon(level)
                 }
             },
             autoplace = enemy_autoplace.enemy_spawner_autoplace({
-                probability_expression = "erm_zerg_autoplace_base(0, 2000001)",
+                probability_expression = "erm_toss_autoplace_base(0, 2000001)",
                 force = FORCE_NAME,
                 control = AUTOCONTROL_NAME
             }),
@@ -233,7 +233,7 @@ function ErmToss.make_cannon(level)
                 }
             },
             autoplace = enemy_autoplace.enemy_spawner_autoplace({
-                probability_expression = "erm_zerg_autoplace_base(0, 2000002)",
+                probability_expression = "erm_toss_autoplace_base(0, 2000002)",
                 force = FORCE_NAME,
                 control = AUTOCONTROL_NAME
             }),

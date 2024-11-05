@@ -13,11 +13,32 @@ if mapgen["erm-debug"] then
     mapgen["erm-debug"]["basic_settings"]["autoplace_controls"][AUTOCONTROL_NAME] = { frequency = 5, size = 5 }
 end
 
+local nauvis_autocontrols = data.raw.planet.nauvis.map_gen_settings.autoplace_controls
+local nauvis_enemy_settings = settings.startup["enemyracemanager-nauvis-enemy"].value
+if nauvis_enemy_settings == MOD_NAME then
+    for key, autoplace in pairs(nauvis_autocontrols) do
+        if string.find(key,"enemy_base") or string.find(key,"enemy-base") then
+            print('ERM_TOSS: Disabling Nauvis AutoControl:'..key)
+            nauvis_autocontrols[key] = {frequency = 0, size = 0, richness = 0}
+        end
+    end
 
-local nauvis = data.raw.planet.nauvis
-nauvis.map_gen_settings.autoplace_controls[AUTOCONTROL_NAME] = {}
+    nauvis_autocontrols[AUTOCONTROL_NAME] = {}
 
-if feature_flags.space_travel then
+    print('ERM_TOSS: Nauvis AutoControl:')
+    print(serpent.block(data.raw.planet.nauvis.map_gen_settings.autoplace_controls))
+
+elseif nauvis_enemy_settings == NAUVIS_MIXED then
+    nauvis_autocontrols[AUTOCONTROL_NAME] = {}
+
+    print('ERM_TOSS: Nauvis AutoControl:')
+    print(serpent.block(data.raw.planet.nauvis.map_gen_settings.autoplace_controls))
+
+end
+
+
+if feature_flags.space_travel and settings.startup["erm_toss-on_fulgora"].value then
     local fulgora = data.raw.planet.fulgora
-    fulgora.map_gen_settings.autoplace_controls[AUTOCONTROL_NAME] = {}
+    --- Fixed spawn size, not affected by Menu"s map gen setting
+    fulgora.map_gen_settings.autoplace_controls[AUTOCONTROL_NAME] = { frequency = 0.5, size = 0.5 }
 end

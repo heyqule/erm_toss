@@ -116,7 +116,7 @@ function ErmToss.make_shield_battery(level)
             starting_attack_animation = attack_animation(),
             starting_attack_speed = 0.02,
             autoplace = enemy_autoplace.enemy_spawner_autoplace({
-                probability_expression = "erm_zerg_autoplace_base(0, 2000011)",
+                probability_expression = "erm_toss_autoplace_base(0, 2000011)",
                 force = FORCE_NAME,
                 control = AUTOCONTROL_NAME
             }),

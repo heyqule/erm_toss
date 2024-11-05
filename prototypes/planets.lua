@@ -39,7 +39,7 @@ local procession_graphic_catalogue_types = require("__base__/prototypes/planet/p
                 ["coal"] = {},
                 ["water"] = {},
                 ["trees"] = {},
-                ["erm_toss_enemy_base"] = {},
+                ["erm_toss_enemy-base"] = {},
                 ["rocks"] = {},
                 ["nauvis_cliff"] = {}
             },

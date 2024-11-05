@@ -56,4 +56,12 @@ data:extend {
         default_value = true,
         order = "erm_toss-115",
     },
+    {
+        type = "bool-setting",
+        name = "erm_toss-on_fulgora",
+        description = "erm_toss-on_fulgora",
+        setting_type = "startup",
+        default_value = true,
+        order = "erm_toss-200",
+    },
 }
