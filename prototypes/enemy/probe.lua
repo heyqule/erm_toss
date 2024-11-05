@@ -19,7 +19,7 @@ local name = "probe"
 
 
 local hitpoint = 40
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 4
 
 
 -- Handles acid and poison resistance

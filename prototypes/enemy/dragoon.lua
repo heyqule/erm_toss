@@ -19,7 +19,7 @@ local name = "dragoon"
 -- Hitpoints
 
 local hitpoint = 180
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.25
 
 
 -- Handles acid and poison resistance

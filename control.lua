@@ -88,8 +88,8 @@ local addRaceSettings = function()
     }
     race_settings.construction_buildings = {
         {{ "cannon_shortrange"},{1}},
-        {{ "cannon_shortrange", "shield_battery"},{5,1}},
-        {{ "cannon_shortrange", "pylon", "shield_battery"},{5,2,1}},
+        {{ "cannon_shortrange", "shield_battery"},{5,2}},
+        {{ "cannon_shortrange", "pylon", "shield_battery"},{5,2,2}},
     }
     race_settings.featured_groups = {
         -- Unit list, spawn ratio, unit attack point cost

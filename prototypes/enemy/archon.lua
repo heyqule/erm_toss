@@ -20,7 +20,7 @@ local name = "archon"
 
 
 local hitpoint = 360
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 2.5
 
 
 -- Handles acid and poison resistance

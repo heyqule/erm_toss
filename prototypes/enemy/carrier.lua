@@ -21,7 +21,7 @@ local name = "carrier"
 -- Hitpoints
 
 local hitpoint = 450
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value  * 1.25
 
 
 -- Handles acid and poison resistance

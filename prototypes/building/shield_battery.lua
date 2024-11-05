@@ -26,8 +26,7 @@ local name = "shield_battery"
 -- Hitpoints
 
 local hitpoint = 300
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.5
-
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 2
 
 -- Handles acid and poison resistance
 local base_acid_resistance = 0
@@ -159,7 +158,7 @@ function ErmToss.make_shield_battery(level)
                                             target_effects = {
                                                 {
                                                     type = "damage",
-                                                    damage = { amount = -200, type = "healing" },
+                                                    damage = { amount = -250, type = "healing" },
                                                 },
                                             },
                                         }
