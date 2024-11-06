@@ -8,6 +8,7 @@ Date: ??-??-??
     - Utilized 2.0 autoplace and noise function system.
     - Replaced leveling system with quality system to determine enemy stats.
     - [space-age] Added planet Aiur.  Only legendary units spawn in there.
+    - [space-age] Protoss units hide in asteroid on the connections to Aiur.  You'll encounter Epic / Legendary units.
     - [space-age] They may have some small bases on Fulgora.  They evolve differently there as you don't pollute on Fulgora.
 
   Changes:
