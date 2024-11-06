@@ -8,10 +8,12 @@ Date: ??-??-??
     - Utilized 2.0 autoplace and noise function system.
     - Replaced leveling system with quality system to determine enemy stats.
     - [space-age] Added planet Aiur.  Only legendary units spawn in there.
-    - [space-age] They have some small bases on Fulgora.  They are there to harvest the lightning.
+    - [space-age] They may have some small bases on Fulgora.  They evolve differently there as you don't pollute on Fulgora.
 
   Changes:
     - Sound adjustments to make them sound less busy.
+    - Shield battery now does 20 base AOE damage, instead of single target.
+    - Health adjustments, slightly higher than before on higher tiers.
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.23.1

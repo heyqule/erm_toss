@@ -11,7 +11,7 @@
 local ERM_UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
 local ERM_UnitTint = require("__enemyracemanager__/lib/rig/unit_tint")
 local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
-local ERM_Config = require("__enemyracemanager__/lib/global_config")
+local GlobalConfig = require("__enemyracemanager__/lib/global_config")
 local ERMDataHelper = require("__enemyracemanager__/lib/rig/data_helper")
 local TossSound = require("__erm_toss__/prototypes/sound")
 local biter_ai_settings = require ("__base__.prototypes.entity.biter-ai-settings")
@@ -72,7 +72,7 @@ function ErmToss.make_shuttle(level)
         {
             type = "unit",
             name = MOD_NAME .. "--" .. name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, tostring(level) },
+            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-enemy", "placeable-player", "placeable-off-grid", "not-flammable" },

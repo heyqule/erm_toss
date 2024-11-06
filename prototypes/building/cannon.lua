@@ -6,7 +6,7 @@
 
 
 local ERM_UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
-local ERM_UnitTint = require("__enemyracemanager__/lib/rig/unit_tint")
+local GlobalConfig = require("__enemyracemanager__/lib/global_config")
 local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
 local ERM_Config = require("__enemyracemanager__/lib/global_config")
 local TossSound = require("__erm_toss__/prototypes/sound")
@@ -80,7 +80,7 @@ function ErmToss.make_cannon(level)
         {
             type = "turret",
             name = MOD_NAME .. "--" .. name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, tostring(level) },
+            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
@@ -174,7 +174,7 @@ function ErmToss.make_cannon(level)
         {
             type = "turret",
             name = MOD_NAME.."--acid-" .. name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME.."--acid-" .. name, tostring(level) },
+            localised_name = { "entity-name." .. MOD_NAME.."--acid-" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
@@ -270,7 +270,7 @@ function ErmToss.make_cannon(level)
         {
             type = "turret",
             name = MOD_NAME .. "--" .. shortrange_name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME .. "--" .. shortrange_name, tostring(level) },
+            localised_name = { "entity-name." .. MOD_NAME .. "--" .. shortrange_name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
