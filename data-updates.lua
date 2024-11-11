@@ -38,7 +38,7 @@ elseif nauvis_enemy_settings == NAUVIS_MIXED then
 end
 
 
-if feature_flags.space_travel and settings.startup["erm_toss-on_fulgora"].value then
+if feature_flags.space_travel and settings.startup["enemy_erm_toss-on_fulgora"].value then
     local fulgora = data.raw.planet.fulgora
     --- Fixed spawn size, not affected by Menu"s map gen setting
     fulgora.map_gen_settings.autoplace_controls[AUTOCONTROL_NAME] = { frequency = 0.5, size = 0.5 }

@@ -107,7 +107,7 @@ function ErmToss.make_boss_wrapgate(level, hitpoint)
             dying_explosion = MOD_NAME.."--large-building-explosion",
             max_count_of_owned_units = max_count_of_owned_units,
             max_friends_around_to_spawn = max_friends_around_to_spawn,
-            map_color = ERM_UnitHelper.format_map_color(settings.startup["erm_toss-map-color"].value),
+            map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
                         graphics_set = {
                 animations = AnimationDB.get_layered_animations("buildings", name, "run")
             },

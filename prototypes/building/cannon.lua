@@ -87,7 +87,7 @@ function ErmToss.make_cannon(level)
             max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
             order = MOD_NAME .. "--" .. name .. "--".. level,
             subgroup = "enemies",
-            map_color = ERM_UnitHelper.format_map_color(settings.startup["erm_toss-map-color"].value),
+            map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             resistances = {
                 { type = "acid", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
                 { type = "poison", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
@@ -180,7 +180,7 @@ function ErmToss.make_cannon(level)
             flags = { "placeable-player", "placeable-enemy", },
             max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
             order = MOD_NAME .. "--" .. name .. "--".. level,
-            map_color = ERM_UnitHelper.format_map_color(settings.startup["erm_toss-map-color"].value),
+            map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             subgroup = "enemies",
             resistances = {
                 { type = "acid", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
@@ -277,7 +277,7 @@ function ErmToss.make_cannon(level)
             max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
             order = MOD_NAME .. "-" .. shortrange_name,
             subgroup = "enemies",
-            map_color = ERM_UnitHelper.format_map_color(settings.startup["erm_toss-map-color"].value),
+            map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             resistances = {
                 { type = "acid", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
                 { type = "poison", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },

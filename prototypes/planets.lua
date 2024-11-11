@@ -97,7 +97,7 @@ local aiur_mapgen =
         lightning_properties = {
             lightnings_per_chunk_per_tick = 1 / (30 * 60), --cca once per chunk every 30 seconds
             search_radius = 16.0,
-            lightning_types = { "erm_toss--lightning" },
+            lightning_types = { "enemy_erm_toss--lightning" },
             priority_rules = {
                 {
                     type = "id",
@@ -421,7 +421,7 @@ local aiur_space_connection_asteroid_spawn_definition = {
 
 --- Aiur intense lighting lore lol
 local lightning = util.table.deepcopy(data.raw['lightning']['lightning'])
-lightning.name = 'erm_toss--lightning'
+lightning.name = 'enemy_erm_toss--lightning'
 lightning.damage = 250
 lightning.energy = "2000MJ"
 

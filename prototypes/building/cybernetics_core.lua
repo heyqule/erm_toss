@@ -83,7 +83,7 @@ function ErmToss.make_cybernetics_core(level)
             max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
             order = MOD_NAME .. "--" .. name .. "--".. level,
             subgroup = "enemies",
-            map_color = ERM_UnitHelper.format_map_color(settings.startup["erm_toss-map-color"].value),
+            map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             working_sound = TossSound.building_working_sound(name, 1),
             dying_sound = TossSound.building_dying_sound(1),
             resistances = {

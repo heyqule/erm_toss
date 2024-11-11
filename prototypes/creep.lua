@@ -7,7 +7,7 @@
 local Creep = {}
 
 function Creep.getSpawnerCreep()
-    if settings.startup["erm_toss-enable_floor_decals"].value then
+    if settings.startup["enemy_erm_toss-enable_floor_decals"].value then
         return {
             {
                 decorative = "tosscreep-decal",
