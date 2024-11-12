@@ -265,7 +265,7 @@ local new_asteroids = {
 
 local astreroid_data = {
     [metallic_name] = {
-        scout = { [4] = 0.1, [5] = 0.005},
+        scout = { [4] = 0.15, [5] = 0.02},
         interceptor = { [4] = 0.5, [5] = 0.05},
     },
     [carbonic_name] = {
@@ -273,8 +273,8 @@ local astreroid_data = {
         interceptor = { [4] = 0.5, [5] = 0.05},
     },
     [oxide_name] = {
-        scout = { [4] = 0.1, [5] = 0.01},
-        corsair = { [4] = 0.1, [5] = 0.01},
+        scout = { [4] = 0.15, [5] = 0.02},
+        corsair = { [4] = 0.15, [5] = 0.02},
     }
 }
 for key, a_data in pairs(astreroid_data) do
