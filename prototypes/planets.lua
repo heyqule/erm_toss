@@ -265,16 +265,16 @@ local new_asteroids = {
 
 local astreroid_data = {
     [metallic_name] = {
-        scout = { [4] = 0.15, [5] = 0.02},
-        interceptor = { [4] = 0.5, [5] = 0.05},
+        scout = { [4] = 0.2, [5] = 0.05},
+        interceptor = { [4] = 0.35, [5] = 0.1},
     },
     [carbonic_name] = {
-        carrier = { [4] = 0.05},
-        interceptor = { [4] = 0.5, [5] = 0.05},
+        carrier = { [4] = 0.1, [5] = 0.02},
+        interceptor = { [4] = 0.35, [5] = 0.1},
     },
     [oxide_name] = {
-        scout = { [4] = 0.15, [5] = 0.02},
-        corsair = { [4] = 0.15, [5] = 0.02},
+        corsair = { [4] = 0.2, [5] = 0.05},
+        shuttle = { [4] = 0.1},
     }
 }
 for key, a_data in pairs(astreroid_data) do
@@ -552,7 +552,7 @@ data:extend({
         from = "nauvis",
         to = "aiur",
         order = "nauvis-aiur",
-        length = 30000,
+        length = 22500,
         asteroid_spawn_definitions = aiur_space_connection_asteroid_spawn_definition
     },
     {

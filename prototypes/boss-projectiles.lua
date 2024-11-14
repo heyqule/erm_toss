@@ -31,7 +31,7 @@ local create_psystorm_projectile = function(tier)
         collision_box = {{-0.5,-0.5},{0.5, 0.5}},
         direction_only = true,
         force_condition = "enemy",
-        hit_collision_mask =  { layers = {player = true, train = true, trigger_target=true, object = true,  [ERMDataHelper.getFlyingLayerName()] = true}},
+        hit_collision_mask =  { layers = {player = true, train = true,   [ERMDataHelper.getFlyingLayerName()] = true}},
         final_action = {
             type = "direct",
             action_delivery = {
@@ -65,7 +65,7 @@ local create_stasis_projectile = function(tier)
         collision_box = {{-0.5,-0.5},{0.5, 0.5}},
         direction_only = true,
         force_condition = "enemy",
-        hit_collision_mask =  { layers = {player = true, train = true, trigger_target=true, object = true,  [ERMDataHelper.getFlyingLayerName()] = true}},
+        hit_collision_mask =  { layers = {player = true, train = true,   [ERMDataHelper.getFlyingLayerName()] = true}},
         final_action = {
             type = "direct",
             action_delivery = {
@@ -99,7 +99,7 @@ local create_cold_fire_projectile = function(tier)
         collision_box = {{-0.5,-0.5},{0.5, 0.5}},
         direction_only = true,
         force_condition = "enemy",
-        hit_collision_mask =  { layers = {player = true, train = true, trigger_target=true, object = true,  [ERMDataHelper.getFlyingLayerName()] = true}},
+        hit_collision_mask =  { layers = {player = true, train = true,   [ERMDataHelper.getFlyingLayerName()] = true}},
         final_action = {
             type = "direct",
             action_delivery = {
@@ -186,7 +186,7 @@ local create_cold_star_projectile = function(tier)
         collision_box = {{-0.5,-0.5},{0.5, 0.5}},
         direction_only = true,
         force_condition = "enemy",
-        hit_collision_mask =  { layers = {player = true, train = true, trigger_target=true, object = true,  [ERMDataHelper.getFlyingLayerName()] = true}},
+        hit_collision_mask =  { layers = {player = true, train = true,   [ERMDataHelper.getFlyingLayerName()] = true}},
         final_action = {
             type = "direct",
             action_delivery = {
@@ -231,7 +231,7 @@ local create_recall_projectile = function(tier, script_attack)
         collision_box = {{-1,-1},{1, 1}},
         direction_only = true,
         force_condition = "enemy",
-        hit_collision_mask =  { layers = {player = true, train = true, trigger_target=true, object = true,  [ERMDataHelper.getFlyingLayerName()] = true}},
+        hit_collision_mask =  { layers = {player = true, train = true,   [ERMDataHelper.getFlyingLayerName()] = true}},
         final_action = {
             type = "direct",
             action_delivery = {
