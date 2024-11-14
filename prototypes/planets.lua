@@ -38,7 +38,7 @@ local aiur_mapgen =
             ["coal"] = {},
             ["water"] = {},
             ["trees"] = {},
-            ["erm_toss_enemy-base"] = {},
+            [AUTOCONTROL_NAME] = {},
             ["rocks"] = {},
             ["nauvis_cliff"] = {}
         },
@@ -418,6 +418,48 @@ local aiur_space_connection_asteroid_spawn_definition = {
     }
 }
 
+local auir_space_asteroid_spawn_definition = {
+    {
+        asteroid = "metallic-asteroid-chunk",
+        angle_when_stopped = 1,
+        probability = 0.0025,
+        speed = 0.016666666666666665,
+        type = "asteroid-chunk"
+    },
+    {
+        asteroid = "carbonic-asteroid-chunk",
+        angle_when_stopped = 1,
+        probability = 0.001875,
+        speed = 0.016666666666666665,
+        type = "asteroid-chunk"
+    },
+    {
+        asteroid = "oxide-asteroid-chunk",
+        angle_when_stopped = 1,
+        probability = 0.000625,
+        speed = 0.016666666666666665,
+        type = "asteroid-chunk"
+    },
+    {
+        asteroid = metallic_name,
+        angle_when_stopped = 0.6,
+        probability = 0.0025,
+        speed = 0.016666666666666665,
+    },
+    {
+        asteroid = carbonic_name,
+        angle_when_stopped = 0.6,
+        probability = 0.001875,
+        speed = 0.016666666666666665
+    },
+    {
+        asteroid = oxide_name,
+        angle_when_stopped = 0.6,
+        probability = 0.000625,
+        speed = 0.016666666666666665
+    }
+}
+
 
 --- Aiur intense lighting lore lol
 local lightning = util.table.deepcopy(data.raw['lightning']['lightning'])
@@ -454,6 +496,8 @@ data:extend({
         surface_render_parameters = {
             clouds = effects.default_clouds_effect_properties()
         },
+        asteroid_spawn_influence = 1,
+        asteroid_spawn_definitions = auir_space_asteroid_spawn_definition,
         persistent_ambient_sounds = {
             base_ambience = { filename = "__base__/sound/world/world_base_wind.ogg", volume = 0.3 },
             wind = { filename = "__base__/sound/wind/wind.ogg", volume = 0.8 },
