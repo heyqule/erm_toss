@@ -24,7 +24,7 @@ local createRace = function()
 
     force.ai_controllable = true;
     force.disable_research()
-    force.friendly_fire = false;
+    force.friendly_fire = true;
 
     if settings.startup["enemyracemanager-free-for-all"].value then
         ForceHelper.set_friends(game, FORCE_NAME, false)
