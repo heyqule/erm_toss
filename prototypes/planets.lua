@@ -49,7 +49,6 @@ local aiur_mapgen =
                     ["grass-2"] = {},
                     ["grass-3"] = {},
                     ["grass-4"] = {},
-                    ["sand-1"] = {},
                     ["water"] = {},
                     ["deepwater"] = {}
                 }
@@ -461,14 +460,79 @@ local auir_space_asteroid_spawn_definition = {
 }
 
 
---- Aiur intense lighting lore lol
-local lightning = util.table.deepcopy(data.raw['lightning']['lightning'])
-lightning.name = 'enemy_erm_toss--lightning'
-lightning.damage = 250
-lightning.energy = "2000MJ"
+--- Aiur's intense lighting lol
+local aiur_lightning = util.table.deepcopy(data.raw['lightning']['lightning'])
+aiur_lightning.name = 'enemy_erm_toss--aiur-lightning'
+aiur_lightning.damage = 500
+aiur_lightning.energy = "3000MJ"
+-- 0.5% to spawn 2 zealots, 0.2% to spawn dragoon
+table.insert(aiur_lightning.strike_effect.action_delivery.target_effects,
+        {
+            type = "create-entity",
+            entity_name = MOD_NAME.."--zealot--1",
+            offset_deviation = {{-8, -8}, {8, 8}},
+            offsets = {
+                {8,8},
+                {-8,-8}
+            },
+            probability = 0.005,
+            trigger_created_entity = true,
+            find_non_colliding_position = true,
+            non_colliding_search_radius = 8,
+            non_colliding_search_precision = 2,
+        })
+table.insert(aiur_lightning.strike_effect.action_delivery.target_effects,
+        {
+            type = "create-entity",
+            entity_name = MOD_NAME.."--dragoon--1",
+            offset_deviation = {{-8, -8}, {8, 8}},
+            offsets = {
+                {4,4},
+            },
+            probability = 0.002,
+            trigger_created_entity = true,
+            find_non_colliding_position = true,
+            non_colliding_search_radius = 8,
+            non_colliding_search_precision = 2,
+        })
+
+local fulgora_lightning_replacement = util.table.deepcopy(data.raw['lightning']['lightning'])
+fulgora_lightning_replacement.name = 'enemy_erm_toss--fulgora-lightning'
+-- 0.05% to spawn 2 zealot, 0.02% to spawn dragoon
+table.insert(fulgora_lightning_replacement.strike_effect.action_delivery.target_effects,
+    {
+        type = "create-entity",
+        entity_name = MOD_NAME.."--zealot--1",
+        offset_deviation = {{-8, -8}, {8, 8}},
+        offsets = {
+            {8,8},
+            {-8,-8}
+        },
+        probability = 0.0005,
+        trigger_created_entity = true,
+        find_non_colliding_position = true,
+        non_colliding_search_radius = 8,
+        non_colliding_search_precision = 2,
+    })
+table.insert(fulgora_lightning_replacement.strike_effect.action_delivery.target_effects,
+    {
+        type = "create-entity",
+        entity_name = MOD_NAME.."--dragoon--1",
+        offset_deviation = {{-8, -8}, {8, 8}},
+        offsets = {
+            {4,4},
+        },
+        probability = 0.0002,
+        trigger_created_entity = true,
+        find_non_colliding_position = true,
+        non_colliding_search_radius = 8,
+        non_colliding_search_precision = 2,
+    })
+
 
 data:extend({
-    lightning,
+    aiur_lightning,
+    fulgora_lightning_replacement,
     --- Planet
     {
         type = "planet",
@@ -506,6 +570,212 @@ data:extend({
                 curve_type = "cosine",
                 from = { control = 0.35, volume_percentage = 0.0 },
                 to = { control = 2, volume_percentage = 100.0 }
+            },
+            semi_persistent =
+            {
+                {
+                    sound = {variations = sound_variations("__space-age__/sound/world/semi-persistent/wind-gust", 6, 0.4)},
+                    delay_mean_seconds = 10,
+                    delay_variance_seconds = 5
+                },
+                {
+                    sound =
+                    {
+                        filename = "__space-age__/sound/world/weather/rain.ogg", volume = 0.25,
+                        advanced_volume_control = {fades = {fade_in = {curve_type = "cosine", from = {control = 0.2, volume_percentage = 0.6}, to = {1.2, 100.0 }}}}
+                    }
+                },
+                {
+                    sound =
+                    {
+                        variations = sound_variations("__space-age__/sound/world/semi-persistent/night-birds", 14, 0.4),
+                        advanced_volume_control =
+                        {
+                            fades = {fade_in = {curve_type = "cosine", from = {control = 0.5, volume_percentage = 0.0}, to = {1.5, 100.0}}},
+                            darkness_threshold = 0.85
+                        }
+                    },
+                    delay_mean_seconds = 10,
+                    delay_variance_seconds = 5
+                }
+            },
+        },
+        ---- Rain
+        player_effects =
+        { -- TODO: replace with shader & find a way to have rain appear and disappear with weather system.
+            type = "cluster",
+            cluster_count = 10,
+            distance = 8,
+            distance_deviation = 8,
+            action_delivery =
+            {
+                type = "instant",
+                source_effects =
+                {
+                    type = "create-trivial-smoke",
+                    smoke_name = "gleba-raindrops",
+                    speed = {-0.05, 0.5},
+                    initial_height = 1,
+                    speed_multiplier = 2,
+                    speed_multiplier_deviation = 0.05,
+                    starting_frame = 2,
+                    starting_frame_deviation = 2,
+                    offset_deviation = {{-96, -56}, {96, 40}},
+                    speed_from_center = 0.01,
+                    speed_from_center_deviation = 0.02
+                }
+            }
+        },
+        ticks_between_player_effects = 1,
+        ---- Lighting
+        lightning_properties =
+        {
+            lightnings_per_chunk_per_tick = 1 / (30 * 60), --cca once per chunk half minute (600 ticks)
+            search_radius = 8.0,
+            lightning_types = {"enemy_erm_toss--aiur-lightning"},
+            priority_rules =
+            {
+                {
+                    type = "id",
+                    string = "lightning-collector",
+                    priority_bonus = 10000
+                },
+                {
+                    type = "prototype",
+                    string = "lightning-attractor",
+                    priority_bonus = 1000
+                },
+                {
+                    type = "prototype",
+                    string = "pipe",
+                    priority_bonus = 1
+                },
+                {
+                    type = "prototype",
+                    string = "pump",
+                    priority_bonus = 1
+                },
+                {
+                    type = "prototype",
+                    string = "offshore-pump",
+                    priority_bonus = 1
+                },
+                {
+                    type = "prototype",
+                    string = "electric-pole",
+                    priority_bonus = 10
+                },
+                {
+                    type = "prototype",
+                    string = "power-switch",
+                    priority_bonus = 10
+                },
+                {
+                    type = "prototype",
+                    string = "logistic-robot",
+                    priority_bonus = 100
+                },
+                {
+                    type = "prototype",
+                    string = "construction-robot",
+                    priority_bonus = 100
+                },
+                {
+                    type = "impact-soundset",
+                    string = "metal",
+                    priority_bonus = 1
+                }
+            },
+            exemption_rules =
+            {
+                {
+                    type = "prototype",
+                    string = "rail-support",
+                },
+                {
+                    type = "prototype",
+                    string = "legacy-straight-rail",
+                },
+                {
+                    type = "prototype",
+                    string = "legacy-curved-rail",
+                },
+                {
+                    type = "prototype",
+                    string = "straight-rail",
+                },
+                {
+                    type = "prototype",
+                    string = "curved-rail-a",
+                },
+                {
+                    type = "prototype",
+                    string = "curved-rail-b",
+                },
+                {
+                    type = "prototype",
+                    string = "half-diagonal-rail",
+                },
+                {
+                    type = "prototype",
+                    string = "rail-ramp",
+                },
+                {
+                    type = "prototype",
+                    string = "elevated-straight-rail",
+                },
+                {
+                    type = "prototype",
+                    string = "elevated-curved-rail-a",
+                },
+                {
+                    type = "prototype",
+                    string = "elevated-curved-rail-b",
+                },
+                {
+                    type = "prototype",
+                    string = "elevated-half-diagonal-rail",
+                },
+                {
+                    type = "prototype",
+                    string = "rail-signal",
+                },
+                {
+                    type = "prototype",
+                    string = "rail-chain-signal",
+                },
+                {
+                    type = "prototype",
+                    string = "locomotive",
+                },
+                {
+                    type = "prototype",
+                    string = "artillery-wagon",
+                },
+                {
+                    type = "prototype",
+                    string = "cargo-wagon",
+                },
+                {
+                    type = "prototype",
+                    string = "fluid-wagon",
+                },
+                {
+                    type = "prototype",
+                    string = "land-mine",
+                },
+                {
+                    type = "prototype",
+                    string = "wall",
+                },
+                {
+                    type = "prototype",
+                    string = "tree",
+                },
+                {
+                    type = "countAsRockForFilteredDeconstruction",
+                    string = "true",
+                },
             }
         },
         procession_graphic_catalogue = {

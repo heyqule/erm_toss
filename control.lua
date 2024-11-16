@@ -14,7 +14,7 @@ local CustomAttacks = require("__erm_toss__/scripts/custom_attacks")
 
 require("__erm_toss__/global")
 -- Constants
-
+local using_lightning_units = true
 
 local createRace = function()
     local force = game.forces[FORCE_NAME]
@@ -33,6 +33,11 @@ local createRace = function()
     end
 
     ForceHelper.set_neutral_force(game, FORCE_NAME)
+
+    --- store units created by demolisher for additional evil processing. :)
+    storage.lightning_units = storage.lightning_units or {}
+    --- Queue for cleanup.
+    storage.backlog_lightning_units = storage.backlog_lightning_units or {}
 end
 
 local addRaceSettings = function()
@@ -175,8 +180,52 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
     end
 end)
 
+local is_compatible_lightning = {
+    ['enemy_erm_toss--fulgora-lightning'] =  true,
+    ['enemy_erm_toss--aiur-lightning'] =  true,
+}
+
+local on_trigger_created_entity_handlers = {
+    ["lightning"] = function(entity, source)
+        if is_compatible_lightning[source.name] then
+            entity.force = FORCE_NAME
+            local surface_name = entity.surface.name
+            if storage.lightning_units[surface_name] == nil then
+                storage.lightning_units[surface_name] = {}
+            end
+
+            storage.lightning_units[surface_name][entity.unit_number] = {
+                entity = entity,
+                tick = game.tick
+            }
+        end
+
+        if entity.commandable then
+            entity.commandable.set_command({
+                type =  defines.command.go_to_location,
+                distraction = defines.distraction.by_anything,
+                --- @TODO use attack beacon
+                destination = {0, 0},
+            })
+        end
+    end
+}
+
+script.on_event(defines.events.on_trigger_created_entity, function(event)
+    local entity = event.entity
+    local source = event.source
+    if on_trigger_created_entity_handlers[source.type] and entity.valid then
+        on_trigger_created_entity_handlers[source.type](entity, source)
+    end
+end)
+
+
 script.on_nth_tick(901, function(event)
     CustomAttacks.clear_time_to_live_units(event)
+
+    if using_lightning_units then
+        CustomAttacks.lightning_units_attack()
+    end
 end)
 
 local ErmBossAttack = require("scripts/boss_attacks")

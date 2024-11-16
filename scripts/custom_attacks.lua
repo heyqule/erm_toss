@@ -53,4 +53,73 @@ function CustomAttacks.process_batch_units(event, batch_size)
     CustomAttackHelper.drop_batch_units(event, MOD_NAME, ERMConfig.boss_spawn_size * batch_size)
 end
 
+---
+--- Handles aftermath of lightning unit attack
+--- Either attack 0,0 or build a base
+---
+function CustomAttacks.lightning_units_attack()
+    local i = 0
+    local unit_group = {}
+    for surface_name, units in pairs(storage.lightning_units) do
+        for key, unit_data in pairs(units) do
+            local unit = unit_data.entity
+
+            if unit.valid then
+                local commandable = unit.commandable
+                if (commandable.has_command == false or 
+                    commandable.command.type == defines.command.wander or
+                 (commandable.command.type == defines.command.compound and commandable.command.commands[1].type == defines.command.wander)
+                ) then
+                    table.insert(unit_group, unit)
+                    storage.lightning_units[surface_name][key] = nil
+                    storage.backlog_lightning_units[key] = {
+                        entity = unit,
+                        tick = game.tick
+                    }
+                end                                     
+            elseif unit.valid == false then
+                storage.lightning_units[surface_name][key] = nil
+            end
+            i = i + 1
+            if i == 20 then
+                break
+            end
+        end
+
+        local surface_group
+        for _, unit in pairs(unit_group) do
+            if unit.valid then
+                if surface_group == nil then
+                    surface_group = unit.surface.create_unit_group({position = unit.position, force = unit.force})
+                end
+
+                surface_group.add_member(unit)
+            end
+        end
+
+        if surface_group then
+            if CustomAttacks.can_spawn(10) then
+                remote.call("enemyracemanager", "build_base_formation", surface_group)
+            end
+        end
+    end
+
+    --- forcefully remove units after 4 mins.
+    i = 0
+    for key, unit_data in pairs(storage.backlog_lightning_units) do
+        local entity = unit_data.entity
+        if entity.valid and game.tick > (unit_data.tick + 4 * minute)  then
+            --- Protoss trainee dies after 4 minutes.  Half day on Aiur.
+            entity.destroy()
+            storage.backlog_lightning_units[key] = nil
+        elseif entity.valid == false then
+            storage.backlog_lightning_units[key] = nil
+        end
+        i = i + 1
+        if i == 30 then
+            break
+        end
+    end
+end
+
 return CustomAttacks
