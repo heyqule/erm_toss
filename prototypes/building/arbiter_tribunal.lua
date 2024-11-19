@@ -9,7 +9,7 @@
 local ERM_UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
 local GlobalConfig = require("__enemyracemanager__/lib/global_config")
 local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
-local TossSound = require("__erm_toss__/prototypes/sound")
+local TossSound = require("__erm_toss_hd_assets__/sound")
 
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
 local Creep = require("prototypes.creep")
@@ -96,7 +96,7 @@ function ErmToss.make_arbiter_tribunal(level)
             collision_box = collision_box,
             map_generator_bounding_box = map_generator_bounding_box,
             selection_box = selection_box,
-    absorptions_per_second = { pollution = { absolute = pollution_absorption_absolute, proportional = 0.01 } },
+            absorptions_per_second = { pollution = { absolute = pollution_absorption_absolute, proportional = 0.01 } },
             corpse = MOD_NAME.."--large-base-corpse",
             dying_explosion = MOD_NAME.."--large-building-explosion",
             max_count_of_owned_units = max_count_of_owned_units,
@@ -115,7 +115,7 @@ function ErmToss.make_arbiter_tribunal(level)
             -- "The number or spitter spwners should be roughly equal to the number of biter spawners(regardless of difficulty)."
             -- (2018-12-07)
             autoplace = enemy_autoplace.enemy_spawner_autoplace({
-                probability_expression = "erm_toss_autoplace_base(0, 2000000)",
+                probability_expression = "erm_toss_autoplace_base(0, 10)",
                 force = FORCE_NAME,
                 control = AUTOCONTROL_NAME
             }),

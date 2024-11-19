@@ -11,7 +11,7 @@
 local ERM_UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
 local ERM_UnitTint = require("__enemyracemanager__/lib/rig/unit_tint")
 local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
-local TossSound = require("__erm_toss__/prototypes/sound")
+local TossSound = require("__erm_toss_hd_assets__/sound")
 local GlobalConfig = require("__enemyracemanager__/lib/global_config")
 local biter_ai_settings = require ("__base__.prototypes.entity.biter-ai-settings")
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
@@ -112,12 +112,12 @@ function ErmToss.make_zealot(level)
                 cooldown_deviation = 0.1,
                 damage_modifier = ERM_UnitHelper.get_damage(base_physical_damage, incremental_physical_damage,  level),
                 ammo_type = ERM_UnitHelper.make_unit_melee_ammo_type(10),
-                sound = TossSound.zealot_attack(0.66),
+                sound = TossSound.zealot_attack(0.9),
                 animation = AnimationDB.get_layered_animations("units", name, "attack"),
             },
             distance_per_frame = 0.16,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
-            dying_sound = TossSound.enemy_death(name, 0.75),
+            dying_sound = TossSound.enemy_death(name, 1),
             dying_explosion = MOD_NAME.."--zealot-death",
             corpse = MOD_NAME .. "--" .. name .. "-corpse"
         },

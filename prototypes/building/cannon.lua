@@ -9,7 +9,7 @@ local ERM_UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
 local GlobalConfig = require("__enemyracemanager__/lib/global_config")
 local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
 local ERM_Config = require("__enemyracemanager__/lib/global_config")
-local TossSound = require("__erm_toss__/prototypes/sound")
+local TossSound = require("__erm_toss_hd_assets__/sound")
 
 
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
@@ -117,7 +117,7 @@ function ErmToss.make_cannon(level)
             integration = {
                 layers = {
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
+                        filename = "__erm_toss_hd_assets__/graphics/entity/buildings/" .. name .. "/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
                         height = 128,
@@ -126,7 +126,7 @@ function ErmToss.make_cannon(level)
                         scale = unit_scale
                     },
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
+                        filename = "__erm_toss_hd_assets__/graphics/entity/buildings/" .. name .. "/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
                         height = 128,
@@ -139,7 +139,7 @@ function ErmToss.make_cannon(level)
                 }
             },
             autoplace = enemy_autoplace.enemy_spawner_autoplace({
-                probability_expression = "erm_toss_autoplace_base(0, 2000001)",
+                probability_expression = "erm_toss_autoplace_base(0, 2)",
                 force = FORCE_NAME,
                 control = AUTOCONTROL_NAME
             }),
@@ -211,7 +211,7 @@ function ErmToss.make_cannon(level)
             integration = {
                 layers = {
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
+                        filename = "__erm_toss_hd_assets__/graphics/entity/buildings/" .. name .. "/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
                         height = 128,
@@ -220,7 +220,7 @@ function ErmToss.make_cannon(level)
                         scale = unit_scale
                     },
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
+                        filename = "__erm_toss_hd_assets__/graphics/entity/buildings/" .. name .. "/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
                         height = 128,
@@ -233,7 +233,7 @@ function ErmToss.make_cannon(level)
                 }
             },
             autoplace = enemy_autoplace.enemy_spawner_autoplace({
-                probability_expression = "erm_toss_autoplace_base(0, 2000002)",
+                probability_expression = "erm_toss_autoplace_base(0, 3)",
                 force = FORCE_NAME,
                 control = AUTOCONTROL_NAME
             }),
@@ -307,7 +307,7 @@ function ErmToss.make_cannon(level)
             integration = {
                 layers = {
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
+                        filename = "__erm_toss_hd_assets__/graphics/entity/buildings/" .. name .. "/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
                         height = 128,
@@ -316,7 +316,7 @@ function ErmToss.make_cannon(level)
                         scale = unit_scale
                     },
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
+                        filename = "__erm_toss_hd_assets__/graphics/entity/buildings/" .. name .. "/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
                         height = 128,

@@ -54,7 +54,7 @@ data:extend({
     {
         type = "explosion",
         name = MOD_NAME.."--small-building-explosion",
-        icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
+        icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
         icon_size = 64,
         subgroup = "explosions",
         flags = { "not-on-map" },
@@ -66,7 +66,7 @@ data:extend({
     {
         type = "explosion",
         name = MOD_NAME.."--darkarchon-explosion",
-        icon = "__erm_toss__/graphics/entity/icons/buildings/advisor.png",
+        icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
         icon_size = 64,
         subgroup = "explosions",
         flags = { "not-on-map" },

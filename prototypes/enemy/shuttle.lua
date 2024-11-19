@@ -13,7 +13,7 @@ local ERM_UnitTint = require("__enemyracemanager__/lib/rig/unit_tint")
 local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
 local GlobalConfig = require("__enemyracemanager__/lib/global_config")
 local ERMDataHelper = require("__enemyracemanager__/lib/rig/data_helper")
-local TossSound = require("__erm_toss__/prototypes/sound")
+local TossSound = require("__erm_toss_hd_assets__/sound")
 local biter_ai_settings = require ("__base__.prototypes.entity.biter-ai-settings")
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
 local name = "shuttle"
@@ -125,14 +125,14 @@ function ErmToss.make_shuttle(level)
                         }
                     }
                 },
-                sound = TossSound.shuttle_drop(0.66),
+                sound = TossSound.shuttle_drop(0.9),
                 animation = AnimationDB.get_layered_animations("units", name, "run")
             },
 
             render_layer = "wires-above",
             distance_per_frame = 0.5,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
-            dying_sound = TossSound.enemy_death("shuttle", 0.75),
+            dying_sound = TossSound.enemy_death("shuttle", 1),
             dying_explosion = MOD_NAME.."--small-air-death",
             corpse = MOD_NAME .. "--" .. name .. "-corpse"
         },

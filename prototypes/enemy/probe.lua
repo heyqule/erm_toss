@@ -12,7 +12,7 @@ local ERM_UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
 local ERM_UnitTint = require("__enemyracemanager__/lib/rig/unit_tint")
 local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
 local GlobalConfig = require("__enemyracemanager__/lib/global_config")
-local TossSound = require("__erm_toss__/prototypes/sound")
+local TossSound = require("__erm_toss_hd_assets__/sound")
 local biter_ai_settings = require ("__base__.prototypes.entity.biter-ai-settings")
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
 local name = "probe"
@@ -124,13 +124,13 @@ function ErmToss.make_probe(level)
                         }
                     }
                 },
-                sound = TossSound.probe_attack(0.66),
+                sound = TossSound.probe_attack(0.9),
                 animation = AnimationDB.get_layered_animations("units", name, "attack"),
             },
 
             distance_per_frame = 0.2,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
-            dying_sound = TossSound.enemy_death(name, 0.75),
+            dying_sound = TossSound.enemy_death(name, 1),
             dying_explosion = MOD_NAME.."--small-air-death",
             corpse = MOD_NAME .. "--" .. name .. "-corpse"
         },

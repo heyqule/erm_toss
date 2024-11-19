@@ -19,8 +19,8 @@ local procession_graphic_catalogue_types = require("__base__/prototypes/planet/p
 
 local aiur_mapgen =
     {
-        aux_climate_control = true,
-        moisture_climate_control = true,
+        aux_climate_control = false,
+        moisture_climate_control = false,
         property_expression_names = { -- Warning: anything set here overrides any selections made in the map setup screen so the options do nothing.
             --cliff_elevation = "cliff_elevation_nauvis",
             --cliffiness = "cliffiness_nauvis",

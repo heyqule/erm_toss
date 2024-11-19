@@ -13,7 +13,7 @@ local ERM_UnitTint = require("__enemyracemanager__/lib/rig/unit_tint")
 local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
 local GlobalConfig = require("__enemyracemanager__/lib/global_config")
 local ERMDataHelper = require("__enemyracemanager__/lib/rig/data_helper")
-local TossSound = require("__erm_toss__/prototypes/sound")
+local TossSound = require("__erm_toss_hd_assets__/sound")
 local biter_ai_settings = require ("__base__.prototypes.entity.biter-ai-settings")
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
 local name = "carrier"
@@ -127,7 +127,7 @@ function ErmToss.make_carrier(level)
                         }
                     }
                 },
-                sound = TossSound.interceptor_attack(0.5),
+                sound = TossSound.interceptor_attack(0.9),
                 animation = AnimationDB.get_layered_animations("units", name, "run")
             },
 

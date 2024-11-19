@@ -15,7 +15,7 @@ local ERM_UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
 local GlobalConfig = require("__enemyracemanager__/lib/global_config")
 local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
 local ERM_Config = require("__enemyracemanager__/lib/global_config")
-local TossSound = require("__erm_toss__/prototypes/sound")
+local TossSound = require("__erm_toss_hd_assets__/sound")
 
 
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
@@ -115,7 +115,7 @@ function ErmToss.make_shield_battery(level)
             starting_attack_animation = attack_animation(),
             starting_attack_speed = 0.02,
             autoplace = enemy_autoplace.enemy_spawner_autoplace({
-                probability_expression = "erm_toss_autoplace_base(0, 2000011)",
+                probability_expression = "erm_toss_autoplace_base(0, 3)",
                 force = FORCE_NAME,
                 control = AUTOCONTROL_NAME
             }),

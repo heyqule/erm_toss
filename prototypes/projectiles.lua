@@ -245,15 +245,7 @@ data:extend({
         type = "explosion",
         name = MOD_NAME.."--demo-darkarchon-maelstrom",
         flags = {"not-on-map"},
-        animations =         {
-            filename = "__erm_toss__/graphics/entity/projectiles/maelstrom.png",
-            width = 128,
-            height = 128,
-            frame_count = 25,
-            animation_speed = 0.5,
-            scale = 1,
-            draw_as_glow = true
-        }
+        animations = AnimationDB.get_layered_animations("projectiles","darkarchon_maelstrom","explosion"),
     },
     {
         type = "sticker",

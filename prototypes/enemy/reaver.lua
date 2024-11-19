@@ -12,7 +12,7 @@ local ERM_UnitTint = require("__enemyracemanager__/lib/rig/unit_tint")
 local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
 local GlobalConfig = require("__enemyracemanager__/lib/global_config")
 local ERMDataHelper = require("__enemyracemanager__/lib/rig/data_helper")
-local TossSound = require("__erm_toss__/prototypes/sound")
+local TossSound = require("__erm_toss_hd_assets__/sound")
 local biter_ai_settings = require ("__base__.prototypes.entity.biter-ai-settings")
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
 local name = "reaver"
@@ -124,12 +124,12 @@ function ErmToss.make_reaver(level)
                         }
                     }
                 },
-                sound = TossSound.reaver_attack(0.66),
+                sound = TossSound.reaver_attack(0.9),
                 animation = AnimationDB.get_layered_animations("units", name, "run")
             },
             distance_per_frame = 0.16,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
-            dying_sound = TossSound.enemy_death(name, 0.75),
+            dying_sound = TossSound.enemy_death(name, 1),
             dying_explosion = MOD_NAME.."--small-building-explosion",
             corpse = MOD_NAME .. "--" .. name .. "-corpse"
         },

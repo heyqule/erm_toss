@@ -18,9 +18,9 @@ local nauvis_autocontrols = data.raw.planet.nauvis.map_gen_settings.autoplace_co
 local nauvis_enemy_settings = settings.startup["enemyracemanager-nauvis-enemy"].value
 if nauvis_enemy_settings == MOD_NAME then
     for key, autoplace in pairs(nauvis_autocontrols) do
-        if string.find(key,"enemy_base") or string.find(key,"enemy-base") then
+        if string.find(key,"enemy_base", nil, true) or string.find(key,"enemy-base", nil, true) then
             print('ERM_TOSS: Disabling Nauvis AutoControl:'..key)
-            nauvis_autocontrols[key] = {frequency = 0, size = 0, richness = 0}
+            nauvis_autocontrols[key] = nil
         end
     end
 

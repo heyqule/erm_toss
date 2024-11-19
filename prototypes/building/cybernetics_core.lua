@@ -9,7 +9,7 @@
 local ERM_UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
 local GlobalConfig = require("__enemyracemanager__/lib/global_config")
 local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
-local TossSound = require("__erm_toss__/prototypes/sound")
+local TossSound = require("__erm_toss_hd_assets__/sound")
 
 
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
@@ -119,7 +119,7 @@ function ErmToss.make_cybernetics_core(level)
             -- "The number or spitter spwners should be roughly equal to the number of biter spawners(regardless of difficulty)."
             -- (2018-12-07)
             autoplace = enemy_autoplace.enemy_spawner_autoplace({
-                probability_expression = "erm_toss_autoplace_base(0, 2000004)",
+                probability_expression = "erm_toss_autoplace_base(0, 5)",
                 force = FORCE_NAME,
                 control = AUTOCONTROL_NAME
             }),
