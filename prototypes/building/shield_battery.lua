@@ -85,7 +85,7 @@ function ErmToss.make_shield_battery(level)
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
             max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "--" .. name .. "--".. level,
+            order = MOD_NAME .. "--building--" .. name .. "--".. level,
             subgroup = "enemies",
             map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             resistances = {
@@ -154,8 +154,13 @@ function ErmToss.make_shield_battery(level)
                                             target_effects = {
                                                 {
                                                     type = "damage",
-                                                    damage = { amount = 20, type = "electric" },
+                                                    damage = { amount = 30, type = "electric" },
                                                 },
+                                                {
+                                                    type = "create-sticker",
+                                                    sticker = "5-050-slowdown-sticker",
+                                                    show_in_tooltip = true
+                                                }
                                             },
                                         }
                                     }

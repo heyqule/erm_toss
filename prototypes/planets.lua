@@ -243,7 +243,7 @@ local aiur_mapgen =
     }
 
 
------ Add Large asteroid that spawn units
+----- Add medium asteroid that spawn units
 local oxide_name = "protoss-spawning-medium-oxide-asteroid"
 local protoss_spawning_oxide_asteroid = util.table.deepcopy(data.raw['asteroid']['medium-oxide-asteroid'])
 protoss_spawning_oxide_asteroid["name"] = oxide_name
@@ -264,16 +264,16 @@ local new_asteroids = {
 
 local astreroid_data = {
     [metallic_name] = {
-        scout = { [4] = 0.2, [5] = 0.05},
-        interceptor = { [4] = 0.35, [5] = 0.1},
+        scout = { [4] = 0.25, [5] = 0.05},
+        interceptor = { [4] = 0.5, [5] = 0.1},
     },
     [carbonic_name] = {
         carrier = { [4] = 0.1, [5] = 0.02},
-        interceptor = { [4] = 0.35, [5] = 0.1},
+        interceptor = { [4] = 0.5, [5] = 0.1},
     },
     [oxide_name] = {
-        corsair = { [4] = 0.2, [5] = 0.05},
-        shuttle = { [4] = 0.1},
+        corsair = { [4] = 0.25, [5] = 0.05},
+        shuttle = { [4] = 0.1, [5] = 0.02},
     }
 }
 for key, a_data in pairs(astreroid_data) do

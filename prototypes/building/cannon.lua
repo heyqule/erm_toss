@@ -47,7 +47,7 @@ local selection_box = { { -1.5, -1.5 }, { 1.5, 1.5 } }
 -- Handles damages
 
 local base_electric_damage = 1
-local incremental_electric_damage = 15
+local incremental_electric_damage = 19
 
 -- for acid cannon
 local base_acid_damage = 5
@@ -85,7 +85,7 @@ function ErmToss.make_cannon(level)
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
             max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "--" .. name .. "--".. level,
+            order = MOD_NAME .. "--building--" .. name .. "--".. level,
             subgroup = "enemies",
             map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             resistances = {
@@ -179,7 +179,7 @@ function ErmToss.make_cannon(level)
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
             max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "--" .. name .. "--".. level,
+            order = MOD_NAME .. "--building--" .. name .. "--".. level,
             map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             subgroup = "enemies",
             resistances = {
@@ -275,7 +275,7 @@ function ErmToss.make_cannon(level)
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
             max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "-" .. shortrange_name,
+            order = MOD_NAME .. "--building--" .. shortrange_name .. "--".. level,
             subgroup = "enemies",
             map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             resistances = {

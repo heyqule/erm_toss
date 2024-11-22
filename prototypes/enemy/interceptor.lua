@@ -31,19 +31,19 @@ local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-
 
 -- Handles acid and poison resistance
 local base_acid_resistance = 0
-local incremental_acid_resistance = 85
+local incremental_acid_resistance = 65
 -- Handles physical resistance
 local base_physical_resistance = 0
-local incremental_physical_resistance = 95
+local incremental_physical_resistance = 75
 -- Handles fire and explosive resistance
 local base_fire_resistance = 0
-local incremental_fire_resistance = 90
+local incremental_fire_resistance = 70
 -- Handles laser and electric resistance
 local base_electric_resistance = 20
-local incremental_electric_resistance = 70
+local incremental_electric_resistance = 50
 -- Handles cold resistance
 local base_cold_resistance = 20
-local incremental_cold_resistance = 70
+local incremental_cold_resistance = 50
 
 -- Handles physical damages
 
@@ -86,7 +86,7 @@ function ErmToss.make_interceptor(level)
             flags = { "placeable-enemy", "placeable-player", "placeable-off-grid", "not-flammable" },
             has_belt_immunity = true,
             max_health = ERM_UnitHelper.get_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "--"  .. name .. "--" .. level,
+            order = MOD_NAME .. "--unit--" .. name .. "--".. level,
             subgroup = "erm-flying-enemies",
             map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             shooting_cursor_size = 2,

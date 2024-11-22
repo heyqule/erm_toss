@@ -24,7 +24,7 @@ local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-
 
 -- Handles acid and poison resistance
 local base_acid_resistance = 0
-local incremental_acid_resistance = 90
+local incremental_acid_resistance = 80
 -- Handles physical resistance
 local base_physical_resistance = 0
 local incremental_physical_resistance = 95
@@ -33,10 +33,10 @@ local base_fire_resistance = 0
 local incremental_fire_resistance = 90
 -- Handles laser and electric resistance
 local base_electric_resistance = 20
-local incremental_electric_resistance = 70
+local incremental_electric_resistance = 60
 -- Handles cold resistance
 local base_cold_resistance = 20
-local incremental_cold_resistance = 70
+local incremental_cold_resistance = 60
 
 -- Handles physical damages
 
@@ -76,10 +76,10 @@ function ErmToss.make_darktemplar(level)
             localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
-            flags = { "placeable-enemy", "placeable-player", "placeable-off-grid", "breaths-air" },
+            flags = { "placeable-enemy", "placeable-player", "placeable-off-grid", "breaths-air", "not-flammable"  },
             has_belt_immunity = false,
             max_health = ERM_UnitHelper.get_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "--"  .. name .. "--" .. level,
+            order = MOD_NAME .. "--unit--" .. name .. "--".. level,
             subgroup = "enemies",
             map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             shooting_cursor_size = 2,

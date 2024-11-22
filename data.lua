@@ -36,6 +36,7 @@ require "prototypes.enemy.carrier"
 require "prototypes.enemy.scout"
 require "prototypes.enemy.corsair"
 require "prototypes.enemy.darktemplar"
+require "prototypes.enemy.invis_darktemplar"
 require "prototypes.enemy.templar"
 require "prototypes.enemy.archon"
 require "prototypes.enemy.darkarchon"
@@ -80,6 +81,7 @@ for i = 1, max_level do
     ErmToss.make_interceptor(i)
     ErmToss.make_reaver(i)
     ErmToss.make_scarab(i)
+    ErmToss.make_invis_darktemplar(i)
 end
 
 --local boss_level = ErmConfig.BOSS_LEVELS

@@ -25,19 +25,19 @@ local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-
 
 -- Handles acid and poison resistance
 local base_acid_resistance = 0
-local incremental_acid_resistance = 35
+local incremental_acid_resistance = 45
 -- Handles physical resistance
 local base_physical_resistance = 0
-local incremental_physical_resistance = 45
+local incremental_physical_resistance = 55
 -- Handles fire and explosive resistance
 local base_fire_resistance = 10
-local incremental_fire_resistance = 30
+local incremental_fire_resistance = 40
 -- Handles laser and electric resistance
-local base_electric_resistance = 25
-local incremental_electric_resistance = 15
+local base_electric_resistance = 10
+local incremental_electric_resistance = 40
 -- Handles cold resistance
 local base_cold_resistance = 10
-local incremental_cold_resistance = 30
+local incremental_cold_resistance = 35
 
 -- Animation Settings
 local unit_scale = 2
@@ -57,7 +57,7 @@ local spawn_table = function(level)
     res[4] = { MOD_NAME.."--corsair--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.1 }, { 0.8, 0.1 }, { 1.0, 0.1 } } }
     res[5] = { MOD_NAME.."--probe--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.05 }, { 0.6, 0.1 }, { 0.8, 0.1 }, { 1.0, 0.1 } } }
     res[6] = { MOD_NAME.."--shuttle--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.1 }, { 0.8, 0.1 }, { 1.0, 0.1 } } }
-    res[7] = { MOD_NAME.."--darktemplar--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.05 }, { 0.6, 0.1 }, { 0.8, 0.1 }, { 1.0, 0.1 } } }
+    res[7] = { MOD_NAME.."--darktemplar--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.05 }, { 0.6, 0.1 }, { 0.8, 0.1 }, { 1.0, 0.5 } } }
     --Tire 3
     res[8] = { MOD_NAME.."--templar--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.05 }, { 1.0, 0.1 } } }
     res[9] = { MOD_NAME.."--archon--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.05 }, { 1.0, 0.1 } } }
@@ -65,6 +65,7 @@ local spawn_table = function(level)
     res[11] = { MOD_NAME.."--arbiter--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.05 }, { 1.0, 0.05 } } }
     res[12] = { MOD_NAME.."--reaver--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.05 }, { 1.0, 0.05 } } }
     res[13] = { MOD_NAME.."--darkarchon--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.05 }, { 1.0, 0.05 } } }
+    res[14] = { MOD_NAME.."--invis_darktemplar--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, { 1.0, 0.05 } } }
     return res
 end
 
@@ -84,7 +85,7 @@ function ErmToss.make_nexus(level)
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy" },
             max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "--" .. name .. "--".. level,
+            order = MOD_NAME .. "--building--" .. name .. "--".. level,
             subgroup = "enemies",
             map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             working_sound = TossSound.building_working_sound(name, 1),

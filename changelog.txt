@@ -6,15 +6,27 @@ Date: ??-??-??
     - Updated for Factorio 2.0
     - Default to HD graphic and removed the classic graphics.
     - Utilized 2.0 autoplace and noise function system.
-    - Replaced leveling system with quality system to determine enemy stats.
-    - [space-age] Added planet Aiur.  Only legendary units spawn in there.
-    - [space-age] Protoss units hide in asteroid on the connections to Aiur.  You'll encounter Epic and a few Legendary units.
-    - [space-age] They may have some small bases on Fulgora.  They evolve differently there as you don't pollute on Fulgora.
+    - [New unit: Invisible Dark Templar]
+    - They are low health and higher damage unit.
+    - They have exceptional resistance to physical, fire and explosive damage.
+    - Not selectable by player. Suspects to AOE damage or other auto-targeting entities.
+    - Can be targeted by electric turrets. Can not be targeted by ammo and fire turrets.
+    - spawn only from pylon, nexus and templar_archive.
+    - They are in a featured attack group. :)
+    - [space-age] [Planet Aiur]
+    - Only legendary units spawn in there.
+    - Protoss units hide in asteroid on the connections to Aiur.  You'll encounter Epic and a few Legendary units.
+    - Lightning have a chance to summon Protoss units.
+    - [space-age] [Spawn Protoss on Fulgora]
+    - Optional settings in startup tab.
+    - When this is enabled, the lightning have a small chance to summon Protoss.
+    - They evolve differently there as you don't pollute on Fulgora
 
   Changes:
-    - Sound adjustments to make them sound less busy.
-    - Shield battery now does 20 base AOE damage, instead of single target.
+    - Shield battery now does 30 - 150 AOE damage, instead of single target damage. Also apply 5 seconds 0.5x slow
     - Health adjustments, slightly higher than before on higher tiers.
+    - Max resistance lower from 85% - 95% to 75-85% with exceptions.
+    - Dark templars now wear fire immune cap.  Fire stickers will not apply to them.
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.23.1

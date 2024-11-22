@@ -31,19 +31,19 @@ local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-
 
 -- Handles acid and poison resistance
 local base_acid_resistance = 0
-local incremental_acid_resistance = 35
+local incremental_acid_resistance = 45
 -- Handles physical resistance
 local base_physical_resistance = 0
-local incremental_physical_resistance = 45
+local incremental_physical_resistance = 55
 -- Handles fire and explosive resistance
 local base_fire_resistance = 10
-local incremental_fire_resistance = 30
+local incremental_fire_resistance = 40
 -- Handles laser and electric resistance
-local base_electric_resistance = 25
-local incremental_electric_resistance = 15
+local base_electric_resistance = 10
+local incremental_electric_resistance = 40
 -- Handles cold resistance
 local base_cold_resistance = 10
-local incremental_cold_resistance = 30
+local incremental_cold_resistance = 35
 
 -- Animation Settings
 local unit_scale = 2
@@ -86,7 +86,7 @@ function ErmToss.make_robotics_facility(level)
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy" },
             max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "--" .. name .. "--".. level,
+            order = MOD_NAME .. "--building--" .. name .. "--".. level,
             subgroup = "enemies",
             map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             working_sound = TossSound.building_working_sound(name, 1),

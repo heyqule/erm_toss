@@ -92,7 +92,7 @@ end
 local create_cold_fire_projectile = function(tier)
     return   {
         type = "projectile",
-        name = MOD_NAME.."--cold-fire-projectile-t"..tier,
+        name = MOD_NAME.."--stasis-projectile-t"..tier,
         flags = { "not-on-map" },
         acceleration = 0,
 
@@ -105,11 +105,12 @@ local create_cold_fire_projectile = function(tier)
             action_delivery = {
                 type = "instant",
                 target_effects = {
-                    {
-                        type = "create-entity",
-                        entity_name = "erm-small-explosion-cold-1",
-                        trigger_created_entity = false
-                    },
+                    --@TODO new explosion
+                    --{
+                    --    type = "create-entity",
+                    --    entity_name = "erm-small-explosion-cold-1",
+                    --    trigger_created_entity = false
+                    --},
                     {
                         type = "nested-result",
                         action = {
@@ -179,7 +180,7 @@ end
 local create_cold_star_projectile = function(tier)
     return   {
         type = "projectile",
-        name = MOD_NAME.."--cold-star-projectile-t"..tier,
+        name = MOD_NAME.."--stasis-projectile-t"..tier,
         flags = { "not-on-map" },
         acceleration = 0,
 
@@ -192,11 +193,12 @@ local create_cold_star_projectile = function(tier)
             action_delivery = {
                 type = "instant",
                 target_effects = {
-                    {
-                        type = "create-entity",
-                        entity_name = "erm-circular-effect-cold-1",
-                        trigger_created_entity = false
-                    },
+                    --@TODO new explosion
+                    --{
+                    --    type = "create-entity",
+                    --    entity_name = "erm-circular-effect-cold-1",
+                    --    trigger_created_entity = false
+                    --},
                     {
                         type = "nested-result",
                         action = {

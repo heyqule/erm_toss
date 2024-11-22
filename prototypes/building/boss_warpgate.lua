@@ -25,19 +25,19 @@ local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-
 
 
 -- Handles acid and poison resistance
-local base_acid_resistance = 20
-local incremental_acid_resistance = 20
+local base_acid_resistance = 0
+local incremental_acid_resistance = 50
 -- Handles physical resistance
 local base_physical_resistance = 0
-local incremental_physical_resistance = 45
+local incremental_physical_resistance = 60
 -- Handles fire and explosive resistance
 local base_fire_resistance = 10
-local incremental_fire_resistance = 30
+local incremental_fire_resistance = 45
 -- Handles laser and electric resistance
-local base_electric_resistance = 0
-local incremental_electric_resistance = 35
+local base_electric_resistance = 10
+local incremental_electric_resistance = 45
 -- Handles cold resistance
-local base_cold_resistance = 0
+local base_cold_resistance = 10
 local incremental_cold_resistance = 40
 -- Animation Settings
 local unit_scale = 2
@@ -84,7 +84,7 @@ function ErmToss.make_boss_wrapgate(level, hitpoint)
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy" },
             max_health = hitpoint,
-            order = MOD_NAME .. "--" .. name .. "--".. level,
+            order = MOD_NAME .. "--building--" .. name .. "--".. level,
             subgroup = "enemies",
             working_sound = TossSound.building_working_sound("nexus", 1),
             dying_sound = TossSound.building_dying_sound(1),

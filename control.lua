@@ -87,8 +87,8 @@ local addRaceSettings = function()
     race_settings.dropship = "shuttle"
     race_settings.droppable_units = {
         {{ "dragoon" },{1}},
-        {{ "dragoon", "darktemplar" },{3,1}},
-        {{ "dragoon", "darktemplar", "templar", "archon", "darkarchon", "reaver"},{9,6,2,1,1,1}},
+        {{ "dragoon", "darktemplar", "invis_darktemplar" },{5,3,1}},
+        {{ "dragoon", "darktemplar", "templar", "archon", "darkarchon", "reaver", "invis_darktemplar"},{9,6,2,1,1,1,1}},
     }
     race_settings.construction_buildings = {
         {{ "cannon_shortrange"},{1}},
@@ -101,16 +101,19 @@ local addRaceSettings = function()
         {{"zealot", "archon"}, {6, 3}, 35},
         {{"zealot", "dragoon", "archon", "reaver"}, {4, 3, 2, 1}, 30},
         {{"dragoon","templar", "archon", "darkarchon"}, {5, 1, 1, 1}, 40},
-        {{"darktemplar","templar","archon"}, {4, 1, 2}, 50},
-        {{"zealot","dragoon","darktemplar","templar","archon","darkarchon"}, {5,5,2,1,2,1}, 25},
-        {{"zealot","dragoon","darktemplar","templar","archon","darkarchon", "reaver"}, {5,5,3,2,2,1,1}, 25},
+        {{"darktemplar","templar","archon", "invis_darktemplar"}, {4, 1, 2, 1}, 50},
+        {{"zealot","dragoon","darktemplar","templar","archon","darkarchon", "invis_darktemplar"}, {5,5,2,1,1,1,1}, 25},
+        {{"zealot","dragoon","darktemplar","templar","archon","darkarchon", "reaver", "invis_darktemplar"}, {5,5,3,2,1,1,1,1}, 25},
+        {{"zealot", "darktemplar", "invis_darktemplar"}, {2, 1, 1}, 50} -- 60 units per 3000 points group, since invisibility only apply to turrets.
     }
     race_settings.featured_flying_groups = {
         {{"scout", "corsair"}, {1, 1}, 60},
         {{"scout", "carrier"}, {7, 1}, 75},
         {{"corsair", "arbiter"}, {5, 1}, 75},
         {{"scout", "corsair", "carrier", "arbiter"}, {3,3,1,1}, 75},
-        {{"scout", "carrier", "shuttle"}, {5, 1, 1}, 75}
+        {{"scout", "carrier", "shuttle"}, {4, 1, 2}, 75},
+        {{"shuttle", "scout"}, {1, 2}, 150},
+        {{"arbiter", "scout"}, {1, 2}, 200}
     }
 
     race_settings.boss_building = "warpgate"
@@ -119,6 +122,9 @@ local addRaceSettings = function()
     race_settings.home_planet = "aiur"
     race_settings.boss_tier = race_settings.boss_tier or 1
     race_settings.boss_kill_count = race_settings.boss_kill_count or 0
+
+    race_settings.structure_killed_count_by_planet = {}
+    race_settings.unit_killed_count_by_planet = {}
 
 
     remote.call("enemyracemanager", "register_race", race_settings)

@@ -40,8 +40,7 @@ end
 
 if feature_flags.space_travel and settings.startup["enemy_erm_toss-on_fulgora"].value then
     local fulgora = data.raw.planet.fulgora
-    --- Fixed spawn size, not affected by Menu"s map gen setting
-    fulgora.map_gen_settings.autoplace_controls[AUTOCONTROL_NAME] = { frequency = 0.5, size = 0.5 }
+    fulgora.map_gen_settings.autoplace_controls[AUTOCONTROL_NAME] = {}
     --- replace lightning
     fulgora.lightning_properties.lightning_types = {"enemy_erm_toss--fulgora-lightning"}
 end
