@@ -41,6 +41,7 @@ if feature_flags.space_travel and settings.startup["enemy_erm_toss-on_fulgora"].
     local fulgora = data.raw.planet.fulgora
     --- add autocontrol
     fulgora.map_gen_settings.autoplace_controls[AUTOCONTROL_NAME] = {}
+    data.raw["lightning-attractor"]["fulgoran-ruin-attractor"].alert_when_damaged = false
     --- replace lightning
     if settings.startup["enemy_erm_toss-lightning_on_fulgora"].value then
         fulgora.lightning_properties.lightning_types = {"enemy_erm_toss--fulgora-lightning"}
