@@ -104,9 +104,7 @@ function CustomAttacks.lightning_units_attack()
             else
                 remote.call("enemyracemanager", "process_attack_position", {
                     group = surface_group,
-                    distraction = defines.distraction.by_anything,
-                    target_force = 'player',
-                    new_beacon = true
+                    distraction = defines.distraction.by_enemy
                 })
             end
         end

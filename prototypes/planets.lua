@@ -19,7 +19,7 @@ local procession_graphic_catalogue_types = require("__base__/prototypes/planet/p
 
 local aiur_mapgen =
     {
-        starting_area = 2,
+        starting_area = 1.5,
         aux_climate_control = false,
         moisture_climate_control = false,
         property_expression_names = { -- Warning: anything set here overrides any selections made in the map setup screen so the options do nothing.

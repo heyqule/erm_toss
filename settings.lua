@@ -64,4 +64,12 @@ data:extend {
         default_value = true,
         order = "enemy_erm_toss-200",
     },
+    {
+        type = "bool-setting",
+        name = "enemy_erm_toss-lightning_on_fulgora",
+        description = "enemy_erm_toss-lightning_on_fulgora",
+        setting_type = "startup",
+        default_value = false,
+        order = "enemy_erm_toss-201",
+    },
 }

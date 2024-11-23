@@ -132,9 +132,23 @@ local addRaceSettings = function()
     CustomAttacks.get_race_settings(MOD_NAME, true)
 end
 
+local update_world = function()
+    --- Insert autoplace into existing fulgora surface
+    local fulgora = game.surfaces["fulgora"]
+    if fulgora and settings.startup["enemy_erm_toss-on_fulgora"].value
+    then
+        --- =_= map_gen_settings write only support writing the whole block.
+        local map_gen = fulgora.map_gen_settings
+        map_gen.autoplace_controls[AUTOCONTROL_NAME] =
+        fulgora.planet.prototype.map_gen_settings.autoplace_controls[AUTOCONTROL_NAME]
+        fulgora.map_gen_settings = map_gen
+    end
+end
+
 script.on_init(function(event)
     createRace()
     addRaceSettings()
+    update_world()
 end)
 
 script.on_load(function(event)
@@ -143,6 +157,7 @@ end)
 script.on_configuration_changed(function(event)
     createRace()
     addRaceSettings()
+    update_world()
 end)
 
 local attack_functions =
