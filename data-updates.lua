@@ -34,12 +34,12 @@ elseif nauvis_enemy_settings == NAUVIS_MIXED then
 
     print('ERM_TOSS: Nauvis AutoControl:')
     print(serpent.block(data.raw.planet.nauvis.map_gen_settings.autoplace_controls))
-
 end
 
 
 if feature_flags.space_travel and settings.startup["enemy_erm_toss-on_fulgora"].value then
     local fulgora = data.raw.planet.fulgora
+    --- add autocontrol
     fulgora.map_gen_settings.autoplace_controls[AUTOCONTROL_NAME] = {}
     --- replace lightning
     fulgora.lightning_properties.lightning_types = {"enemy_erm_toss--fulgora-lightning"}

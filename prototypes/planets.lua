@@ -19,6 +19,7 @@ local procession_graphic_catalogue_types = require("__base__/prototypes/planet/p
 
 local aiur_mapgen =
     {
+        starting_area = 2,
         aux_climate_control = false,
         moisture_climate_control = false,
         property_expression_names = { -- Warning: anything set here overrides any selections made in the map setup screen so the options do nothing.
@@ -465,71 +466,90 @@ local aiur_lightning = util.table.deepcopy(data.raw['lightning']['lightning'])
 aiur_lightning.name = 'enemy_erm_toss--aiur-lightning'
 aiur_lightning.damage = 500
 aiur_lightning.energy = "3000MJ"
--- 0.5% to spawn 2 zealots, 0.2% to spawn dragoon
-table.insert(aiur_lightning.strike_effect.action_delivery.target_effects,
-        {
-            type = "create-entity",
-            entity_name = MOD_NAME.."--zealot--1",
-            offset_deviation = {{-8, -8}, {8, 8}},
-            offsets = {
-                {8,8},
-                {-8,-8}
-            },
-            probability = 0.005,
-            trigger_created_entity = true,
-            find_non_colliding_position = true,
-            non_colliding_search_radius = 8,
-            non_colliding_search_precision = 2,
-        })
-table.insert(aiur_lightning.strike_effect.action_delivery.target_effects,
-        {
-            type = "create-entity",
-            entity_name = MOD_NAME.."--dragoon--1",
-            offset_deviation = {{-8, -8}, {8, 8}},
-            offsets = {
-                {4,4},
-            },
-            probability = 0.002,
-            trigger_created_entity = true,
-            find_non_colliding_position = true,
-            non_colliding_search_radius = 8,
-            non_colliding_search_precision = 2,
-        })
+
+local aiur_unit_probabilities = {
+    [MOD_NAME.."--zealot--1"] = 0.02,
+    [MOD_NAME.."--dragoon--1"] = 0.01,
+    [MOD_NAME.."--darktemplar--1"] = 0.005,
+    [MOD_NAME.."--invis_darktemplar--1"] = 0.003,
+}
+
+for key, prop in pairs(aiur_unit_probabilities) do
+    table.insert(aiur_lightning.strike_effect.action_delivery.target_effects,
+            {
+                type = "nested-result",
+                probability = prop,
+                action = {
+                    type = "direct",
+                    action_delivery = {
+                        type = "instant",
+                        target_effects = {
+                            {
+                                type = "create-entity",
+                                entity_name = key,
+                                offset_deviation = {{-8, -8}, {8, 8}},
+                                offsets = {
+                                    {0, 0}
+                                },
+                                trigger_created_entity = true,
+                                find_non_colliding_position = true,
+                                non_colliding_search_radius = 8,
+                                non_colliding_search_precision = 2,
+                            },
+                            {
+                                type = "create-explosion",
+                                entity_name = MOD_NAME.."--recall-80",
+                            }
+                        }
+                    }
+                }
+            }
+    )
+end
+
+
+
 
 local fulgora_lightning_replacement = util.table.deepcopy(data.raw['lightning']['lightning'])
 fulgora_lightning_replacement.name = 'enemy_erm_toss--fulgora-lightning'
--- 0.05% to spawn 2 zealot, 0.02% to spawn dragoon
-table.insert(fulgora_lightning_replacement.strike_effect.action_delivery.target_effects,
-    {
-        type = "create-entity",
-        entity_name = MOD_NAME.."--zealot--1",
-        offset_deviation = {{-8, -8}, {8, 8}},
-        offsets = {
-            {8,8},
-            {-8,-8}
-        },
-        probability = 0.0005,
-        trigger_created_entity = true,
-        find_non_colliding_position = true,
-        non_colliding_search_radius = 8,
-        non_colliding_search_precision = 2,
-    })
-table.insert(fulgora_lightning_replacement.strike_effect.action_delivery.target_effects,
-    {
-        type = "create-entity",
-        entity_name = MOD_NAME.."--dragoon--1",
-        offset_deviation = {{-8, -8}, {8, 8}},
-        offsets = {
-            {4,4},
-        },
-        probability = 0.0002,
-        trigger_created_entity = true,
-        find_non_colliding_position = true,
-        non_colliding_search_radius = 8,
-        non_colliding_search_precision = 2,
-    })
-
-
+local fulgora_unit_probabilities = {
+    [MOD_NAME.."--zealot--1"] = 0.005,
+    [MOD_NAME.."--dragoon--1"] = 0.002,
+    [MOD_NAME.."--darktemplar--1"] = 0.001,
+    [MOD_NAME.."--invis_darktemplar--1"] = 0.001,
+}
+for key, prop in pairs(fulgora_unit_probabilities) do
+    table.insert(fulgora_lightning_replacement.strike_effect.action_delivery.target_effects,
+        {
+            type = "nested-result",
+            probability = prop,
+            action = {
+                type = "direct",
+                action_delivery = {
+                    type = "instant",
+                    target_effects = {
+                        {
+                            type = "create-entity",
+                            entity_name = key,
+                            offset_deviation = {{-8, -8}, {8, 8}},
+                            offsets = {
+                                {0,0}
+                            },
+                            trigger_created_entity = true,
+                            find_non_colliding_position = true,
+                            non_colliding_search_radius = 8,
+                            non_colliding_search_precision = 2,
+                        },
+                        {
+                            type = "create-explosion",
+                            entity_name = MOD_NAME.."--recall-80",
+                        }
+                    }
+                }
+            }
+        }
+    )
+end
 data:extend({
     aiur_lightning,
     fulgora_lightning_replacement,

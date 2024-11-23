@@ -207,6 +207,12 @@ data:extend({
     },
     {
         type = "explosion",
+        name = MOD_NAME.."--recall-80-small",
+        flags = { "not-on-map" },
+        animations = AnimationDB.get_layered_animations("projectiles","recall_80","explosion",0.25)
+    },
+    {
+        type = "explosion",
         name = MOD_NAME.."--recall",
         flags = { "not-on-map" },
         animations = AnimationDB.get_layered_animations("projectiles","recall","explosion")

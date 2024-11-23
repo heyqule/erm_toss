@@ -187,8 +187,8 @@ script.on_event(defines.events.on_script_trigger_effect, function(event)
 end)
 
 local is_compatible_lightning = {
-    ['enemy_erm_toss--fulgora-lightning'] =  true,
-    ['enemy_erm_toss--aiur-lightning'] =  true,
+    ["enemy_erm_toss--fulgora-lightning"] =  true,
+    ["enemy_erm_toss--aiur-lightning"] =  true,
 }
 
 local on_trigger_created_entity_handlers = {

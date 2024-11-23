@@ -57,6 +57,7 @@ end
 --- Handles aftermath of lightning unit attack
 --- Either attack 0,0 or build a base
 ---
+local unit_expiry = 4 * minute
 function CustomAttacks.lightning_units_attack()
     local i = 0
     local unit_group = {}
@@ -100,6 +101,13 @@ function CustomAttacks.lightning_units_attack()
         if surface_group then
             if CustomAttacks.can_spawn(10) then
                 remote.call("enemyracemanager", "build_base_formation", surface_group)
+            else
+                remote.call("enemyracemanager", "process_attack_position", {
+                    group = surface_group,
+                    distraction = defines.distraction.by_anything,
+                    target_force = 'player',
+                    new_beacon = true
+                })
             end
         end
     end
@@ -108,8 +116,8 @@ function CustomAttacks.lightning_units_attack()
     i = 0
     for key, unit_data in pairs(storage.backlog_lightning_units) do
         local entity = unit_data.entity
-        if entity.valid and game.tick > (unit_data.tick + 4 * minute)  then
-            --- Protoss trainee dies after 4 minutes.  Half day on Aiur.
+        if entity.valid and game.tick > (unit_data.tick + unit_expiry)  then
+            --- Protoss trainee dies after 4 minutes.  Using destroy() to prevent triggering kill events
             entity.destroy()
             storage.backlog_lightning_units[key] = nil
         elseif entity.valid == false then
