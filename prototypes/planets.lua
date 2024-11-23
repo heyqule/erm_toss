@@ -465,7 +465,7 @@ local auir_space_asteroid_spawn_definition = {
 local aiur_lightning = util.table.deepcopy(data.raw['lightning']['lightning'])
 aiur_lightning.name = 'enemy_erm_toss--aiur-lightning'
 aiur_lightning.damage = 500
-aiur_lightning.energy = "3000MJ"
+aiur_lightning.energy = "5000MJ"
 
 local aiur_unit_probabilities = {
     [MOD_NAME.."--zealot--1"] = 0.02,

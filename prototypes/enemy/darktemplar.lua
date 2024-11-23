@@ -41,7 +41,7 @@ local incremental_cold_resistance = 60
 -- Handles physical damages
 
 local base_physical_damage = 1
-local incremental_physical_damage = 1.5
+local incremental_physical_damage = 2
 
 -- Handles Attack Speed
 

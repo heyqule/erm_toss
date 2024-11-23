@@ -249,6 +249,28 @@ script.on_nth_tick(901, function(event)
     end
 end)
 
+--- Spawn attack group periodically once evolution reach 5%
+script.on_nth_tick(15 * minute + 13, function(event)
+    local fulgora = game.surfaces['fulgora']
+    if fulgora and zerg_on_vulcanus and CustomAttacks.can_spawn(33) then
+        if game.forces[FORCE_NAME].get_evolution_factor(fulgora) < 0.05 then
+            return
+        end
+
+        local worms = fulgora.find_entities_filtered {name = demolisher_name_filter, limit = 1}
+        local key, worm = next(worms)
+        if worm then
+            if CustomAttacks.can_spawn(10) then
+                remote.call("enemyracemanager", "generate_dropship_group", FORCE_NAME, 20, {surface=fulgora})
+            elseif CustomAttacks.can_spawn(33) then
+                remote.call("enemyracemanager", "generate_flying_group", FORCE_NAME, 30, {surface=fulgora})
+            else
+                remote.call("enemyracemanager", "generate_attack_group", FORCE_NAME, 60, {surface=fulgora})
+            end
+        end
+    end
+end)
+
 local ErmBossAttack = require("scripts/boss_attacks")
 remote.add_interface("erm_toss_boss_attacks", {
     get_attack_data = ErmBossAttack.get_attack_data,
