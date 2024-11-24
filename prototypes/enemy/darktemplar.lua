@@ -51,7 +51,7 @@ local incremental_attack_speed = 60
 local attack_range = 1
 
 
-local base_movement_speed = 0.125
+local base_movement_speed = 0.2
 local incremental_movement_speed = 0.1
 
 -- Misc settings
@@ -138,7 +138,7 @@ function ErmToss.make_darktemplar(level)
                 animation = AnimationDB.get_layered_animations("units", name, "attack"),
             },
 
-            distance_per_frame = 0.16,
+            distance_per_frame = 0.24,
             run_animation =  AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death(name, 1),
             dying_explosion = MOD_NAME.."--zealot-death",

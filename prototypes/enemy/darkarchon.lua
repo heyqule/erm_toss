@@ -51,7 +51,7 @@ local incremental_attack_speed = 300
 
 
 
-local base_movement_speed = 0.125
+local base_movement_speed = 0.2
 local incremental_movement_speed = 0.1
 
 -- Misc settings
@@ -193,7 +193,7 @@ function ErmToss.make_darkarchon(level)
                 animation = AnimationDB.get_layered_animations("units", name, "run")
             },
 
-            distance_per_frame = 0.16,
+            distance_per_frame = 0.246,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death(name, 1),
             dying_explosion = MOD_NAME.."--darkarchon-explosion",

@@ -57,7 +57,7 @@ local incremental_attack_speed = 60
 
 
 
-local base_movement_speed = 0.2
+local base_movement_speed = 0.3
 local incremental_movement_speed = 0.3
 
 -- Misc settings
@@ -137,7 +137,7 @@ function ErmToss.make_interceptor(level)
                 animation = AnimationDB.get_layered_animations("units", name, "attack")
             },
 
-            distance_per_frame = 0.2,
+            distance_per_frame = 0.24,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             created_effect = {
                 type = "direct",

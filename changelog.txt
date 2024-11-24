@@ -26,7 +26,8 @@ Date: ??-??-??
     - Shield battery now does 30 - 150 AOE damage, instead of single target damage. Also apply 5 seconds 0.5x slow
     - Health adjustments, slightly higher than before on higher tiers.
     - Max resistance lower from 85% - 95% to 75-85% with exceptions.
-    - Dark templars now wear fire immune cap.  Fire stickers will not apply to them.
+    - Dark templars now wear fire immune cap.  Fire stickers do not apply to them.
+    - Increased unit movement speed
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.23.1

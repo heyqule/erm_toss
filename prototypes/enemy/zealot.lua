@@ -51,8 +51,8 @@ local incremental_attack_speed = 45
 local attack_range = 1
 
 
-local base_movement_speed = 0.125
-local incremental_movement_speed = 0.1
+local base_movement_speed = 0.25
+local incremental_movement_speed = 0.15
 
 -- Misc settings
 local vision_distance = ERM_UnitHelper.get_vision_distance(attack_range)
@@ -115,7 +115,7 @@ function ErmToss.make_zealot(level)
                 sound = TossSound.zealot_attack(0.9),
                 animation = AnimationDB.get_layered_animations("units", name, "attack"),
             },
-            distance_per_frame = 0.16,
+            distance_per_frame = 0.24,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death(name, 1),
             dying_explosion = MOD_NAME.."--zealot-death",

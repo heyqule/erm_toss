@@ -48,7 +48,7 @@ local incremental_physical_damage = 55
 local base_attack_speed = 300
 local incremental_attack_speed = 240
 
-local base_movement_speed = 0.125
+local base_movement_speed = 0.2
 local incremental_movement_speed = 0.1
 
 -- Misc settings
@@ -128,7 +128,7 @@ function ErmToss.make_probe(level)
                 animation = AnimationDB.get_layered_animations("units", name, "attack"),
             },
 
-            distance_per_frame = 0.2,
+            distance_per_frame = 0.24,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death(name, 1),
             dying_explosion = MOD_NAME.."--small-air-death",

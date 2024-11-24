@@ -51,7 +51,7 @@ local base_attack_speed = 600
 local incremental_attack_speed = 300
 
 
-local base_movement_speed = 0.125
+local base_movement_speed = 0.2
 local incremental_movement_speed = 0.1
 
 -- Misc Settings
@@ -127,7 +127,7 @@ function ErmToss.make_reaver(level)
                 sound = TossSound.reaver_attack(0.9),
                 animation = AnimationDB.get_layered_animations("units", name, "run")
             },
-            distance_per_frame = 0.16,
+            distance_per_frame = 0.24,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death(name, 1),
             dying_explosion = MOD_NAME.."--small-building-explosion",

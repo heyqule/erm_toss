@@ -51,8 +51,8 @@ local base_attack_speed = 90
 local incremental_attack_speed = 45
 
 
-local base_movement_speed = 0.2
-local incremental_movement_speed = 0.15
+local base_movement_speed = 0.25
+local incremental_movement_speed = 0.2
 
 -- Misc Settings
 local pollution_to_join_attack = 80
@@ -170,7 +170,7 @@ function ErmToss.make_corsair(level)
             },
 
             render_layer = "wires-above",
-            distance_per_frame = 0.5,
+            distance_per_frame = 0.64,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death("scout", 1),
             dying_explosion = MOD_NAME.."--small-air-death",

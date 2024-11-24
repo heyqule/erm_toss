@@ -52,8 +52,8 @@ local base_attack_speed = 3600
 local incremental_attack_speed = 900
 
 
-local base_movement_speed = 0.15
-local incremental_movement_speed = 0.125
+local base_movement_speed = 0.3
+local incremental_movement_speed = 0.2
 
 -- Misc Settings
 local pollution_to_join_attack = 120
@@ -130,7 +130,7 @@ function ErmToss.make_shuttle(level)
             },
 
             render_layer = "wires-above",
-            distance_per_frame = 0.5,
+            distance_per_frame = 0.64,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death("shuttle", 1),
             dying_explosion = MOD_NAME.."--small-air-death",

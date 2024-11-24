@@ -52,8 +52,8 @@ local incremental_attack_speed = 60
 
 
 
-local base_movement_speed = 0.15
-local incremental_movement_speed = 0.125
+local base_movement_speed = 0.25
+local incremental_movement_speed = 0.15
 
 -- Misc Settings
 local pollution_to_join_attack = 350
@@ -149,7 +149,7 @@ function ErmToss.make_arbiter(level)
             },
 
             render_layer = "wires-above",
-            distance_per_frame = 0.5,
+            distance_per_frame = 0.64,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death(name, 1),
             dying_explosion = MOD_NAME.."--large-air-death",

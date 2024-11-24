@@ -42,7 +42,7 @@ local incremental_cold_resistance = 70
 -- Handles physical damages
 
 local base_physical_damage = 2
-local incremental_physical_damage = 4
+local incremental_physical_damage = 3
 
 -- Handles Attack Speed
 
@@ -52,7 +52,7 @@ local incremental_attack_speed = 60
 local attack_range = 1
 
 
-local base_movement_speed = 0.125
+local base_movement_speed = 0.2
 local incremental_movement_speed = 0.1
 
 -- Misc settings
@@ -142,7 +142,7 @@ function ErmToss.make_invis_darktemplar(level)
                 animation = AnimationDB.get_layered_animations("units", name, "attack"),
             },
 
-            distance_per_frame = 0.16,
+            distance_per_frame = 0.24,
             run_animation =  AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death(alt_name, 1),
             dying_explosion = MOD_NAME.."--zealot-death",

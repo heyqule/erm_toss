@@ -51,8 +51,8 @@ local base_attack_speed = 720 -- 12s
 local incremental_attack_speed = 240 -- 8s
 
 
-local base_movement_speed = 0.15
-local incremental_movement_speed = 0.125
+local base_movement_speed = 0.25
+local incremental_movement_speed = 0.15
 
 -- Misc Settings
 local pollution_to_join_attack = 350
@@ -132,7 +132,7 @@ function ErmToss.make_carrier(level)
             },
 
             render_layer = "wires-above",
-            distance_per_frame = 0.5,
+            distance_per_frame = 0.64,
             dying_explosion = MOD_NAME.."--large-building-explosion",
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
         },

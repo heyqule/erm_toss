@@ -56,8 +56,8 @@ local incremental_attack_speed = 45
 local attack_range = 1
 
 
-local base_movement_speed = 0.125
-local incremental_movement_speed = 0.2
+local base_movement_speed = 0.25
+local incremental_movement_speed = 0.15
 
 -- Misc settings
 local vision_distance = ERM_UnitHelper.get_vision_distance(attack_range)
@@ -164,7 +164,7 @@ function ErmToss.make_scarab(level)
                 sound = TossSound.scarab_attack(0.9),
                 animation = AnimationDB.get_layered_animations("units", name, "run"),
             },
-            distance_per_frame = 0.2,
+            distance_per_frame = 0.24,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             created_effect = {
                 type = "direct",
