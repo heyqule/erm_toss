@@ -8,13 +8,17 @@
 
 
 local ForceHelper = require("__enemyracemanager__/lib/helper/force_helper")
+local AttackGroupBeaconProcessor = require("__enemyracemanager__/lib/attack_group_beacon_processor")
 
 
 local CustomAttacks = require("__erm_toss__/scripts/custom_attacks")
 
+
 require("__erm_toss__/global")
 -- Constants
-local using_lightning_units = true
+local using_lightning_units = script.feature_flags.space_travel
+
+local toss_on_fulgora = script.feature_flags.space_travel and settings.startup["enemy_erm_toss-on_fulgora"].value
 
 local createRace = function()
     local force = game.forces[FORCE_NAME]
@@ -206,6 +210,9 @@ local is_compatible_lightning = {
     ["enemy_erm_toss--aiur-lightning"] =  true,
 }
 
+local beacon
+local beacon_hit = 0
+
 local on_trigger_created_entity_handlers = {
     ["lightning"] = function(entity, source)
         if is_compatible_lightning[source.name] then
@@ -222,11 +229,9 @@ local on_trigger_created_entity_handlers = {
         end
 
         if entity.commandable then
-            entity.commandable.set_command({
-                type =  defines.command.go_to_location,
-                distraction = defines.distraction.by_anything,
-                --- @TODO use attack beacon
-                destination = {0, 0},
+            remote.call("enemyracemanager", "process_attack_position", {
+                group = entity.commandable,
+                distraction = defines.distraction.by_enemy,
             })
         end
     end
@@ -249,24 +254,25 @@ script.on_nth_tick(901, function(event)
     end
 end)
 
---- Spawn attack group periodically once evolution reach 5%
+--- Spawn attack group periodically once evolution reach 1%
 script.on_nth_tick(15 * minute + 13, function(event)
     local fulgora = game.surfaces['fulgora']
-    if fulgora and zerg_on_vulcanus and CustomAttacks.can_spawn(33) then
-        if game.forces[FORCE_NAME].get_evolution_factor(fulgora) < 0.05 then
+    if fulgora and toss_on_fulgora and CustomAttacks.can_spawn(45) then
+        if game.forces[FORCE_NAME].get_evolution_factor(fulgora) < 0.01 then
             return
         end
 
-        local worms = fulgora.find_entities_filtered {name = demolisher_name_filter, limit = 1}
-        local key, worm = next(worms)
-        if worm then
-            if CustomAttacks.can_spawn(10) then
-                remote.call("enemyracemanager", "generate_dropship_group", FORCE_NAME, 20, {surface=fulgora})
-            elseif CustomAttacks.can_spawn(33) then
-                remote.call("enemyracemanager", "generate_flying_group", FORCE_NAME, 30, {surface=fulgora})
-            else
-                remote.call("enemyracemanager", "generate_attack_group", FORCE_NAME, 60, {surface=fulgora})
-            end
+        local has_entity =  fulgora.count_entities_filtered({type=AttackGroupBeaconProcessor.get_attackable_entity_types(), limit = 1})
+        if has_entity < 1 then
+            return
+        end
+
+        if CustomAttacks.can_spawn(15) then
+            remote.call("enemyracemanager", "generate_dropship_group", FORCE_NAME, 10, {surface=fulgora})
+        elseif CustomAttacks.can_spawn(40) then
+            remote.call("enemyracemanager", "generate_flying_group", FORCE_NAME, 20, {surface=fulgora})
+        else
+            remote.call("enemyracemanager", "generate_attack_group", FORCE_NAME, 50, {surface=fulgora})
         end
     end
 end)

@@ -9,19 +9,18 @@ Date: ??-??-??
     - [New unit: Invisible Dark Templar]
     - They are low health and higher damage unit.
     - They have exceptional resistance to physical, fire and explosive damage.
-    - Not selectable by player. Suspects to AOE damage or other auto-targeting entities.
-    - Can be targeted by electric turrets. Can not be targeted by ammo and fire turrets.
+    - They can be targeted by electric turrets and can not be targeted by ammo and fire turrets.
+    - They are not selectable by player. But they can be targeted by other auto-targeting entities and hit by AOE damage.
     - spawn only from pylon, nexus and templar_archive.
-    - They are in a featured attack group.
+    - They have a featured attack group.
+    - [space-age] [Protoss on Fulgora]
+    - Optional settings in startup tab.
+    - When this is enabled, the lightning have a small chance to summon Protoss. This CAN be turned off.
+    - Spawns attack group periodically.
     - [space-age] [Planet Aiur]
     - Only legendary units spawn in there.
     - Protoss units hide in asteroid in the routes to Aiur.  You'll encounter Epic and a few Legendary units.
-    - Lightning have a small chance to summon Protoss units. This CAN NOT be turned off.
-    - [space-age] [Protoss on Fulgora]
-    - Optional settings in startup tab.
-    - When this is enabled, the lightning have a small chance to summon Protoss.
-    - They evolve differently there as you don't pollute on Fulgora
-    - Lightning have a tiny chance to summon Protoss units. This can be turned off.
+    - Lightning have a small chance to summon Protoss units. This CAN NOT be turned off.  It has higher energy output and deal more damage.
 
   Changes:
     - Shield battery now does 30 - 150 AOE damage, instead of single target damage. Also apply 5 seconds 0.5x slow
