@@ -38,7 +38,7 @@ local base_fire_resistance = 0
 local incremental_fire_resistance = 75
 -- Handles laser and electric resistance
 local base_electric_resistance = 20
-local incremental_electric_resistance = 55
+local incremental_electric_resistance = 50
 -- Handles cold resistance
 local base_cold_resistance = 20
 local incremental_cold_resistance = 55
@@ -164,7 +164,7 @@ function ErmToss.make_scarab(level)
                 sound = TossSound.scarab_attack(0.9),
                 animation = AnimationDB.get_layered_animations("units", name, "run"),
             },
-            distance_per_frame = 0.24,
+            distance_per_frame = 0.2,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             created_effect = {
                 type = "direct",

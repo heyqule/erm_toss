@@ -21,7 +21,7 @@ local name = "archon"
 
 
 local hitpoint = 360
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 2.5
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 2
 
 
 -- Handles acid and poison resistance
@@ -35,7 +35,7 @@ local base_fire_resistance = 0
 local incremental_fire_resistance = 80
 -- Handles laser and electric resistance
 local base_electric_resistance = 20
-local incremental_electric_resistance = 60
+local incremental_electric_resistance = 55
 -- Handles cold resistance
 local base_cold_resistance = 20
 local incremental_cold_resistance = 60
@@ -54,7 +54,7 @@ local attack_range = 1
 
 
 local base_movement_speed = 0.2
-local incremental_movement_speed = 0.15
+local incremental_movement_speed = 0.2
 
 -- Misc settings
 local vision_distance = ERM_UnitHelper.get_vision_distance(attack_range)
@@ -159,7 +159,7 @@ function ErmToss.make_archon(level)
                 animation = attack_animation
             },
 
-            distance_per_frame = 0.24,
+            distance_per_frame = 0.2,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death(name, 1),
             dying_explosion = MOD_NAME.."--small-building-explosion",

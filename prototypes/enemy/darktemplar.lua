@@ -33,7 +33,7 @@ local base_fire_resistance = 0
 local incremental_fire_resistance = 90
 -- Handles laser and electric resistance
 local base_electric_resistance = 20
-local incremental_electric_resistance = 60
+local incremental_electric_resistance = 80
 -- Handles cold resistance
 local base_cold_resistance = 20
 local incremental_cold_resistance = 60
@@ -138,7 +138,7 @@ function ErmToss.make_darktemplar(level)
                 animation = AnimationDB.get_layered_animations("units", name, "attack"),
             },
 
-            distance_per_frame = 0.24,
+            distance_per_frame = 0.2,
             run_animation =  AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death(name, 1),
             dying_explosion = MOD_NAME.."--zealot-death",

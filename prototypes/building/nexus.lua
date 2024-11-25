@@ -132,4 +132,8 @@ function ErmToss.make_nexus(level)
             spawn_decoration = Creep.getSpawnerCreep(),
         }
     })
+
+    if feature_flags.space_travel then
+        data.raw["unit-spawner"][MOD_NAME .. "--" .. name .. "--" .. level].captured_spawner_entity = "captive-biter-spawner"
+    end
 end

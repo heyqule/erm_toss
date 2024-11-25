@@ -142,7 +142,7 @@ function ErmToss.make_invis_darktemplar(level)
                 animation = AnimationDB.get_layered_animations("units", name, "attack"),
             },
 
-            distance_per_frame = 0.24,
+            distance_per_frame = 0.2,
             run_animation =  AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death(alt_name, 1),
             dying_explosion = MOD_NAME.."--zealot-death",

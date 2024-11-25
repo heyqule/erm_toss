@@ -26,7 +26,7 @@ local name = "interceptor"
 
 
 local hitpoint = 80
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.5
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.25
 
 
 -- Handles acid and poison resistance
@@ -137,7 +137,7 @@ function ErmToss.make_interceptor(level)
                 animation = AnimationDB.get_layered_animations("units", name, "attack")
             },
 
-            distance_per_frame = 0.24,
+            distance_per_frame = 0.2,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             created_effect = {
                 type = "direct",

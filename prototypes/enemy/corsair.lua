@@ -35,7 +35,7 @@ local base_fire_resistance = 0
 local incremental_fire_resistance = 80
 -- Handles laser and electric resistance
 local base_electric_resistance = 20
-local incremental_electric_resistance = 60
+local incremental_electric_resistance = 55
 -- Handles cold resistance
 local base_cold_resistance = 20
 local incremental_cold_resistance = 60
@@ -170,7 +170,7 @@ function ErmToss.make_corsair(level)
             },
 
             render_layer = "wires-above",
-            distance_per_frame = 0.64,
+            distance_per_frame = 0.5,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death("scout", 1),
             dying_explosion = MOD_NAME.."--small-air-death",
