@@ -10,12 +10,15 @@ simulations.general = {
     init = [[
 require("__core__/lualib/story")
 local sim = game.simulation
-
-
 sim.camera_position = {0, 0}
 sim.camera_zoom = 0.85
 sim.hide_cursor = true
-local surface = game.surfaces[1]
+player = sim.create_test_player{name = "you"}
+sim.camera_player = player
+game.planets["fulgora"].create_surface()
+local surface = game.surfaces["fulgora"]
+surface.request_to_generate_chunks({0,0}, 2)
+surface.force_generate_chunk_requests()
 
 
 local tank
@@ -29,6 +32,7 @@ local story_table =
                 for _, ent in pairs(entities) do
                     ent.destroy()
                 end
+                player.teleport({-3,10},surface)
                 tank = surface.create_entity { name="tank", position={0, 10}, force="player" }
                 surface.create_entity { name="enemy_erm_toss--zealot--5", position={8, -2} }
                 surface.create_entity { name="enemy_erm_toss--zealot--5", position={8, 2} }
@@ -164,17 +168,17 @@ local story_table =
         {
             condition = story_elapsed_check(2),
             action = function()
-                char_surface.create_entity { name="enemy_erm_toss--zealot--5", position={8, 2} }
-                char_surface.create_entity { name="enemy_erm_toss--dragoon--5", position={8, 0} }
-                char_surface.create_entity { name="enemy_erm_toss--scout--5", position={8, 4} }
+                aiur_surface.create_entity { name="enemy_erm_toss--zealot--5", position={8, 2} }
+                aiur_surface.create_entity { name="enemy_erm_toss--dragoon--5", position={8, 0} }
+                aiur_surface.create_entity { name="enemy_erm_toss--scout--5", position={8, 4} }
             end
         },
         {
             condition = story_elapsed_check(2),
             action = function()
-                char_surface.create_entity { name="enemy_erm_zerg--archon--5", position={8, 2} }
-                char_surface.create_entity { name="enemy_erm_zerg--carrier--5", position={8, 0} }
-                char_surface.create_entity { name="enemy_erm_zerg--darktemplar--5", position={8, 4} }
+                aiur_surface.create_entity { name="enemy_erm_toss--archon--5", position={8, 2} }
+                aiur_surface.create_entity { name="enemy_erm_toss--carrier--5", position={8, 0} }
+                aiur_surface.create_entity { name="enemy_erm_toss--darktemplar--5", position={8, 4} }
             end
         },
         {
