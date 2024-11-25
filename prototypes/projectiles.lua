@@ -3,7 +3,7 @@
 --- Created by heyqule.
 --- DateTime: 01/09/2020 6:40 PM
 ---
-require("__stdlib__/stdlib/utils/defines/time")
+
 
 local WeaponRig = require("__enemyracemanager__/lib/rig/weapon")
 local ERMDataHelper = require("__enemyracemanager__/lib/rig/data_helper")
@@ -66,8 +66,8 @@ data:extend({
         direction_only = true,
         collision_box = {{-0.5,-0.5},{0.5,0.5}},
         force_condition = "not-same",
-        hit_collision_mask =  { layers = {player = true, train = true, transport_belt = true,  [ERMDataHelper.getFlyingLayerName()] = true}},
-        hit_at_collision_position = true,
+        hit_collision_mask =  { layers = {player = true, train = true, rail=true, transport_belt=true,trigger_target=true,  [ERMDataHelper.getFlyingLayerName()] = true}},
+        hit_at_collision_position = false,
 
         action = {
             type = "direct",
@@ -207,6 +207,12 @@ data:extend({
     },
     {
         type = "explosion",
+        name = MOD_NAME.."--recall-80-small",
+        flags = { "not-on-map" },
+        animations = AnimationDB.get_layered_animations("projectiles","recall_80","explosion",0.25)
+    },
+    {
+        type = "explosion",
         name = MOD_NAME.."--recall",
         flags = { "not-on-map" },
         animations = AnimationDB.get_layered_animations("projectiles","recall","explosion")
@@ -245,22 +251,14 @@ data:extend({
         type = "explosion",
         name = MOD_NAME.."--demo-darkarchon-maelstrom",
         flags = {"not-on-map"},
-        animations =         {
-            filename = "__erm_toss__/graphics/entity/projectiles/maelstrom.png",
-            width = 128,
-            height = 128,
-            frame_count = 25,
-            animation_speed = 0.5,
-            scale = 1,
-            draw_as_glow = true
-        }
+        animations = AnimationDB.get_layered_animations("projectiles","darkarchon_maelstrom","explosion"),
     },
     {
         type = "sticker",
         name = MOD_NAME.."--darkarchon-maelstrom",
         flags = { "not-on-map" },
-        duration_in_ticks = 2 * defines.time.second,
-        damage_interval = defines.time.second / 4,
+        duration_in_ticks = 2 * second,
+        damage_interval = second / 4,
         damage_per_tick = { amount = 10, type = "explosion" },
         single_particle = true,
         fire_spread_radius = 0,

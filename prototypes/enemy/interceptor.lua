@@ -11,43 +11,44 @@
 -- Time: 9:39 PM
 -- To change this template use File | Settings | File Templates.
 --
-require("__stdlib__/stdlib/utils/defines/time")
+
 
 
 local ERM_UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
 local ERM_UnitTint = require("__enemyracemanager__/lib/rig/unit_tint")
 local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
 local ERMDataHelper = require("__enemyracemanager__/lib/rig/data_helper")
-local ERM_Config = require("__enemyracemanager__/lib/global_config")
-local TossSound = require("__erm_toss__/prototypes/sound")
+local GlobalConfig = require("__enemyracemanager__/lib/global_config")
+local TossSound = require("__erm_toss_hd_assets__/sound")
+local biter_ai_settings = require ("__base__.prototypes.entity.biter-ai-settings")
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
 local name = "interceptor"
 
 
 local hitpoint = 80
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.25
 
 
 -- Handles acid and poison resistance
 local base_acid_resistance = 0
-local incremental_acid_resistance = 85
+local incremental_acid_resistance = 65
 -- Handles physical resistance
 local base_physical_resistance = 0
-local incremental_physical_resistance = 95
+local incremental_physical_resistance = 75
 -- Handles fire and explosive resistance
 local base_fire_resistance = 0
-local incremental_fire_resistance = 90
+local incremental_fire_resistance = 70
 -- Handles laser and electric resistance
 local base_electric_resistance = 20
-local incremental_electric_resistance = 70
+local incremental_electric_resistance = 50
 -- Handles cold resistance
 local base_cold_resistance = 20
-local incremental_cold_resistance = 70
+local incremental_cold_resistance = 50
 
 -- Handles physical damages
 
 local base_electric_damage = 2
-local incremental_electric_damage = 8
+local incremental_electric_damage = 6
 
 -- Handles Attack Speed
 
@@ -56,7 +57,7 @@ local incremental_attack_speed = 60
 
 
 
-local base_movement_speed = 0.2
+local base_movement_speed = 0.3
 local incremental_movement_speed = 0.3
 
 -- Misc settings
@@ -79,15 +80,15 @@ function ErmToss.make_interceptor(level)
         {
             type = "unit",
             name = MOD_NAME .. "--" .. name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, tostring(level) },
+            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-enemy", "placeable-player", "placeable-off-grid", "not-flammable" },
             has_belt_immunity = true,
             max_health = ERM_UnitHelper.get_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "--"  .. name .. "--" .. level,
+            order = MOD_NAME .. "--unit--" .. name .. "--".. level,
             subgroup = "erm-flying-enemies",
-            map_color = ERM_UnitHelper.format_map_color(settings.startup["erm_toss-map-color"].value),
+            map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             shooting_cursor_size = 2,
             resistances = {
                 { type = "acid", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
@@ -110,7 +111,7 @@ function ErmToss.make_interceptor(level)
             distraction_cooldown = distraction_cooldown,
             ai_settings = biter_ai_settings,
             spawning_time_modifier = 1.5,
-            min_pursue_time = 120 * defines.time.second,
+            min_pursue_time = 120 * second,
             attack_parameters = {
                 type = "projectile",
                 range_mode = "bounding-box-to-bounding-box",
@@ -119,7 +120,7 @@ function ErmToss.make_interceptor(level)
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed, level),
                 cooldown_deviation = 0.1,
                 damage_modifier = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage, level),
-                ammo_category = "protoss-damage",
+                ammo_category = "erm-protoss-damage",
                 ammo_type = {
                     target_type = "direction",
                     action = {
@@ -128,11 +129,11 @@ function ErmToss.make_interceptor(level)
                             type = "projectile",
                             projectile = MOD_NAME .. "--interceptor-laser",
                             starting_speed = 0.3,
-                            max_range = ERM_Config.get_max_projectile_range(),
+                            max_range = GlobalConfig.get_max_projectile_range(),
                         }
                     }
                 },
-                sound = TossSound.interceptor_projectile(0.5),
+                sound = TossSound.interceptor_projectile(0.9),
                 animation = AnimationDB.get_layered_animations("units", name, "attack")
             },
 
@@ -156,7 +157,7 @@ function ErmToss.make_interceptor(level)
                     effect_id = TIME_TO_LIVE_DIED,
                 }
             },
-            dying_sound = TossSound.enemy_death("scout", 0.75),
+            dying_sound = TossSound.enemy_death("scout", 1),
             dying_explosion = MOD_NAME.."--small-air-death",
             corpse = MOD_NAME .. "--" .. name .. "-corpse"
         },
@@ -169,7 +170,7 @@ function ErmToss.make_interceptor(level)
             selection_box = selection_box,
             selectable_in_game = false,
             dying_speed = 0.04,
-            time_before_removed = defines.time.second,
+            time_before_removed = second,
             subgroup = "corpses",
             order = MOD_NAME.."--" .. name .. level,
             animation = util.empty_sprite(),

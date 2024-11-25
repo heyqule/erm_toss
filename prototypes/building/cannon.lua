@@ -3,13 +3,13 @@
 --- Created by heyqule.
 --- DateTime: 12/22/2020 12:37 AM
 ---
-require("__stdlib__/stdlib/utils/defines/time")
+
 
 local ERM_UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
-local ERM_UnitTint = require("__enemyracemanager__/lib/rig/unit_tint")
+local GlobalConfig = require("__enemyracemanager__/lib/global_config")
 local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
 local ERM_Config = require("__enemyracemanager__/lib/global_config")
-local TossSound = require("__erm_toss__/prototypes/sound")
+local TossSound = require("__erm_toss_hd_assets__/sound")
 
 
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
@@ -20,8 +20,8 @@ local shortrange_name = "cannon_shortrange"
 
 -- Hitpoints
 
-local hitpoint = 200
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value
+local hitpoint = 400
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 1.75
 
 
 -- Handles acid and poison resistance
@@ -47,7 +47,7 @@ local selection_box = { { -1.5, -1.5 }, { 1.5, 1.5 } }
 -- Handles damages
 
 local base_electric_damage = 1
-local incremental_electric_damage = 15
+local incremental_electric_damage = 19
 
 -- for acid cannon
 local base_acid_damage = 5
@@ -80,14 +80,14 @@ function ErmToss.make_cannon(level)
         {
             type = "turret",
             name = MOD_NAME .. "--" .. name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, tostring(level) },
+            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
-            max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level, true),
-            order = MOD_NAME .. "--" .. name .. "--".. level,
+            max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
+            order = MOD_NAME .. "--building--" .. name .. "--".. level,
             subgroup = "enemies",
-            map_color = ERM_UnitHelper.format_map_color(settings.startup["erm_toss-map-color"].value),
+            map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             resistances = {
                 { type = "acid", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
                 { type = "poison", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
@@ -117,7 +117,7 @@ function ErmToss.make_cannon(level)
             integration = {
                 layers = {
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
+                        filename = "__erm_toss_hd_assets__/graphics/entity/buildings/" .. name .. "/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
                         height = 128,
@@ -126,7 +126,7 @@ function ErmToss.make_cannon(level)
                         scale = unit_scale
                     },
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
+                        filename = "__erm_toss_hd_assets__/graphics/entity/buildings/" .. name .. "/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
                         height = 128,
@@ -139,7 +139,7 @@ function ErmToss.make_cannon(level)
                 }
             },
             autoplace = enemy_autoplace.enemy_spawner_autoplace({
-                probability_expression = "erm_zerg_autoplace_base(0, 2000001)",
+                probability_expression = "erm_toss_autoplace_base(0, 2)",
                 force = FORCE_NAME,
                 control = AUTOCONTROL_NAME
             }),
@@ -149,13 +149,13 @@ function ErmToss.make_cannon(level)
             attack_parameters = {
                 type = "projectile",
                 range_mode = "bounding-box-to-bounding-box",
-                ammo_category = "protoss-damage",
+                ammo_category = "erm-protoss-damage",
                 range = attack_range,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),
                 cooldown_deviation = 0.1,
                 damage_modifier = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage,  level),
                 ammo_type = {
-                    category = "protoss-damage",
+                    category = "erm-protoss-damage",
                     target_type = "direction",
                     action = {
                         type = "direct",
@@ -174,13 +174,13 @@ function ErmToss.make_cannon(level)
         {
             type = "turret",
             name = MOD_NAME.."--acid-" .. name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME.."--acid-" .. name, tostring(level) },
+            localised_name = { "entity-name." .. MOD_NAME.."--acid-" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
-            max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level, true),
-            order = MOD_NAME .. "--" .. name .. "--".. level,
-            map_color = ERM_UnitHelper.format_map_color(settings.startup["erm_toss-map-color"].value),
+            max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
+            order = MOD_NAME .. "--building--" .. name .. "--".. level,
+            map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             subgroup = "enemies",
             resistances = {
                 { type = "acid", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
@@ -211,7 +211,7 @@ function ErmToss.make_cannon(level)
             integration = {
                 layers = {
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
+                        filename = "__erm_toss_hd_assets__/graphics/entity/buildings/" .. name .. "/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
                         height = 128,
@@ -220,7 +220,7 @@ function ErmToss.make_cannon(level)
                         scale = unit_scale
                     },
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
+                        filename = "__erm_toss_hd_assets__/graphics/entity/buildings/" .. name .. "/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
                         height = 128,
@@ -233,7 +233,7 @@ function ErmToss.make_cannon(level)
                 }
             },
             autoplace = enemy_autoplace.enemy_spawner_autoplace({
-                probability_expression = "erm_zerg_autoplace_base(0, 2000002)",
+                probability_expression = "erm_toss_autoplace_base(0, 3)",
                 force = FORCE_NAME,
                 control = AUTOCONTROL_NAME
             }),
@@ -243,7 +243,7 @@ function ErmToss.make_cannon(level)
             attack_parameters = {
                 type = "projectile",
                 range_mode = "bounding-box-to-bounding-box",
-                ammo_category = "protoss-damage",
+                ammo_category = "erm-protoss-damage",
                 damage_modifier = ERM_UnitHelper.get_damage(base_acid_damage, incremental_acid_damage,  level),
                 range = acid_attack_range,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),
@@ -252,7 +252,7 @@ function ErmToss.make_cannon(level)
                 use_shooter_direction = true,
                 lead_target_for_projectile_speed = 0.2 * 0.75 * 1.5 * 1.5,
                 ammo_type = {
-                    category = "protoss-damage",
+                    category = "erm-protoss-damage",
                     action = {
                         type = "direct",
                         action_delivery = {
@@ -270,14 +270,14 @@ function ErmToss.make_cannon(level)
         {
             type = "turret",
             name = MOD_NAME .. "--" .. shortrange_name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME .. "--" .. shortrange_name, tostring(level) },
+            localised_name = { "entity-name." .. MOD_NAME .. "--" .. shortrange_name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
-            max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level, true) / 2,
-            order = MOD_NAME .. "-" .. shortrange_name,
+            max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
+            order = MOD_NAME .. "--building--" .. shortrange_name .. "--".. level,
             subgroup = "enemies",
-            map_color = ERM_UnitHelper.format_map_color(settings.startup["erm_toss-map-color"].value),
+            map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             resistances = {
                 { type = "acid", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
                 { type = "poison", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
@@ -307,7 +307,7 @@ function ErmToss.make_cannon(level)
             integration = {
                 layers = {
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
+                        filename = "__erm_toss_hd_assets__/graphics/entity/buildings/" .. name .. "/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
                         height = 128,
@@ -316,7 +316,7 @@ function ErmToss.make_cannon(level)
                         scale = unit_scale
                     },
                     {
-                        filename = "__erm_toss__/graphics/entity/buildings/" .. name .. ".png",
+                        filename = "__erm_toss_hd_assets__/graphics/entity/buildings/" .. name .. "/" .. name .. ".png",
                         variation_count = 1,
                         width = 128,
                         height = 128,
@@ -334,13 +334,13 @@ function ErmToss.make_cannon(level)
             attack_parameters = {
                 type = "projectile",
                 range_mode = "bounding-box-to-bounding-box",
-                ammo_category = "protoss-damage",
+                ammo_category = "erm-protoss-damage",
                 range = attack_shortrange,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),
                 cooldown_deviation = 0.1,
                 damage_modifier = ERM_UnitHelper.get_damage(base_electric_damage, incremental_electric_damage,  level),
                 ammo_type = {
-                    category = "protoss-damage",
+                    category = "erm-protoss-damage",
                     target_type = "direction",
                     action = {
                         type = "direct",

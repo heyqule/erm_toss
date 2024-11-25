@@ -4,13 +4,13 @@
 --- DateTime: 12/21/2020 4:42 PM
 ---
 
-require("__stdlib__/stdlib/utils/defines/time")
+
 
 local ERM_UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
-local ERM_UnitTint = require("__enemyracemanager__/lib/rig/unit_tint")
+local GlobalConfig = require("__enemyracemanager__/lib/global_config")
 local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
 local ERM_Config = require("__enemyracemanager__/lib/global_config")
-local TossSound = require("__erm_toss__/prototypes/sound")
+local TossSound = require("__erm_toss_hd_assets__/sound")
 
 
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
@@ -26,20 +26,19 @@ local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-
 
 -- Handles acid and poison resistance
 local base_acid_resistance = 0
-local incremental_acid_resistance = 75
+local incremental_acid_resistance = 50
 -- Handles physical resistance
 local base_physical_resistance = 0
-local incremental_physical_resistance = 85
+local incremental_physical_resistance = 60
 -- Handles fire and explosive resistance
 local base_fire_resistance = 10
-local incremental_fire_resistance = 70
+local incremental_fire_resistance = 45
 -- Handles laser and electric resistance
-local base_electric_resistance = 25
-local incremental_electric_resistance = 55
+local base_electric_resistance = 10
+local incremental_electric_resistance = 45
 -- Handles cold resistance
 local base_cold_resistance = 10
-local incremental_cold_resistance = 65
-
+local incremental_cold_resistance = 40
 -- Animation Settings
 local unit_scale = 2
 
@@ -80,12 +79,12 @@ function ErmToss.make_boss_wrapgate(level, hitpoint)
         {
             type = "unit-spawner",
             name = MOD_NAME .. "--" .. name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, tostring(level) },
+            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy" },
             max_health = hitpoint,
-            order = MOD_NAME .. "--" .. name .. "--".. level,
+            order = MOD_NAME .. "--building--" .. name .. "--".. level,
             subgroup = "enemies",
             working_sound = TossSound.building_working_sound("nexus", 1),
             dying_sound = TossSound.building_dying_sound(1),
@@ -108,7 +107,7 @@ function ErmToss.make_boss_wrapgate(level, hitpoint)
             dying_explosion = MOD_NAME.."--large-building-explosion",
             max_count_of_owned_units = max_count_of_owned_units,
             max_friends_around_to_spawn = max_friends_around_to_spawn,
-            map_color = ERM_UnitHelper.format_map_color(settings.startup["erm_toss-map-color"].value),
+            map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
                         graphics_set = {
                 animations = AnimationDB.get_layered_animations("buildings", name, "run")
             },

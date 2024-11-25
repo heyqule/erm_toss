@@ -9,13 +9,13 @@
 --- Created by heyqule.
 --- DateTime: 12/22/2020 12:37 AM
 ---
-require("__stdlib__/stdlib/utils/defines/time")
+
 
 local ERM_UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
-local ERM_UnitTint = require("__enemyracemanager__/lib/rig/unit_tint")
+local GlobalConfig = require("__enemyracemanager__/lib/global_config")
 local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
 local ERM_Config = require("__enemyracemanager__/lib/global_config")
-local TossSound = require("__erm_toss__/prototypes/sound")
+local TossSound = require("__erm_toss_hd_assets__/sound")
 
 
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
@@ -26,8 +26,7 @@ local name = "shield_battery"
 -- Hitpoints
 
 local hitpoint = 300
-local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value
-
+local max_hitpoint_multiplier = settings.startup["enemyracemanager-max-hitpoint-multipliers"].value * 2
 
 -- Handles acid and poison resistance
 local base_acid_resistance = 0
@@ -81,14 +80,14 @@ function ErmToss.make_shield_battery(level)
         {
             type = "turret",
             name = MOD_NAME .. "--" .. name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, tostring(level) },
+            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
             max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "--" .. name .. "--".. level,
+            order = MOD_NAME .. "--building--" .. name .. "--".. level,
             subgroup = "enemies",
-            map_color = ERM_UnitHelper.format_map_color(settings.startup["erm_toss-map-color"].value),
+            map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             resistances = {
                 { type = "acid", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
                 { type = "poison", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
@@ -116,7 +115,7 @@ function ErmToss.make_shield_battery(level)
             starting_attack_animation = attack_animation(),
             starting_attack_speed = 0.02,
             autoplace = enemy_autoplace.enemy_spawner_autoplace({
-                probability_expression = "erm_zerg_autoplace_base(0, 2000011)",
+                probability_expression = "erm_toss_autoplace_base(0, 3)",
                 force = FORCE_NAME,
                 control = AUTOCONTROL_NAME
             }),
@@ -126,13 +125,13 @@ function ErmToss.make_shield_battery(level)
             attack_parameters = {
                 type = "projectile",
                 range_mode = "bounding-box-to-bounding-box",
-                ammo_category = "protoss-damage",
+                ammo_category = "erm-protoss-damage",
                 range = attack_range,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),
                 cooldown_deviation = 0.1,
                 damage_modifier = ERM_UnitHelper.get_damage(base_heal_damage, incremental_heal_damage,  level),
                 ammo_type = {
-                    category = "protoss-damage",
+                    category = "erm-protoss-damage",
                     target_type = "direction",
                     action = {
                         type = "direct",
@@ -144,8 +143,27 @@ function ErmToss.make_shield_battery(level)
                                     entity_name = MOD_NAME.."--shield-battery-explosion"
                                 },
                                 {
-                                    type = "damage",
-                                    damage = { amount = 20, type = "electric" },
+                                    type = "nested-result",
+                                    action = {
+                                        type = "area",
+                                        force = "same",
+                                        radius = 3,
+                                        ignore_collision_condition = true,
+                                        action_delivery = {
+                                            type = "instant",
+                                            target_effects = {
+                                                {
+                                                    type = "damage",
+                                                    damage = { amount = 30, type = "electric" },
+                                                },
+                                                {
+                                                    type = "create-sticker",
+                                                    sticker = "5-050-slowdown-sticker",
+                                                    show_in_tooltip = true
+                                                }
+                                            },
+                                        }
+                                    }
                                 },
                                 {
                                     type = "nested-result",

@@ -12,7 +12,7 @@ data:extend(
         {
     {
         type = "ammo-category",
-        name = "protoss-damage"
+        name = "erm-protoss-damage"
     }
 })
 
@@ -29,38 +29,6 @@ table.insert(data.erm_spawn_specs, {
     temperature=1, --1,2,3 (1 cold, 2. normal, 3 hot)
 })
 
----
---- This set of data replace vanilla biters for the menu.  It may interfere with other mods that use vanilla biter.
----
-data.erm_menu_replacement = data.erm_menu_replacement or {}
-data.erm_menu_replacement[MOD_NAME] = {
-    race = MOD_NAME,
-    level = 3,
-    ["unit"] = {
-        ["small-biter"] = "zealot",
-        ["small-spitter"] = "dragoon",
-        ["medium-biter"] = "dragoon",
-        ["medium-spitter"] = "archon",
-        ["big-biter"] = "archon",
-        ["big-spitter"] = "scout",
-        ["behemoth-biter"] = "darktemplar",
-        ["behemoth-spitter"] = "scout",
-    },
-    ["turret"] = {
-        ["small-worm-turret"] = "cannon",
-        ["medium-worm-turret"] = "cannon",
-        ["big-worm-turret"] = "cannon",
-        ["behemoth-worm-turret"] = "cannon",
-    },
-    ["turret-scale"] = 0.8,
-    ["unit-spawner"] = {
-        ["biter-spawner"] = "nexus",
-        ["spitter-spawner"] = "gateway",
-    },
-    ["unit-spawner-scale"] = 0.8
-}
-
-
 require "prototypes.enemy.arbiter"
 require "prototypes.enemy.zealot"
 require "prototypes.enemy.dragoon"
@@ -68,6 +36,7 @@ require "prototypes.enemy.carrier"
 require "prototypes.enemy.scout"
 require "prototypes.enemy.corsair"
 require "prototypes.enemy.darktemplar"
+require "prototypes.enemy.invis_darktemplar"
 require "prototypes.enemy.templar"
 require "prototypes.enemy.archon"
 require "prototypes.enemy.darkarchon"
@@ -112,6 +81,7 @@ for i = 1, max_level do
     ErmToss.make_interceptor(i)
     ErmToss.make_reaver(i)
     ErmToss.make_scarab(i)
+    ErmToss.make_invis_darktemplar(i)
 end
 
 --local boss_level = ErmConfig.BOSS_LEVELS
@@ -169,4 +139,4 @@ data.erm_aerial_scout[MOD_NAME] = "scout"
 
 
 require("prototypes.planets")
-require("prototypes.update-teamcolour")
+require "prototypes.tips_and_tricks.prototypes"

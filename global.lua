@@ -5,9 +5,9 @@
 ---
 
 -- Globals within the mod
-MOD_NAME = "erm_toss"
+MOD_NAME = "enemy_erm_toss"
 FORCE_NAME = "enemy_erm_toss"
-AUTOCONTROL_NAME = "erm_toss_enemy_base"
+AUTOCONTROL_NAME = MOD_NAME.."-enemy-base"
 
 DEBUG_MODE = false
 

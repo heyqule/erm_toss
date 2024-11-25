@@ -1,16 +1,37 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.0
-Date: ??-??-??
+Date: 2024-11-25
 
   Features:
     - Updated for Factorio 2.0
     - Default to HD graphic and removed the classic graphics.
-    - Utilized 2.0 autoplace and noise function system.
-    - Replaced leveling system with quality system to determine enemy stats.
-    - [space-age] Added planet Char.  Legendary units spawn in there.  You may encounter bosses as well.
+    - Utilized 2.0 autoplace and noise functions.
+    - Replaced leveling system with quality spawning system to determine enemy stats.
+    - Added tips and tricks
+    - Nexus and Pylon can be captured as captive biter spawner.  They become biter afterward.
+    - [New unit: Invisible Dark Templar]
+    - They are low health and high damage unit.
+    - They have exceptional resistances to physical, fire and explosive damage.
+    - They can only be targeted by electric turrets, and they can not be targeted by ammo and fire turrets.
+    - They are not selectable by player. But they can be targeted by other auto-targeting entities and hit by AOE damage.
+    - Spawn only from pylon, nexus and templar_archive. Dropships can drop them.
+    - They have a featured attack group.
+    - [space-age] [Protoss on Fulgora]
+    - Enable it in startup tab. Default to OFF until stable release.
+    - When this is enabled, the lightning have a small chance to summon Protoss. This CAN be turned off.
+    - Spawns attack group periodically.
+    - [space-age] [Planet Aiur]
+    - Only legendary units spawn in there.
+    - Protoss units hide in asteroid in the routes to Aiur.  You'll encounter Epic and a few Legendary units.
+    - Lightning have a small chance to summon Protoss units. This CAN NOT be turned off.  It has higher energy output and deal more damage.
 
   Changes:
-    - Sound adjustments to make them sound less busy.
+    - Shield battery now does 30 - 150 AOE damage, instead of single target damage. Also apply 5 seconds 50% slow
+    - Health adjustments, slightly higher than before on higher tiers.
+    - Max resistance lower from 85% - 95% to 75-85% with exceptions.
+    - Dark templars now wear fire immune cap.  Fire stickers do not apply to them.
+    - Increased unit movement speed
+    - Capturing Nexus will turn it into Captive Biter Spawner to make biter eggs.
 
 ---------------------------------------------------------------------------------------------------
 Version: 1.23.1

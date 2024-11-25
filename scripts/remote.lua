@@ -16,10 +16,10 @@ function RemoteAPI.milestones_preset_addons()
             required_mods = {"erm_toss"},
             milestones = {
                 {type="group", name="Kills"},
-                {type="kill", name="erm_toss--nexus--5",  quantity=1},
-                {type="kill", name="erm_toss--nexus--10",  quantity=1},
-                {type="kill", name="erm_toss--nexus--15",  quantity=1},
-                {type="kill", name="erm_toss--nexus--20",  quantity=1, next="x10"},
+                {type="kill", name="enemy_erm_toss--nexus--2",  quantity=1},
+                {type="kill", name="enemy_erm_toss--nexus--3",  quantity=1},
+                {type="kill", name="enemy_erm_toss--nexus--4",  quantity=1},
+                {type="kill", name="enemy_erm_toss--nexus--5",  quantity=1, next="x10"},
             }
         },
     }
@@ -28,11 +28,11 @@ function RemoteAPI.milestones_preset_addons()
     --    required_mods = {"erm_toss"},
     --    milestones = {
     --        {type="group", name="ERM Boss Kills"},
-    --        {type="kill", name="erm_toss--warpgate--"..boss_level[1],  quantity=1},
-    --        {type="kill", name="erm_toss--warpgate--"..boss_level[2],  quantity=1},
-    --        {type="kill", name="erm_toss--warpgate--"..boss_level[3],  quantity=1},
-    --        {type="kill", name="erm_toss--warpgate--"..boss_level[4],  quantity=1},
-    --        {type="kill", name="erm_toss--warpgate--"..boss_level[5],  quantity=1},
+    --        {type="kill", name="enemy_erm_toss--warpgate--"..boss_level[1],  quantity=1},
+    --        {type="kill", name="enemy_erm_toss--warpgate--"..boss_level[2],  quantity=1},
+    --        {type="kill", name="enemy_erm_toss--warpgate--"..boss_level[3],  quantity=1},
+    --        {type="kill", name="enemy_erm_toss--warpgate--"..boss_level[4],  quantity=1},
+    --        {type="kill", name="enemy_erm_toss--warpgate--"..boss_level[5],  quantity=1},
     --    }
     --}
 
@@ -44,7 +44,7 @@ function RemoteAPI.print_global()
 end
 
 function RemoteAPI.register_new_enemy_race()
-    return true
+    return MOD_NAME
 end
 
 function RemoteAPI.refresh_custom_attack_cache()
