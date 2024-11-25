@@ -104,7 +104,7 @@ function ErmToss.make_pylon(level)
             collision_box = collision_box,
             map_generator_bounding_box = map_generator_bounding_box,
             selection_box = selection_box,
-    absorptions_per_second = { pollution = { absolute = pollution_absorption_absolute, proportional = 0.01 } },
+            absorptions_per_second = { pollution = { absolute = pollution_absorption_absolute, proportional = 0.01 } },
             corpse = MOD_NAME.."--small-base-corpse",
             dying_explosion = MOD_NAME.."--small-building-explosion",
             max_count_of_owned_units = max_count_of_owned_units,
@@ -132,4 +132,8 @@ function ErmToss.make_pylon(level)
             spawn_decoration = Creep.getSpawnerCreep(),
         }
     })
+
+    if feature_flags.space_travel then
+        data.raw["unit-spawner"][MOD_NAME .. "--" .. name .. "--" .. level].captured_spawner_entity = "captive-biter-spawner"
+    end
 end

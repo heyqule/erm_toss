@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.0
-Date: ??-??-??
+Date: 2024-11-25
 
   Features:
     - Updated for Factorio 2.0
@@ -8,6 +8,7 @@ Date: ??-??-??
     - Utilized 2.0 autoplace and noise functions.
     - Replaced leveling system with quality spawning system to determine enemy stats.
     - Added tips and tricks
+    - Nexus and Pylon can be captured as captive biter spawner.  They become biter afterward.
     - [New unit: Invisible Dark Templar]
     - They are low health and high damage unit.
     - They have exceptional resistances to physical, fire and explosive damage.
