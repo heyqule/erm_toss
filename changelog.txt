@@ -7,6 +7,7 @@ Date: ??-??-??
     - Default to HD graphic and removed the classic graphics.
     - Utilized 2.0 autoplace and noise functions.
     - Replaced leveling system with quality spawning system to determine enemy stats.
+    - Added tips and tricks
     - [New unit: Invisible Dark Templar]
     - They are low health and high damage unit.
     - They have exceptional resistances to physical, fire and explosive damage.
@@ -15,7 +16,7 @@ Date: ??-??-??
     - Spawn only from pylon, nexus and templar_archive. Dropships can drop them.
     - They have a featured attack group.
     - [space-age] [Protoss on Fulgora]
-    - Optional settings in startup tab.
+    - Enable it in startup tab. Default to OFF until stable release.
     - When this is enabled, the lightning have a small chance to summon Protoss. This CAN be turned off.
     - Spawns attack group periodically.
     - [space-age] [Planet Aiur]

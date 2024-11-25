@@ -139,4 +139,4 @@ data.erm_aerial_scout[MOD_NAME] = "scout"
 
 
 require("prototypes.planets")
-require("prototypes.update-teamcolour")
+require "prototypes.tips_and_tricks.prototypes"

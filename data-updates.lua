@@ -5,6 +5,7 @@
 ---
 require("__erm_toss__/global")
 
+require("prototypes.update-teamcolour")
 -- Update RTS world
 local mapgen = data.raw["map-gen-presets"]["default"]
 mapgen["erm-rts-death-world"]["basic_settings"]["autoplace_controls"][AUTOCONTROL_NAME] = { frequency = "very-high", size = "very-big" }
