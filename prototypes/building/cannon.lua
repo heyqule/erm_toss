@@ -138,7 +138,7 @@ function ErmToss.make_cannon(level)
                     }
                 }
             },
-            autoplace = enemy_autoplace.enemy_spawner_autoplace({
+            autoplace = enemy_autoplace.enemy_worm_autoplace({
                 probability_expression = "erm_toss_autoplace_base(0, 2)",
                 force = FORCE_NAME,
                 control = AUTOCONTROL_NAME
@@ -232,7 +232,7 @@ function ErmToss.make_cannon(level)
                     }
                 }
             },
-            autoplace = enemy_autoplace.enemy_spawner_autoplace({
+            autoplace = enemy_autoplace.enemy_worm_autoplace({
                 probability_expression = "erm_toss_autoplace_base(0, 3)",
                 force = FORCE_NAME,
                 control = AUTOCONTROL_NAME

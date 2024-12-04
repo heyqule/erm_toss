@@ -1,4 +1,21 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.0.1
+Date: 2024-12-05
+
+  Features:
+    - Re-add support for 2 and 4 way split.
+    - added mixed races support for Nauvis in space age 
+    - Improved autoplace pattern
+    
+  Changes:
+    - Increased legendary tier dragoon damage from 135 to 180. (lower tiers changed accordingly by a formula, except normal)
+    - Increased legendary tier zealot damage from 80 to 90.
+    
+  Bugfixes:    
+    - If you have alien biomes installed, planet auir will spawn without rocks due to an autoplace bug in alien biomes that crash on startup.  They will re-enable after that bug is fixed. see [https://discord.com/channels/419526714721566720/1310844988241739847]
+    - Fixed a crash for the event on_trigger_created_entity without event.source   
+
+---------------------------------------------------------------------------------------------------
 Version: 2.0.0
 Date: 2024-11-25
 

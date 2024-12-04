@@ -39,7 +39,7 @@ data:extend{
                              spot_radius_expression = spot_radius_expression,\z
                              spot_favorability_expression = 1,\z
                              seed0 = map_seed,\z
-                             seed1 = 324893,\z
+                             seed1 = 9999998,\z
                              region_size = 512,\z
                              candidate_point_count = 100,\z
                              hard_region_target_quantity = 0,\z

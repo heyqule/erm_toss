@@ -116,7 +116,7 @@ function ErmToss.make_stargate(level)
             -- "The number or spitter spwners should be roughly equal to the number of biter spawners(regardless of difficulty)."
             -- (2018-12-07)
             autoplace = enemy_autoplace.enemy_spawner_autoplace({
-                probability_expression = "erm_toss_autoplace_base(0, 7)",
+                probability_expression = "erm_toss_autoplace_base(0, 12)",
                 force = FORCE_NAME,
                 control = AUTOCONTROL_NAME
             }),

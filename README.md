@@ -5,9 +5,6 @@ This mod is created as an educational demo for [Enemy Race Manager](https://mods
 
 Discord:  [https://discord.gg/BwWXygyEyQ](https://discord.gg/BwWXygyEyQ)
 
-ERM - Features Reel: [https://www.youtube.com/watch?v=phLRReAjxHA](https://www.youtube.com/watch?v=phLRReAjxHA)
-
-https://mods.factorio.com/mod/erm_toss_hd - Remaster HD graphic addon
 
 #### Changes in 2.0
 - Support Factorio 2.0
