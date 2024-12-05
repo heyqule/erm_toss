@@ -10,7 +10,7 @@ Date: 2024-12-05
   Changes:
     - Increased Dragoon damage from 135 to 180. (There are top tier values, lower tiers values are changed by a formula, except normal)
     - Increased Zealot damage from 80 to 90.
-    - Decreased Archon physical resist from 95 to 90
+    - Decreased Archon physical resistance from 95 to 90
     - Added missing ground patch graphic for pylon.
 
   Bugfixes:
