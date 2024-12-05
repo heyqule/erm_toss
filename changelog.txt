@@ -6,14 +6,14 @@ Date: 2024-12-05
     - Re-add support for 2 and 4 way split.
     - added mixed races support for Nauvis in space age 
     - Improved autoplace pattern
-    
+
   Changes:
     - Increased Dragoon damage from 135 to 180. (There are top tier values, lower tiers values are changed by a formula, except normal)
     - Increased Zealot damage from 80 to 90.
     - Decreased Archon physical resist from 95 to 90
     - Added missing ground patch graphic for pylon.
-    
-  Bugfixes:    
+
+  Bugfixes:
     - If you have alien biomes installed, planet auir will spawn without rocks due to an autoplace bug in alien biomes that crash on startup.  They will re-enable after that bug is fixed. see [https://discord.com/channels/419526714721566720/1310844988241739847]
     - Fixed a crash for the event on_trigger_created_entity without event.source.
 
