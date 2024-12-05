@@ -109,9 +109,11 @@ function ErmToss.make_pylon(level)
             dying_explosion = MOD_NAME.."--small-building-explosion",
             max_count_of_owned_units = max_count_of_owned_units,
             max_friends_around_to_spawn = max_friends_around_to_spawn,
-                        graphics_set = {
+                graphics_set = {
                 animations = AnimationDB.get_layered_animations("buildings", name, "run")
             },
+            integration_patch = AnimationDB.get_single_animation('buildings', name, 'integration_patch'),
+            integration_patch_render_layer = 'ground-patch',
             result_units = spawn_table(level),
             -- With zero evolution the spawn rate is 6 seconds, with max evolution it is 2.5 seconds
             spawning_cooldown = spawning_cooldown,
