@@ -126,8 +126,10 @@ function ErmToss.make_boss_wrapgate(level, hitpoint)
             spawn_decorations_on_expansion = true,
             spawn_decoration = Creep.getSpawnerCreep(),
             dying_trigger_effect = {
-                type = "script",
-                effect_id = TRIGGER_BOSS_DIES,
+                {
+                    type = "script",
+                    effect_id = TRIGGER_BOSS_DIES,
+                }
             }
         }
     })

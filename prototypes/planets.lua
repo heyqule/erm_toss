@@ -566,7 +566,7 @@ data:extend({
         magnitude = 1,
         order = "a[aiur]",
         subgroup = "planets",
-        map_seed_offset = 0,
+        map_seed_offset = 100000,
         map_gen_settings = aiur_mapgen,
         pollutant_type = "pollution",
         solar_power_in_space = 300,
