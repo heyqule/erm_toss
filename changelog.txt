@@ -12,7 +12,7 @@ Date: 2024-12-10
 
   Bugfixes:
     - Fixed planet kill counts did not persist through save.
-    
+
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.2
 Date: 2024-12-10
@@ -22,7 +22,7 @@ Date: 2024-12-10
     - Updated General in tip and trick about biter egg and building capture.
     - Updated Planet in tip and trick about its WIP state.
     - Fixed Locale
-    
+
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.1
 Date: 2024-12-05
