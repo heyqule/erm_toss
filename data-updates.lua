@@ -38,7 +38,10 @@ elseif nauvis_enemy_settings == NAUVIS_MIXED then
 end
 
 
-if feature_flags.space_travel and settings.startup["enemy_erm_toss-on_fulgora"].value then
+if feature_flags.space_travel and 
+   settings.startup["enemy_erm_toss-on_fulgora"] and 
+   settings.startup["enemy_erm_toss-on_fulgora"].value 
+then
     local fulgora = data.raw.planet.fulgora
     --- add autocontrol
     fulgora.map_gen_settings.autoplace_controls[AUTOCONTROL_NAME] = {}

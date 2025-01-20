@@ -18,7 +18,9 @@ require("__erm_toss__/global")
 -- Constants
 local using_lightning_units = script.feature_flags.space_travel
 
-local toss_on_fulgora = script.feature_flags.space_travel and settings.startup["enemy_erm_toss-on_fulgora"].value
+local toss_on_fulgora = script.feature_flags.space_travel and 
+        settings.startup["enemy_erm_toss-on_fulgora"] and 
+        settings.startup["enemy_erm_toss-on_fulgora"].value
 
 local createRace = function()
     local force = game.forces[FORCE_NAME]
@@ -139,7 +141,7 @@ end
 local update_world = function()
     --- Insert autoplace into existing fulgora surface
     local fulgora = game.surfaces["fulgora"]
-    if fulgora and settings.startup["enemy_erm_toss-on_fulgora"].value
+    if fulgora and settings.startup["enemy_erm_toss-on_fulgora"] and settings.startup["enemy_erm_toss-on_fulgora"].value
     then
         --- =_= map_gen_settings write only support writing the whole block.
         local map_gen = fulgora.map_gen_settings
