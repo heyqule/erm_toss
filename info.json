@@ -4,7 +4,7 @@
   "date": "2021-07-10",
   "title": "ERM - Protoss / Akilea Tribe",
   "author": "heyqule",
-  "description": "Add protoss as new enemy force. It features a new planet Aiur and new offensive mechanics. They can optionally spawn on Fulgora.",
+  "description": "○🌐Add protoss as new enemy force. It features a new planet Aiur and new offensive mechanics. They can optionally spawn on Fulgora.",
   "factorio_version": "2.0",
   "dependencies": [
     "base >= 2.0.0",
