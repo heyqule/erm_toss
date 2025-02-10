@@ -304,6 +304,11 @@ function ErmToss.make_cannon(level)
             working_sound = TossSound.cannon_idle(1),
             starting_attack_animation = attack_animation(),
             starting_attack_speed = 0.02,
+            autoplace = enemy_autoplace.enemy_worm_autoplace({
+                probability_expression = "0",
+                force = FORCE_NAME,
+                control = AUTOCONTROL_NAME
+            }),
             integration = {
                 layers = {
                     {

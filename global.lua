@@ -17,6 +17,7 @@ PROBE_ATTACK = "empts-prb"
 SHUTTLE_ATTACK = "empts-sht"
 CARRIER_ATTACK = "empts-car"
 REAVER_ATTACK = "empts-rea"
+GUERRILLA_ATTACK = "empts-grl"
 
 SELF_DESTRUCT_ATTACK = "empts-slf"
 TIME_TO_LIVE_DIED = "empts-ttld"

@@ -57,8 +57,7 @@ local incremental_movement_speed = 0.1
 local pollution_to_join_attack = 20
 local distraction_cooldown = 300
 
--- Animation Settings
-local unit_scale = 1.3
+
 local collision_box = { { -0.3, -0.3 }, { 0.3, 0.3 } }
 local selection_box = { { -0.75, -0.75 }, { 0.75, 0.75 } }
 

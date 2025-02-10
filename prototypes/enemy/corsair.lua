@@ -58,8 +58,6 @@ local incremental_movement_speed = 0.2
 local pollution_to_join_attack = 80
 local distraction_cooldown = 300
 
--- Animation Settings
-local unit_scale = 1.3
 local collision_box = { { -0.25, -0.25 }, { 0.25, 0.25 } }
 local selection_box = { { -0.75, -0.75 }, { 0.75, 0.75 } }
 
@@ -109,8 +107,7 @@ function ErmToss.make_corsair(level)
                 ammo_category = "erm-protoss-damage",
                 range = attack_range,
                 min_attack_distance = attack_range - 3,
-                cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),
-                cooldown_deviation = 0.1,
+                cooldown = 10,
                 ammo_type = {
                     category = "erm-protoss-damage",
                     target_type = "direction",
@@ -160,6 +157,16 @@ function ErmToss.make_corsair(level)
                                             }
                                         }
                                     }
+                                }
+                            }
+                        },
+                        {
+                            type = "direct",
+                            action_delivery = {
+                                type = "instant",
+                                source_effects = {
+                                    type = "script",
+                                    effect_id = GUERRILLA_ATTACK,
                                 }
                             }
                         }

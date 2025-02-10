@@ -6,13 +6,10 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-
 local ForceHelper = require("__enemyracemanager__/lib/helper/force_helper")
 local AttackGroupBeaconProcessor = require("__enemyracemanager__/lib/attack_group_beacon_processor")
 
-
 local CustomAttacks = require("__erm_toss__/scripts/custom_attacks")
-
 
 require("__erm_toss__/global")
 -- Constants
@@ -44,6 +41,9 @@ local createRace = function()
     storage.lightning_units = storage.lightning_units or {}
     --- Queue for cleanup.
     storage.backlog_lightning_units = storage.backlog_lightning_units or {}
+
+    --- for guerrilla tactic processing
+    storage.guerrilla_distances = storage.guerrilla_distances or {}
 end
 
 local addRaceSettings = function()
@@ -55,10 +55,11 @@ local addRaceSettings = function()
     race_settings.race =  race_settings.race or MOD_NAME
     race_settings.label = {"gui.label-erm_toss"}
     race_settings.tier =  race_settings.tier or 1
-    race_settings.evolution_point =  race_settings.evolution_point or 0
-    race_settings.evolution_base_point =  race_settings.evolution_base_point or 0
+    race_settings.is_primitive = race_settings.is_primitive or false
+    race_settings.autoplace_name = race_settings.autoplace_name or AUTOCONTROL_NAME
     race_settings.attack_meter = race_settings.attack_meter or 0
     race_settings.attack_meter_total = race_settings.attack_meter_total or 0
+    race_settings.last_attack_meter_total = race_settings.last_attack_meter_total or 0
     race_settings.next_attack_threshold = race_settings.next_attack_threshold or 0
 
     race_settings.units = {
@@ -126,6 +127,9 @@ local addRaceSettings = function()
     race_settings.pathing_unit = "zealot"
     race_settings.colliding_unit = "archon"
     race_settings.home_planet = "aiur"
+    
+    race_settings.interplanetary_attack_active = race_settings.interplanetary_attack_active or false
+    
     race_settings.boss_tier = race_settings.boss_tier or 1
     race_settings.boss_kill_count = race_settings.boss_kill_count or 0
 
@@ -197,6 +201,9 @@ local attack_functions =
     end,
     [ARBITER_UNITS_SPAWN_ATTACK] = function(args)
         CustomAttacks.process_batch_units(args, 1)
+    end,
+    [GUERRILLA_ATTACK] = function(args)
+        CustomAttacks.process_guerrilla(args)
     end
 }
 script.on_event(defines.events.on_script_trigger_effect, function(event)

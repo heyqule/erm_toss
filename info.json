@@ -1,6 +1,6 @@
 {
   "name": "erm_toss",
-  "version": "2.0.6",
+  "version": "2.0.7",
   "date": "2021-07-10",
   "title": "ERM - Protoss / Akilea Tribe",
   "author": "heyqule",
@@ -8,7 +8,7 @@
   "factorio_version": "2.0",
   "dependencies": [
     "base >= 2.0.0",
-    "enemyracemanager >= 2.0.13",
+    "enemyracemanager >= 2.0.22",
     "erm_toss_hd_assets >= 2.0.0"
   ]
 }

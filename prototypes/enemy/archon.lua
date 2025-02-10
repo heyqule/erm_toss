@@ -62,8 +62,6 @@ local vision_distance = ERM_UnitHelper.get_vision_distance(attack_range)
 local pollution_to_join_attack = 250
 local distraction_cooldown = 300
 
--- Animation Settings
-local unit_scale = 1.3
 
 local collision_box = { { -0.5, -0.5 }, { 0.5, 0.5 } }
 local selection_box = { { -1, -1 }, { 1, 1 } }
