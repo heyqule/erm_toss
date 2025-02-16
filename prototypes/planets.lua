@@ -245,15 +245,15 @@ local aiur_mapgen =
 
 
 ----- Add medium asteroid that spawn units
-local oxide_name = "protoss-spawning-medium-oxide-asteroid"
+local oxide_name = MOD_NAME.."--medium-energized-oxide-asteroid"
 local protoss_spawning_oxide_asteroid = util.table.deepcopy(data.raw['asteroid']['medium-oxide-asteroid'])
 protoss_spawning_oxide_asteroid["name"] = oxide_name
 
-local carbonic_name = "protoss-spawning-medium-carbonic-asteroid"
+local carbonic_name = MOD_NAME.."--medium-energized-carbonic-asteroid"
 local protoss_spawning_carbonic_asteroid = util.table.deepcopy(data.raw['asteroid']['medium-carbonic-asteroid'])
 protoss_spawning_carbonic_asteroid["name"]  = carbonic_name
 
-local metallic_name = "protoss-spawning-medium-metallic-asteroid"
+local metallic_name = MOD_NAME.."--medium-energized-metallic-asteroid"
 local protoss_spawning_metallic_asteroid = util.table.deepcopy(data.raw['asteroid']['medium-metallic-asteroid'])
 protoss_spawning_metallic_asteroid["name"]  = metallic_name
 

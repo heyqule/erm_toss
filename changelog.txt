@@ -8,6 +8,8 @@ Date: 2025-0?-??
   Changes:
     - Corsair learnt lousy hit and run tactic.   
     - Enlarged shield battery collision.
+    - Added missing render_layer to interceptor.
+    - Added advanced_target_priorities mod support.
     
   Optimization:
     - Fixed an issue that higher level base building group they can't path to destination. 

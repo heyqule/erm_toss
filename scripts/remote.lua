@@ -55,4 +55,58 @@ function RemoteAPI.interplanetary_attack_ignore_planets()
     return {'aiur'}
 end
 
+function RemoteAPI.advanced_target_priorities_register_section_data()
+    local data =  {
+        {
+            delimiter = '--',
+            name = "erm_toss",
+            prefix = 'enemy_erm_toss',
+            suffix = nil,
+            --- 4 type of options 'size', 'unit_type', 'tier','variant'
+            options = {
+                { "zealot", "scout", 
+                  "dragoon",  "corsair", 
+                  "probe", "shuttle", 
+                  "reaver", "carrier",
+                 "templar", "arbiter", 
+                  "archon",  "interceptor",  
+                  "darkarchon", "scarab", 
+                  "darktemplar", "invis_darktemplar",  
+                },
+                {1,2,3,4,5}
+            },
+            unit_type_columns = 2,
+            --- controls order of text concatenation
+            option_titles = {
+                'unit_type', 'tier'
+            },
+            option_delimiters = {
+            }
+        },
+        {
+            delimiter = '--',
+            name = "erm_toss_custom",
+            prefix = "enemy_erm_toss",
+            suffix = nil,
+            --- 4 type of options 'size', 'unit_type', 'tier','variant'
+            options = {
+                {
+                    'medium-energized-oxide-asteroid',
+                    'medium-energized-carbonic-asteroid',
+                    'medium-energized-metallic-asteroid'
+                },
+            },
+            --- controls order of text concatenation
+            option_titles = {
+                'unit_type'
+            },
+            option_delimiters = {
+            }
+        }
+    }
+    
+
+    return data
+end
+
 return RemoteAPI

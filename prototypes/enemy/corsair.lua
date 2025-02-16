@@ -107,7 +107,7 @@ function ErmToss.make_corsair(level)
                 ammo_category = "erm-protoss-damage",
                 range = attack_range,
                 min_attack_distance = attack_range - 3,
-                cooldown = 10,
+                cooldown = 15,
                 ammo_type = {
                     category = "erm-protoss-damage",
                     target_type = "direction",

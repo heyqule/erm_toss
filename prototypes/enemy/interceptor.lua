@@ -109,6 +109,7 @@ function ErmToss.make_interceptor(level)
             ai_settings = biter_ai_settings,
             spawning_time_modifier = 1.5,
             min_pursue_time = 120 * second,
+            render_layer = "wires-above",
             attack_parameters = {
                 type = "projectile",
                 range_mode = "bounding-box-to-bounding-box",
