@@ -1,16 +1,19 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.7
-Date: 2025-0?-??
+Date: 2025-02-21
 
   Features:
     - Re-added interplanetary attack support.
+    - Added advanced_target_priorities mod support.
 
   Changes:
     - Corsair learnt lousy hit and run tactic.   
     - Enlarged shield battery collision.
     - Added missing render_layer to interceptor.
-    - Added advanced_target_priorities mod support.
-    
+    - Added tip and trick for invisible darktemplar
+    - Removed min_attack_range for probe.
+    - Changed proxy builder's building placement function to use bounding box, instead of radius. It *should* reduce the chance of building on the player's entity ghost.
+
   Optimization:
     - Fixed an issue that higher level base building group they can't path to destination. 
 

@@ -193,4 +193,64 @@ tip_story_init(story_table)
 ]]
 }
 
+simulations.invis_darktemplar = {
+    init = [[
+require("__core__/lualib/story")
+
+local sim = game.simulation
+player = sim.create_test_player{name = "you"}
+sim.camera_player = player
+sim.camera_position = {0, 0}
+sim.camera_zoom = 0.5
+sim.hide_cursor = true
+
+game.planets["aiur"].create_surface()
+local surface = game.surfaces["aiur"]
+surface.request_to_generate_chunks({0,0}, 2)
+surface.force_generate_chunk_requests()
+
+
+local tank
+local story_table =
+{
+    {
+        {
+            name = "start",
+            init = function()
+                surface.create_entity { name="cargo-landing-pad", position={-25, -10}, force="player" }
+                player.teleport({-22,0},'aiur')
+                for _, y in pairs({-5,5}) do
+                    for _, x in pairs({-20, -17}) do
+                        local gun = surface.create_entity { name="gun-turret", position={x, y}, force="player" }
+                        local inventory = gun.get_inventory(defines.inventory.turret_ammo)
+                        inventory.insert({name = "piercing-rounds-magazine", count = 100})
+                    end
+                end
+
+                for i = -10, 10, 1 do
+                    surface.create_entity { name="stone-wall", position={-20, i}, force="player" }
+                end
+
+            end,
+        },
+        {
+            condition = story_elapsed_check(1),
+            action = function()
+                surface.create_entity { name="enemy_erm_toss--invis_darktemplar--5", position={8, 2}, force="enemy" }
+                surface.create_entity { name="enemy_erm_toss--invis_darktemplar--5", position={8, 0}, force="enemy" }
+                surface.create_entity { name="enemy_erm_toss--invis_darktemplar--5", position={8, 4}, force="enemy" }
+            end
+        },
+        {
+            condition = story_elapsed_check(10),
+            action = function()
+                story_jump_to(storage.story, "start")
+            end
+        }
+    }
+}
+tip_story_init(story_table)
+    ]],
+}
+
 return simulations

@@ -23,6 +23,16 @@ data:extend(
                 starting_status = "suggested",
                 simulation = simulations.general
             },
+            {
+                type = "tips-and-tricks-item",
+                name = FORCE_NAME.."-invis_darktemplar",
+                tag = "[entity="..FORCE_NAME.."--invis_darktemplar--1]",
+                category = FORCE_NAME,
+                order = "b",
+                starting_status = "suggested",
+                simulation = simulations.invis_darktemplar,
+                indent = 1,
+            },
         }
 )
 
@@ -34,7 +44,7 @@ if feature_flags.space_travel then
                     name = FORCE_NAME.."-teleportation",
                     tag = "[entity="..FORCE_NAME.."--fulgora-lightning]",
                     category = FORCE_NAME,
-                    order = "b",
+                    order = "c",
                     indent = 1,
                     starting_status = "suggested",
                     simulation = simulations.teleportation
@@ -44,7 +54,7 @@ if feature_flags.space_travel then
                     tag = "[planet=aiur]",
                     name = FORCE_NAME.."-planet-aiur",
                     category = FORCE_NAME,
-                    order = "c",
+                    order = "d",
                     indent = 1,
                     starting_status = "suggested",
                     simulation = simulations.planet_aiur

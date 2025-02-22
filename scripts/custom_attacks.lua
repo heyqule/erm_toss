@@ -10,7 +10,7 @@ local ERMConfig = require("__enemyracemanager__/lib/global_config")
 local CustomAttacks = CustomAttackHelper
 
 function CustomAttacks.process_probe(event)
-    CustomAttackHelper.drop_unit(event, MOD_NAME, CustomAttackHelper.get_unit(MOD_NAME, "construction_buildings"))
+    CustomAttackHelper.build(event, MOD_NAME, CustomAttackHelper.get_unit(MOD_NAME, "construction_buildings"))
     event.source_entity.destroy()
 end
 
