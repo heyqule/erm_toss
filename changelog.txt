@@ -12,7 +12,7 @@ Date: 2025-04-??
     - [space-age] When crystal "spoils", it spawn enemy protoss units.
     - [space-age] Added tip and trick regarding to crystal.
     - [space-age] Replaced base game resources on Aiur with Blue and Orange Mineral (Aiur), Verspene Geysers (Aiur). 
-    - [space-age] New resources are not migrated on existing surface.  Player will have to delete their existing surface and recreate it.
+    - [space-age] New resources appears on new chunks on explored planet Char.
 
   Changes:
     - Proxy builder builds short range shield_battery(range:16), instead of regular shield_battery(range:30)
