@@ -3,14 +3,121 @@
 --- Created by heyqule.
 --- DateTime: 10/26/2024 7:20 PM
 ---
-if not feature_flags.space_travel then
+if not mods['space-age'] then
     return
 end
 
 local effects = require("__core__.lualib.surface-render-parameter-effects")
 local asteroid_triggers = require("__erm_libs__.prototypes.asteroid_triggers")
-local asteroid_util = require("__space-age__.prototypes.planet.asteroid-spawn-definitions")
 local procession_graphic_catalogue_types = require("__base__/prototypes/planet/procession-graphic-catalogue-types")
+local Minerals = require('__erm_shared_economy__/prototypes/mineral')
+local Geyser = require('__erm_shared_economy__/prototypes/geyser')
+local Refinery = require('__erm_shared_economy__/prototypes/refinery')
+
+local mineral_name = 'aiur_mineral'
+Minerals.add_resource({
+    name = mineral_name,
+    icon_color = "blue",
+    order = 'b', -- same order as iron
+    mining_time = 2,
+    import_location = 'aiur',
+    ---autoplace
+    has_starting_area_placement = true,
+    base_density = 8,
+    candidate_spot_count = 32,
+    regular_rq_factor_multiplier = 1.2,
+    starting_rq_factor_multiplier = 1.5,
+})
+Minerals.add_recycle_recipe({
+    name = mineral_name,
+    icon_color = "blue",
+    enabled = false,
+    energy_required = 0.2,
+    ingredients = {
+        {type = "item", name = mineral_name, amount = 1}
+    },
+    results = {
+        {type = "item", name = "iron-ore",  amount = 1, probability = 0.66, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "coal", amount = 1, probability = 0.3, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "copper-ore",  amount = 1, probability = 0.05, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "holmium-ore", amount = 1, probability = 0.03, show_details_in_recipe_tooltip = false},
+        {type = "item", name = MOD_NAME..'--crystal',  amount = 1, probability = 0.005, show_details_in_recipe_tooltip = false},
+    }
+})
+local mineral_name2 = 'aiur_mineral_2'
+Minerals.add_resource({
+    name = mineral_name2,
+    icon_color = "orange",
+    order = 'b', -- same order as iron
+    mining_time = 2,
+    import_location = 'aiur',
+    ---autoplace
+    has_starting_area_placement = true,
+    base_density = 6,
+    candidate_spot_count = 32,
+    regular_rq_factor_multiplier = 1.2,
+    starting_rq_factor_multiplier = 1.5,
+})
+Minerals.add_recycle_recipe({
+    name = mineral_name2,
+    icon_color = "orange",
+    enabled = false,
+    energy_required = 0.2,
+    ingredients = {
+        {type = "item", name = mineral_name2, amount = 1}
+    },
+    results = {
+        {type = "item", name = "copper-ore",  amount = 1, probability = 0.66, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "stone", amount = 1, probability = 0.2, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "iron-ore",  amount = 1, probability = 0.05, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "uranium-ore",  amount = 1, probability = 0.01, show_details_in_recipe_tooltip = false},
+        {type = "item", name = MOD_NAME..'--crystal',  amount = 1, probability = 0.005, show_details_in_recipe_tooltip = false},
+    }
+})
+
+local geyser_name = 'aiur_geyser'
+Geyser.add_resource({
+    name = geyser_name,
+    type = 'protoss',
+    order = 'c', -- same order as iron
+    mining_time = 2,
+    import_location = 'aiur',
+    ---autoplace
+    has_starting_area_placement = true,
+    base_density = 4,
+    regular_rq_factor_multiplier = 1.3,
+    starting_rq_factor_multiplier = 1.5,
+    random_probability = 1/48,
+    random_spot_size_minimum = 1,
+    random_spot_size_maximum = 1,
+    
+    smoke_color_1_outer = {r=0.353, g=1, b=0},
+    smoke_color_1_outer_strength = 0.2,
+    smoke_color_1_inner = {r=0.353, g=1, b=0},
+    smoke_color_1_inner_strength = 0.5,
+    smoke_color_2_outer = {r=0.353, g=1, b=0},
+    smoke_color_2_outer_strength = 0.3,
+    smoke_color_2_inner = {r=0.353, g=1, b=0},
+    smoke_color_2_inner_strength = 0.7,
+    
+    map_color = {r=0.353, g=1, b=0},
+})
+Geyser.add_refinery_recipe({
+    name = geyser_name,
+    type = 'protoss',
+    enabled = false,
+    energy_required = 5,
+    ingredients = {
+        {type = "item", name = geyser_name, amount = 12}
+    },
+    results = {
+        {type = "fluid", name = "steam", amount = 600, temperature = 500},
+        {type = "fluid", name = "holmium-solution", amount = 12, probability = 0.05},
+        {type = "fluid", name = "crude-oil", amount = 36},
+    }
+})
+
+Refinery.add_protoss_machine()
 
 -- potential space warzone :P
 --local new_foundation = util.table.deepcopy(data.raw['tile']['space-platform-foundation'])
@@ -33,10 +140,9 @@ local aiur_mapgen =
             cliff_smoothing = 0
         },
         autoplace_controls = {
-            ["iron-ore"] = {},
-            ["copper-ore"] = {},
-            ["stone"] = {},
-            ["coal"] = {},
+            [mineral_name] = {},
+            [mineral_name2] = {},
+            [geyser_name] = {},
             ["water"] = {},
             ["trees"] = {},
             [AUTOCONTROL_NAME] = {},
@@ -84,10 +190,9 @@ local aiur_mapgen =
             },
             ["entity"] = {
                 settings = {
-                    ["iron-ore"] = {},
-                    ["copper-ore"] = {},
-                    ["stone"] = {},
-                    ["coal"] = {},
+                    [mineral_name] = {},
+                    [mineral_name2] = {},
+                    [geyser_name] = {},
                     ["big-sand-rock"] = {},
                     ["huge-rock"] = {},
                     ["big-rock"] = {},
@@ -498,7 +603,7 @@ for key, prop in pairs(aiur_unit_probabilities) do
                             },
                             {
                                 type = "create-explosion",
-                                entity_name = MOD_NAME.."--recall-80",
+                                entity_name = "protoss--recall-80",
                             }
                         }
                     }
@@ -542,7 +647,7 @@ for key, prop in pairs(fulgora_unit_probabilities) do
                         },
                         {
                             type = "create-explosion",
-                            entity_name = MOD_NAME.."--recall-80",
+                            entity_name = "protoss--recall-80",
                         }
                     }
                 }
@@ -878,6 +983,24 @@ data:extend({
                 space_location = "aiur",
                 use_icon_overlay_constant = true
             },
+            --- Unlock protoss refinery, it's global
+            {
+                type = "unlock-recipe",
+                recipe = "protoss_refinery"
+            },
+            --- Unlock planet specific refinery and recipes
+            {
+                type = "unlock-recipe",
+                recipe = geyser_name.."-refinery"
+            },
+            {
+                type = "unlock-recipe",
+                recipe = mineral_name.."-recycling"
+            },
+            {
+                type = "unlock-recipe",
+                recipe = mineral_name2.."-recycling"
+            }
         },
         prerequisites = { "space-platform-thruster", "landfill" },
         unit = {
@@ -901,13 +1024,9 @@ if mods['alien-biomes'] then
     map_gen.autoplace_settings.decorative.settings['small-rock'] = nil
     map_gen.autoplace_settings.decorative.settings['tiny-rock'] = nil
     map_gen.autoplace_settings.decorative.settings['small-sand-rock'] = nil
-
     map_gen.autoplace_settings.decorative.settings['medium-sand-rock'] = nil
     map_gen.autoplace_settings.decorative.settings['sand-dune-decal'] = nil
-
     map_gen.autoplace_settings.entity.settings['huge-rock'] = nil
     map_gen.autoplace_settings.entity.settings['big-rock'] = nil
     map_gen.autoplace_settings.entity.settings['big-sand-rock'] = nil
-    
-    map_gen.autoplace_controls.rocks = nil
 end

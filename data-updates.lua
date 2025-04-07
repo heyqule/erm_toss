@@ -20,31 +20,39 @@ if mapgen["erm-debug"] then
     mapgen["erm-debug"]["basic_settings"]["autoplace_controls"][AUTOCONTROL_NAME] = { frequency = 5, size = 5 }
 end
 
-local nauvis_autocontrols = data.raw.planet.nauvis.map_gen_settings.autoplace_controls
-local nauvis_enemy_settings = settings.startup["enemyracemanager-nauvis-enemy"].value
-if nauvis_enemy_settings == MOD_NAME then
-    MapGenFunctions.remove_enemy_autoplace_controls(nauvis_autocontrols)
+local nauvis_planet = data.raw.planet.nauvis
+local map_gen_settings = nauvis_planet.map_gen_settings
+if map_gen_settings then
+    local nauvis_autocontrols = map_gen_settings.autoplace_controls
+    local nauvis_enemy_settings = settings.startup["enemyracemanager-nauvis-enemy"].value
+    if nauvis_enemy_settings == MOD_NAME then
+        MapGenFunctions.remove_enemy_autoplace_controls(nauvis_autocontrols)
 
-    nauvis_autocontrols[AUTOCONTROL_NAME] = {}
+        nauvis_autocontrols[AUTOCONTROL_NAME] = {}
 
-    print('ERM_TOSS: Nauvis AutoControl:')
-    print(serpent.block(data.raw.planet.nauvis.map_gen_settings.autoplace_controls))
+        print('ERM_TOSS: Nauvis AutoControl:')
+        print(serpent.block(data.raw.planet.nauvis.map_gen_settings.autoplace_controls))
 
-elseif nauvis_enemy_settings == NAUVIS_MIXED then
-    nauvis_autocontrols[AUTOCONTROL_NAME] = {}
+    elseif nauvis_enemy_settings == NAUVIS_MIXED then
+        nauvis_autocontrols[AUTOCONTROL_NAME] = {}
 
-    print('ERM_TOSS: Nauvis AutoControl:')
-    print(serpent.block(data.raw.planet.nauvis.map_gen_settings.autoplace_controls))
+        print('ERM_TOSS: Nauvis AutoControl:')
+        print(serpent.block(data.raw.planet.nauvis.map_gen_settings.autoplace_controls))
+    end
 end
 
 
-if feature_flags.space_travel and 
+if mods["space-age"] and 
    settings.startup["enemy_erm_toss-on_fulgora"] and 
    settings.startup["enemy_erm_toss-on_fulgora"].value 
 then
     local fulgora = data.raw.planet.fulgora
-    --- add autocontrol
-    fulgora.map_gen_settings.autoplace_controls[AUTOCONTROL_NAME] = {}
+    local map_gen_settings = fulgora.map_gen_settings
+
+    if map_gen_settings then
+        map_gen_settings.autoplace_controls[AUTOCONTROL_NAME] = {}
+    end
+
     data.raw["lightning-attractor"]["fulgoran-ruin-attractor"].alert_when_damaged = false
     --- replace lightning
     if settings.startup["enemy_erm_toss-lightning_on_fulgora"].value then

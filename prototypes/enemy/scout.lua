@@ -117,7 +117,7 @@ function ErmToss.make_scout(level)
                         type = "direct",
                         action_delivery = {
                             type = "projectile",
-                            projectile = MOD_NAME.."--scout-rocket",
+                            projectile = "protoss--scout-rocket",
                             starting_speed = 0.3,
                             max_range = GlobalConfig.get_max_projectile_range(),
                         }
@@ -131,12 +131,12 @@ function ErmToss.make_scout(level)
             distance_per_frame = 0.5,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death(name, 1),
-            dying_explosion = MOD_NAME.."--small-air-death",
-            corpse = MOD_NAME .. "--" .. name .. "-corpse"
+            dying_explosion = "protoss--small-air-death",
+            corpse = name .. "-corpse",
         },
         {
             type = "corpse",
-            name = MOD_NAME .. "--" .. name .. "-corpse",
+            name = name .. "-corpse",
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-off-grid", "building-direction-8-way", "not-on-map" },
@@ -145,7 +145,7 @@ function ErmToss.make_scout(level)
             dying_speed = 0.04,
             time_before_removed = second,
             subgroup = "corpses",
-            order = MOD_NAME.."--" .. name .. level,
+            name = name .. "-corpse",
             animation = util.empty_sprite(),
         }
     })

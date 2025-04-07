@@ -137,6 +137,6 @@ data.erm_land_scout[MOD_NAME] = "zealot"
 data.erm_aerial_scout = data.erm_aerial_scout or {}
 data.erm_aerial_scout[MOD_NAME] = "scout"
 
-
-require("prototypes.planets")
 require "prototypes.tips_and_tricks.prototypes"
+require "prototypes.economy"
+require "prototypes.planets"

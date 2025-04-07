@@ -128,7 +128,7 @@ function ErmToss.make_darkarchon(level)
                                 target_effects = {
                                     {
                                         type = "create-explosion",
-                                        entity_name = MOD_NAME.."--darkarchon-feedback"
+                                        entity_name = "protoss--darkarchon-feedback"
                                     },
                                     {
                                         type = "nested-result",
@@ -175,7 +175,7 @@ function ErmToss.make_darkarchon(level)
                                                 target_effects = {
                                                     {
                                                         type = "create-sticker",
-                                                        sticker = MOD_NAME.."--darkarchon-maelstrom",
+                                                        sticker = "protoss--darkarchon-maelstrom",
                                                         show_in_tooltip = true
                                                     },
                                                 },
@@ -194,12 +194,12 @@ function ErmToss.make_darkarchon(level)
             distance_per_frame = 0.2,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death(name, 1),
-            dying_explosion = MOD_NAME.."--darkarchon-explosion",
-            corpse = MOD_NAME .. "--" .. name .. "-corpse"
+            dying_explosion ="protoss--darkarchon-explosion",
+            corpse = name .. "-corpse"
         },
         {
             type = "corpse",
-            name = MOD_NAME .. "--" .. name .. "-corpse",
+            name = name .. "-corpse",
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-off-grid", "building-direction-8-way", "not-on-map" },
@@ -208,7 +208,7 @@ function ErmToss.make_darkarchon(level)
             dying_speed = 0.04,
             time_before_removed = second,
             subgroup = "corpses",
-            order = MOD_NAME.."--" .. name .. level,
+            order = name .. "-corpse",
             animation = util.empty_sprite(),
         },
     })

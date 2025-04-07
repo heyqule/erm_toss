@@ -5,7 +5,7 @@
 -- Time: 5:04 PM
 -- To change this template use File | Settings | File Templates.
 --
-
+local String = require("__erm_libs__/stdlib/string")
 local ForceHelper = require("__enemyracemanager__/lib/helper/force_helper")
 local AttackGroupBeaconProcessor = require("__enemyracemanager__/lib/attack_group_beacon_processor")
 
@@ -13,11 +13,38 @@ local CustomAttacks = require("__erm_toss__/scripts/custom_attacks")
 
 require("__erm_toss__/global")
 -- Constants
-local using_lightning_units = script.feature_flags.space_travel
+local using_lightning_units = script.active_mods['space-age']
 
-local toss_on_fulgora = script.feature_flags.space_travel and 
+local toss_on_fulgora = script.active_mods["space-age"] and
         settings.startup["enemy_erm_toss-on_fulgora"] and 
         settings.startup["enemy_erm_toss-on_fulgora"].value
+
+local populations = {
+    ["archon"] = 5,
+    ["corsair"] = 2,
+    ["arbiter"] = 3,
+    ["dragoon"] = 2,
+    ["zealot"] = 2,
+    ["darktemplar"] = 2,
+}
+
+local refresh_army_data = function()
+    -- Register Army Units
+    for _, prototype in pairs(prototypes.get_entity_filtered({{filter = "type", type = "unit"}})) do
+        local nameToken = String.split(prototype.name, "--")
+        if nameToken[1] == MOD_NAME and nameToken[2] == 'controllable' and populations[nameToken[3]] then
+            remote.call("enemyracemanager","army_units_register", prototype.name, populations[nameToken[3]]);
+        end
+    end
+
+    -- Register Auto Deployers
+    for _, prototype in pairs(prototypes.get_entity_filtered({{filter = "type", type = "assembling-machine"}})) do
+        local nameToken = String.split(prototype.name, "--")
+        if nameToken[1] == MOD_NAME and nameToken[2] == 'controllable' then
+            remote.call("enemyracemanager","army_deployer_register", prototype.name);
+        end
+    end
+end
 
 local createRace = function()
     local force = game.forces[FORCE_NAME]
@@ -99,8 +126,8 @@ local addRaceSettings = function()
     }
     race_settings.construction_buildings = {
         {{ "cannon_shortrange"},{1}},
-        {{ "cannon_shortrange", "shield_battery"},{5,2}},
-        {{ "cannon_shortrange", "pylon", "shield_battery"},{5,2,2}},
+        {{ "cannon_shortrange", "pylon"},{5,2}},
+        {{ "cannon_shortrange", "pylon", "shortrange_shield_battery"},{5,2,1}},
     }
     race_settings.featured_groups = {
         -- Unit list, spawn ratio, unit attack point cost
@@ -159,6 +186,7 @@ script.on_init(function(event)
     createRace()
     addRaceSettings()
     update_world()
+    refresh_army_data()
 end)
 
 script.on_load(function(event)
@@ -168,6 +196,7 @@ script.on_configuration_changed(function(event)
     createRace()
     addRaceSettings()
     update_world()
+    refresh_army_data()
 end)
 
 local attack_functions =
@@ -204,6 +233,9 @@ local attack_functions =
     end,
     [GUERRILLA_ATTACK] = function(args)
         CustomAttacks.process_guerrilla(args)
+    end,
+    [CRYSTAL_TRIGGER] = function(args)
+        CustomAttacks.process_crystal(args)
     end
 }
 script.on_event(defines.events.on_script_trigger_effect, function(event)
@@ -263,11 +295,11 @@ script.on_nth_tick(901, function(event)
     end
 end)
 
---- Spawn attack group periodically once evolution reach 1%
-script.on_nth_tick(15 * minute + 13, function(event)
+--- Spawn attack group periodically once evolution reach 10%
+script.on_nth_tick(13 * minute + 13, function(event)
     local fulgora = game.surfaces['fulgora']
-    if fulgora and toss_on_fulgora and CustomAttacks.can_spawn(45) then
-        if game.forces[FORCE_NAME].get_evolution_factor(fulgora) < 0.01 then
+    if fulgora and toss_on_fulgora and CustomAttacks.can_spawn(40) then
+        if game.forces[FORCE_NAME].get_evolution_factor(fulgora) < 0.1 then
             return
         end
 

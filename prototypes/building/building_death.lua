@@ -9,7 +9,7 @@ local AnimationDB = require("__erm_libs__/prototypes/animation_db")
 data:extend({
     {
         type = "corpse",
-        name = MOD_NAME.."--small-base-corpse",
+        name = "protoss--small-base-corpse",
         flags = { "placeable-neutral", "not-on-map" },
         icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
         icon_size = 64,
@@ -25,7 +25,7 @@ data:extend({
     },
     {
         type = "corpse",
-        name = MOD_NAME.."--large-base-corpse",
+        name = "protoss--large-base-corpse",
         flags = { "placeable-neutral",  "not-on-map" },
         icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
         icon_size = 64,
@@ -41,7 +41,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--large-building-explosion",
+        name = "protoss--large-building-explosion",
         icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
         icon_size = 64,
         subgroup = "explosions",
@@ -53,7 +53,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--small-building-explosion",
+        name = "protoss--small-building-explosion",
         icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
         icon_size = 64,
         subgroup = "explosions",
@@ -65,7 +65,7 @@ data:extend({
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--darkarchon-explosion",
+        name = "protoss--darkarchon-explosion",
         icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
         icon_size = 64,
         subgroup = "explosions",

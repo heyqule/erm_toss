@@ -115,7 +115,7 @@ function ErmToss.make_dragoon(level)
                         type = "direct",
                         action_delivery = {
                             type = "projectile",
-                            projectile = MOD_NAME.."--dragoon-projectile",
+                            projectile = "protoss--dragoon-projectile",
                             starting_speed = 0.3,
                             max_range = GlobalConfig.get_max_projectile_range(),
                         }
@@ -129,11 +129,11 @@ function ErmToss.make_dragoon(level)
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death(name, 1),
 
-            corpse = MOD_NAME .. "--" .. name .. "-corpse"
+            corpse = name .. "-corpse"
         },
         {
             type = "corpse",
-            name = MOD_NAME .. "--" .. name .. "-corpse",
+            name = name .. "-corpse",
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-off-grid", "building-direction-8-way", "not-on-map" },
@@ -142,7 +142,7 @@ function ErmToss.make_dragoon(level)
             dying_speed = 0.04,
             time_before_removed = minute * settings.startup["enemyracemanager-enemy-corpse-time"].value,
             subgroup = "corpses",
-            order = MOD_NAME.."--" .. name .. level,
+            order = name .. "-corpse",
             final_render_layer = "corpse",
             animation = AnimationDB.get_single_animation("units", name, "corpse"),
         }

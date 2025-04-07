@@ -19,7 +19,7 @@ require("util")
 
 local scout_rocket = WeaponRig.standardize_rocket_damage(
         util.table.deepcopy(data.raw["projectile"]["rocket"]),
-        MOD_NAME.."--scout-rocket"
+        "protoss--scout-rocket"
 )
 table.insert(scout_rocket["action"]["action_delivery"]["target_effects"],  {
     type = "nested-result",
@@ -59,7 +59,7 @@ data:extend({
     scout_rocket,
     {
         type = "projectile",
-        name = MOD_NAME.."--dragoon-projectile",
+        name = "protoss--dragoon-projectile",
         flags = { "not-on-map" },
         acceleration = 0.005,
 
@@ -76,7 +76,7 @@ data:extend({
                 target_effects = {
                     {
                         type = "create-entity",
-                        entity_name = MOD_NAME.."--dragoon-explosion"
+                        entity_name = "protoss--dragoon-explosion"
                     },
                     {
                         type = "damage",
@@ -90,7 +90,7 @@ data:extend({
     },
     {
         type = "projectile",
-        name = MOD_NAME.."--interceptor-laser",
+        name = "protoss--interceptor-laser",
         flags = { "not-on-map" },
         acceleration = 0.005,
         action = {
@@ -110,7 +110,7 @@ data:extend({
     },
     {
         type = "projectile",
-        name = MOD_NAME.."--stasis-projectile",
+        name = "protoss--stasis-projectile",
         flags = { "not-on-map" },
         acceleration = 0.005,
         action = {
@@ -120,7 +120,7 @@ data:extend({
                 target_effects = {
                     {
                         type = "create-entity",
-                        entity_name = MOD_NAME.."--stasis-explosion"
+                        entity_name = "protoss--stasis-explosion"
                     },
                     {
                         type = "nested-result",
@@ -146,116 +146,116 @@ data:extend({
     --- Explosions
     {
         type = "explosion",
-        name = MOD_NAME.."--dragoon-explosion",
+        name = "protoss--dragoon-explosion",
         flags = { "not-on-map" },
         animations = AnimationDB.get_layered_animations("projectiles","dragoon","explosion")
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--corsair-explosion",
+        name = "protoss--corsair-explosion",
         flags = { "not-on-map" },
         animations = AnimationDB.get_layered_animations("projectiles","corsair","explosion")
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--stasis-explosion",
+        name = "protoss--stasis-explosion",
         flags = { "not-on-map" },
         animations = AnimationDB.get_layered_animations("projectiles","stasis","explosion")
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--psystorm-explosion",
+        name = "protoss--psystorm-explosion",
         flags = { "not-on-map" },
         animations = AnimationDB.get_layered_animations("projectiles","psystorm","explosion")
     },
     --- Death Explosion
     {
         type = "explosion",
-        name = MOD_NAME.."--archon-hit-explosion",
+        name = "protoss--archon-hit-explosion",
         flags = { "not-on-map" },
         animations = AnimationDB.get_layered_animations("projectiles","archon_hit","explosion")
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--small-air-death",
+        name = "protoss--small-air-death",
         flags = { "not-on-map" },
         animations = AnimationDB.get_layered_animations("death","small_air","explosion")
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--large-air-death",
+        name = "protoss--large-air-death",
         flags = { "not-on-map" },
         animations = AnimationDB.get_layered_animations("death","large_building","explosion")
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--zealot-death",
+        name = "protoss--zealot-death",
         flags = { "not-on-map" },
         animations = AnimationDB.get_layered_animations("death","zealot","explosion")
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--templar-death",
+        name = "protoss--templar-death",
         flags = { "not-on-map" },
         animations = AnimationDB.get_layered_animations("death","templar","explosion")
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--recall-80",
+        name = "protoss--recall-80",
         flags = { "not-on-map" },
         animations = AnimationDB.get_layered_animations("projectiles","recall_80","explosion")
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--recall-80-small",
+        name = "protoss--recall-80-small",
         flags = { "not-on-map" },
         animations = AnimationDB.get_layered_animations("projectiles","recall_80","explosion",0.25)
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--recall",
+        name = "protoss--recall",
         flags = { "not-on-map" },
         animations = AnimationDB.get_layered_animations("projectiles","recall","explosion")
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--disrupt-80",
+        name = "protoss--disrupt-80",
         flags = { "not-on-map" },
         animations = AnimationDB.get_layered_animations("projectiles","disrupt_80","explosion")
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--disrupt",
+        name = "protoss--disrupt",
         flags = { "not-on-map" },
         animations = AnimationDB.get_layered_animations("projectiles","disrupt","explosion")
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--darkarchon-feedback",
+        name = "protoss--darkarchon-feedback",
         flags = { "not-on-map" },
         animations = AnimationDB.get_layered_animations("projectiles","darkarchon_feedback","explosion")
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--scarab-explosion",
+        name = "protoss--scarab-explosion",
         flags = {"not-on-map"},
         animations = AnimationDB.get_layered_animations("projectiles","scarab","explosion")
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--shield-battery-explosion",
+        name = "protoss--shield-battery-explosion",
         flags = {"not-on-map"},
         animations = AnimationDB.get_layered_animations("projectiles","shield_battery","explosion")
     },
     {
         type = "explosion",
-        name = MOD_NAME.."--demo-darkarchon-maelstrom",
+        name = "protoss--demo-darkarchon-maelstrom",
         flags = {"not-on-map"},
         animations = AnimationDB.get_layered_animations("projectiles","darkarchon_maelstrom","explosion"),
     },
     {
         type = "sticker",
-        name = MOD_NAME.."--darkarchon-maelstrom",
+        name = "protoss--darkarchon-maelstrom",
         flags = { "not-on-map" },
         duration_in_ticks = 2 * second,
         damage_interval = second / 4,

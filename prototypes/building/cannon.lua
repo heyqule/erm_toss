@@ -104,8 +104,8 @@ function ErmToss.make_cannon(level)
             selection_box = selection_box,
             shooting_cursor_size = 4,
             rotation_speed = 1,
-            corpse = MOD_NAME.."--small-base-corpse",
-            dying_explosion = MOD_NAME.."--small-building-explosion",
+            corpse = "protoss--small-base-corpse",
+            dying_explosion = "protoss--small-building-explosion",
             dying_sound = TossSound.building_dying_sound(1),
             call_for_help_radius = 50,
             folded_speed = 0.01,
@@ -161,7 +161,7 @@ function ErmToss.make_cannon(level)
                         type = "direct",
                         action_delivery = {
                             type = "projectile",
-                            projectile = MOD_NAME.."--dragoon-projectile",
+                            projectile = "protoss--dragoon-projectile",
                             starting_speed = 0.3
                         }
                     }
@@ -198,8 +198,8 @@ function ErmToss.make_cannon(level)
             selection_box = selection_box,
             shooting_cursor_size = 4,
             rotation_speed = 1,
-            corpse = MOD_NAME.."--small-base-corpse",
-            dying_explosion = MOD_NAME.."--small-building-explosion",
+            corpse = "protoss--small-base-corpse",
+            dying_explosion = "protoss--small-building-explosion",
             dying_sound = TossSound.building_dying_sound(1),
             call_for_help_radius = 50,
             folded_speed = 0.01,
@@ -294,8 +294,8 @@ function ErmToss.make_cannon(level)
             selection_box = selection_box,
             shooting_cursor_size = 4,
             rotation_speed = 1,
-            corpse = MOD_NAME.."--small-base-corpse",
-            dying_explosion = MOD_NAME.."--small-building-explosion",
+            corpse = "protoss--small-base-corpse",
+            dying_explosion = "protoss--small-building-explosion",
             dying_sound = TossSound.building_dying_sound(1),
             call_for_help_radius = 50,
             folded_speed = 0.01,
@@ -351,7 +351,7 @@ function ErmToss.make_cannon(level)
                         type = "direct",
                         action_delivery = {
                             type = "projectile",
-                            projectile = MOD_NAME.."--dragoon-projectile",
+                            projectile = "protoss--dragoon-projectile",
                             starting_speed = 0.3
                         }
                     }

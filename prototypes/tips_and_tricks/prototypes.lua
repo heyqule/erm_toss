@@ -36,7 +36,7 @@ data:extend(
         }
 )
 
-if feature_flags.space_travel then
+if mods['space-age'] then
     data:extend(
             {
                 {
@@ -58,6 +58,16 @@ if feature_flags.space_travel then
                     indent = 1,
                     starting_status = "suggested",
                     simulation = simulations.planet_aiur
+                },
+                {
+                    type = "tips-and-tricks-item",
+                    tag = "[item=enemy_erm_toss--crystal]",
+                    name = FORCE_NAME.."-economy",
+                    category = FORCE_NAME,
+                    order = "c",
+                    indent = 1,
+                    starting_status = "suggested",
+                    image = "__erm_toss_hd_assets__/graphics/economy/erm-toss.png"
                 },
             })
 end

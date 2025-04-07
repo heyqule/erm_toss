@@ -125,7 +125,7 @@ function ErmToss.make_interceptor(level)
                         type = "direct",
                         action_delivery = {
                             type = "projectile",
-                            projectile = MOD_NAME .. "--interceptor-laser",
+                            projectile = "protoss--interceptor-laser",
                             starting_speed = 0.3,
                             max_range = GlobalConfig.get_max_projectile_range(),
                         }
@@ -156,12 +156,12 @@ function ErmToss.make_interceptor(level)
                 }
             },
             dying_sound = TossSound.enemy_death("scout", 1),
-            dying_explosion = MOD_NAME.."--small-air-death",
-            corpse = MOD_NAME .. "--" .. name .. "-corpse"
+            dying_explosion ="protoss--small-air-death",
+            corpse = name .. "-corpse"
         },
         {
             type = "corpse",
-            name = MOD_NAME .. "--" .. name .. "-corpse",
+            name = name .. "-corpse",
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-off-grid", "building-direction-8-way", "not-on-map" },
@@ -170,7 +170,7 @@ function ErmToss.make_interceptor(level)
             dying_speed = 0.04,
             time_before_removed = second,
             subgroup = "corpses",
-            order = MOD_NAME.."--" .. name .. level,
+            order = name .. "-corpse",
             animation = util.empty_sprite(),
         }
     })

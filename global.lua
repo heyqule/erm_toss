@@ -27,6 +27,8 @@ BOSS_SPAWN_ATTACK = "empts-bs1"
 UNITS_SPAWN_ATTACK = "empts-bs2"
 ARBITER_UNITS_SPAWN_ATTACK = "empts-bs3"
 
+CRYSTAL_TRIGGER = "empts-csl"
+
 PROTOSS_MAP_COLOR = {r=0, g=192, b=192}
 PROTOSS_TEAM_COLOR = {r=0, g=192, b=192}
 

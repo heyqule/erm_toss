@@ -119,7 +119,7 @@ function ErmToss.make_corsair(level)
                                 target_effects = {
                                     {
                                         type = "create-explosion",
-                                        entity_name = MOD_NAME.."--corsair-explosion"
+                                        entity_name = "protoss--corsair-explosion"
                                     },
                                     {
                                         type = "damage",
@@ -138,7 +138,7 @@ function ErmToss.make_corsair(level)
                                 target_effects = {
                                     {
                                         type = "create-explosion",
-                                        entity_name = MOD_NAME.."--disrupt-80"
+                                        entity_name = "protoss--disrupt-80"
                                     },
                                     {
                                         type = "nested-result",
@@ -180,12 +180,12 @@ function ErmToss.make_corsair(level)
             distance_per_frame = 0.5,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death("scout", 1),
-            dying_explosion = MOD_NAME.."--small-air-death",
-            corpse = MOD_NAME .. "--" .. name .. "-corpse"
+            dying_explosion ="protoss--small-air-death",
+            corpse = name .. "-corpse"
         },
         {
             type = "corpse",
-            name = MOD_NAME .. "--" .. name .. "-corpse",
+            name = name .. "-corpse",
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-off-grid", "building-direction-8-way", "not-on-map" },
@@ -194,7 +194,7 @@ function ErmToss.make_corsair(level)
             dying_speed = 0.04,
             time_before_removed = second,
             subgroup = "corpses",
-            order = MOD_NAME.."--" .. name .. level,
+            order = name .. "-corpse",
             animation = util.empty_sprite(),
         }
     })

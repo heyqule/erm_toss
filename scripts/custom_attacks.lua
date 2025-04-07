@@ -128,4 +128,26 @@ function CustomAttacks.lightning_units_attack()
     end
 end
 
+function CustomAttacks.process_crystal(event)
+    -- Remove source_entity to prevent drop_unit() using it to get unit level.
+    event.source_entity = nil
+    local unit_name = "zealot"
+    local amount = 1
+    if CustomAttackHelper.can_spawn(10) then
+        unit_name =  "archon"
+        amount = 1
+    elseif CustomAttackHelper.can_spawn(25) then
+        unit_name = "probe"
+        amount = 1        
+    elseif CustomAttackHelper.can_spawn(33) then
+        unit_name = "darktemplar"
+        amount = 1
+    elseif CustomAttackHelper.can_spawn(50) then
+        unit_name = "dragoon"
+        amount = 1
+    end
+
+        CustomAttackHelper.drop_unit(event, MOD_NAME, unit_name, amount)
+    end
+
 return CustomAttacks

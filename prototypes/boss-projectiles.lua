@@ -39,7 +39,7 @@ local create_psystorm_projectile = function(tier)
                 target_effects = {
                     {
                         type = "create-entity",
-                        entity_name = MOD_NAME.."--psystorm-explosion",
+                        entity_name = "protoss--psystorm-explosion",
                         trigger_created_entity = false
                     },
                     {
@@ -241,7 +241,7 @@ local create_recall_projectile = function(tier, script_attack)
                 target_effects = {
                     {
                         type = "create-entity",
-                        entity_name = MOD_NAME.."--recall",
+                        entity_name = "protoss--recall",
                         trigger_created_entity = false
                     },
                     {

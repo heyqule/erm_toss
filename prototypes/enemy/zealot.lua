@@ -116,12 +116,12 @@ function ErmToss.make_zealot(level)
             distance_per_frame = 0.2,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death(name, 1),
-            dying_explosion = MOD_NAME.."--zealot-death",
-            corpse = MOD_NAME .. "--" .. name .. "-corpse"
+            dying_explosion = "protoss--zealot-death",
+            corpse = name .. "-corpse"
         },
         {
             type = "corpse",
-            name = MOD_NAME .. "--" .. name .. "-corpse",
+            name = name .. "-corpse",
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-off-grid", "building-direction-8-way", "not-on-map" },
@@ -130,7 +130,7 @@ function ErmToss.make_zealot(level)
             dying_speed = 0.04,
             time_before_removed = second * 5,
             subgroup = "corpses",
-            order = MOD_NAME.."--" .. name .. level,
+            order = name .. "-corpse",
             animation = util.empty_sprite(),
         }
     })

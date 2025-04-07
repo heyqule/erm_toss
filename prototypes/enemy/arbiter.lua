@@ -118,7 +118,7 @@ function ErmToss.make_arbiter(level)
                             type = "direct",
                             action_delivery = {
                                 type = "projectile",
-                                projectile = MOD_NAME.."--stasis-projectile",
+                                projectile = "protoss--stasis-projectile",
                                 starting_speed = 0.3,
                                 max_range = GlobalConfig.get_max_projectile_range(),
                             }
@@ -135,7 +135,7 @@ function ErmToss.make_arbiter(level)
                                     },
                                     {
                                         type = "create-explosion",
-                                        entity_name = MOD_NAME.."--recall-80"
+                                        entity_name = "protoss--recall-80"
                                     }
                                 }
                             }
@@ -150,12 +150,12 @@ function ErmToss.make_arbiter(level)
             distance_per_frame = 0.5,
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death(name, 1),
-            dying_explosion = MOD_NAME.."--large-air-death",
-            corpse = MOD_NAME .. "--" .. name .. "-corpse"
+            dying_explosion ="protoss--large-air-death",
+            corpse = name .. "-corpse"
         },
         {
             type = "corpse",
-            name = MOD_NAME .. "--" .. name .. "-corpse",
+            name = name .. "-corpse",
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-off-grid", "building-direction-8-way", "not-on-map" },
@@ -164,7 +164,7 @@ function ErmToss.make_arbiter(level)
             dying_speed = 0.04,
             time_before_removed = second,
             subgroup = "corpses",
-            order = MOD_NAME.."--" .. name .. level,
+            order = name .. "-corpse",
             animation = util.empty_sprite(),
         }
     })
