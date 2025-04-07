@@ -37,9 +37,9 @@ Minerals.add_recycle_recipe({
         {type = "item", name = mineral_name, amount = 1}
     },
     results = {
-        {type = "item", name = "iron-ore",  amount = 1, probability = 0.66, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "iron-ore",  amount = 1, probability = 0.75, show_details_in_recipe_tooltip = false},
         {type = "item", name = "coal", amount = 1, probability = 0.3, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "copper-ore",  amount = 1, probability = 0.05, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "copper-ore",  amount = 1, probability = 0.1, show_details_in_recipe_tooltip = false},
         {type = "item", name = "holmium-ore", amount = 1, probability = 0.03, show_details_in_recipe_tooltip = false},
         {type = "item", name = MOD_NAME..'--crystal',  amount = 1, probability = 0.005, show_details_in_recipe_tooltip = false},
     }
@@ -67,9 +67,9 @@ Minerals.add_recycle_recipe({
         {type = "item", name = mineral_name2, amount = 1}
     },
     results = {
-        {type = "item", name = "copper-ore",  amount = 1, probability = 0.66, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "copper-ore",  amount = 1, probability = 0.75, show_details_in_recipe_tooltip = false},
         {type = "item", name = "stone", amount = 1, probability = 0.2, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "iron-ore",  amount = 1, probability = 0.05, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "iron-ore",  amount = 1, probability = 0.1, show_details_in_recipe_tooltip = false},
         {type = "item", name = "uranium-ore",  amount = 1, probability = 0.01, show_details_in_recipe_tooltip = false},
         {type = "item", name = MOD_NAME..'--crystal',  amount = 1, probability = 0.005, show_details_in_recipe_tooltip = false},
     }
