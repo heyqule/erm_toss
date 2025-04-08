@@ -6,4 +6,10 @@
 
 if game.surfaces['aiur'] then
     game.planets['aiur'].reset_map_gen_settings()
+    local map_gen_settings = game.surfaces['aiur'].map_gen_settings
+    local planet_map_gen_settings = game.planets['aiur'].prototype.map_gen_settings
+    map_gen_settings.autoplace_controls = planet_map_gen_settings.autoplace_controls
+    map_gen_settings.autoplace_settings = planet_map_gen_settings.autoplace_settings
+    map_gen_settings.property_expression_names = planet_map_gen_settings.property_expression_names
+    game.surfaces['aiur'].map_gen_settings = map_gen_settings
 end 
