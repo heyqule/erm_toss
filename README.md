@@ -20,7 +20,7 @@ Lua code files are licensed under GNU LGPLv3
 However, Starcraft graphic and sound assets are properties of Blizzard Entertainment Inc.  They are used for educational purposes. The original game is now free to play.
 
 
-![Protoss](https://assets-mod.factorio.com/assets/0fbda3f72b75b0e6bc0a36d4f271cd67f21daa8e.png "Protoss")
+![Protoss](https://assets-mod.factorio.com/assets/9450dae4413d199b148e26ac4b5cbc1232e4986f.png "Protoss")
 
 # Features
 All units start with same base health point as original Starcraft. They have unique health multiplier to balance bullet damage on higher tiers.
