@@ -72,3 +72,17 @@ All units start with same base health point as original Starcraft. They have uni
 - Attack: Explosion, Electric (3 radius AOE)
 
 Physical resistance: 85, Weak elemental resistance: 75, Elemental resistance: 80 with some exceptions.
+
+
+### Protoss Economy
+- Greater and higher tier spawner drop Psi Crystal
+- new recipes for Psi Crystal
+- convert Psi Crystal to biter eggs
+- build new controllable protoss units.
+
+### Planet Aiur
+- Wet planet
+- Intense lighting storm which may summon protoss units.
+- New resources, 2 types of minerals and one gas geyser.
+- If interplanetary attack is enabled, landing on Aiur will activate it for Protoss.
+- [Coming soon] Boss summoning ritual.

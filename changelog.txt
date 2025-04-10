@@ -1,6 +1,6 @@
 ---------------------------------------------------------------------------------------------------
 Version: 2.0.8
-Date: 2025-04-??
+Date: 2025-04-11
 
   Features:
     - [space-age] Added support for zerg economy. Requires mod erm_zerg_economy and erm_shared_economy.
