@@ -55,7 +55,7 @@ end
 
 ---
 --- Handles aftermath of lightning unit attack
---- Either attack 0,0 or build a base
+--- Either go to an attack beacon or build a base
 ---
 local unit_expiry = 4 * minute
 function CustomAttacks.lightning_units_attack()
@@ -65,13 +65,17 @@ function CustomAttacks.lightning_units_attack()
         for key, unit_data in pairs(units) do
             local unit = unit_data.entity
 
-            if unit.valid then
+            if unit.valid and unit.surface.name == surface_name then
                 local commandable = unit.commandable
                 if (commandable.has_command == false or 
                     commandable.command.type == defines.command.wander or
-                 (commandable.command.type == defines.command.compound and commandable.command.commands[1].type == defines.command.wander)
+                   (commandable.command.type == defines.command.compound and commandable.command.commands[1].type == defines.command.wander)
                 ) then
-                    table.insert(unit_group, unit)
+                    if not unit_group[surface_name] then
+                        unit_group[surface_name] = {}
+                    end
+
+                    table.insert(unit_group[surface_name], unit)
                     storage.lightning_units[surface_name][key] = nil
                     storage.backlog_lightning_units[key] = {
                         entity = unit,
@@ -88,24 +92,28 @@ function CustomAttacks.lightning_units_attack()
         end
 
         local surface_group
-        for _, unit in pairs(unit_group) do
-            if unit.valid then
-                if surface_group == nil then
-                    surface_group = unit.surface.create_unit_group({position = unit.position, force = unit.force})
+        for _, unit_set in pairs(unit_group) do
+            for _, unit in pairs(unit_set) do
+                if unit.valid then
+                    if surface_group == nil then
+                        surface_group = unit.surface.create_unit_group({position = unit.position, force = unit.force})
+                    end
+
+                    if surface_group and surface_group.surface == unit.surface then
+                        surface_group.add_member(unit)
+                    end
                 end
-
-                surface_group.add_member(unit)
             end
-        end
 
-        if surface_group then
-            if CustomAttacks.can_spawn(10) then
-                remote.call("enemyracemanager", "build_base_formation", surface_group)
-            else
-                remote.call("enemyracemanager", "process_attack_position", {
-                    group = surface_group,
-                    distraction = defines.distraction.by_enemy
-                })
+            if surface_group then
+                if CustomAttacks.can_spawn(10) then
+                    remote.call("enemyracemanager", "build_base_formation", surface_group)
+                else
+                    remote.call("enemyracemanager", "process_attack_position", {
+                        group = surface_group,
+                        distraction = defines.distraction.by_enemy
+                    })
+                end
             end
         end
     end
@@ -122,7 +130,7 @@ function CustomAttacks.lightning_units_attack()
             storage.backlog_lightning_units[key] = nil
         end
         i = i + 1
-        if i == 30 then
+        if i == 20 then
             break
         end
     end

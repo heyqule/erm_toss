@@ -55,6 +55,10 @@ function RemoteAPI.interplanetary_attack_ignore_planets()
     return {'aiur'}
 end
 
+function RemoteAPI.register_ignore_planet_for_indestructible_entity()
+    return {'aiur'}
+end
+
 function RemoteAPI.advanced_target_priorities_register_section_data()
     local data =  {
         {

@@ -1,4 +1,16 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.0.9
+Date: 2025-04-15
+
+  Changes:
+    - Added planet "Aiur" to ignore list for indestructible rail entities.
+    - Added RSO bypass to Planet Aiur and its resources.
+
+  Bugfixes:
+    - Fixed a crash when lightnings from 2 planets spawn protoss units in same batch.    
+
+
+---------------------------------------------------------------------------------------------------
 Version: 2.0.8
 Date: 2025-04-11
 

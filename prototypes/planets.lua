@@ -1030,3 +1030,12 @@ if mods['alien-biomes'] then
     map_gen.autoplace_settings.entity.settings['big-rock'] = nil
     map_gen.autoplace_settings.entity.settings['big-sand-rock'] = nil
 end
+
+
+data.rso_ignore_resource_entities = data.rso_ignore_resource_entities or {}
+data.rso_ignore_resource_entities[geyser_name] = true
+data.rso_ignore_resource_entities[mineral_name] = true
+data.rso_ignore_resource_entities[mineral_name2] = true
+
+data.rso_ignore_planets = data.rso_ignore_planets or {}
+data.rso_ignore_planets['aiur'] = true
