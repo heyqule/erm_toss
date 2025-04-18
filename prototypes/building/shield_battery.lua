@@ -232,7 +232,7 @@ function ErmToss.make_shield_battery(level)
                 type = "projectile",
                 range_mode = "bounding-box-to-bounding-box",
                 ammo_category = "erm-protoss-damage",
-                range = attack_range,
+                range = attack_shortrange,
                 cooldown = ERM_UnitHelper.get_attack_speed(base_attack_speed, incremental_attack_speed,  level),
                 cooldown_deviation = 0.1,
                 damage_modifier = ERM_UnitHelper.get_damage(base_heal_damage, incremental_heal_damage,  level),

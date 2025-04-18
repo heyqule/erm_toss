@@ -1,4 +1,17 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.0.11
+Date: 2025-04-18
+
+  Features:
+    - Added fulgora music to planet Aiur.
+    - Added "starcraft-music" mod as optional dependency, Protoss tracks play on planet Aiur.
+
+  Changes:
+    - Fixed attack range for short range shield battery.
+    - Reduced dark templar spawn rate for nexus.
+    - Revert base version from 2.0.44 to 2.0.43.    
+
+---------------------------------------------------------------------------------------------------
 Version: 2.0.10
 Date: 2025-04-15
 

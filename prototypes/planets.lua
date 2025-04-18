@@ -13,6 +13,7 @@ local procession_graphic_catalogue_types = require("__base__/prototypes/planet/p
 local Minerals = require('__erm_shared_economy__/prototypes/mineral')
 local Geyser = require('__erm_shared_economy__/prototypes/geyser')
 local Refinery = require('__erm_shared_economy__/prototypes/refinery')
+local SoundUtil = require('__erm_libs__/prototypes/sound_util')
 
 local mineral_name = 'aiur_mineral'
 Minerals.add_resource({
@@ -1039,3 +1040,32 @@ data.rso_ignore_resource_entities[mineral_name2] = true
 
 data.rso_ignore_planets = data.rso_ignore_planets or {}
 data.rso_ignore_planets['aiur'] = true
+
+if mods['starcraft-music'] then
+    local source_path = "__starcraft-music__/sounds/"
+    data:extend({
+        {
+            type = "ambient-sound",
+            planet = "aiur",
+            track_type = "main-track",
+            name = "aiur-protoss-1",
+            sound = { filename = source_path .. "Protoss One.ogg" }
+        },
+        {
+            type = "ambient-sound",
+            planet = "aiur",
+            track_type = "main-track",
+            name = "aiur-protoss-2",
+            sound = { filename = source_path .. "Protoss Two.ogg" }
+        },
+        {
+            type = "ambient-sound",
+            planet = "aiur",
+            track_type = "main-track",
+            name = "aiur-protoss-3",
+            sound = { filename = source_path .. "Protoss Three.ogg" }
+        },
+    })
+else
+    data:extend(SoundUtil.dupe_planet_music('fulgora','aiur'))
+end 
