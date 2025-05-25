@@ -77,7 +77,7 @@ function ErmToss.make_boss_wrapgate(level, hitpoint)
     data:extend({
         {
             type = "unit-spawner",
-            name = MOD_NAME .. "--" .. name .. "--" .. level,
+            name = MOD_NAME .. "--boss-" .. name .. "--" .. level,
             localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,

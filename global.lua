@@ -32,6 +32,7 @@ CRYSTAL_TRIGGER = "empts-csl"
 PROTOSS_MAP_COLOR = {r=0, g=192, b=192}
 PROTOSS_TEAM_COLOR = {r=0, g=192, b=192}
 
+REGISTER_BOSS_RADAR = "embss-rdr"
 TRIGGER_BOSS_DIES = "embss-die"
 
 

@@ -9,15 +9,8 @@ local ERMConfig = require("__enemyracemanager__/lib/global_config")
 local ERMDataHelper = require("__enemyracemanager__/lib/rig/data_helper")
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
 
-local boss_difficulty = settings.startup["enemyracemanager-boss-difficulty"].value
-local damage_multiplier = {
-    [BOSS_NORMAL] = 1,
-    [BOSS_HARD] = 1.2,
-    [BOSS_GODLIKE] = 1.5
-}
-
 local get_damage = function(init_dmg, tier ,multiplier)
-    return init_dmg * (1 + tier * multiplier - multiplier) * damage_multiplier[boss_difficulty]
+    return init_dmg * (1 + tier * multiplier - multiplier) 
 end
 
 --- Basic Attack #1

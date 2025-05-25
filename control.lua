@@ -155,7 +155,7 @@ local addRaceSettings = function()
         {{"arbiter", "scout"}, {1, 2}, 200}
     }
 
-    race_settings.boss_building = "warpgate"
+    race_settings.boss_building = "boss-warpgate"
     race_settings.pathing_unit = "zealot"
     race_settings.colliding_unit = "archon"
     race_settings.home_planet = "aiur"
