@@ -125,6 +125,15 @@ Refinery.add_protoss_machine()
 --new_foundation['name'] = 'space-platform-foundation-t3'
 --new_foundation['autoplace'] = {probability_expression = 'expression_in_range_base(-10, 0.7, 11, 11) + noise_layer_noise(19)'}
 
+
+data.extend({
+    {
+        type = "surface-property",
+        name = "protoss_influence",
+        default_value = 0
+    }
+})
+
 local aiur_mapgen =
     {
         starting_area = 1.5,
@@ -681,7 +690,8 @@ data:extend({
             departure = { "default-rocket-a" }
         },
         surface_properties = {
-            ["day-night-cycle"] = 8 * minute
+            ["day-night-cycle"] = 8 * minute,
+            protoss_influence = 100,
         },
         surface_render_parameters = {
             clouds = effects.default_clouds_effect_properties()
@@ -1030,6 +1040,29 @@ if mods['alien-biomes'] then
     map_gen.autoplace_settings.entity.settings['huge-rock'] = nil
     map_gen.autoplace_settings.entity.settings['big-rock'] = nil
     map_gen.autoplace_settings.entity.settings['big-sand-rock'] = nil
+
+
+    map_gen.autoplace_settings.decorative.settings['sand-dune-decal-brown'] = {}
+    map_gen.autoplace_settings.decorative.settings['sand-dune-decal-beige'] = {}
+    map_gen.autoplace_settings.decorative.settings['sand-dune-decal-tan'] = {}
+    map_gen.autoplace_settings.decorative.settings['medium-rock-brown'] = {}
+    map_gen.autoplace_settings.decorative.settings['medium-rock-beige'] = {}
+    map_gen.autoplace_settings.decorative.settings['medium-rock-tan'] = {}
+    map_gen.autoplace_settings.decorative.settings['small-rock-brown'] = {}
+    map_gen.autoplace_settings.decorative.settings['small-rock-beige'] = {}
+    map_gen.autoplace_settings.decorative.settings['small-rock-tan'] = {}
+    map_gen.autoplace_settings.decorative.settings['tiny-rock-brown'] = {}
+    map_gen.autoplace_settings.decorative.settings['tiny-rock-beige'] = {}
+    map_gen.autoplace_settings.decorative.settings['tiny-rock-beige'] = {}
+    map_gen.autoplace_settings.entity.settings['huge-rock-brown'] = {}
+    map_gen.autoplace_settings.entity.settings['huge-rock-beige'] = {}
+    map_gen.autoplace_settings.entity.settings['huge-rock-tan'] = {}
+    map_gen.autoplace_settings.entity.settings['big-rock-brown'] = {}
+    map_gen.autoplace_settings.entity.settings['big-rock-beige'] = {}
+    map_gen.autoplace_settings.entity.settings['big-rock-tan'] = {}
+    --map_gen.autoplace_settings.entity.settings['sand-big-rock-brown'] = {}
+    --map_gen.autoplace_settings.entity.settings['sand-big-rock-beige'] = {}
+    --map_gen.autoplace_settings.entity.settings['sand-big-rock-tan'] = {}
 end
 
 

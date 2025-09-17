@@ -253,6 +253,145 @@ local create_recall_projectile = function(tier, script_attack)
     }
 end
 
+local create_boss_electric_beam = function(name, i, data)
+    local range = data['range'] or 1500
+    local width = data['width'] or 6
+    local damage = data['damage'] or 20
+    local damage_interval = data['damage_interval'] or 10
+    local animation_scale = data['animation_scale'] or 0.75
+    local laser_beam_blend_mode = "additive-soft"
+    local beam_non_light_flags = { "trilinear-filtering" }
+    local clone_beam = util.table.deepcopy(data.raw['beam']['laser-beam'])
+
+    clone_beam.name = MOD_NAME..'--'..name..'--'..width..'--'..range..'--beam--'..i
+    clone_beam.width = width
+    clone_beam.damage_interval = damage_interval
+    clone_beam.action_triggered_automatically = true
+    clone_beam.action =
+    {
+        type = "line",
+        range = range,
+        width = width,
+        force = 'not-same',
+        action_delivery =
+        {
+            type = "instant",
+            target_effects =
+            {
+                {
+                    type = "damage",
+                    damage = { amount = damage, type = "electric"}
+                }
+            }
+        }
+    }
+    clone_beam['graphics_set'] =
+    {
+        desired_segment_length = 20.61,
+        beam =
+        {
+            head =
+            {
+                layers =
+                {
+                    {
+                        filename = "__erm_toss_hd_assets__/graphics/entity/projectiles/boss_electric_beam-60.png",
+                        line_length = 1,
+                        flags = beam_non_light_flags,
+                        width = 1319,
+                        height = 295,
+                        frame_count = 5,
+                        scale = animation_scale,
+                        animation_speed = 0.5,
+                        blend_mode = laser_beam_blend_mode
+                    }
+                }
+            },
+            tail =
+            {
+                layers =
+                {
+                    {
+                        filename = "__erm_toss_hd_assets__/graphics/entity/projectiles/boss_electric_beam-60.png",
+                        line_length = 1,
+                        flags = beam_non_light_flags,
+                        width = 1319,
+                        height = 295,
+                        frame_count = 5,
+                        scale = animation_scale,
+                        animation_speed = 0.5,
+                        blend_mode = laser_beam_blend_mode
+                    }
+                }
+            },
+            body =
+            {
+                layers =
+                {
+                    {
+                        filename = "__erm_toss_hd_assets__/graphics/entity/projectiles/boss_electric_beam-60.png",
+                        line_length = 1,
+                        flags = beam_non_light_flags,
+                        width = 1319,
+                        height = 295,
+                        frame_count = 5,
+                        scale = animation_scale,
+                        animation_speed = 0.5,
+                        blend_mode = laser_beam_blend_mode
+                    }
+                }
+            },
+        },
+
+        ground =
+        {
+            head =
+            {
+                filename = "__base__/graphics/entity/laser-turret/laser-ground-light-head.png",
+                draw_as_light = true,
+                flags = {"light"},
+                line_length = 1,
+                width = 256,
+                height = 256,
+                repeat_count = 8,
+                scale = animation_scale,
+                shift = util.by_pixel(-32, 0),
+                animation_speed = 0.5,
+                tint = {0.05, 0.05, 0.5}
+            },
+            tail =
+            {
+                filename = "__base__/graphics/entity/laser-turret/laser-ground-light-tail.png",
+                draw_as_light = true,
+                flags = {"light"},
+                line_length = 1,
+                width = 256,
+                height = 256,
+                repeat_count = 8,
+                scale = animation_scale,
+                shift = util.by_pixel(32, 0),
+                animation_speed = 0.5,
+                tint = {0.05, 0.05, 0.5}
+            },
+            body =
+            {
+                filename = "__base__/graphics/entity/laser-turret/laser-ground-light-body.png",
+                draw_as_light = true,
+                flags = {"light"},
+                line_length = 1,
+                width = 64,
+                height = 256,
+                repeat_count = 8,
+                scale = animation_scale,
+                animation_speed = 0.5,
+                tint = {0.05, 0.05, 0.5}
+            }
+        }
+    }
+
+    return clone_beam
+end
+
 
 for i = 1, ERMConfig.BOSS_MAX_TIERS do
     data:extend({

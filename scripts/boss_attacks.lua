@@ -5,7 +5,10 @@
 ---
 local ErmBossAttackRemote = require("__enemyracemanager__/lib/boss_attack_data")
 local ErmBossAttackProcessor = require("__enemyracemanager__/lib/boss_attack_processor")
-
+--- "erm_toss_electric_beam",
+--- BossAttackProcessor.TYPE_BEAM,
+---     attack_beam_duration = {900, nil, nil, nil},
+---    attack_beam_max_length = {1250, nil, nil, nil},
 ErmBossAttackRemote.basic_attacks =
 {
     attack_name = {"psystorm","stasis","cold-fire"},

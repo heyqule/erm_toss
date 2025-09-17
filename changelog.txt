@@ -1,4 +1,17 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.0.12
+Date: 2025-04-18
+  
+  Changes:
+    - Changed zealot pop from 2 to 1
+    - Changed dragoon pop from 2 to 1
+    - Changed archon pop from 5 to 4    
+    - Updated locale
+
+  Bugfixes:
+    - Fixed invalid entity in teleport tip and trick. 
+
+---------------------------------------------------------------------------------------------------
 Version: 2.0.11
 Date: 2025-04-18
 

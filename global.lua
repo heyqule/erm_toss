@@ -9,7 +9,6 @@ MOD_NAME = "enemy_erm_toss"
 FORCE_NAME = "enemy_erm_toss"
 AUTOCONTROL_NAME = MOD_NAME.."-enemy-base"
 
-DEBUG_MODE = false
 
 
 -- Attack Types for on_script_trigger_effect
