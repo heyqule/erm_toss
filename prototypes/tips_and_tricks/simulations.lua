@@ -98,7 +98,7 @@ local story_table =
         {
             condition = story_elapsed_check(0.25),
             action = function()
-                fulgora_surface.create_entity { name="enemy_erm_toss--recall-80-small", position={-2, 0}}
+                fulgora_surface.create_entity { name="protoss--recall-80-small", position={-2, 0}}
             end
         },
         {

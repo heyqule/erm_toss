@@ -9,7 +9,6 @@ MOD_NAME = "enemy_erm_toss"
 FORCE_NAME = "enemy_erm_toss"
 AUTOCONTROL_NAME = MOD_NAME.."-enemy-base"
 
-DEBUG_MODE = false
 
 
 -- Attack Types for on_script_trigger_effect
@@ -32,6 +31,7 @@ CRYSTAL_TRIGGER = "empts-csl"
 PROTOSS_MAP_COLOR = {r=0, g=192, b=192}
 PROTOSS_TEAM_COLOR = {r=0, g=192, b=192}
 
+REGISTER_BOSS_RADAR = "embss-rdr"
 TRIGGER_BOSS_DIES = "embss-die"
 
 

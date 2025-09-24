@@ -5,25 +5,28 @@
 ---
 local ErmBossAttackRemote = require("__enemyracemanager__/lib/boss_attack_data")
 local ErmBossAttackProcessor = require("__enemyracemanager__/lib/boss_attack_processor")
-
+--- "erm_toss_electric_beam",
+--- BossAttackProcessor.TYPE_BEAM,
+---     attack_beam_duration = {900, nil, nil, nil},
+---    attack_beam_max_length = {1250, nil, nil, nil},
 ErmBossAttackRemote.basic_attacks =
 {
-    projectile_name = {"psystorm","stasis","cold-fire"},
-    projectile_type = {
+    attack_name = {"psystorm","stasis","cold-fire"},
+    attack_type = {
         ErmBossAttackProcessor.TYPE_PROJECTILE,
         ErmBossAttackProcessor.TYPE_PROJECTILE,
         ErmBossAttackProcessor.TYPE_PROJECTILE
     },
-    projectile_chance = {25, 25, 100},
-    projectile_count = {2, 2, 5},
-    projectile_spread = {1, 1, 2},
-    projectile_use_multiplier = {false, false, true},
-    projectile_count_multiplier = {
+    attack_chance = {25, 25, 100},
+    attack_count = {2, 2, 5},
+    attack_spread = {1, 1, 2},
+    attack_use_multiplier = {false, false, true},
+    attack_count_multiplier = {
         {},
         {},
         {1, 1, 1, 2, 3}
     },
-    projectile_spread_multiplier = {
+    attack_spread_multiplier = {
         {},
         {},
         {1, 1, 1, 1, 1}
@@ -32,37 +35,37 @@ ErmBossAttackRemote.basic_attacks =
 
 ErmBossAttackRemote.advanced_attacks =
 {
-    projectile_name = {"recall-"..UNITS_SPAWN_ATTACK, "cold-star"},
-    projectile_type = {
+    attack_name = {"recall-"..UNITS_SPAWN_ATTACK, "cold-star"},
+    attack_type = {
         ErmBossAttackProcessor.TYPE_PROJECTILE,
         ErmBossAttackProcessor.TYPE_PROJECTILE,
     },
-    projectile_chance = {25, 100},
-    projectile_count = {1, 2},
-    projectile_spread = {1, 2},
-    projectile_use_multiplier = {false},
-    projectile_count_multiplier = {
+    attack_chance = {25, 100},
+    attack_count = {1, 2},
+    attack_spread = {1, 2},
+    attack_use_multiplier = {false},
+    attack_count_multiplier = {
         {},
     },
-    projectile_spread_multiplier = {
+    attack_spread_multiplier = {
         {},
     },
 }
 
 ErmBossAttackRemote.super_attacks =
 {
-    projectile_name = {"recall-"..BOSS_SPAWN_ATTACK},
-    projectile_type = {
+    attack_name = {"recall-"..BOSS_SPAWN_ATTACK},
+    attack_type = {
         ErmBossAttackProcessor.TYPE_PROJECTILE,
     },
-    projectile_chance = {100},
-    projectile_count = {1},
-    projectile_spread = {1},
-    projectile_use_multiplier = {false},
-    projectile_count_multiplier = {
+    attack_chance = {100},
+    attack_count = {1},
+    attack_spread = {1},
+    attack_use_multiplier = {false},
+    attack_count_multiplier = {
         {},
     },
-    projectile_spread_multiplier = {
+    attack_spread_multiplier = {
         {},
     },
 }
@@ -70,18 +73,18 @@ ErmBossAttackRemote.super_attacks =
 
 ErmBossAttackRemote.despawn_attacks =
 {
-    projectile_name = {"recall-"..UNITS_SPAWN_ATTACK},
-    projectile_type = {
+    attack_name = {"recall-"..UNITS_SPAWN_ATTACK},
+    attack_type = {
         ErmBossAttackProcessor.TYPE_PROJECTILE,
     },
-    projectile_chance = {100},
-    projectile_count = {1},
-    projectile_spread = {8},
-    projectile_use_multiplier = {false},
-    projectile_count_multiplier = {
+    attack_chance = {100},
+    attack_count = {1},
+    attack_spread = {8},
+    attack_use_multiplier = {false},
+    attack_count_multiplier = {
         {},
     },
-    projectile_spread_multiplier = {
+    attack_spread_multiplier = {
         {},
     },
 }

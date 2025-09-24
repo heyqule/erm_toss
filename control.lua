@@ -7,7 +7,7 @@
 --
 local String = require("__erm_libs__/stdlib/string")
 local ForceHelper = require("__enemyracemanager__/lib/helper/force_helper")
-local AttackGroupBeaconProcessor = require("__enemyracemanager__/lib/attack_group_beacon_processor")
+local AttackGroupBeaconConstants = require("__enemyracemanager__/lib/attack_group_beacon_constants")
 
 local CustomAttacks = require("__erm_toss__/scripts/custom_attacks")
 
@@ -20,11 +20,11 @@ local toss_on_fulgora = script.active_mods["space-age"] and
         settings.startup["enemy_erm_toss-on_fulgora"].value
 
 local populations = {
-    ["archon"] = 5,
+    ["archon"] = 4,
     ["corsair"] = 2,
     ["arbiter"] = 3,
-    ["dragoon"] = 2,
-    ["zealot"] = 2,
+    ["dragoon"] = 1,
+    ["zealot"] = 1,
     ["darktemplar"] = 2,
 }
 
@@ -123,6 +123,7 @@ local addRaceSettings = function()
         interceptor=true,
         scarab=true
     }
+    race_settings.builder = 'probe'
     race_settings.dropship = "shuttle"
     race_settings.droppable_units = {
         {{ "dragoon" },{1}},
@@ -155,7 +156,7 @@ local addRaceSettings = function()
         {{"arbiter", "scout"}, {1, 2}, 200}
     }
 
-    race_settings.boss_building = "warpgate"
+    race_settings.boss_building = "boss-warpgate"
     race_settings.pathing_unit = "zealot"
     race_settings.colliding_unit = "archon"
     race_settings.home_planet = "aiur"
@@ -308,7 +309,7 @@ script.on_nth_tick(13 * minute + 13, function(event)
             return
         end
 
-        local has_entity =  fulgora.count_entities_filtered({type=AttackGroupBeaconProcessor.get_attackable_entity_types(), limit = 1})
+        local has_entity =  fulgora.count_entities_filtered({type=AttackGroupBeaconConstants.ATTACKABLE_ENTITY_TYPES, limit = 1})
         if has_entity < 1 then
             return
         end

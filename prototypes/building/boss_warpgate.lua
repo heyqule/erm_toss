@@ -46,24 +46,20 @@ local spawning_cooldown = {780, 480}
 local spawning_radius = 10
 local max_count_of_owned_units = 20
 local max_friends_around_to_spawn = 15
-local spawn_table = function(level)
+local spawn_table = function()
     local res = {}
-    --Tire 1
-    res[1] = { MOD_NAME.."--zealot--" .. level, { { 0.0, 0.7 }, { 0.2, 0.7 }, { 0.4, 0.6 }, { 0.6, 0.3 }, { 0.8, 0.2 }, { 1.0, 0.05 } } }
-    res[2] = { MOD_NAME.."--dragoon--" .. level, { { 0.0, 0.3 }, { 0.2, 0.3 }, { 0.4, 0.4 }, { 0.6, 0.3 }, { 0.8, 0.2 }, { 1.0, 0.05 } } }
     --Tire 2
-    res[3] = { MOD_NAME.."--scout--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.1 }, { 0.8, 0.2 }, { 1.0, 0.1 } } }
-    res[4] = { MOD_NAME.."--corsair--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.1 }, { 0.8, 0.1 }, { 1.0, 0.1 } } }
-    res[5] = { MOD_NAME.."--probe--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.1 }, { 0.8, 0.1 }, { 1.0, 0.1 } } }
-    res[6] = { MOD_NAME.."--shuttle--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.1 }, { 0.8, 0.1 }, { 1.0, 0.1 } } }
+    res[1] = { MOD_NAME.."--scout--6", { { 0.0, 0.1 } } }
+    res[2] = { MOD_NAME.."--corsair--6", { { 0.0, 0.1 } } }
+    res[3] = { MOD_NAME.."--probe--6", { { 0.0, 0.1 } } }
     --Tire 3
-    res[7] = { MOD_NAME.."--templar--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, { 1.0, 0.1 } } }
-    res[8] = { MOD_NAME.."--darktemplar--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.1 }, { 1.0, 0.1 } } }
-    res[9] = { MOD_NAME.."--archon--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, { 1.0, 0.1 } } }
-    res[10] = { MOD_NAME.."--carrier--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, { 1.0, 0.05 } } }
-    res[11] = { MOD_NAME.."--arbiter--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, { 1.0, 0.05 } } }
-    res[12] = { MOD_NAME.."--reaver--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, { 1.0, 0.05 } } }
-    res[13] = { MOD_NAME.."--darkarchon--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.0 }, { 1.0, 0.05 } } }
+    res[4] = { MOD_NAME.."--templar--6", { { 0.0, 0.1 } } }
+    res[5] = { MOD_NAME.."--darktemplar--6", { { 0.0, 0.1 } } }
+    res[6] = { MOD_NAME.."--archon--6", { { 0.0, 0.1 } } }
+    res[7] = { MOD_NAME.."--carrier--6", { { 0.0, 0.1 } } }
+    res[8] = { MOD_NAME.."--arbiter--6", { { 0.0, 0.1 } } }
+    res[9] = { MOD_NAME.."--reaver--6", { { 0.0, 0.1 } } }
+    res[10] = { MOD_NAME.."--darkarchon--6", { { 0.0, 0.1 } } }
     return res
 end
 
@@ -77,7 +73,7 @@ function ErmToss.make_boss_wrapgate(level, hitpoint)
     data:extend({
         {
             type = "unit-spawner",
-            name = MOD_NAME .. "--" .. name .. "--" .. level,
+            name = MOD_NAME .. "--boss-" .. name .. "--" .. level,
             localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,

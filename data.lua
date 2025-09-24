@@ -114,6 +114,11 @@ end
 --    end
 --end
 
+-- Achievements
+-- T1 For Aiur!
+-- T3 The Depleting Shadow
+-- T5 Master Control
+
 for i = 1, max_level do
     ErmToss.make_cannon(i)
     ErmToss.make_nexus(i)
