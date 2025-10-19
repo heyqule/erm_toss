@@ -8,6 +8,7 @@
 local String = require("__erm_libs__/stdlib/string")
 local ForceHelper = require("__enemyracemanager__/lib/helper/force_helper")
 local AttackGroupBeaconConstants = require("__enemyracemanager__/lib/attack_group_beacon_constants")
+local EmotionConstants = require('__enemyracemanager__/lib/emotion_constants')
 
 local CustomAttacks = require("__erm_toss__/scripts/custom_attacks")
 
@@ -156,7 +157,8 @@ local addRaceSettings = function()
         {{"arbiter", "scout"}, {1, 2}, 200}
     }
 
-    race_settings.boss_building = "boss-warpgate"
+    race_settings.boss_building = "boss_warpgate"
+    race_settings.boss_assisted_spawner = "boss_pylon"
     race_settings.pathing_unit = "zealot"
     race_settings.colliding_unit = "archon"
     race_settings.home_planet = "aiur"
@@ -169,6 +171,28 @@ local addRaceSettings = function()
     race_settings.structure_killed_count_by_planet = race_settings.structure_killed_count_by_planet or {}
     race_settings.unit_killed_count_by_planet = race_settings.unit_killed_count_by_planet or {}
 
+    --- Arrange it from lowest chance to highest chance, as it starts from first item
+    race_settings.emotion_data = {
+        -- emotion_type, spawn_chance, compare as dark/light, darkness_value (0-1),cooldown_interval, group_size_multiplier
+        {EmotionConstants.EMO_RAPID_EXPAND, 10, EmotionConstants.DARK, 0.65, 2 * minute, 0.2},
+        {EmotionConstants.EMO_RUSH, 10, EmotionConstants.LIGHT, 0.5, 30 * second, 0.33},
+        {EmotionConstants.EMO_DOUBLE_TAP, 15, EmotionConstants.LIGHT, 0.65, 5 * minute, 0.8},
+        {EmotionConstants.EMO_SIEGE, 20, EmotionConstants.LIGHT, 0.5, 3 * minute, 1},
+    }
+
+    race_settings.boss_emotion_data = {
+        -- emotion_type, spawn_chance, compare as dark/light, darkness_value (0-1),cooldown_interval, group_size_multiplier
+        {EmotionConstants.EMO_RUSH, 33, EmotionConstants.ALL_DAY, 0, 15 * second, 0.5},
+        {EmotionConstants.EMO_DOUBLE_TAP, 66, EmotionConstants.ALL_DAY, 0, 2 * minute, 1},
+        {EmotionConstants.EMO_SIEGE, 100, EmotionConstants.ALL_DAY, 0, 2 * minute, 1.2},
+    }
+
+    for _, item in pairs(prototypes.mod_data) do
+        if item.data_type == MOD_NAME..'.boss_data' then
+            race_settings.boss_settings = {}
+            race_settings.boss_settings = item.data
+        end
+    end
 
     remote.call("enemyracemanager", "register_race", race_settings)
 

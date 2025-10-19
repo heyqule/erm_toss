@@ -13,6 +13,6 @@
     "erm_shared_economy >= 1.0.0",
     "erm_toss_economy >= 1.0.0",
     "? starcraft-music >= 1.0.1",
-    "(?) alien-biomes >= 0.7.2"
+    "(?) alien-biomes >= 0.7.4"
   ]
 }

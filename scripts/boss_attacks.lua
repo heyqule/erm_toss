@@ -3,44 +3,69 @@
 --- Created by heyqule.
 --- DateTime: 8/28/2022 8:19 PM
 ---
-local ErmBossAttackRemote = require("__enemyracemanager__/lib/boss_attack_data")
-local ErmBossAttackProcessor = require("__enemyracemanager__/lib/boss_attack_processor")
+local BossAttackRemote = require("__enemyracemanager__/lib/boss_attack_data")
+local BossAttackProcessor = require("__enemyracemanager__/lib/boss_attack_processor")
 --- "erm_toss_electric_beam",
 --- BossAttackProcessor.TYPE_BEAM,
 ---     attack_beam_duration = {900, nil, nil, nil},
 ---    attack_beam_max_length = {1250, nil, nil, nil},
-ErmBossAttackRemote.basic_attacks =
+BossAttackRemote.basic_attacks =
 {
-    attack_name = {"psystorm","stasis","cold-fire"},
+    attack_name = {"psystorm", "stasis"},
     attack_type = {
-        ErmBossAttackProcessor.TYPE_PROJECTILE,
-        ErmBossAttackProcessor.TYPE_PROJECTILE,
-        ErmBossAttackProcessor.TYPE_PROJECTILE
+        BossAttackProcessor.TYPE_PROJECTILE,
+        BossAttackProcessor.TYPE_PROJECTILE,
+        BossAttackProcessor.TYPE_BEAM
     },
-    attack_chance = {25, 25, 100},
-    attack_count = {2, 2, 5},
-    attack_spread = {1, 1, 2},
-    attack_use_multiplier = {false, false, true},
+    attack_chance = {
+        {0, 0, 0, 0, 0},
+        {100, 100, 100, 100, 100},
+    },
+    attack_count = {2, 2, 1},
+    attack_spread = {1, 1, 1},
+    attack_use_multiplier = {false, false, false},
     attack_count_multiplier = {
-        {},
-        {},
-        {1, 1, 1, 2, 3}
     },
     attack_spread_multiplier = {
-        {},
-        {},
-        {1, 1, 1, 1, 1}
     },
 }
 
-ErmBossAttackRemote.advanced_attacks =
+BossAttackRemote.heavy_attacks =
 {
-    attack_name = {"recall-"..UNITS_SPAWN_ATTACK, "cold-star"},
+    attack_name = {"ultimate-16-1800","special-8-1500"},
     attack_type = {
-        ErmBossAttackProcessor.TYPE_PROJECTILE,
-        ErmBossAttackProcessor.TYPE_PROJECTILE,
+        BossAttackProcessor.TYPE_BEAM,
+        BossAttackProcessor.TYPE_BEAM,
     },
-    attack_chance = {25, 100},
+    attack_chance = {
+        {50, 50, 50, 50, 50},
+        {100, 100, 100, 100, 100},
+    },
+    attack_count = {1, 1},
+    attack_spread = {1, 1},
+    attack_beam_duration = {900, 900},
+    attack_beam_max_length = {1800, 1500},
+    attack_beam_offset = { { x = 0, y = -10 }, { x = 0, y = -10 }},
+    attack_use_multiplier = {false, false},
+    attack_count_multiplier = {
+        {},
+    },
+    attack_spread_multiplier = {
+        {},
+    },
+}
+
+
+BossAttackRemote.assist_attacks =
+{
+    attack_name = {"recall-"..UNITS_SPAWN_ATTACK},
+    attack_type = {
+        BossAttackProcessor.TYPE_PROJECTILE,
+    },
+    attack_chance = {
+        {100, 100, 100, 100, 100},
+        {100, 100, 100, 100, 100},
+    },
     attack_count = {1, 2},
     attack_spread = {1, 2},
     attack_use_multiplier = {false},
@@ -52,13 +77,15 @@ ErmBossAttackRemote.advanced_attacks =
     },
 }
 
-ErmBossAttackRemote.super_attacks =
+BossAttackRemote.special_attacks =
 {
     attack_name = {"recall-"..BOSS_SPAWN_ATTACK},
     attack_type = {
-        ErmBossAttackProcessor.TYPE_PROJECTILE,
+        BossAttackProcessor.TYPE_PROJECTILE,
     },
-    attack_chance = {100},
+    attack_chance = {
+        {100, 100, 100, 100, 100},
+    },
     attack_count = {1},
     attack_spread = {1},
     attack_use_multiplier = {false},
@@ -70,14 +97,55 @@ ErmBossAttackRemote.super_attacks =
     },
 }
 
+BossAttackRemote.ultimate_attacks =
+{
+    attack_name = {"recall-"..BOSS_SPAWN_ATTACK},
+    attack_type = {
+        BossAttackProcessor.TYPE_PROJECTILE,
+    },
+    attack_chance = {
+        {100, 100, 100, 100, 100},
+    },
+    attack_count = {1},
+    attack_spread = {1},
+    attack_use_multiplier = {false},
+    attack_count_multiplier = {
+        {},
+    },
+    attack_spread_multiplier = {
+        {},
+    },
+}
 
-ErmBossAttackRemote.despawn_attacks =
+BossAttackRemote.idle_attacks = {
+    attack_name = { "recall-" .. UNITS_SPAWN_ATTACK },
+    attack_type = {
+        BossAttackProcessor.TYPE_PROJECTILE,
+    },
+    attack_chance = {
+        {100, 100, 100, 100, 100},
+    },
+    attack_count = { 1 },
+    attack_spread = { 1 },
+    attack_use_multiplier = { false },
+    attack_count_multiplier = {
+        {},
+    },
+    attack_spread_multiplier = {
+        {},
+    },
+}
+
+
+BossAttackRemote.despawn_attacks =
 {
     attack_name = {"recall-"..UNITS_SPAWN_ATTACK},
     attack_type = {
-        ErmBossAttackProcessor.TYPE_PROJECTILE,
+        BossAttackProcessor.TYPE_PROJECTILE,
     },
-    attack_chance = {100},
+    attack_chance = {
+        {100, 100, 100, 100, 100},
+    },
     attack_count = {1},
     attack_spread = {8},
     attack_use_multiplier = {false},
@@ -89,4 +157,4 @@ ErmBossAttackRemote.despawn_attacks =
     },
 }
 
-return ErmBossAttackRemote
+return BossAttackRemote

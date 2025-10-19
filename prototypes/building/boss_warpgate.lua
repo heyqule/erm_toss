@@ -16,7 +16,7 @@ local TossSound = require("__erm_toss_hd_assets__/sound")
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
 local Creep = require("prototypes.creep")
 local enemy_autoplace = require("__enemyracemanager__/prototypes/enemy-autoplace")
-local name = "warpgate"
+local name = "boss_warpgate"
 
 -- Hitpoints
 
@@ -67,48 +67,49 @@ local collision_box = { { -4, -4 }, { 4, 4 } }
 local map_generator_bounding_box = { { -5, -5 }, { 5, 5 } }
 local selection_box = { { -4, -4 }, { 4, 4 } }
 
-function ErmToss.make_boss_wrapgate(level, hitpoint)
+function ErmToss.make_boss_wrapgate(level, boss_data)
     level = level or 1
 
     data:extend({
         {
             type = "unit-spawner",
-            name = MOD_NAME .. "--boss-" .. name .. "--" .. level,
+            name = MOD_NAME .. "--" .. name .. "--" .. level,
             localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy" },
-            max_health = hitpoint,
+            max_health = boss_data.nexus_hp[level],
             order = MOD_NAME .. "--building--" .. name .. "--".. level,
             subgroup = "enemies",
             working_sound = TossSound.building_working_sound("nexus", 1),
             dying_sound = TossSound.building_dying_sound(1),
             resistances = {
-                { type = "acid", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
-                { type = "poison", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
-                { type = "physical", percent = ERM_UnitHelper.get_resistance(base_physical_resistance, incremental_physical_resistance,  level) },
-                { type = "fire", percent = ERM_UnitHelper.get_resistance(base_fire_resistance, incremental_fire_resistance,  level) },
-                { type = "explosion", percent = ERM_UnitHelper.get_resistance(base_fire_resistance, incremental_fire_resistance,  level) },
-                { type = "laser", percent = ERM_UnitHelper.get_resistance(base_electric_resistance, incremental_electric_resistance,  level) },
-                { type = "electric", percent = ERM_UnitHelper.get_resistance(base_electric_resistance, incremental_electric_resistance,  level) },
-                { type = "cold", percent = ERM_UnitHelper.get_resistance(base_cold_resistance, incremental_cold_resistance,  level) }
+                { type = "acid", percent = 75 },
+                { type = "poison", percent = 75 },
+                { type = "physical", percent = 80 },
+                { type = "fire", percent = 75 },
+                { type = "explosion", percent = 75 },
+                { type = "laser", percent = 75 },
+                { type = "electric", percent = 75 },
+                { type = "cold", percent = 75 },
+                { type = "radioactive", percent = 66 }
             },
             healing_per_tick = 0,
             collision_box = collision_box,
             map_generator_bounding_box = map_generator_bounding_box,
             selection_box = selection_box,
-    absorptions_per_second = { pollution = { absolute = pollution_absorption_absolute, proportional = 0.01 } },
+            absorptions_per_second = { pollution = { absolute = pollution_absorption_absolute, proportional = 0.01 } },
             corpse = "protoss--large-base-corpse",
             dying_explosion = "protoss--large-building-explosion",
-            max_count_of_owned_units = max_count_of_owned_units,
-            max_friends_around_to_spawn = max_friends_around_to_spawn,
+            max_count_of_owned_units = boss_data.nexus_units_count[level],
+            max_friends_around_to_spawn = boss_data.nexus_units_count[level],
             map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
-                        graphics_set = {
-                animations = AnimationDB.get_layered_animations("buildings", name, "run")
+            graphics_set = {
+                animations = AnimationDB.get_layered_animations("buildings", "warpgate", "run")
             },
-            result_units = spawn_table(ERM_Config.MAX_LEVELS),
+            result_units = spawn_table(),
             -- With zero evolution the spawn rate is 6 seconds, with max evolution it is 2.5 seconds
-            spawning_cooldown = spawning_cooldown,
+            spawning_cooldown = boss_data.nexus_spawn_timer[level],
             spawning_radius = spawning_radius,
             spawning_spacing = 3,
             max_spawn_shift = 0,

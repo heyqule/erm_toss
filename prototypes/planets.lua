@@ -14,6 +14,7 @@ local Minerals = require('__erm_shared_economy__/prototypes/mineral')
 local Geyser = require('__erm_shared_economy__/prototypes/geyser')
 local Refinery = require('__erm_shared_economy__/prototypes/refinery')
 local SoundUtil = require('__erm_libs__/prototypes/sound_util')
+local PsiRadar = require('__erm_libs__/prototypes/psi_scanner')
 
 local mineral_name = 'aiur_mineral'
 Minerals.add_resource({
@@ -133,6 +134,35 @@ data.extend({
         default_value = 0
     }
 })
+
+local icons = {
+    {
+        icon = "__base__/graphics/icons/radar.png",
+        icon_size = 64,
+        scale = 0.5,
+        shift = {-9,-9}
+    },
+    {
+        icon = "__erm_toss_hd_assets__/graphics/entity/icons/items/crystal.png",
+        icon_size = 64,
+        scale = 0.5,
+        shift = {9, 9},
+    },
+}
+local surface_conditions = {
+    { property = 'protoss_influence', min=90, max=100 }
+}
+local ingredients = {
+    {type= "item", name= "steel-plate", amount= 100},
+    {type= "item", name= "refined-concrete", amount= 100},
+    {type = "item", name = "quantum-processor", amount = 1},
+    {type = "item", name = "superconductor", amount = 1},
+    {type = "item", name = "supercapacitor", amount = 1},
+    {type= "item", name= MOD_NAME..'--crystal', amount= 1000}
+}
+PsiRadar.make_entity(MOD_NAME, icons, surface_conditions)
+PsiRadar.make_item(MOD_NAME, icons)
+PsiRadar.make_recipe(MOD_NAME, ingredients)
 
 local aiur_mapgen =
     {

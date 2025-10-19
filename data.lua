@@ -50,6 +50,7 @@ require "prototypes.building.building_death"
 require "prototypes.building.cannon"
 require "prototypes.building.nexus"
 require "prototypes.building.boss_warpgate"
+require "prototypes.building.boss_pylon"
 require "prototypes.building.pylon"
 require "prototypes.building.gateway"
 require "prototypes.building.forge"
@@ -84,35 +85,173 @@ for i = 1, max_level do
     ErmToss.make_invis_darktemplar(i)
 end
 
---local boss_level = ErmConfig.BOSS_LEVELS
---
---local boss_unit_ai = { destroy_when_commands_fail = true, allow_try_return_to_spawner = false }
---local override_units = {"arbiter","zealot","dragoon","carrier","scout","corsair","darktemplar","templar","archon","probe","shuttle"}
---
---for i = 1, #boss_level do
---    local level = boss_level[i]
---    ErmToss.make_arbiter(level)
---    ErmToss.make_zealot(level)
---    ErmToss.make_dragoon(level)
---    ErmToss.make_carrier(level)
---    ErmToss.make_scout(level)
---    ErmToss.make_corsair(level)
---    ErmToss.make_darktemplar(level)
---    ErmToss.make_templar(level)
---    ErmToss.make_archon(level)
---    ErmToss.make_darkarchon(level)
---    ErmToss.make_probe(level)
---    ErmToss.make_shuttle(level)
---    ErmToss.make_interceptor(level)
---    ErmToss.make_reaver(level)
---    ErmToss.make_scarab(level)
---
---    ErmToss.make_boss_wrapgate(level, ErmConfig.BOSS_BUILDING_HITPOINT[i])
---
---    for _, unit in pairs(override_units) do
---        data.raw["unit"][MOD_NAME.."--"..unit.."--"..level]["ai_settings"] = boss_unit_ai
---    end
---end
+
+if mods["space-age"] and mods['quality'] then
+    ---
+    --- Register unit with boss levels.
+    --- Replace its AI with boss AI
+    ---
+    require "prototypes/boss-projectiles"
+    local max_boss_tier = ErmConfig.BOSS_MAX_TIERS
+
+    local boss_unit_ai = { destroy_when_commands_fail = true, allow_try_return_to_spawner = false }
+    local override_units = {"arbiter","zealot","dragoon","carrier","scout",
+                            "corsair","reaver","darkarchon","darktemplar","templar",
+                            "archon","probe","shuttle","scarab","interceptor","invis_darktemplar"
+    }
+
+    local level = ErmConfig.BOSS_UNIT_TIER
+    ErmToss.make_arbiter(level)
+    ErmToss.make_zealot(level)
+    ErmToss.make_dragoon(level)
+    ErmToss.make_carrier(level)
+    ErmToss.make_scout(level)
+    ErmToss.make_corsair(level)
+    ErmToss.make_darktemplar(level)
+    ErmToss.make_templar(level)
+    ErmToss.make_archon(level)
+    ErmToss.make_darkarchon(level)
+    ErmToss.make_probe(level)
+    ErmToss.make_shuttle(level)
+    ErmToss.make_interceptor(level)
+    ErmToss.make_reaver(level)
+    ErmToss.make_scarab(level)
+    ErmToss.make_invis_darktemplar(level)
+    for _, unit in pairs(override_units) do
+        data.raw["unit"][MOD_NAME.."--"..unit.."--"..level]["ai_settings"] = boss_unit_ai
+    end
+
+    --- Define boss prototypes data
+    local boss_data = {}
+
+    --- FINAL_HP = base * 10 (evolution mulitplier) * quality multiplier
+    --- @see prototype/extend-quality.lua for quality level details
+    --- appox 20mil, 35mil, 50mil, 75mil, 100mil
+    boss_data.nexus_hp = {2200000, 3000000, 350000, 4200000, 4250000}
+    boss_data.pylon_hp = {10000, 15000, 20000, 25000, 30000}
+    --- for spawner's spawning_cooldown
+    boss_data.nexus_spawn_timer = {
+        {900,900},
+        {840,840},
+        {750,750},
+        {660,660},
+        {600,600},
+    }
+
+    boss_data.pylon_spawn_timer = {
+        {900,900},
+        {840,840},
+        {780,780},
+        {720,720},
+        {660,660}
+    }
+    --- for spawner's max_count_of_owned_units
+    boss_data.nexus_units_count = {15, 20, 25, 30, 35}
+    boss_data.pylon_units_count = {4, 6, 8, 12, 16}
+
+    for i = 1, max_boss_tier do
+        ErmToss.make_boss_wrapgate(i, boss_data)
+        ErmToss.make_boss_pylon(i, boss_data)
+    end
+
+    --- Boss general attack data
+    --- @see script/boss_attack.lua for attack definitions and pattern.
+    data.extend({
+        {
+            type = 'mod-data',
+            name = MOD_NAME..'--boss-attack-data',
+            data_type = MOD_NAME..'.boss_data',
+            data = {
+                --- Max assist spawner
+                max_buildable_unit_spawner = {5, 6, 8, 10, 12},
+                --- Phase_change, Ulitmate, Special, Assist, Heavy, Basic
+                defense_attacks={1000000, 2500000, 250000, 100000, 50000, 20000},
+                --- max defense attacks per heartbeat.
+                max_attacks_per_heartbeat={3,4,4,5,5},
+                --- Idle attack (in ticks)
+                idle_attack_interval = {90 * second, 85 * second, 60 * second, 53 * second, 45 * second}
+            }
+        },
+    })
+
+    --- Boss reward data
+    data.extend({
+        {
+            type = 'mod-data',
+            name = MOD_NAME..'--boss-reward-data',
+            data_type = MOD_NAME..'.boss_reward_data',
+            data = {
+                reward_data = {
+                    "char_geyser",
+                    "char_mineral_2",
+                    "char_mineral",
+                    "uranium-238",
+                    "sulfuric-acid-barrel",
+                    "plastic-bar",
+                    "sulfur",
+                    "steel-plate",
+                    "solid-fuel",
+                    "piercing-rounds-magazine",
+                    "stone-wall",
+                    "light-oil-barrel",
+                    "petroleum-gas-barrel",
+                    "copper-plate",
+                    "iron-plate",
+                    "stone-brick",
+                    "crude-oil-barrel",
+                    "iron-gear-wheel",
+                    "iron-stick",
+                    "electronic-circuit",
+                    "coal",
+                    "concrete",
+                    "explosives",
+                    "battery",
+                    "nutrients",
+                    "express-transport-belt",
+                    "turbo-transport-belt",
+                }
+            }
+        },
+    })
+
+    if DEBUG then
+        --- For debug
+        data.raw['mod-data'][MOD_NAME..'--boss-attack-data'].data.idle_attack_interval = {5 * second, 5 * second, 5 * second, 5 * second, 5 * second,}
+    end
+
+    data.extend({
+        {
+            type = "kill-achievement",
+            name = MOD_NAME.."--death-start",
+            to_kill = "enemy_erm_zerg--boss_overmind--1",
+            amount = 1,
+            icon = "__erm_zerg_hd_assets__/graphics/entity/icons/units/zergling.png",
+            icon_size = 64,
+            allow_without_fight = false,
+            order = "z["..MOD_NAME.."]--01-death-start"
+        },
+        {
+            type = "kill-achievement",
+            name = MOD_NAME.."--rally-the-char",
+            to_kill = "enemy_erm_zerg--boss_overmind--3",
+            amount = 1,
+            icon = "__erm_zerg_hd_assets__/graphics/entity/icons/units/overlord.png",
+            icon_size = 64,
+            allow_without_fight = false,
+            order = "z["..MOD_NAME.."]--02-rally-the-char"
+        },
+        {
+            type = "kill-achievement",
+            name = MOD_NAME.."--planet-fall",
+            to_kill = "enemy_erm_zerg--boss_overmind--5",
+            amount = 1,
+            icon = "__erm_zerg_hd_assets__/graphics/entity/icons/units/ultralisk.png",
+            icon_size = 64,
+            allow_without_fight = false,
+            order = "z["..MOD_NAME.."]--03-planet-fall"
+        },
+    })
+end
 
 -- Achievements
 -- T1 For Aiur!

@@ -4,20 +4,20 @@
 --- DateTime: 8/26/2022 11:52 PM
 ---
 require("__erm_toss__/global")
-util.empty_sprite()
+
 local ERMConfig = require("__enemyracemanager__/lib/global_config")
 local ERMDataHelper = require("__enemyracemanager__/lib/rig/data_helper")
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
 
-local get_damage = function(init_dmg, tier ,multiplier)
-    return init_dmg * (1 + tier * multiplier - multiplier) 
-end
+local FALLING_PROJECTILE = 'falling_projectile'
+local damage_multiplier = settings.startup["enemyracemanager-damage-multipliers"].value
 
 --- Basic Attack #1
-local create_psystorm_projectile = function(tier)
+local create_psystorm_projectile = function(projectile_type)
+    projectile_type = projectile_type or 'projectile'
     return     {
         type = "projectile",
-        name = MOD_NAME.."--psystorm-projectile-t"..tier,
+        name = MOD_NAME.."--psystorm-projectile--"..projectile_type,
         flags = { "not-on-map" },
         acceleration = 0,
 
@@ -38,7 +38,7 @@ local create_psystorm_projectile = function(tier)
                     {
                         type = "create-smoke",
                         show_in_tooltip = true,
-                        entity_name = MOD_NAME.."--psystorm-t" .. tier
+                        entity_name = MOD_NAME.."--psystorm"
                     },
                 }
             }
@@ -48,10 +48,11 @@ local create_psystorm_projectile = function(tier)
 end
 
 --- Basic Attack #2
-local create_stasis_projectile = function(tier)
+local create_stasis_projectile = function(projectile_type)
+    projectile_type = projectile_type or 'projectile'
     return   {
         type = "projectile",
-        name = MOD_NAME.."--stasis-projectile-t"..tier,
+        name = MOD_NAME.."--stasis--"..projectile_type,
         flags = { "not-on-map" },
         acceleration = 0,
 
@@ -66,13 +67,13 @@ local create_stasis_projectile = function(tier)
                 target_effects = {
                     {
                         type = "create-entity",
-                        entity_name = MOD_NAME.."--stasis-explosion",
+                        entity_name = "protoss--stasis-explosion",
                         trigger_created_entity = false
                     },
                     {
                         type = "create-smoke",
                         show_in_tooltip = true,
-                        entity_name = MOD_NAME.."--stasis-t" .. tier
+                        entity_name = MOD_NAME.."--stasis"
                     },
                 }
             }
@@ -82,10 +83,11 @@ local create_stasis_projectile = function(tier)
 end
 
 --- Basic Attack #3
-local create_cold_fire_projectile = function(tier)
+local create_cold_fire_projectile = function(projectile_type)
+    projectile_type = projectile_type or 'projectile'
     return   {
         type = "projectile",
-        name = MOD_NAME.."--stasis-projectile-t"..tier,
+        name = MOD_NAME.."--stasis-cold-fire--"..projectile_type,
         flags = { "not-on-map" },
         acceleration = 0,
 
@@ -115,7 +117,7 @@ local create_cold_fire_projectile = function(tier)
                                 type = "instant",
                                 target_effects = {
                                     type = "damage",
-                                    damage = { amount = 400 * tier, type = "cold" },
+                                    damage = { amount = 400 * damage_multiplier, type = "cold" },
                                 }
                             }
                         }
@@ -127,12 +129,12 @@ local create_cold_fire_projectile = function(tier)
     }
 end
 
-local create_damage_cloud = function (name, tier, target_effects, radius, duration, cooldown)
+local create_damage_cloud = function (name, target_effects, radius, duration, cooldown)
     radius = radius or 2
     duration = duration or 120
     cooldown = cooldown or 15
     return  {
-        name = MOD_NAME.."--"..name.."-t"..tier,
+        name = MOD_NAME.."--"..name,
         type = "smoke-with-trigger",
         flags = { "not-on-map" },
         show_when_smoke_off = true,
@@ -170,10 +172,11 @@ local create_damage_cloud = function (name, tier, target_effects, radius, durati
 end
 
 -- Advanced Attacks
-local create_cold_star_projectile = function(tier)
+local create_cold_star_projectile = function(projectile_type)
+    projectile_type = projectile_type or 'projectile'
     return   {
         type = "projectile",
-        name = MOD_NAME.."--stasis-projectile-t"..tier,
+        name = MOD_NAME.."--stasis-cold-star--"..projectile_type,
         flags = { "not-on-map" },
         acceleration = 0,
 
@@ -203,7 +206,7 @@ local create_cold_star_projectile = function(tier)
                                 type = "instant",
                                 target_effects = {
                                     type = "damage",
-                                    damage = { amount = 1000 * (1 + tier * 0.5 - 0.5) , type = "cold" },
+                                    damage = { amount = 1000 * damage_multiplier , type = "cold" },
                                 }
                             }
                         }
@@ -216,10 +219,11 @@ local create_cold_star_projectile = function(tier)
 end
 
 -- Super Attacks
-local create_recall_projectile = function(tier, script_attack)
+local create_recall_projectile = function(projectile_type, script_attack)
+    projectile_type = projectile_type or 'projectile'
     return   {
         type = "projectile",
-        name = MOD_NAME.."--recall-"..script_attack.."-projectile-t"..tier,
+        name = MOD_NAME.."--recall-"..script_attack.."--"..projectile_type,
         flags = { "not-on-map" },
         acceleration = 0,
 
@@ -240,7 +244,7 @@ local create_recall_projectile = function(tier, script_attack)
                     {
                         type = "create-smoke",
                         show_in_tooltip = true,
-                        entity_name = MOD_NAME.."--recall-cloud-t" .. tier
+                        entity_name = MOD_NAME.."--recall-cloud"
                     },
                     {
                         type = "script",
@@ -253,17 +257,19 @@ local create_recall_projectile = function(tier, script_attack)
     }
 end
 
-local create_boss_electric_beam = function(name, i, data)
-    local range = data['range'] or 1500
-    local width = data['width'] or 6
-    local damage = data['damage'] or 20
-    local damage_interval = data['damage_interval'] or 10
-    local animation_scale = data['animation_scale'] or 0.75
+local create_boss_electric_beam = function(name, beam_data)
+    beam_data = beam_data or {}
+    local range = beam_data['range'] or 32
+    local width = beam_data['width'] or 8
+    local damage = beam_data['damage'] or 25
+    local damage_interval = beam_data['damage_interval'] or 10
+    local default_scale = 0.75
+    local animation_scale = beam_data['animation_scale'] or default_scale
     local laser_beam_blend_mode = "additive-soft"
     local beam_non_light_flags = { "trilinear-filtering" }
     local clone_beam = util.table.deepcopy(data.raw['beam']['laser-beam'])
 
-    clone_beam.name = MOD_NAME..'--'..name..'--'..width..'--'..range..'--beam--'..i
+    clone_beam.name = MOD_NAME..'--'..name..'-'..width..'-'..range..'--beam'
     clone_beam.width = width
     clone_beam.damage_interval = damage_interval
     clone_beam.action_triggered_automatically = true
@@ -280,14 +286,14 @@ local create_boss_electric_beam = function(name, i, data)
             {
                 {
                     type = "damage",
-                    damage = { amount = damage, type = "electric"}
+                    damage = { amount = damage, type = "laser"}
                 }
             }
         }
     }
     clone_beam['graphics_set'] =
     {
-        desired_segment_length = 20.61,
+        desired_segment_length = (30.91 / default_scale) * animation_scale,
         beam =
         {
             head =
@@ -295,7 +301,7 @@ local create_boss_electric_beam = function(name, i, data)
                 layers =
                 {
                     {
-                        filename = "__erm_toss_hd_assets__/graphics/entity/projectiles/boss_electric_beam-60.png",
+                        filename = "__erm_toss_hd_assets__/graphics/entity/projectiles/boss_electric_beam.png",
                         line_length = 1,
                         flags = beam_non_light_flags,
                         width = 1319,
@@ -303,8 +309,20 @@ local create_boss_electric_beam = function(name, i, data)
                         frame_count = 5,
                         scale = animation_scale,
                         animation_speed = 0.5,
-                        blend_mode = laser_beam_blend_mode
-                    }
+                        blend_mode = laser_beam_blend_mode,
+                    },
+                    {
+                        filename = "__erm_toss_hd_assets__/graphics/entity/projectiles/boss_electric_beam_head_updated.png",
+                        line_length = 5,
+                        flags = beam_non_light_flags,
+                        width = 948,
+                        height = 972,
+                        frame_count = 5,
+                        scale = animation_scale,
+                        animation_speed = 0.5,
+                        blend_mode = laser_beam_blend_mode,
+                        shift = util.by_pixel(-800 * animation_scale, -42.66667 * animation_scale)
+                    },
                 }
             },
             tail =
@@ -312,7 +330,7 @@ local create_boss_electric_beam = function(name, i, data)
                 layers =
                 {
                     {
-                        filename = "__erm_toss_hd_assets__/graphics/entity/projectiles/boss_electric_beam-60.png",
+                        filename = "__erm_toss_hd_assets__/graphics/entity/projectiles/boss_electric_beam.png",
                         line_length = 1,
                         flags = beam_non_light_flags,
                         width = 1319,
@@ -321,7 +339,19 @@ local create_boss_electric_beam = function(name, i, data)
                         scale = animation_scale,
                         animation_speed = 0.5,
                         blend_mode = laser_beam_blend_mode
-                    }
+                    },
+                    {
+                        filename = "__erm_toss_hd_assets__/graphics/entity/projectiles/boss_electric_beam_head_updated.png",
+                        line_length = 5,
+                        flags = beam_non_light_flags,
+                        width = 948,
+                        height = 972,
+                        frame_count = 5,
+                        scale = animation_scale,
+                        animation_speed = 0.5,
+                        blend_mode = laser_beam_blend_mode,
+                        shift = util.by_pixel(480 * animation_scale, -42.66667 * animation_scale)
+                    },
                 }
             },
             body =
@@ -329,7 +359,7 @@ local create_boss_electric_beam = function(name, i, data)
                 layers =
                 {
                     {
-                        filename = "__erm_toss_hd_assets__/graphics/entity/projectiles/boss_electric_beam-60.png",
+                        filename = "__erm_toss_hd_assets__/graphics/entity/projectiles/boss_electric_beam.png",
                         line_length = 1,
                         flags = beam_non_light_flags,
                         width = 1319,
@@ -342,19 +372,18 @@ local create_boss_electric_beam = function(name, i, data)
                 }
             },
         },
-
         ground =
         {
             head =
             {
-                filename = "__base__/graphics/entity/laser-turret/laser-ground-light-head.png",
+                filename = "__base__/graphics/entity/laser-turret/laser-ground-light-tail.png",
                 draw_as_light = true,
                 flags = {"light"},
                 line_length = 1,
-                width = 256,
+                width = 64,
                 height = 256,
                 repeat_count = 8,
-                scale = animation_scale,
+                scale = animation_scale * 2,
                 shift = util.by_pixel(-32, 0),
                 animation_speed = 0.5,
                 tint = {0.05, 0.05, 0.5}
@@ -365,10 +394,10 @@ local create_boss_electric_beam = function(name, i, data)
                 draw_as_light = true,
                 flags = {"light"},
                 line_length = 1,
-                width = 256,
+                width = 64,
                 height = 256,
                 repeat_count = 8,
-                scale = animation_scale,
+                scale = animation_scale * 2,
                 shift = util.by_pixel(32, 0),
                 animation_speed = 0.5,
                 tint = {0.05, 0.05, 0.5}
@@ -382,7 +411,7 @@ local create_boss_electric_beam = function(name, i, data)
                 width = 64,
                 height = 256,
                 repeat_count = 8,
-                scale = animation_scale,
+                scale = animation_scale * 2,
                 animation_speed = 0.5,
                 tint = {0.05, 0.05, 0.5}
             }
@@ -393,35 +422,43 @@ local create_boss_electric_beam = function(name, i, data)
 end
 
 
-for i = 1, ERMConfig.BOSS_MAX_TIERS do
-    data:extend({
-        create_psystorm_projectile(i),
-        create_damage_cloud("psystorm", i,{
-            type = "damage",
-            --- process 4 ticks per second
-            damage = { amount = 200 * (1 + i * 0.5 - 0.5), type = "electric" },
-            apply_damage_to_trees = true
-        },  5,120),
-        create_stasis_projectile(i),
-        create_damage_cloud("stasis", i,{{
-                                                 type = "damage",
-                                                 --- process 4 ticks per second
-                                                 damage = { amount = 100 * (1 + i * 0.25 - 0.25), type = "electric" },
-                                                 apply_damage_to_trees = false
-                                             },{
-                                                 type = "create-sticker",
-                                                 sticker = "5-075-slowdown-sticker",
-                                                 show_in_tooltip = true,
-                                             }}, 5,60),
-        create_cold_fire_projectile(i),
-        create_cold_star_projectile(i),
-        create_recall_projectile(i, BOSS_SPAWN_ATTACK),
-        create_recall_projectile(i, UNITS_SPAWN_ATTACK),
-        create_damage_cloud("recall-cloud", i,{{
-            type = "damage",
-            --- process 4 ticks per second
-            damage = { amount = 200 * (1 + i * 0.75 - 0.75), type = "electric" },
-            apply_damage_to_trees = true
-        }},  8,120),
+
+data:extend({
+    create_psystorm_projectile(),
+    create_damage_cloud("psystorm", {
+        type = "damage",
+        --- process 4 ticks per second
+        damage = { amount = 200 * damage_multiplier, type = "electric" },
+        apply_damage_to_trees = true
+    },  5,120),
+    create_stasis_projectile(),
+    create_damage_cloud("stasis", {{
+                                             type = "damage",
+                                             --- process 4 ticks per second
+                                             damage = { amount = 100 * damage_multiplier, type = "electric" },
+                                             apply_damage_to_trees = false
+                                         },{
+                                             type = "create-sticker",
+                                             sticker = "5-075-slowdown-sticker",
+                                             show_in_tooltip = true,
+                                         }}, 5,60),
+    create_cold_fire_projectile(),
+    create_cold_star_projectile(),
+    create_recall_projectile(nil, BOSS_SPAWN_ATTACK),
+    create_recall_projectile(nil, UNITS_SPAWN_ATTACK),
+    create_damage_cloud("recall-cloud", {{
+        type = "damage",
+        --- process 4 ticks per second
+        damage = { amount = 200 * damage_multiplier, type = "electric" },
+        apply_damage_to_trees = true
+    }},  8,120),
+    create_boss_electric_beam('ultimate', {
+        range = 1800, 
+        damage = 50,
+        width = 16,
+        animation_scale = 1
+    }),
+    create_boss_electric_beam('special', {
+        range = 1500
     })
-end
+})
