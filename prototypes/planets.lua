@@ -1060,9 +1060,20 @@ if mods['alien-biomes'] then
     map_gen.autoplace_settings.entity.settings['big-rock-brown'] = {}
     map_gen.autoplace_settings.entity.settings['big-rock-beige'] = {}
     map_gen.autoplace_settings.entity.settings['big-rock-tan'] = {}
-    --map_gen.autoplace_settings.entity.settings['sand-big-rock-brown'] = {}
-    --map_gen.autoplace_settings.entity.settings['sand-big-rock-beige'] = {}
-    --map_gen.autoplace_settings.entity.settings['sand-big-rock-tan'] = {}
+    map_gen.autoplace_settings.entity.settings['sand-big-rock-tan'] = {}
+    map_gen.autoplace_settings.tile.settings['grass-1'] = nil
+    map_gen.autoplace_settings.tile.settings['grass-2'] = nil
+    map_gen.autoplace_settings.tile.settings['grass-3'] = nil
+    map_gen.autoplace_settings.tile.settings['grass-4'] = nil
+    map_gen.autoplace_settings.tile.settings['vegetation-green-grass-1'] = {}
+    map_gen.autoplace_settings.tile.settings['vegetation-green-grass-2'] = {}
+    map_gen.autoplace_settings.tile.settings['vegetation-green-grass-3'] = {}
+    map_gen.autoplace_settings.tile.settings['vegetation-green-grass-4'] = {}
+    map_gen.autoplace_settings.tile.settings['vegetation-olive-grass-1'] = {}
+    map_gen.autoplace_settings.tile.settings['vegetation-olive-grass-2'] = {}
+    map_gen.autoplace_controls.rocks = {}
+    map_gen.autoplace_controls.hot = {}
+    map_gen.autoplace_controls.cold = {}
 end
 
 
