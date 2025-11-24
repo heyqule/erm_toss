@@ -47,7 +47,7 @@ local incremental_electric_damage = 9
 
 -- Handles Attack Speed
 
-local base_attack_speed = 120
+local base_attack_speed = 90
 local incremental_attack_speed = 60
 
 
@@ -97,6 +97,7 @@ function ErmToss.make_scout(level)
             selection_box = selection_box,
             sticker_box = selection_box,
             vision_distance = vision_distance,
+            can_open_gate = true,
             movement_speed = ERM_UnitHelper.get_movement_speed(base_movement_speed, incremental_movement_speed,  level),
             absorptions_to_join_attack = { pollution = ERM_UnitHelper.get_pollution_attack(pollution_to_join_attack, level)},
             distraction_cooldown = distraction_cooldown,

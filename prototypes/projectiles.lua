@@ -17,29 +17,12 @@ local smoke_fast_animation = smoke_animations.trivial_smoke_fast
 
 require("util")
 
-local scout_rocket = WeaponRig.standardize_rocket_damage(
-        util.table.deepcopy(data.raw["projectile"]["rocket"]),
-        "protoss--scout-rocket"
+local scout_rocket = WeaponRig.standardize_explosive_rocket_damage(
+        util.table.deepcopy(data.raw['projectile']['explosive-rocket']),
+        "protoss--scout-rocket",
+        2
 )
-table.insert(scout_rocket["action"]["action_delivery"]["target_effects"],  {
-    type = "nested-result",
-    action = {
-        type = "area",
-        force = "not-same",
-        radius = 1,
-        ignore_collision_condition = true,
-        action_delivery = {
-            type = "instant",
-            target_effects = {
-                {
-                    type = "damage",
-                    damage = { amount = 5, type = "explosion" },
-                    apply_damage_to_trees = true,
-                },
-            }
-        }
-    }
-})
+
 scout_rocket["animation"] = AnimationDB.get_layered_animations("projectiles","scout_rocket","projectile")
 scout_rocket["turn_speed"] = 1
 scout_rocket["turning_speed_increases_exponentially_with_projectile_speed"] = false

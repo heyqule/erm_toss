@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.0.14
+Date: 2025-11-24
+
+  Changes:
+    - Added can_open_gate=true to all units.
+    - Added proper prerequisite for crystal research.
+    - Significantly increase corsair damage (guerilla unit buff). 75 -> 250
+    - Increase scout attack speed to 2/s at top tier and AOE radius from 1 -> 2
+
+---------------------------------------------------------------------------------------------------
 Version: 2.0.13
 Date: 2025-10-19
 

@@ -160,9 +160,9 @@ local ingredients = {
     {type = "item", name = "supercapacitor", amount = 1},
     {type= "item", name= MOD_NAME..'--crystal', amount= 1000}
 }
-PsiRadar.make_entity(MOD_NAME, icons, surface_conditions)
-PsiRadar.make_item(MOD_NAME, icons)
-PsiRadar.make_recipe(MOD_NAME, ingredients)
+--PsiRadar.make_entity(MOD_NAME, icons, surface_conditions)
+--PsiRadar.make_item(MOD_NAME, icons)
+--PsiRadar.make_recipe(MOD_NAME, ingredients)
 
 local aiur_mapgen =
     {
@@ -1141,5 +1141,8 @@ if mods['starcraft-music'] then
         },
     })
 else
-    data:extend(SoundUtil.dupe_planet_music('fulgora','aiur'))
+    local sound_data = SoundUtil.dupe_planet_music('fulgora','aiur')
+    if table_size(sound_data) > 0 then
+        data:extend(sound_data)
+    end
 end 
