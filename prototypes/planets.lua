@@ -702,8 +702,8 @@ data:extend({
     {
         type = "planet",
         name = "aiur",
-        icon = "__base__/graphics/icons/nauvis.png",
-        starmap_icon = "__base__/graphics/icons/starmap-planet-nauvis.png",
+        icon = "__erm_toss_hd_assets__/graphics/entity/icons/planets/aiur_64.png",
+        starmap_icon = "__erm_toss_hd_assets__/graphics/entity/icons/planets/aiur_512.png",
         starmap_icon_size = 512,
         gravity_pull = 10,
         distance = 20,
@@ -1005,18 +1005,8 @@ data:extend({
     {
         type = "technology",
         name = "planet-discovery-aiur",
-        icons = {
-            {
-                icon = "__base__/graphics/icons/nauvis.png",
-                icon_size = 64,
-            },
-            {
-                icon = "__core__/graphics/icons/technology/constants/constant-planet.png",
-                icon_size = 128,
-                scale = 0.5,
-                shift = { 50, 50 }
-            }
-        },
+        icons = util.technology_icon_constant_planet("__erm_toss_hd_assets__/graphics/entity/icons/planets/aiur_256.png"),
+        icon_size = 256,
         essential = false,
         effects = {
             {

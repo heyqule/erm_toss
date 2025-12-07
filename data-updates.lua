@@ -58,4 +58,16 @@ then
     if settings.startup["enemy_erm_toss-lightning_on_fulgora"].value then
         fulgora.lightning_properties.lightning_types = {"enemy_erm_toss--fulgora-lightning"}
     end
+
+    
+    local erm_rts_death_world = data.raw["map-gen-presets"]["default"]["erm-rts-death-world"]["basic_settings"]["autoplace_controls"]
+    local erm_rts_world = data.raw["map-gen-presets"]["default"]["erm-rts-world"]["basic_settings"]["autoplace_controls"]
+    local erm_preset_value = { frequency="very-high", richness = "very-poor"}
+    erm_rts_world['aiur_mineral'] = erm_preset_value
+    erm_rts_world['aiur_mineral_2'] = erm_preset_value
+    erm_rts_world['aiur_geyser'] = erm_preset_value
+    erm_rts_death_world['aiur_mineral'] = erm_preset_value
+    erm_rts_death_world['aiur_mineral_2'] = erm_preset_value
+    erm_rts_death_world['aiur_geyser'] = erm_preset_value
+
 end
