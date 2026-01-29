@@ -128,13 +128,13 @@ local addRaceSettings = function()
     race_settings.dropship = "shuttle"
     race_settings.droppable_units = {
         {{ "dragoon" },{1}},
-        {{ "dragoon", "darktemplar", "invis_darktemplar" },{5,3,1}},
-        {{ "dragoon", "darktemplar", "templar", "archon", "darkarchon", "reaver", "invis_darktemplar"},{9,6,2,1,1,1,1}},
+        {{ "dragoon", "darktemplar", "invis_darktemplar" },{3,2,1}},
+        {{ "dragoon", "darktemplar", "templar", "archon", "darkarchon", "reaver", "invis_darktemplar"},{3,3,2,1,1,1,1}},
     }
     race_settings.construction_buildings = {
         {{ "cannon_shortrange"},{1}},
-        {{ "cannon_shortrange", "pylon"},{5,2}},
-        {{ "cannon_shortrange", "pylon", "shield_battery_shortrange"},{5,2,1}},
+        {{ "cannon_shortrange", "pylon"},{2,1}},
+        {{ "cannon_shortrange", "pylon", "shield_battery_shortrange"},{3,2,1}},
     }
     race_settings.featured_groups = {
         -- Unit list, spawn ratio, unit attack point cost
@@ -254,12 +254,14 @@ local attack_functions =
     end,
     [BOSS_SPAWN_ATTACK] = function(args)
         CustomAttacks.process_boss_units(args)
+        CustomAttacks.build(args, MOD_NAME, 'pylon')
     end,
     [UNITS_SPAWN_ATTACK] = function(args)
         CustomAttacks.process_batch_units(args)
+        CustomAttacks.build(args, MOD_NAME, 'pylon')
     end,
     [ARBITER_UNITS_SPAWN_ATTACK] = function(args)
-        CustomAttacks.process_batch_units(args, 1)
+        CustomAttacks.process_batch_units(args, 4)
     end,
     [GUERRILLA_ATTACK] = function(args)
         CustomAttacks.process_guerrilla(args)
@@ -279,14 +281,18 @@ end)
 local is_compatible_lightning = {
     ["enemy_erm_toss--fulgora-lightning"] =  true,
     ["enemy_erm_toss--aiur-lightning"] =  true,
+    ["enemy_erm_toss--mixed-lightning--direct"] =  true,
+    ["enemy_erm_toss--air-lightning--direct"] =  true,
+    ["enemy_erm_toss--land-lightning--direct"] =  true,
 }
 
-local beacon
-local beacon_hit = 0
+local valid_unit_types = {
+    ["unit"] = true
+}
 
 local on_trigger_created_entity_handlers = {
     ["lightning"] = function(entity, source)
-        if is_compatible_lightning[source.name] then
+        if is_compatible_lightning[source.name] and valid_unit_types[entity.type]  then
             entity.force = FORCE_NAME
             local surface_name = entity.surface.name
             if storage.lightning_units[surface_name] == nil then

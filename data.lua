@@ -5,7 +5,6 @@ require("__erm_toss__/global")
 local ErmConfig = require("__enemyracemanager__/lib/global_config")
 
 require "prototypes/projectiles"
-require "prototypes/boss-projectiles"
 require "prototypes/noise-functions"
 
 data:extend(
@@ -222,41 +221,36 @@ if mods["space-age"] and mods['quality'] then
     data.extend({
         {
             type = "kill-achievement",
-            name = MOD_NAME.."--death-start",
-            to_kill = "enemy_erm_zerg--boss_overmind--1",
+            name = MOD_NAME.."--god-poke",
+            to_kill = "enemy_erm_toss--boss_warpgate--1",
             amount = 1,
-            icon = "__erm_zerg_hd_assets__/graphics/entity/icons/units/zergling.png",
+            icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/zealot.png",
             icon_size = 64,
             allow_without_fight = false,
-            order = "z["..MOD_NAME.."]--01-death-start"
+            order = "z["..MOD_NAME.."]--01-god-poke"
         },
         {
             type = "kill-achievement",
-            name = MOD_NAME.."--rally-the-char",
-            to_kill = "enemy_erm_zerg--boss_overmind--3",
+            name = MOD_NAME.."--god-like",
+            to_kill = "enemy_erm_toss--boss_warpgate--3",
             amount = 1,
-            icon = "__erm_zerg_hd_assets__/graphics/entity/icons/units/overlord.png",
+            icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/darktemplar.png",
             icon_size = 64,
             allow_without_fight = false,
-            order = "z["..MOD_NAME.."]--02-rally-the-char"
+            order = "z["..MOD_NAME.."]--02-god-like"
         },
         {
             type = "kill-achievement",
-            name = MOD_NAME.."--planet-fall",
-            to_kill = "enemy_erm_zerg--boss_overmind--5",
+            name = MOD_NAME.."--god-kill",
+            to_kill = "enemy_erm_toss--boss_warpgate--5",
             amount = 1,
-            icon = "__erm_zerg_hd_assets__/graphics/entity/icons/units/ultralisk.png",
+            icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/archon.png",
             icon_size = 64,
             allow_without_fight = false,
-            order = "z["..MOD_NAME.."]--03-planet-fall"
+            order = "z["..MOD_NAME.."]--03-god-kill"
         },
     })
 end
-
--- Achievements
--- T1 For Aiur!
--- T3 The Depleting Shadow
--- T5 Master Control
 
 for i = 1, max_level do
     ErmToss.make_cannon(i)

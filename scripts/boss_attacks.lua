@@ -5,48 +5,56 @@
 ---
 local BossAttackRemote = require("__enemyracemanager__/lib/boss_attack_data")
 local BossAttackProcessor = require("__enemyracemanager__/lib/boss_attack_processor")
---- "erm_toss_electric_beam",
---- BossAttackProcessor.TYPE_BEAM,
----     attack_beam_duration = {900, nil, nil, nil},
----    attack_beam_max_length = {1250, nil, nil, nil},
+
+
 BossAttackRemote.basic_attacks =
 {
-    attack_name = {"psystorm", "stasis"},
+    attack_name = {"recall-"..UNITS_SPAWN_ATTACK, "psystorm", "stasis"},
     attack_type = {
         BossAttackProcessor.TYPE_PROJECTILE,
         BossAttackProcessor.TYPE_PROJECTILE,
-        BossAttackProcessor.TYPE_BEAM
+        BossAttackProcessor.TYPE_PROJECTILE,
     },
     attack_chance = {
-        {0, 0, 0, 0, 0},
+        {20, 25, 30, 33, 33},
+        {66, 66, 66, 66, 66},
         {100, 100, 100, 100, 100},
     },
-    attack_count = {2, 2, 1},
-    attack_spread = {1, 1, 1},
-    attack_use_multiplier = {false, false, false},
+    attack_count = {1, 1, 2},
+    attack_spread = {1, 3, 2},
+    attack_use_multiplier = {true, true, true},
     attack_count_multiplier = {
+        {1,1,1,1,1},
+        {1,1,1,2,2},
+        {1,1,1,2,2},
     },
     attack_spread_multiplier = {
+        {1,1,1,2,2},
+        {1,1,2,2,3},
+        {1,1,2,2,3},
     },
 }
 
 BossAttackRemote.heavy_attacks =
 {
-    attack_name = {"ultimate-16-1800","special-8-1500"},
+    attack_name = {"carrier","arbiter","invis_darktemplar","shuttle", 'land-lightning'},
     attack_type = {
-        BossAttackProcessor.TYPE_BEAM,
-        BossAttackProcessor.TYPE_BEAM,
+        BossAttackProcessor.TYPE_UNIT_SPAWN,
+        BossAttackProcessor.TYPE_UNIT_SPAWN,
+        BossAttackProcessor.TYPE_UNIT_SPAWN,
+        BossAttackProcessor.TYPE_UNIT_SPAWN,
+        BossAttackProcessor.TYPE_DIRECT,
     },
     attack_chance = {
+        {15, 15, 15, 15, 15},
+        {20, 20, 20, 20, 20},
+        {33, 33, 33, 33, 33},
         {50, 50, 50, 50, 50},
         {100, 100, 100, 100, 100},
     },
-    attack_count = {1, 1},
-    attack_spread = {1, 1},
-    attack_beam_duration = {900, 900},
-    attack_beam_max_length = {1800, 1500},
-    attack_beam_offset = { { x = 0, y = -10 }, { x = 0, y = -10 }},
-    attack_use_multiplier = {false, false},
+    attack_count = {6, 6, 4, 6, 1},
+    attack_spread = {1, 1, 1, 1, 2},
+    attack_use_multiplier = {false, false, false, false,false},
     attack_count_multiplier = {
         {},
     },
@@ -55,20 +63,52 @@ BossAttackRemote.heavy_attacks =
     },
 }
 
+--- Beam test
+--BossAttackRemote.heavy_attacks = {
+--    attack_name = {"ultimate-16-1800"},
+--    attack_type = {
+--        BossAttackProcessor.TYPE_BEAM,
+--    },
+--    attack_chance = {
+--        {100, 100, 100, 100, 100},
+--    },
+--    attack_beam_duration = {300},
+--    attack_beam_max_length = {1800},
+--    attack_beam_source_offset = {{ x = -0.5, y = -4 }},
+--    attack_count = {1},
+--    attack_spread = {1},
+--    can_aim_attackable_targets = {false},
+--    only_targets_radar = {true},
+--    attack_use_multiplier = {false},
+--    attack_count_multiplier = {
+--        {},
+--    },
+--    attack_spread_multiplier = {
+--        {},
+--    },
+--}
+
 
 BossAttackRemote.assist_attacks =
 {
-    attack_name = {"recall-"..UNITS_SPAWN_ATTACK},
+    attack_name = {"mixed-lightning" ,'boss_pylon', "air-lightning",'select_attack_1.5x'},
     attack_type = {
-        BossAttackProcessor.TYPE_PROJECTILE,
+        BossAttackProcessor.TYPE_DIRECT,
+        BossAttackProcessor.TYPE_STRUCT_SPAWN,
+        BossAttackProcessor.TYPE_DIRECT,
+        BossAttackProcessor.TYPE_SELECT_NEARBY_ENEMY,
     },
     attack_chance = {
-        {100, 100, 100, 100, 100},
+        {25, 25, 25, 25, 25},
+        {33, 33, 33, 33, 33},
+        {50, 50, 50, 50, 50},
         {100, 100, 100, 100, 100},
     },
-    attack_count = {1, 2},
-    attack_spread = {1, 2},
-    attack_use_multiplier = {false},
+    attack_count = {1, 1, 1, 1},
+    attack_spread = {1, 1, 1, 1},
+    select_nearby_enemy_count = {0, 0, 0, 1.5},
+    can_aim_attackable_targets = {true, true, true, true},
+    attack_use_multiplier = {false, false,false, false},
     attack_count_multiplier = {
         {},
     },
@@ -79,16 +119,25 @@ BossAttackRemote.assist_attacks =
 
 BossAttackRemote.special_attacks =
 {
-    attack_name = {"recall-"..BOSS_SPAWN_ATTACK},
+    attack_name = {"special-8-1500", 'mixed-lightning', "psystorm"},
     attack_type = {
-        BossAttackProcessor.TYPE_PROJECTILE,
+        BossAttackProcessor.TYPE_BEAM,
+        BossAttackProcessor.TYPE_DIRECT,
+        BossAttackProcessor.TYPE_FALLING_PROJECTILE,
     },
+    attack_beam_duration = {450},
+    attack_beam_max_length = {1500},
+    attack_beam_source_offset = {{ x = -0.5, y = -4 }},
     attack_chance = {
+        {50, 50, 50, 50, 50},
+        {50, 50, 50, 50, 50},
         {100, 100, 100, 100, 100},
     },
-    attack_count = {1},
-    attack_spread = {1},
-    attack_use_multiplier = {false},
+    attack_count = {1, 1, 2},
+    attack_spread = {1, 5, 10},
+    can_aim_attackable_targets = {false, true, true},
+    only_targets_radar = {true, false, false },
+    attack_use_multiplier = {false, false, false},
     attack_count_multiplier = {
         {},
     },
@@ -99,15 +148,20 @@ BossAttackRemote.special_attacks =
 
 BossAttackRemote.ultimate_attacks =
 {
-    attack_name = {"recall-"..BOSS_SPAWN_ATTACK},
+    attack_name = {"ultimate-16-1800"},
     attack_type = {
-        BossAttackProcessor.TYPE_PROJECTILE,
+        BossAttackProcessor.TYPE_BEAM,
     },
     attack_chance = {
         {100, 100, 100, 100, 100},
     },
+    attack_beam_duration = {900},
+    attack_beam_max_length = {1800},
+    attack_beam_source_offset = {{ x = -0.5, y = -4 }},
     attack_count = {1},
     attack_spread = {1},
+    can_aim_attackable_targets = {false},
+    only_targets_radar = {true},
     attack_use_multiplier = {false},
     attack_count_multiplier = {
         {},
@@ -118,16 +172,24 @@ BossAttackRemote.ultimate_attacks =
 }
 
 BossAttackRemote.idle_attacks = {
-    attack_name = { "recall-" .. UNITS_SPAWN_ATTACK },
+    attack_name = {'land-lightning', "recall-" .. UNITS_SPAWN_ATTACK, "select_unit_1.5x", "psystorm"},
     attack_type = {
-        BossAttackProcessor.TYPE_PROJECTILE,
+        BossAttackProcessor.TYPE_DIRECT,
+        BossAttackProcessor.TYPE_FALLING_PROJECTILE,
+        BossAttackProcessor.TYPE_SELECT_NEARBY_ENEMY,
+        BossAttackProcessor.TYPE_FALLING_PROJECTILE,
     },
     attack_chance = {
+        {33, 33, 33, 33, 33},
+        {40, 40, 40, 40, 40},
+        {66, 66, 66, 66, 66},
         {100, 100, 100, 100, 100},
     },
-    attack_count = { 1 },
-    attack_spread = { 1 },
-    attack_use_multiplier = { false },
+    attack_count = { 1, 1, 1, 1 },
+    attack_spread = { 2, 3, 1, 3 },
+    attack_use_multiplier = {false, false, false,false},
+    select_nearby_enemy_count = {0, 0, 1.5, 0},
+    only_targets_radar = {true, true, true, true},
     attack_count_multiplier = {
         {},
     },

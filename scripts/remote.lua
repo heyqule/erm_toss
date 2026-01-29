@@ -24,17 +24,17 @@ function RemoteAPI.milestones_preset_addons()
         },
     }
 
-    --preset["erm_toss_boss"] = {
-    --    required_mods = {"erm_toss"},
-    --    milestones = {
-    --        {type="group", name="ERM Boss Kills"},
-    --        {type="kill", name="enemy_erm_toss--warpgate--"..boss_level[1],  quantity=1},
-    --        {type="kill", name="enemy_erm_toss--warpgate--"..boss_level[2],  quantity=1},
-    --        {type="kill", name="enemy_erm_toss--warpgate--"..boss_level[3],  quantity=1},
-    --        {type="kill", name="enemy_erm_toss--warpgate--"..boss_level[4],  quantity=1},
-    --        {type="kill", name="enemy_erm_toss--warpgate--"..boss_level[5],  quantity=1},
-    --    }
-    --}
+    preset["erm_toss_boss"] = {
+        required_mods = {"erm_toss"},
+        milestones = {
+            {type="group", name="ERM Boss Kills"},
+            {type="kill", name="enemy_erm_toss--warpgate--1",  quantity=1},
+            {type="kill", name="enemy_erm_toss--warpgate--2",  quantity=1},
+            {type="kill", name="enemy_erm_toss--warpgate--3",  quantity=1},
+            {type="kill", name="enemy_erm_toss--warpgate--4",  quantity=1},
+            {type="kill", name="enemy_erm_toss--warpgate--5",  quantity=1},
+        }
+    }
 
     return preset
 end

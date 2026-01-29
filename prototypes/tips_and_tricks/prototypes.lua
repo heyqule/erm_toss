@@ -61,10 +61,20 @@ if mods['space-age'] then
                 },
                 {
                     type = "tips-and-tricks-item",
+                    tag = "[entity="..FORCE_NAME.."--boss_warpgate--1]",
+                    name = FORCE_NAME.."-boss_warpgate",
+                    category = FORCE_NAME,
+                    order = "e",
+                    indent = 2,
+                    starting_status = "suggested",
+                    simulation = simulations.boss_warpgate
+                },
+                {
+                    type = "tips-and-tricks-item",
                     tag = "[item=enemy_erm_toss--crystal]",
                     name = FORCE_NAME.."-economy",
                     category = FORCE_NAME,
-                    order = "c",
+                    order = "f",
                     indent = 1,
                     starting_status = "suggested",
                     image = "__erm_toss_hd_assets__/graphics/economy/erm-toss.png"

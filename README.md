@@ -84,5 +84,5 @@ Physical resistance: 85, Weak elemental resistance: 75, Elemental resistance: 80
 - Wet planet
 - Intense lighting storm which may summon protoss units.
 - New resources, 2 types of minerals and one gas geyser.
-- If interplanetary attack is enabled, landing on Aiur will activate it for Protoss.
-- [Coming soon] Boss summoning ritual.
+- When interplanetary attack is enabled, killing an unit spawner on Aiur will activate it.
+- Master control entity: Warpgate. Defeat it for rewards. (Experimental)
