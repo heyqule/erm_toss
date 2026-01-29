@@ -193,6 +193,77 @@ tip_story_init(story_table)
 ]]
 }
 
+simulations.boss_warpgate = {
+    init = [[
+require("__core__/lualib/story")
+
+game.planets["aiur"].create_surface()
+local aiur_surface = game.surfaces["aiur"]
+aiur_surface.request_to_generate_chunks({0,0}, 2)
+aiur_surface.force_generate_chunk_requests()
+
+local sim = game.simulation
+player = sim.create_test_player{name = "you"}
+sim.camera_player = player
+sim.camera_position = {0, 0}
+sim.camera_zoom = 0.5
+sim.hide_cursor = true
+
+local story_table =
+{
+    {
+        {
+            name = "start",
+            init = function()
+
+                aiur_surface.create_entity { name="cargo-landing-pad", position={-25, -10}, force="player" }
+                player.teleport({-22,0}, "aiur")
+                for _, y in pairs({-5,0,5}) do
+                    for _, x in pairs({-20, -17}) do
+                        local gun = aiur_surface.create_entity { name="gun-turret", position={x, y}, force="player" }
+                        local inventory = gun.get_inventory(defines.inventory.turret_ammo)
+                        inventory.insert({name = "piercing-rounds-magazine", count = 100})
+                    end
+                end
+
+                for i = -10, 10, 1 do
+                    aiur_surface.create_entity { name="stone-wall", position={-15, i}, force="player" }
+                end
+
+                aiur_surface.create_entity { name="enemy_erm_toss--boss_warpgate--5", position={12, -5} }
+                aiur_surface.create_entity { name="enemy_erm_toss--pylon--5", position={12, 5} }
+                aiur_surface.create_entity { name="enemy_erm_toss--pylon--5", position={16, 0} }
+            end,
+        },
+        {
+            condition = story_elapsed_check(2),
+            action = function()
+                aiur_surface.create_entity { name="enemy_erm_toss--zealot--5", position={8, 2} }
+                aiur_surface.create_entity { name="enemy_erm_toss--dragoon--5", position={8, 0} }
+                aiur_surface.create_entity { name="enemy_erm_toss--carrier--5", position={8, 4} }
+                aiur_surface.create_entity { name="enemy_erm_toss--archon--5", position={8, 6} }
+            end
+        },
+        {
+            condition = story_elapsed_check(2),
+            action = function()
+                aiur_surface.create_entity { name="enemy_erm_toss--darktemplar--5", position={8, 2} }
+                aiur_surface.create_entity { name="enemy_erm_toss--scout--5", position={8, 4} }
+                aiur_surface.create_entity { name="enemy_erm_toss--darkarchon--5", position={8, 6} }
+            end
+        },
+        {
+            condition = story_elapsed_check(10),
+            action = function()
+                story_jump_to(storage.story, "start")
+            end
+        }
+    }
+}
+tip_story_init(story_table)
+]]
+}
+
 simulations.invis_darktemplar = {
     init = [[
 require("__core__/lualib/story")

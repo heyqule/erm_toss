@@ -17,7 +17,7 @@ local create_psystorm_projectile = function(projectile_type)
     projectile_type = projectile_type or 'projectile'
     return     {
         type = "projectile",
-        name = MOD_NAME.."--psystorm-projectile--"..projectile_type,
+        name = MOD_NAME.."--psystorm--"..projectile_type,
         flags = { "not-on-map" },
         acceleration = 0,
 
@@ -78,55 +78,74 @@ local create_stasis_projectile = function(projectile_type)
                 }
             }
         },
-        AnimationDB.get_layered_animations("projectiles","stasis","projectile")
+        animation = AnimationDB.get_layered_animations("projectiles","stasis","projectile")
     }
 end
 
 --- Basic Attack #3
-local create_cold_fire_projectile = function(projectile_type)
-    projectile_type = projectile_type or 'projectile'
-    return   {
-        type = "projectile",
-        name = MOD_NAME.."--stasis-cold-fire--"..projectile_type,
-        flags = { "not-on-map" },
-        acceleration = 0,
+local create_lighting_strike = function(name, unit_probabilities)
+    local aiur_lightning = util.table.deepcopy(data.raw['lightning']['lightning'])
+    aiur_lightning.name = 'enemy_erm_toss--'..name..'-lightning--direct'
+    aiur_lightning.damage =  500 * damage_multiplier
+    aiur_lightning.energy = "5000MJ"
 
-        collision_box = {{-0.5,-0.5},{0.5, 0.5}},
-        direction_only = true,
-        force_condition = "enemy",
-        hit_collision_mask =  { layers = {player = true, train = true,   [ERMDataHelper.getFlyingLayerName()] = true}},
-        final_action = {
-            type = "direct",
-            action_delivery = {
-                type = "instant",
-                target_effects = {
-                    --@TODO new explosion
-                    --{
-                    --    type = "create-entity",
-                    --    entity_name = "erm-small-explosion-cold-1",
-                    --    trigger_created_entity = false
-                    --},
-                    {
-                        type = "nested-result",
-                        action = {
-                            type = "area",
-                            force = "not-same",
-                            radius = 2,
-                            ignore_collision_condition = true,
-                            action_delivery = {
-                                type = "instant",
-                                target_effects = {
-                                    type = "damage",
-                                    damage = { amount = 400 * damage_multiplier, type = "cold" },
+    for key, options in pairs(unit_probabilities) do
+        table.insert(aiur_lightning.strike_effect.action_delivery.target_effects,
+                {
+                    type = "nested-result",
+                    probability = options[1],
+                    action = {
+                        type = "direct",
+                        action_delivery = {
+                            type = "instant",
+                            target_effects = {
+                                {
+                                    type = "create-entity",
+                                    entity_name = key,
+                                    offset_deviation = {{-8, -8}, {8, 8}},
+                                    offsets = {
+                                        {0, 0}
+                                    },
+                                    trigger_created_entity = true,
+                                    find_non_colliding_position = true,
+                                    non_colliding_search_radius = 8,
+                                    non_colliding_search_precision = 2,
+                                    repeat_count = options[2]
+                                },
+                                {
+                                    type = "create-explosion",
+                                    entity_name = "protoss--recall-80",
                                 }
                             }
                         }
                     }
                 }
+        )
+    end
+    
+    table.insert(aiur_lightning.strike_effect.action_delivery.target_effects, {
+        type = "nested-result",
+        action = {
+            type = "area",
+            force = "not-same",
+            radius = 4,
+            ignore_collision_condition = true,
+            action_delivery = {
+                type = "instant",
+                target_effects = { 
+                    {
+                       type = "damage",
+                       --- process 4 ticks per second
+                       damage = { amount = 300 * damage_multiplier, type = "electric" },
+                       apply_damage_to_trees = false
+                    } 
+                }
             }
-        },
-        AnimationDB.get_layered_animations("projectiles","stasis","projectile")
-    }
+        }
+    })
+    
+    
+    return  aiur_lightning
 end
 
 local create_damage_cloud = function (name, target_effects, radius, duration, cooldown)
@@ -171,52 +190,6 @@ local create_damage_cloud = function (name, target_effects, radius, duration, co
     }
 end
 
--- Advanced Attacks
-local create_cold_star_projectile = function(projectile_type)
-    projectile_type = projectile_type or 'projectile'
-    return   {
-        type = "projectile",
-        name = MOD_NAME.."--stasis-cold-star--"..projectile_type,
-        flags = { "not-on-map" },
-        acceleration = 0,
-
-        collision_box = {{-0.5,-0.5},{0.5, 0.5}},
-        direction_only = true,
-        force_condition = "enemy",
-        hit_collision_mask =  { layers = {player = true, train = true,   [ERMDataHelper.getFlyingLayerName()] = true}},
-        final_action = {
-            type = "direct",
-            action_delivery = {
-                type = "instant",
-                target_effects = {
-                    --@TODO new explosion
-                    --{
-                    --    type = "create-entity",
-                    --    entity_name = "erm-circular-effect-cold-1",
-                    --    trigger_created_entity = false
-                    --},
-                    {
-                        type = "nested-result",
-                        action = {
-                            type = "area",
-                            force = "not-same",
-                            radius = 5,
-                            ignore_collision_condition = true,
-                            action_delivery = {
-                                type = "instant",
-                                target_effects = {
-                                    type = "damage",
-                                    damage = { amount = 1000 * damage_multiplier , type = "cold" },
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        },
-        animation = AnimationDB.get_layered_animations("projectiles","stasis","projectile")
-    }
-end
 
 -- Super Attacks
 local create_recall_projectile = function(projectile_type, script_attack)
@@ -261,8 +234,7 @@ local create_boss_electric_beam = function(name, beam_data)
     beam_data = beam_data or {}
     local range = beam_data['range'] or 32
     local width = beam_data['width'] or 8
-    local damage = beam_data['damage'] or 25
-    local damage_interval = beam_data['damage_interval'] or 10
+    local damage = beam_data['damage'] or 100
     local default_scale = 0.75
     local animation_scale = beam_data['animation_scale'] or default_scale
     local laser_beam_blend_mode = "additive-soft"
@@ -271,7 +243,7 @@ local create_boss_electric_beam = function(name, beam_data)
 
     clone_beam.name = MOD_NAME..'--'..name..'-'..width..'-'..range..'--beam'
     clone_beam.width = width
-    clone_beam.damage_interval = damage_interval
+    clone_beam.damage_interval = 15
     clone_beam.action_triggered_automatically = true
     clone_beam.action =
     {
@@ -286,11 +258,33 @@ local create_boss_electric_beam = function(name, beam_data)
             {
                 {
                     type = "damage",
-                    damage = { amount = damage, type = "laser"}
+                    damage = { amount = damage * damage_multiplier, type = "laser"}
                 }
             }
         }
     }
+    --- The unit spawn happens on entity hit.  
+    --- It's ideal to have a spawn rate of under 5% to prevent overwhelming amount of unit.
+    --- But that's depends on damage_interval.  Slow attacks can have higher spawning percentage.
+    if beam_data['unit_spawns'] then
+        for name, chance in pairs(beam_data['unit_spawns']) do
+            table.insert(clone_beam.action.action_delivery.target_effects,
+    {
+                type = "create-entity",
+                entity_name = name,
+                probability = chance / 4, --- Divide by 4 to make percentage act as per second chance.
+                offset_deviation = {{-8, -8}, {8, 8}},
+                offsets = {
+                    {0, 0}
+                },
+                trigger_created_entity = true,
+                find_non_colliding_position = true,
+                non_colliding_search_radius = 8,
+                non_colliding_search_precision = 2,
+                repeat_count = ERMConfig.batch_spawn_size
+            })
+        end
+    end
     clone_beam['graphics_set'] =
     {
         desired_segment_length = (30.91 / default_scale) * animation_scale,
@@ -417,7 +411,6 @@ local create_boss_electric_beam = function(name, beam_data)
             }
         }
     }
-
     return clone_beam
 end
 
@@ -425,12 +418,13 @@ end
 
 data:extend({
     create_psystorm_projectile(),
+    create_psystorm_projectile('falling_projectile'),
     create_damage_cloud("psystorm", {
         type = "damage",
         --- process 4 ticks per second
         damage = { amount = 200 * damage_multiplier, type = "electric" },
         apply_damage_to_trees = true
-    },  5,120),
+    },  6,120),
     create_stasis_projectile(),
     create_damage_cloud("stasis", {{
                                              type = "damage",
@@ -441,24 +435,68 @@ data:extend({
                                              type = "create-sticker",
                                              sticker = "5-075-slowdown-sticker",
                                              show_in_tooltip = true,
-                                         }}, 5,60),
-    create_cold_fire_projectile(),
-    create_cold_star_projectile(),
+                                         }}, 4,120),
+    create_lighting_strike('land', {
+        [MOD_NAME.."--zealot--6"] = {1, 4 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--dragoon--6"] = {1, 2 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--darktemplar--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--invis_darktemplar--6"] = {0.2, 2 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--templar--6"] = {0.2, 2 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--reaver--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--darkarchon--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--archon--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+    }),
+    create_lighting_strike('air', {
+        [MOD_NAME.."--scout--6"] = {1, 2 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--corsair--6"] = {1, 1 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--shuttle--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--carrier--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--arbiter--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+    }),
+    create_lighting_strike('mixed', {
+        [MOD_NAME.."--zealot--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--dragoon--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--darktemplar--6"] = {0.3, 1 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--invis_darktemplar--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--reaver--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--darkarchon--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--archon--6"] = {0.1, 1 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--scout--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--corsair--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--shuttle--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--carrier--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [MOD_NAME.."--arbiter--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+    }),
     create_recall_projectile(nil, BOSS_SPAWN_ATTACK),
     create_recall_projectile(nil, UNITS_SPAWN_ATTACK),
+    create_recall_projectile('falling_projectile', UNITS_SPAWN_ATTACK),
     create_damage_cloud("recall-cloud", {{
         type = "damage",
         --- process 4 ticks per second
-        damage = { amount = 200 * damage_multiplier, type = "electric" },
+        damage = { amount = 120 * damage_multiplier, type = "electric" },
         apply_damage_to_trees = true
-    }},  8,120),
+    }},  4,120),
     create_boss_electric_beam('ultimate', {
         range = 1800, 
-        damage = 50,
+        damage = 200,
         width = 16,
-        animation_scale = 1
+        animation_scale = 1,
+        --- The spawn chance divided by 4 in the function. It acts as % per second when it hits things.
+        unit_spawns = {
+            [MOD_NAME.."--zealot--6"] = 0.1,
+            [MOD_NAME.."--dragoon--6"] = 0.05,
+            [MOD_NAME.."--invis_darktemplar--6"] = 0.01,
+            [MOD_NAME.."--archon--6"] = 0.01,
+        }
     }),
     create_boss_electric_beam('special', {
-        range = 1500
+        range = 1500,
+        damage = 130,
+        unit_spawns = {
+            [MOD_NAME.."--zealot--6"] = 0.08,
+            [MOD_NAME.."--dragoon--6"] = 0.04,
+            [MOD_NAME.."--darktemplar--6"] = 0.01,
+            [MOD_NAME.."--archon--6"] = 0.01,
+        }
     })
 })

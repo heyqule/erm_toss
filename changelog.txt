@@ -1,4 +1,16 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.0.16
+Date: 2026-01-29
+
+  Features:
+    - Redesigned Warpgate Boss (Experimental), see in-game trick and tips for details
+    - Added Protoss Akilea Psi Scanner to discover Warpgate. It's only placeable on planet with property protoss_influence > 90%.
+    - Added support for Emotional Damage system.   
+    - Added Milestone mod support for killing each tier of Warpgate.
+    - Added Achievements for killing Tier 1, Tier 3, Tier 5 Warpgate.
+    - Added tip and trick about Warpgate.
+
+---------------------------------------------------------------------------------------------------
 Version: 2.0.15
 Date: 2025-12-08
 
