@@ -31,7 +31,13 @@ CRYSTAL_TRIGGER = "empts-csl"
 PROTOSS_MAP_COLOR = {r=0, g=192, b=192}
 PROTOSS_TEAM_COLOR = {r=0, g=192, b=192}
 
+--- This set must be the same string for boss to function properly.
 REGISTER_BOSS_RADAR = "embss-rdr"
+TRIGGER_BOSS_SPAWNED = "embss-spn"
 TRIGGER_BOSS_DIES = "embss-die"
+TRIGGER_BOSS_ASSIST_SPAWNED = "embas_spn"
+TRIGGER_BOSS_ASSIST_DIES = "embas-die"
+BOSS_SEGMENT_UNIT_DIES = "embsu-die"
+
 
 

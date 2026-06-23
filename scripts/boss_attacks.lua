@@ -107,7 +107,7 @@ BossAttackRemote.assist_attacks =
     attack_count = {1, 1, 1, 1},
     attack_spread = {1, 1, 1, 1},
     select_nearby_enemy_count = {0, 0, 0, 1.5},
-    can_aim_attackable_targets = {true, true, true, true},
+    can_aim_attackable_targets = {true, false, true, true},
     attack_use_multiplier = {false, false,false, false},
     attack_count_multiplier = {
         {},

@@ -268,6 +268,12 @@ local attack_functions =
     end,
     [CRYSTAL_TRIGGER] = function(args)
         CustomAttacks.process_crystal(args)
+    end,
+    [TRIGGER_BOSS_SPAWNED] = function(args)
+        CustomAttacks.boss_spawned(args)
+    end,
+    [TRIGGER_BOSS_ASSIST_DIES] = function(args)
+        CustomAttacks.boss_assisted_spawner_dies(args)
     end
 }
 script.on_event(defines.events.on_script_trigger_effect, function(event)
@@ -332,27 +338,59 @@ script.on_nth_tick(901, function(event)
 end)
 
 --- Spawn attack group periodically once evolution reach 10%
-script.on_nth_tick(13 * minute + 13, function(event)
+local max_group_size = settings.global['enemyracemanager-max-group-size'].value
+local dropship_group_size = math.floor(max_group_size / 6)
+local flyer_group_size = math.floor(max_group_size / 4)
+local general_attack_group_size = math.floor(max_group_size / 2)
+local can_fly = settings.global['enemyracemanager-flying-squad-enable'].value
+local can_dropship = settings.global['enemyracemanager-dropship-squad-enable'].value
+local fly_chance = settings.global['enemyracemanager-flying-squad-chance'].value
+local dropship_chance = settings.global['enemyracemanager-flying-squad-chance'].value
+local min_attack_beacons = 10
+
+script.on_nth_tick(20 * minute + 13, function(event)
     local fulgora = game.surfaces['fulgora']
-    if fulgora and toss_on_fulgora and CustomAttacks.can_spawn(40) then
-        if game.forces[FORCE_NAME].get_evolution_factor(fulgora) < 0.1 then
+    if fulgora and toss_on_fulgora and CustomAttacks.can_spawn(35) then
+        if game.forces[FORCE_NAME].get_evolution_factor(fulgora) < 0.35 then
             return
         end
 
-        local has_entity =  fulgora.count_entities_filtered({type=AttackGroupBeaconConstants.ATTACKABLE_ENTITY_TYPES, limit = 1})
-        if has_entity < 1 then
+        local has_entity =  fulgora.count_entities_filtered({type=AttackGroupBeaconConstants.ATTACKABLE_ENTITY_TYPES, limit = min_attack_beacons})
+        if has_entity < min_attack_beacons then
             return
         end
 
-        if CustomAttacks.can_spawn(15) then
-            remote.call("enemyracemanager", "generate_dropship_group", FORCE_NAME, 10, {surface=fulgora})
-        elseif CustomAttacks.can_spawn(40) then
-            remote.call("enemyracemanager", "generate_flying_group", FORCE_NAME, 20, {surface=fulgora})
+        if can_dropship and CustomAttacks.can_spawn(dropship_chance) then
+            remote.call("enemyracemanager", "generate_dropship_group", FORCE_NAME, dropship_group_size, {surface=fulgora})
+        elseif can_fly and CustomAttacks.can_spawn(fly_chance) then
+            remote.call("enemyracemanager", "generate_flying_group", FORCE_NAME, flyer_group_size, {surface=fulgora})
         else
-            remote.call("enemyracemanager", "generate_attack_group", FORCE_NAME, 50, {surface=fulgora})
+            remote.call("enemyracemanager", "generate_attack_group", FORCE_NAME, general_attack_group_size, {surface=fulgora})
         end
     end
 end)
+
+--script.on_nth_tick(15 * minute + 13, function(event)
+--    local aiur = game.surfaces['aiur']
+--    if aiur and CustomAttacks.can_spawn(35) then
+--        if game.forces[FORCE_NAME].get_evolution_factor(aiur) < 0.35 then
+--            return
+--        end
+--
+--        local has_entity =  aiur.count_entities_filtered({type=AttackGroupBeaconConstants.ATTACKABLE_ENTITY_TYPES, limit = min_attack_beacons})
+--        if has_entity < min_attack_beacons then
+--            return
+--        end
+--
+--        if can_dropship and CustomAttacks.can_spawn(dropship_chance) then
+--            remote.call("enemyracemanager", "generate_dropship_group", FORCE_NAME, dropship_group_size, {surface=aiur})
+--        elseif can_fly and CustomAttacks.can_spawn(fly_chance) then
+--            remote.call("enemyracemanager", "generate_flying_group", FORCE_NAME, flyer_group_size, {surface=aiur})
+--        else
+--            remote.call("enemyracemanager", "generate_attack_group", FORCE_NAME, general_attack_group_size, {surface=aiur})
+--        end
+--    end
+--end)
 
 local ErmBossAttack = require("scripts/boss_attacks")
 remote.add_interface("erm_toss_boss_attacks", {

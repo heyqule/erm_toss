@@ -156,6 +156,6 @@ function CustomAttacks.process_crystal(event)
     end
 
         CustomAttackHelper.drop_unit(event, MOD_NAME, unit_name, amount)
-    end
+end
 
 return CustomAttacks

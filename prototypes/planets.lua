@@ -765,6 +765,7 @@ data:extend({
         surface_properties = {
             ["day-night-cycle"] = 8 * minute,
             protoss_influence = 100,
+            ["magnetic-field"] = 99
         },
         surface_render_parameters = {
             clouds = effects.default_clouds_effect_properties()

@@ -1,4 +1,19 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.0.17
+Date: 2026-06-22
+
+  Changes:
+    - Updated tip and trick for boss.
+    - Fixed locale for PSI radar.
+    - Fixed achievement descriptions.
+    - [periodically attack group changes on Fulgora]
+    - Changed the starting evolution from 10% to 35%
+    - Changed spawn chance from 40% to 35%, run interval from 13 minutes to 20 minutes.
+    - The spawn now both flying and dropship groups' enable settings & spawn chance settings.
+    - [Changes on Planet Aiur]
+    - Added ["magnetic-field"] = 99 to enable crafting lighting collector/rod on Aiur.
+
+---------------------------------------------------------------------------------------------------
 Version: 2.0.16
 Date: 2026-01-29
 
