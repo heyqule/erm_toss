@@ -1075,6 +1075,10 @@ data:extend({
             {
                 type = "unlock-recipe",
                 recipe = mineral_name2.."-recycling"
+            },
+            {
+                type = "unlock-recipe",
+                recipe = MOD_NAME.."--psi-radar"
             }
         },
         prerequisites = { "space-platform-thruster", "landfill" },
