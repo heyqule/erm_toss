@@ -1,4 +1,22 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.0
+Date: 2026-07-01
+
+  Features:
+    - Updated to Factorio 2.1.
+    - Added size_in_group attribute to all units.
+    - Added buildable_entities to all units.  They can build their corresponding unit spawners and more.
+    - Added steering attribute to all units.
+    - Added Interceptor Cannon, they spawn a set of interceptors like the carrier.
+
+  Changes:
+    - Adjusted unit spawn tables to some unit spawners.
+    - Adjusted race setting data and unit prototypes to work with size_in_group changes.
+  
+  Bugfixes:
+    - Fixed preset issue where aiur resource did not change when selecting ERM ones.    
+
+---------------------------------------------------------------------------------------------------
 Version: 2.0.17
 Date: 2026-06-22
 

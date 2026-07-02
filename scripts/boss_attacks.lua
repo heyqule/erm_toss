@@ -7,9 +7,10 @@ local BossAttackRemote = require("__enemyracemanager__/lib/boss_attack_data")
 local BossAttackProcessor = require("__enemyracemanager__/lib/boss_attack_processor")
 
 
+local ERM_TOSS = require("__erm_toss__/global")
 BossAttackRemote.basic_attacks =
 {
-    attack_name = {"recall-"..UNITS_SPAWN_ATTACK, "psystorm", "stasis"},
+    attack_name = {"recall-"..ERM_TOSS.UNITS_SPAWN_ATTACK, "psystorm", "stasis"},
     attack_type = {
         BossAttackProcessor.TYPE_PROJECTILE,
         BossAttackProcessor.TYPE_PROJECTILE,
@@ -172,7 +173,7 @@ BossAttackRemote.ultimate_attacks =
 }
 
 BossAttackRemote.idle_attacks = {
-    attack_name = {'land-lightning', "recall-" .. UNITS_SPAWN_ATTACK, "select_unit_1.5x", "psystorm"},
+    attack_name = {'land-lightning', "recall-" .. ERM_TOSS.UNITS_SPAWN_ATTACK, "select_unit_1.5x", "psystorm"},
     attack_type = {
         BossAttackProcessor.TYPE_DIRECT,
         BossAttackProcessor.TYPE_FALLING_PROJECTILE,
@@ -201,7 +202,7 @@ BossAttackRemote.idle_attacks = {
 
 BossAttackRemote.despawn_attacks =
 {
-    attack_name = {"recall-"..UNITS_SPAWN_ATTACK},
+    attack_name = {"recall-"..ERM_TOSS.UNITS_SPAWN_ATTACK},
     attack_type = {
         BossAttackProcessor.TYPE_PROJECTILE,
     },

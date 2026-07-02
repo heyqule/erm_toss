@@ -13,10 +13,11 @@ local ERM_UnitTint = require("__enemyracemanager__/lib/rig/unit_tint")
 local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
 local GlobalConfig = require("__enemyracemanager__/lib/global_config")
 local TossSound = require("__erm_toss_hd_assets__/sound")
-local biter_ai_settings = require ("__base__.prototypes.entity.biter-ai-settings")
+local AiHelper = require ("__erm_libs__/prototypes/ai_helper")
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
 local util = require("util")
 
+local ERM_TOSS = require("__erm_toss__/global")
 local name = "archon"
 
 
@@ -72,18 +73,21 @@ function ErmToss.make_archon(level)
     local attack_animation = AnimationDB.get_layered_animations("units", name, "attack")
     local archon_animation = AnimationDB.get_single_animation("units", name,"attack_attachment")
     table.insert(attack_animation, archon_animation)
+    local buildable_entities = ERM_UnitHelper.get_buildable_entities(ERM_TOSS.MOD_NAME, {
+        "interceptor-cannon",  "cannon", "pylon", "gateway", "robotics_facility", "templar_archive", "robotics_support_bay"
+    }, level)
 
     data:extend({
         {
             type = "unit",
-            name = MOD_NAME .. "--" .. name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
+            name = ERM_TOSS.MOD_NAME .. "--" .. name .. "--" .. level,
+            localised_name = { "entity-name." .. ERM_TOSS.MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-enemy", "placeable-player", "placeable-off-grid", "not-flammable" },
             has_belt_immunity = false,
             max_health = ERM_UnitHelper.get_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "--unit--" .. name .. "--".. level,
+            order = ERM_TOSS.MOD_NAME .. "--unit--" .. name .. "--".. level,
             subgroup = "enemies",
             map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             shooting_cursor_size = 2,
@@ -107,7 +111,17 @@ function ErmToss.make_archon(level)
             movement_speed = ERM_UnitHelper.get_movement_speed(base_movement_speed, incremental_movement_speed,  level),
             absorptions_to_join_attack = { pollution = ERM_UnitHelper.get_pollution_attack(pollution_to_join_attack, level)},
             distraction_cooldown = distraction_cooldown,
-            ai_settings = biter_ai_settings,
+            ai_settings = AiHelper.get_enemy_unit_settings(4),
+            steering = {
+                move = {
+                    radius = 4,
+                    separation_force = 0.1
+                },
+                stay = {
+                    radius = 7,
+                    separation_force = 0.1
+                },
+            },
             spawning_time_modifier = 2,
             light = {
                 intensity = 1,
@@ -162,6 +176,7 @@ function ErmToss.make_archon(level)
             run_animation = AnimationDB.get_layered_animations("units", name, "run"),
             dying_sound = TossSound.enemy_death(name, 1),
             dying_explosion ="protoss--small-building-explosion",
+            buildable_entities = buildable_entities,
             corpse = name .. "-corpse"
         },
         {

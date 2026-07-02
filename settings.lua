@@ -3,7 +3,7 @@
 --- Created by heyqule.
 --- DateTime: 7/29/2023 11:02 PM
 ---
-require("global")
+local ERM_TOSS = require("__erm_toss__/global")
 
 data:extend {
     --- Startup Tab
@@ -12,7 +12,7 @@ data:extend {
         name = "enemy_erm_toss-map-color",
         description = "enemy_erm_toss-map-color",
         setting_type = "startup",
-        default_value = PROTOSS_MAP_COLOR,
+        default_value = ERM_TOSS.PROTOSS_MAP_COLOR,
         order = "enemy_erm_toss-100"
     },
     {
@@ -28,7 +28,7 @@ data:extend {
         name = "enemy_erm_toss-team_color",
         description = "enemy_erm_toss-team_color",
         setting_type = "startup",
-        default_value = PROTOSS_TEAM_COLOR,
+        default_value = ERM_TOSS.PROTOSS_TEAM_COLOR,
         order = "enemy_erm_toss-111",
     },
     {

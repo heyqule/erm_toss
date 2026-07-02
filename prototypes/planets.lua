@@ -17,6 +17,7 @@ local SoundUtil = require('__erm_libs__/prototypes/sound_util')
 local PsiRadar = require('__erm_libs__/prototypes/psi_scanner')
 local UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
 
+local ERM_TOSS = require("__erm_toss__/global")
 local mineral_name = 'aiur_mineral'
 Minerals.add_resource({
     name = mineral_name,
@@ -40,13 +41,14 @@ Minerals.add_recycle_recipe({
         {type = "item", name = mineral_name, amount = 1}
     },
     results = {
-        {type = "item", name = "iron-ore",  amount = 1, probability = 0.75, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "coal", amount = 1, probability = 0.3, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "copper-ore",  amount = 1, probability = 0.1, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "holmium-ore", amount = 1, probability = 0.03, show_details_in_recipe_tooltip = false},
-        {type = "item", name = MOD_NAME..'--crystal',  amount = 1, probability = 0.005, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "iron-ore",  amount = 1, independent_probability = 0.75, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "coal", amount = 1, independent_probability = 0.3, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "copper-ore",  amount = 1, independent_probability = 0.1, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "holmium-ore", amount = 1, independent_probability = 0.03, show_details_in_recipe_tooltip = false},
+        {type = "item", name = ERM_TOSS.MOD_NAME..'--crystal',  amount = 1, independent_probability = 0.005, show_details_in_recipe_tooltip = false},
     }
 })
+
 local mineral_name2 = 'aiur_mineral_2'
 Minerals.add_resource({
     name = mineral_name2,
@@ -70,11 +72,11 @@ Minerals.add_recycle_recipe({
         {type = "item", name = mineral_name2, amount = 1}
     },
     results = {
-        {type = "item", name = "copper-ore",  amount = 1, probability = 0.75, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "stone", amount = 1, probability = 0.2, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "iron-ore",  amount = 1, probability = 0.1, show_details_in_recipe_tooltip = false},
-        {type = "item", name = "uranium-ore",  amount = 1, probability = 0.01, show_details_in_recipe_tooltip = false},
-        {type = "item", name = MOD_NAME..'--crystal',  amount = 1, probability = 0.005, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "copper-ore",  amount = 1, independent_probability = 0.75, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "stone", amount = 1, independent_probability = 0.2, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "iron-ore",  amount = 1, independent_probability = 0.1, show_details_in_recipe_tooltip = false},
+        {type = "item", name = "uranium-ore",  amount = 1, independent_probability = 0.01, show_details_in_recipe_tooltip = false},
+        {type = "item", name = ERM_TOSS.MOD_NAME..'--crystal',  amount = 1, independent_probability = 0.005, show_details_in_recipe_tooltip = false},
     }
 })
 
@@ -115,7 +117,7 @@ Geyser.add_refinery_recipe({
     },
     results = {
         {type = "fluid", name = "steam", amount = 600, temperature = 500},
-        {type = "fluid", name = "holmium-solution", amount = 12, probability = 0.05},
+        {type = "fluid", name = "holmium-solution", amount = 12, independent_probability = 0.05},
         {type = "fluid", name = "crude-oil", amount = 36},
     }
 })
@@ -159,7 +161,7 @@ local ingredients = {
     {type = "item", name = "quantum-processor", amount = 1},
     {type = "item", name = "superconductor", amount = 1},
     {type = "item", name = "supercapacitor", amount = 1},
-    {type= "item", name= MOD_NAME..'--crystal', amount= 1000}
+    {type= "item", name= ERM_TOSS.MOD_NAME..'--crystal', amount= 1000}
 }
 local teamcolor = UnitHelper.format_team_color(
         settings.startup["enemy_erm_toss-team_color"].value,
@@ -203,9 +205,9 @@ local animations = {
         }
     }
 }
-PsiRadar.make_entity(MOD_NAME, icons, surface_conditions, animations)
-PsiRadar.make_item(MOD_NAME, icons)
-PsiRadar.make_recipe(MOD_NAME, ingredients)
+PsiRadar.make_entity(ERM_TOSS.MOD_NAME, icons, surface_conditions, animations)
+PsiRadar.make_item(ERM_TOSS.MOD_NAME, icons)
+PsiRadar.make_recipe(ERM_TOSS.MOD_NAME, ingredients)
 
 local aiur_mapgen =
     {
@@ -228,7 +230,7 @@ local aiur_mapgen =
             [geyser_name] = {},
             ["water"] = {},
             ["trees"] = {},
-            [AUTOCONTROL_NAME] = {},
+            [ERM_TOSS.AUTOCONTROL_NAME] = {},
             ["rocks"] = {},
             ["nauvis_cliff"] = {}
         },
@@ -433,15 +435,15 @@ local aiur_mapgen =
 
 
 ----- Add medium asteroid that spawn units
-local oxide_name = MOD_NAME.."--medium-energized-oxide-asteroid"
+local oxide_name = ERM_TOSS.MOD_NAME.."--medium-energized-oxide-asteroid"
 local protoss_spawning_oxide_asteroid = util.table.deepcopy(data.raw['asteroid']['medium-oxide-asteroid'])
 protoss_spawning_oxide_asteroid["name"] = oxide_name
 
-local carbonic_name = MOD_NAME.."--medium-energized-carbonic-asteroid"
+local carbonic_name = ERM_TOSS.MOD_NAME.."--medium-energized-carbonic-asteroid"
 local protoss_spawning_carbonic_asteroid = util.table.deepcopy(data.raw['asteroid']['medium-carbonic-asteroid'])
 protoss_spawning_carbonic_asteroid["name"]  = carbonic_name
 
-local metallic_name = MOD_NAME.."--medium-energized-metallic-asteroid"
+local metallic_name = ERM_TOSS.MOD_NAME.."--medium-energized-metallic-asteroid"
 local protoss_spawning_metallic_asteroid = util.table.deepcopy(data.raw['asteroid']['medium-metallic-asteroid'])
 protoss_spawning_metallic_asteroid["name"]  = metallic_name
 
@@ -468,7 +470,7 @@ local astreroid_data = {
 for key, a_data in pairs(astreroid_data) do
     for unit_name, spawn_data in pairs(a_data) do
         for tier, chance in pairs(spawn_data) do
-            asteroid_triggers.add_unit_to_asteroid(new_asteroids[key], MOD_NAME, unit_name, tier, chance)
+            asteroid_triggers.add_unit_to_asteroid(new_asteroids[key], ERM_TOSS.MOD_NAME, unit_name, tier, chance)
         end
     end
 end
@@ -652,14 +654,14 @@ local auir_space_asteroid_spawn_definition = {
 --- Aiur's intense lighting lol
 local aiur_lightning = util.table.deepcopy(data.raw['lightning']['lightning'])
 aiur_lightning.name = 'enemy_erm_toss--aiur-lightning'
-aiur_lightning.damage = 500
+aiur_lightning.damage = { amount = 500, type = "electric" }
 aiur_lightning.energy = "5000MJ"
 
 local aiur_unit_probabilities = {
-    [MOD_NAME.."--zealot--1"] = 0.02,
-    [MOD_NAME.."--dragoon--1"] = 0.01,
-    [MOD_NAME.."--darktemplar--1"] = 0.005,
-    [MOD_NAME.."--invis_darktemplar--1"] = 0.003,
+    [ERM_TOSS.MOD_NAME.."--zealot--1"] = 0.02,
+    [ERM_TOSS.MOD_NAME.."--dragoon--1"] = 0.01,
+    [ERM_TOSS.MOD_NAME.."--darktemplar--1"] = 0.005,
+    [ERM_TOSS.MOD_NAME.."--invis_darktemplar--1"] = 0.003,
 }
 
 for key, prop in pairs(aiur_unit_probabilities) do
@@ -701,10 +703,10 @@ end
 local fulgora_lightning_replacement = util.table.deepcopy(data.raw['lightning']['lightning'])
 fulgora_lightning_replacement.name = 'enemy_erm_toss--fulgora-lightning'
 local fulgora_unit_probabilities = {
-    [MOD_NAME.."--zealot--1"] = 0.005,
-    [MOD_NAME.."--dragoon--1"] = 0.002,
-    [MOD_NAME.."--darktemplar--1"] = 0.001,
-    [MOD_NAME.."--invis_darktemplar--1"] = 0.001,
+    [ERM_TOSS.MOD_NAME.."--zealot--1"] = 0.005,
+    [ERM_TOSS.MOD_NAME.."--dragoon--1"] = 0.002,
+    [ERM_TOSS.MOD_NAME.."--darktemplar--1"] = 0.001,
+    [ERM_TOSS.MOD_NAME.."--invis_darktemplar--1"] = 0.001,
 }
 for key, prop in pairs(fulgora_unit_probabilities) do
     table.insert(fulgora_lightning_replacement.strike_effect.action_delivery.target_effects,
@@ -1075,6 +1077,10 @@ data:extend({
             {
                 type = "unlock-recipe",
                 recipe = mineral_name2.."-recycling"
+            },
+            {
+                type = "unlock-recipe",
+                recipe = ERM_TOSS.MOD_NAME.."--psi-radar"
             }
         },
         prerequisites = { "space-platform-thruster", "landfill" },
@@ -1090,6 +1096,101 @@ data:extend({
         }
     },
 })
+
+data.raw.planet["aiur"].platform_surface_render_parameters = util.table.deepcopy(data.raw.planet["nauvis"].platform_surface_render_parameters)
+data.raw.planet["aiur"].platform_surface_render_parameters.platform_backdrop =
+{
+    emission_scales_with_shadow = false,
+    radius = 600,
+    rotation_seconds = data.raw.planet["nauvis"].platform_surface_render_parameters.platform_backdrop.rotation_seconds / 0.6,
+    light_radius = data.raw.planet["nauvis"].platform_surface_render_parameters.platform_backdrop.light_radius * 0.75,
+    cloudiness = 0.7,
+    surface_vertical_offset = 0.1,
+    cloud_vertical_offset = 0.05,
+    specular_intensity = 0.5,
+    atmosphere_color = {0.072, 0.073, 0.067, 0.1},
+    cloud_flow_intensity = 0.8,
+    cloud_panning_rate = -0.1,
+    planet_axis = {3.0, 13.0},
+    planet_axis_deviation_amplitude = {10.0, 10.0},
+    planet_axis_deviation_seconds = {890.5/0.6, 753.7/0.6},
+    position = {680, 601},
+    parallax_strength = {0.95, 0.95},
+    light_direction = {-0.42, 0.23, 0.67},
+    light_intensity_contrast = 0.3,
+    hero_clouds_are_emissive = true,
+    hero_clouds =
+    {
+        {
+            sprite_index = 1,
+            rotate_with_planet = false,
+            positions = {{0.2, 0.5}},
+            position_deviation = {-0.05, -0.3},
+            rotation_deviation = 100.0,
+            starting_frame_offset = 0,
+            size = {0.3, 0.3}
+        },
+        {
+            sprite_index = 1,
+            rotate_with_planet = false,
+            positions = {{0.21, 0.7}},
+            position_deviation = {0.05, -0.2},
+            rotation_deviation = 1.0,
+            starting_frame_offset = 24,
+            size = {0.3, 0.3}
+        },
+        {
+            sprite_index = 1,
+            rotate_with_planet = false,
+            positions = {{0.21, 0.9}},
+            position_deviation = {-0.05, -0.4},
+            rotation_deviation = 1.0,
+            starting_frame_offset = 32,
+            size = {0.3, 0.3}
+        },
+        {
+            sprite_index = 1,
+            rotate_with_planet = false,
+            positions = {{0.21, 0.9}},
+            position_deviation = {-0.05, -0.4},
+            rotation_deviation = 1.0,
+            starting_frame_offset = 64,
+            size = {0.3, 0.3}
+        }
+    },
+    hero_cloud_texture_1 = util.sprite_load("__space-age__/graphics/space/planet-lightning",{
+        frame_count = 12,
+        frame_sequence = {1,2,3,4,5,6,7,8,9,10,11,12,
+                          12,12,12,12,12,12,12,12,12,12,
+                          12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,},
+        --12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12,12},
+        animation_speed = 0.5
+    }),
+    planet_surface =
+    {
+        filename = "__erm_toss_hd_assets__/graphics/planet/aiur.png",
+        width = 2048,
+        height = 1024
+    },
+    global_cloud =
+    {
+        filename = "__space-age__/graphics/space/nauvis-cloud.png",
+        width = 2048,
+        height = 1024
+    },
+    global_cloud_normal =
+    {
+        filename = "__space-age__/graphics/space/nauvis-cloud-normal.png",
+        width = 2048,
+        height = 1024
+    },
+    global_cloud_flow =
+    {
+        filename = "__space-age__/graphics/space/nauvis-cloud-flow.png",
+        width = 2048,
+        height = 1024
+    }
+}
 
 if mods['alien-biomes'] then
     -- AB wipes autoplace spec from them and cause them to crash. Aiur won't get rock till they fix it. 

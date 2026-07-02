@@ -6,18 +6,19 @@
 
 local simulations = require("__erm_toss__/prototypes/tips_and_tricks/simulations")
 
+local ERM_TOSS = require("__erm_toss__/global")
 data:extend(
         {
             {
                 type = "tips-and-tricks-item-category",
-                name = FORCE_NAME,
-                order = "n02-["..FORCE_NAME.."]"
+                name = ERM_TOSS.FORCE_NAME,
+                order = "n02-["..ERM_TOSS.FORCE_NAME.."]"
             },
             {
                 type = "tips-and-tricks-item",
-                name = FORCE_NAME.."-general-info",
-                tag = "[entity="..FORCE_NAME.."--zealot--1]",
-                category = FORCE_NAME,
+                name = ERM_TOSS.FORCE_NAME.."-general-info",
+                tag = "[entity="..ERM_TOSS.FORCE_NAME.."--zealot--1]",
+                category = ERM_TOSS.FORCE_NAME,
                 order = "a",
                 is_title = true,
                 starting_status = "suggested",
@@ -25,9 +26,9 @@ data:extend(
             },
             {
                 type = "tips-and-tricks-item",
-                name = FORCE_NAME.."-invis_darktemplar",
-                tag = "[entity="..FORCE_NAME.."--invis_darktemplar--1]",
-                category = FORCE_NAME,
+                name = ERM_TOSS.FORCE_NAME.."-invis_darktemplar",
+                tag = "[entity="..ERM_TOSS.FORCE_NAME.."--invis_darktemplar--1]",
+                category = ERM_TOSS.FORCE_NAME,
                 order = "b",
                 starting_status = "suggested",
                 simulation = simulations.invis_darktemplar,
@@ -41,9 +42,9 @@ if mods['space-age'] then
             {
                 {
                     type = "tips-and-tricks-item",
-                    name = FORCE_NAME.."-teleportation",
-                    tag = "[entity="..FORCE_NAME.."--fulgora-lightning]",
-                    category = FORCE_NAME,
+                    name = ERM_TOSS.FORCE_NAME.."-teleportation",
+                    tag = "[entity="..ERM_TOSS.FORCE_NAME.."--fulgora-lightning]",
+                    category = ERM_TOSS.FORCE_NAME,
                     order = "c",
                     indent = 1,
                     starting_status = "suggested",
@@ -52,8 +53,8 @@ if mods['space-age'] then
                 {
                     type = "tips-and-tricks-item",
                     tag = "[planet=aiur]",
-                    name = FORCE_NAME.."-planet-aiur",
-                    category = FORCE_NAME,
+                    name = ERM_TOSS.FORCE_NAME.."-planet-aiur",
+                    category = ERM_TOSS.FORCE_NAME,
                     order = "d",
                     indent = 1,
                     starting_status = "suggested",
@@ -61,9 +62,9 @@ if mods['space-age'] then
                 },
                 {
                     type = "tips-and-tricks-item",
-                    tag = "[entity="..FORCE_NAME.."--boss_warpgate--1]",
-                    name = FORCE_NAME.."-boss_warpgate",
-                    category = FORCE_NAME,
+                    tag = "[entity="..ERM_TOSS.FORCE_NAME.."--boss_warpgate--1]",
+                    name = ERM_TOSS.FORCE_NAME.."-boss_warpgate",
+                    category = ERM_TOSS.FORCE_NAME,
                     order = "e",
                     indent = 2,
                     starting_status = "suggested",
@@ -72,8 +73,8 @@ if mods['space-age'] then
                 {
                     type = "tips-and-tricks-item",
                     tag = "[item=enemy_erm_toss--crystal]",
-                    name = FORCE_NAME.."-economy",
-                    category = FORCE_NAME,
+                    name = ERM_TOSS.FORCE_NAME.."-economy",
+                    category = ERM_TOSS.FORCE_NAME,
                     order = "f",
                     indent = 1,
                     starting_status = "suggested",

@@ -20,8 +20,9 @@ local ERM_DebugHelper = require("__enemyracemanager__/lib/debug_helper")
 local ERMDataHelper = require("__enemyracemanager__/lib/rig/data_helper")
 local GlobalConfig = require("__enemyracemanager__/lib/global_config")
 local TossSound = require("__erm_toss_hd_assets__/sound")
-local biter_ai_settings = require ("__base__.prototypes.entity.biter-ai-settings")
+local AiHelper = require ("__erm_libs__/prototypes/ai_helper")
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
+local ERM_TOSS = require("__erm_toss__/global")
 local name = "interceptor"
 
 
@@ -72,18 +73,21 @@ function ErmToss.make_interceptor(level)
     level = level or 1
     local attack_range = ERM_UnitHelper.get_attack_range(level,0.25)
     local vision_distance = ERM_UnitHelper.get_vision_distance(attack_range)
+    local buildable_entities = ERM_UnitHelper.get_buildable_entities(ERM_TOSS.MOD_NAME, {
+        "interceptor-cannon", "cannon",
+    }, level)
 
     data:extend({
         {
             type = "unit",
-            name = MOD_NAME .. "--" .. name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
+            name = ERM_TOSS.MOD_NAME .. "--" .. name .. "--" .. level,
+            localised_name = { "entity-name." .. ERM_TOSS.MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/" .. name .. ".png",
             icon_size = 64,
             flags = { "placeable-enemy", "placeable-player", "placeable-off-grid", "not-flammable" },
             has_belt_immunity = true,
             max_health = ERM_UnitHelper.get_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "--unit--" .. name .. "--".. level,
+            order = ERM_TOSS.MOD_NAME .. "--unit--" .. name .. "--".. level,
             subgroup = "erm-flying-enemies",
             map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             shooting_cursor_size = 2,
@@ -107,7 +111,15 @@ function ErmToss.make_interceptor(level)
             movement_speed = ERM_UnitHelper.get_movement_speed(base_movement_speed, incremental_movement_speed,  level),
             absorptions_to_join_attack = { pollution = ERM_UnitHelper.get_pollution_attack(pollution_to_join_attack, level)},
             distraction_cooldown = distraction_cooldown,
-            ai_settings = biter_ai_settings,
+            ai_settings = AiHelper.get_enemy_unit_settings(1),
+            steering = {
+                move = {
+                    radius = 3
+                },
+                stay = {
+                    radius = 5.25
+                },
+            },
             spawning_time_modifier = 1.5,
             min_pursue_time = 120 * second,
             render_layer = "wires-above",
@@ -145,7 +157,7 @@ function ErmToss.make_interceptor(level)
                     source_effects = {
                         {
                             type = "script",
-                            effect_id = TIME_TO_LIVE_CREATED,
+                            effect_id = ERM_TOSS.TIME_TO_LIVE_CREATED,
                         }
                     }
                 }
@@ -153,12 +165,13 @@ function ErmToss.make_interceptor(level)
             dying_trigger_effect = {
                 {
                     type = "script",
-                    effect_id = TIME_TO_LIVE_DIED,
+                    effect_id = ERM_TOSS.TIME_TO_LIVE_DIED,
                 }
             },
             dying_sound = TossSound.enemy_death("scout", 1),
             dying_explosion ="protoss--small-air-death",
-            corpse = name .. "-corpse"
+            corpse = name .. "-corpse",
+            buildable_entities = buildable_entities
         },
         {
             type = "corpse",

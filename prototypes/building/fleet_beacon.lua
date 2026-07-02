@@ -15,6 +15,7 @@ local TossSound = require("__erm_toss_hd_assets__/sound")
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
 local Creep = require("prototypes.creep")
 local enemy_autoplace = require("__enemyracemanager__/prototypes/enemy-autoplace")
+local ERM_TOSS = require("__erm_toss__/global")
 local name = "fleet_beacon"
 
 -- Hitpoints
@@ -48,15 +49,15 @@ local max_friends_around_to_spawn = 5
 local spawn_table = function(level)
     local res = {}
     --Tire 1
-    res[1] = { MOD_NAME.."--zealot--" .. level, { { 0.0, 0.7 }, { 0.2, 0.5 }, { 0.4, 0.45 }, { 0.6, 0.25 }, { 0.8, 0.0 }, { 1.0, 0.0 } } }
-    res[2] = { MOD_NAME.."--dragoon--" .. level, { { 0.0, 0.3 }, { 0.2, 0.5 }, { 0.4, 0.4 }, { 0.6, 0.25 }, { 0.8, 0.0 }, { 1.0, 0.0 } } }
+    res[1] = { ERM_TOSS.MOD_NAME.."--zealot--" .. level, { { 0.0, 0.7 }, { 0.2, 0.5 }, { 0.4, 0.45 }, { 0.6, 0.25 }, { 0.8, 0.0 }, { 1.0, 0.0 } } }
+    res[2] = { ERM_TOSS.MOD_NAME.."--dragoon--" .. level, { { 0.0, 0.3 }, { 0.2, 0.5 }, { 0.4, 0.4 }, { 0.6, 0.25 }, { 0.8, 0.0 }, { 1.0, 0.0 } } }
     --Tire 2
-    res[3] = { MOD_NAME.."--scout--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.1 }, { 0.6, 0.2 }, { 0.8, 0.45 }, { 1.0, 0.2 } } }
-    res[4] = { MOD_NAME.."--corsair--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.05 }, { 0.6, 0.2 }, { 0.8, 0.45 }, { 1.0, 0.2 } } }
-    res[5] = { MOD_NAME.."--shuttle--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.1 }, { 0.8, 0.1 }, { 1.0, 0.15 } } }
+    res[3] = { ERM_TOSS.MOD_NAME.."--scout--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.1 }, { 0.6, 0.2 }, { 0.8, 0.45 }, { 1.0, 0.2 } } }
+    res[4] = { ERM_TOSS.MOD_NAME.."--corsair--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.05 }, { 0.6, 0.2 }, { 0.8, 0.45 }, { 1.0, 0.2 } } }
+    res[5] = { ERM_TOSS.MOD_NAME.."--shuttle--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.1 }, { 0.8, 0.1 }, { 1.0, 0.15 } } }
     --Tire 3
-    res[6] = { MOD_NAME.."--arbiter--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.1 }, { 1.0, 0.1 } } }
-    res[7] = { MOD_NAME.."--carrier--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.1 }, { 1.0, 0.25 } } }
+    res[6] = { ERM_TOSS.MOD_NAME.."--arbiter--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.1 }, { 1.0, 0.1 } } }
+    res[7] = { ERM_TOSS.MOD_NAME.."--carrier--" .. level, { { 0.0, 0.0 }, { 0.2, 0.0 }, { 0.4, 0.0 }, { 0.6, 0.0 }, { 0.8, 0.1 }, { 1.0, 0.25 } } }
     return res
 end
 
@@ -70,13 +71,13 @@ function ErmToss.make_fleet_beacon(level)
     data:extend({
         {
             type = "unit-spawner",
-            name = MOD_NAME .. "--" .. name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
+            name = ERM_TOSS.MOD_NAME .. "--" .. name .. "--" .. level,
+            localised_name = { "entity-name." .. ERM_TOSS.MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy" },
             max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "--building--" .. name .. "--".. level,
+            order = ERM_TOSS.MOD_NAME .. "--building--" .. name .. "--".. level,
             subgroup = "enemies",
             map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             working_sound = TossSound.building_working_sound(name, 1),
@@ -115,8 +116,8 @@ function ErmToss.make_fleet_beacon(level)
             -- (2018-12-07)
             autoplace = enemy_autoplace.enemy_spawner_autoplace({
                 probability_expression = "erm_toss_autoplace_base(0, 13)",
-                force = FORCE_NAME,
-                control = AUTOCONTROL_NAME
+                force = ERM_TOSS.FORCE_NAME,
+                control = ERM_TOSS.AUTOCONTROL_NAME
             }),
             call_for_help_radius = 50,
             spawn_decorations_on_expansion = true,

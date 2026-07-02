@@ -7,6 +7,7 @@ require("util")
 local ErmConfig = require("__enemyracemanager__/lib/global_config")
 local CustomAttacks = require("__erm_toss__/scripts/custom_attacks")
 
+local ERM_TOSS = require("__erm_toss__/global")
 local RemoteAPI = {}
 
 function RemoteAPI.milestones_preset_addons()
@@ -44,11 +45,11 @@ function RemoteAPI.print_global()
 end
 
 function RemoteAPI.register_new_enemy_race()
-    return MOD_NAME
+    return ERM_TOSS.MOD_NAME
 end
 
 function RemoteAPI.refresh_custom_attack_cache()
-    CustomAttacks.get_race_settings(MOD_NAME, true)
+    CustomAttacks.get_race_settings(ERM_TOSS.MOD_NAME, true)
 end
 
 function RemoteAPI.interplanetary_attack_ignore_planets()

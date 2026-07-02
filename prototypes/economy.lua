@@ -14,12 +14,13 @@ local ProtossPlayableRecipe = require('__erm_toss_economy__/prototypes/create-pr
 
 local ERM_UnitHelper = require("__enemyracemanager__/lib/rig/unit_helper")
 
+local ERM_TOSS = require("__erm_toss__/global")
 local crystal_color = {r=0.53,g=0.5,b=0.72,a=1}
-local crystal_name = MOD_NAME..'--crystal'
+local crystal_name = ERM_TOSS.MOD_NAME..'--crystal'
 --- Create recipe category and subgroup
 Crystal.init()
 --- Create crystal item
-Crystal.create_item(crystal_name, CRYSTAL_TRIGGER)
+Crystal.create_item(crystal_name, ERM_TOSS.CRYSTAL_TRIGGER)
 
 --- Create crystal duplication recipe
 Crystal.create_crystal_duplication_recipe(crystal_name, {
@@ -48,54 +49,54 @@ Crystal.create_crystal_to_promethium_recipe(crystal_name)
 Crystal.create_tech(crystal_name)
 
 --- Create playable entities for zerg
-ProtossPlayableEntities.init(MOD_NAME)
+ProtossPlayableEntities.init(ERM_TOSS.MOD_NAME)
 --- ProtossPlayableEntities.zealot(prefix, hp_multiplier = 1, damage_multiplier = 1)
-ProtossPlayableEntities.zealot(MOD_NAME)
-ProtossPlayableEntities.dragoon(MOD_NAME)
-ProtossPlayableEntities.arbiter(MOD_NAME)
-ProtossPlayableEntities.corsair(MOD_NAME)
-ProtossPlayableEntities.darktemplar(MOD_NAME)
-ProtossPlayableEntities.archon(MOD_NAME)
+ProtossPlayableEntities.zealot(ERM_TOSS.MOD_NAME)
+ProtossPlayableEntities.dragoon(ERM_TOSS.MOD_NAME)
+ProtossPlayableEntities.arbiter(ERM_TOSS.MOD_NAME)
+ProtossPlayableEntities.corsair(ERM_TOSS.MOD_NAME)
+ProtossPlayableEntities.darktemplar(ERM_TOSS.MOD_NAME)
+ProtossPlayableEntities.archon(ERM_TOSS.MOD_NAME)
 
-ProtossPlayableEntities.nexus(MOD_NAME)
+ProtossPlayableEntities.nexus(ERM_TOSS.MOD_NAME)
 
 --- Create recipe and item for zerg
-ProtossPlayableRecipe.zealot(MOD_NAME, {
+ProtossPlayableRecipe.zealot(ERM_TOSS.MOD_NAME, {
     {type = "item", name = "holmium-plate", amount = 5},
     {type = "item", name = crystal_name, amount = 2},
     {type = "item", name = "quantum-processor", amount = 1},
     {type = "item", name = "superconductor", amount = 1},
     {type = "item", name = "supercapacitor", amount = 1},
 })
-ProtossPlayableRecipe.dragoon(MOD_NAME,{
+ProtossPlayableRecipe.dragoon(ERM_TOSS.MOD_NAME,{
     {type = "item", name = "holmium-plate", amount = 10},
     {type = "item", name = crystal_name, amount = 4},
     {type = "item", name = "quantum-processor", amount = 1},
     {type = "item", name = "superconductor", amount = 1},
     {type = "item", name = "supercapacitor", amount = 1},
 })
-ProtossPlayableRecipe.arbiter(MOD_NAME,{
+ProtossPlayableRecipe.arbiter(ERM_TOSS.MOD_NAME,{
     {type = "item", name = "holmium-plate", amount = 25},
     {type = "item", name = crystal_name, amount = 16},
     {type = "item", name = "quantum-processor", amount = 1},
     {type = "item", name = "superconductor", amount = 1},
     {type = "item", name = "supercapacitor", amount = 1},
 })
-ProtossPlayableRecipe.corsair(MOD_NAME,{
+ProtossPlayableRecipe.corsair(ERM_TOSS.MOD_NAME,{
     {type = "item", name = "holmium-plate", amount = 20},
     {type = "item", name = crystal_name, amount = 4},
     {type = "item", name = "quantum-processor", amount = 1},
     {type = "item", name = "superconductor", amount = 1},
     {type = "item", name = "supercapacitor", amount = 1},
 })
-ProtossPlayableRecipe.darktemplar(MOD_NAME,{
+ProtossPlayableRecipe.darktemplar(ERM_TOSS.MOD_NAME,{
     {type = "item", name = "holmium-plate", amount = 20},
     {type = "item", name = crystal_name, amount = 8},
     {type = "item", name = "quantum-processor", amount = 1},
     {type = "item", name = "superconductor", amount = 1},
     {type = "item", name = "supercapacitor", amount = 1},
 })
-ProtossPlayableRecipe.archon(MOD_NAME,{
+ProtossPlayableRecipe.archon(ERM_TOSS.MOD_NAME,{
     {type = "item", name = "holmium-plate", amount = 50},
     {type = "item", name = crystal_name, amount = 32},
     {type = "item", name = "quantum-processor", amount = 2},
@@ -103,7 +104,7 @@ ProtossPlayableRecipe.archon(MOD_NAME,{
     {type = "item", name = "supercapacitor", amount = 2},
 })
 
-ProtossPlayableRecipe.nexus(MOD_NAME,{
+ProtossPlayableRecipe.nexus(ERM_TOSS.MOD_NAME,{
     {type = "item", name = "quantum-processor", amount = 10},
     {type = "item", name = "superconductor", amount = 10},
     {type = "item", name = "supercapacitor", amount = 10},
@@ -112,7 +113,7 @@ ProtossPlayableRecipe.nexus(MOD_NAME,{
 })
 
 --- Create technology for zerg
-ProtossPlayableRecipe.technologies(MOD_NAME)
+ProtossPlayableRecipe.technologies(ERM_TOSS.MOD_NAME)
 
 
 --- Assign larva egg to applicable spawners as loot
@@ -129,10 +130,10 @@ local loot_multiplier = {
 
 for _, spawner in pairs(lootable_spawners) do
     for tier, multiplier in pairs(loot_multiplier) do
-        local unit_prototype = data.raw['unit-spawner'][MOD_NAME..'--'..spawner..'--'..tier]
+        local unit_prototype = data.raw['unit-spawner'][ERM_TOSS.MOD_NAME..'--'..spawner..'--'..tier]
         if unit_prototype then
             unit_prototype.loot = {
-                {item = crystal_name, count_min = multiplier[1], count_max = multiplier[2] }
+                {type = "item", name = crystal_name, amount_min = multiplier[1], amount_max = multiplier[2]}
             }
         end
     end
@@ -152,10 +153,10 @@ local loot_multiplier_with_probablity = {
 
 for _, spawner in pairs(lootable_spawner_with_probablity) do
     for tier, multiplier in pairs(loot_multiplier_with_probablity) do
-        local unit_prototype = data.raw['unit-spawner'][MOD_NAME..'--'..spawner..'--'..tier]
+        local unit_prototype = data.raw['unit-spawner'][ERM_TOSS.MOD_NAME..'--'..spawner..'--'..tier]
         if unit_prototype then
             unit_prototype.loot = {
-                {item = crystal_name, probability = 0.33, count_min = multiplier[1], count_max = multiplier[2] }
+                {type = "item", name = crystal_name, independent_probability = 0.33, amount_min = multiplier[1], amount_max = multiplier[2]}
             }
         end
     end

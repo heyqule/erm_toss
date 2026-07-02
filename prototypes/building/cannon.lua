@@ -15,6 +15,7 @@ local TossSound = require("__erm_toss_hd_assets__/sound")
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
 local Creep = require("prototypes.creep")
 local enemy_autoplace = require("__enemyracemanager__/prototypes/enemy-autoplace")
+local ERM_TOSS = require("__erm_toss__/global")
 local name = "cannon"
 local shortrange_name = "cannon_shortrange"
 
@@ -58,6 +59,9 @@ local incremental_acid_damage = 25
 local base_attack_speed = 120
 local incremental_attack_speed = 60
 
+local interceptor_base_attack_speed = 900
+local interceptor_incremental_attack_speed = 300
+
 -- Animation Settings
 local unit_scale = 1.5
 
@@ -73,19 +77,20 @@ function ErmToss.make_cannon(level)
     level = level or 1
     local attack_range = ERM_UnitHelper.get_attack_range(level) + 16
     local acid_attack_range = ERM_UnitHelper.get_attack_range(level) + 14
+    local interceptor_attack_range = ERM_UnitHelper.get_attack_range(level) + 18
     local attack_shortrange = ERM_UnitHelper.get_attack_range(level)
 
     data:extend({
         --- Regular cannon turret
         {
             type = "turret",
-            name = MOD_NAME .. "--" .. name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
+            name = ERM_TOSS.MOD_NAME .. "--" .. name .. "--" .. level,
+            localised_name = { "entity-name." .. ERM_TOSS.MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
             max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "--building--" .. name .. "--".. level,
+            order = ERM_TOSS.MOD_NAME .. "--building--" .. name .. "--".. level,
             subgroup = "enemies",
             map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             resistances = {
@@ -140,8 +145,8 @@ function ErmToss.make_cannon(level)
             },
             autoplace = enemy_autoplace.enemy_worm_autoplace({
                 probability_expression = "erm_toss_autoplace_base(0, 2)",
-                force = FORCE_NAME,
-                control = AUTOCONTROL_NAME
+                force = ERM_TOSS.FORCE_NAME,
+                control = ERM_TOSS.AUTOCONTROL_NAME
             }),
             attack_from_start_frame = true,
             prepare_range = attack_range,
@@ -173,13 +178,13 @@ function ErmToss.make_cannon(level)
         --- Acid cannon turret
         {
             type = "turret",
-            name = MOD_NAME.."--acid-" .. name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME.."--acid-" .. name, GlobalConfig.QUALITY_MAPPING[level] },
+            name = ERM_TOSS.MOD_NAME.."--acid-" .. name .. "--" .. level,
+            localised_name = { "entity-name." .. ERM_TOSS.MOD_NAME.."--acid-" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
             max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "--building--" .. name .. "--".. level,
+            order = ERM_TOSS.MOD_NAME .. "--building--" .. name .. "--".. level,
             map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             subgroup = "enemies",
             resistances = {
@@ -234,8 +239,8 @@ function ErmToss.make_cannon(level)
             },
             autoplace = enemy_autoplace.enemy_worm_autoplace({
                 probability_expression = "erm_toss_autoplace_base(0, 3)",
-                force = FORCE_NAME,
-                control = AUTOCONTROL_NAME
+                force = ERM_TOSS.FORCE_NAME,
+                control = ERM_TOSS.AUTOCONTROL_NAME
             }),
             attack_from_start_frame = true,
             prepare_range = acid_attack_range,
@@ -269,13 +274,13 @@ function ErmToss.make_cannon(level)
         --- Short range cannon turret
         {
             type = "turret",
-            name = MOD_NAME .. "--" .. shortrange_name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME .. "--" .. shortrange_name, GlobalConfig.QUALITY_MAPPING[level] },
+            name = ERM_TOSS.MOD_NAME .. "--" .. shortrange_name .. "--" .. level,
+            localised_name = { "entity-name." .. ERM_TOSS.MOD_NAME .. "--" .. shortrange_name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
             max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "--building--" .. shortrange_name .. "--".. level,
+            order = ERM_TOSS.MOD_NAME .. "--building--" .. shortrange_name .. "--".. level,
             subgroup = "enemies",
             map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             resistances = {
@@ -306,8 +311,8 @@ function ErmToss.make_cannon(level)
             starting_attack_speed = 0.02,
             autoplace = enemy_autoplace.enemy_worm_autoplace({
                 probability_expression = "0",
-                force = FORCE_NAME,
-                control = AUTOCONTROL_NAME
+                force = ERM_TOSS.FORCE_NAME,
+                control = ERM_TOSS.AUTOCONTROL_NAME
             }),
             integration = {
                 layers = {
@@ -359,6 +364,104 @@ function ErmToss.make_cannon(level)
                 sound = TossSound.ball_attack(1),
             },
             graphics_set = {},
-        }
+        },
+        --- Interceptor Cannon
+        {
+            type = "turret",
+            name = ERM_TOSS.MOD_NAME.."--interceptor-" .. name .. "--" .. level,
+            localised_name = { "entity-name." .. ERM_TOSS.MOD_NAME.."--interceptor-" .. name, GlobalConfig.QUALITY_MAPPING[level] },
+            icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
+            icon_size = 64,
+            flags = { "placeable-player", "placeable-enemy", },
+            max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
+            order = ERM_TOSS.MOD_NAME .. "--building--" .. name .. "--".. level,
+            map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
+            subgroup = "enemies",
+            resistances = {
+                { type = "acid", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
+                { type = "poison", percent = ERM_UnitHelper.get_resistance(base_acid_resistance, incremental_acid_resistance,  level) },
+                { type = "physical", percent = ERM_UnitHelper.get_resistance(base_physical_resistance, incremental_physical_resistance,  level) },
+                { type = "fire", percent = ERM_UnitHelper.get_resistance(base_fire_resistance, incremental_fire_resistance,  level) },
+                { type = "explosion", percent = ERM_UnitHelper.get_resistance(base_fire_resistance, incremental_fire_resistance,  level) },
+                { type = "laser", percent = ERM_UnitHelper.get_resistance(base_electric_resistance, incremental_electric_resistance,  level) },
+                { type = "electric", percent = ERM_UnitHelper.get_resistance(base_electric_resistance, incremental_electric_resistance,  level) },
+                { type = "cold", percent = ERM_UnitHelper.get_resistance(base_cold_resistance, incremental_cold_resistance,  level) }
+            },
+            healing_per_tick = ERM_UnitHelper.get_building_healing(hitpoint, max_hitpoint_multiplier,  level),
+            collision_box = collision_box,
+            map_generator_bounding_box = map_generator_bounding_box,
+            selection_box = selection_box,
+            shooting_cursor_size = 4,
+            rotation_speed = 1,
+            corpse = "protoss--small-base-corpse",
+            dying_explosion = "protoss--small-building-explosion",
+            dying_sound = TossSound.building_dying_sound(1),
+            call_for_help_radius = 50,
+            folded_speed = 0.01,
+            folded_speed_secondary = 0.01,
+            folded_animation = folded_animation(),
+            working_sound = TossSound.cannon_idle(1),
+            starting_attack_animation = attack_animation(),
+            starting_attack_speed = 0.02,
+            integration = {
+                layers = {
+                    {
+                        filename = "__erm_toss_hd_assets__/graphics/entity/buildings/" .. name .. "/" .. name .. ".png",
+                        variation_count = 1,
+                        width = 128,
+                        height = 128,
+                        frame_count = 1,
+                        line_length = 1,
+                        scale = unit_scale
+                    },
+                    {
+                        filename = "__erm_toss_hd_assets__/graphics/entity/buildings/" .. name .. "/" .. name .. ".png",
+                        variation_count = 1,
+                        width = 128,
+                        height = 128,
+                        frame_count = 1,
+                        line_length = 1,
+                        draw_as_shadow = true,
+                        shift = { 0.25, 0.1 },
+                        scale = unit_scale
+                    }
+                }
+            },
+            autoplace = enemy_autoplace.enemy_worm_autoplace({
+                probability_expression = "erm_toss_autoplace_base(0, 4)",
+                force = ERM_TOSS.FORCE_NAME,
+                control = ERM_TOSS.AUTOCONTROL_NAME
+            }),
+            attack_from_start_frame = true,
+            prepare_range = acid_attack_range,
+            allow_turning_when_starting_attack = true,
+            attack_parameters = {
+                type = "projectile",
+                range_mode = "bounding-box-to-bounding-box",
+                ammo_category = "erm-protoss-damage",
+                damage_modifier = 1,
+                range = interceptor_attack_range,
+                cooldown = ERM_UnitHelper.get_attack_speed(interceptor_base_attack_speed, interceptor_incremental_attack_speed,  level),
+                cooldown_deviation = 0.1,
+                warmup = 12,
+                use_shooter_direction = true,
+                lead_target_for_projectile_speed = 0.2 * 0.75 * 1.5 * 1.5,
+                ammo_type = {
+                    category = "erm-protoss-damage",
+                    action = {
+                        type = "direct",
+                        action_delivery = {
+                            type = "instant",
+                            source_effects = {
+                                type = "script",
+                                effect_id = ERM_TOSS.CARRIER_ATTACK,
+                            }
+                        }
+                    }
+                },
+                sound = TossSound.interceptor_attack(0.9),
+            },
+            graphics_set = {},
+        },
     })
 end

@@ -16,6 +16,7 @@ local TossSound = require("__erm_toss_hd_assets__/sound")
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
 local Creep = require("prototypes.creep")
 local enemy_autoplace = require("__enemyracemanager__/prototypes/enemy-autoplace")
+local ERM_TOSS = require("__erm_toss__/global")
 local name = "boss_warpgate"
 
 -- Hitpoints
@@ -49,17 +50,17 @@ local max_friends_around_to_spawn = 15
 local spawn_table = function()
     local res = {}
     --Tire 2
-    res[1] = { MOD_NAME.."--scout--6", { { 0.0, 0.1 } } }
-    res[2] = { MOD_NAME.."--corsair--6", { { 0.0, 0.1 } } }
-    res[3] = { MOD_NAME.."--probe--6", { { 0.0, 0.1 } } }
+    res[1] = { ERM_TOSS.MOD_NAME.."--scout--6", { { 0.0, 0.1 } } }
+    res[2] = { ERM_TOSS.MOD_NAME.."--corsair--6", { { 0.0, 0.1 } } }
+    res[3] = { ERM_TOSS.MOD_NAME.."--probe--6", { { 0.0, 0.1 } } }
     --Tire 3
-    res[4] = { MOD_NAME.."--templar--6", { { 0.0, 0.1 } } }
-    res[5] = { MOD_NAME.."--darktemplar--6", { { 0.0, 0.1 } } }
-    res[6] = { MOD_NAME.."--archon--6", { { 0.0, 0.1 } } }
-    res[7] = { MOD_NAME.."--carrier--6", { { 0.0, 0.1 } } }
-    res[8] = { MOD_NAME.."--arbiter--6", { { 0.0, 0.1 } } }
-    res[9] = { MOD_NAME.."--reaver--6", { { 0.0, 0.1 } } }
-    res[10] = { MOD_NAME.."--darkarchon--6", { { 0.0, 0.1 } } }
+    res[4] = { ERM_TOSS.MOD_NAME.."--templar--6", { { 0.0, 0.1 } } }
+    res[5] = { ERM_TOSS.MOD_NAME.."--darktemplar--6", { { 0.0, 0.1 } } }
+    res[6] = { ERM_TOSS.MOD_NAME.."--archon--6", { { 0.0, 0.1 } } }
+    res[7] = { ERM_TOSS.MOD_NAME.."--carrier--6", { { 0.0, 0.1 } } }
+    res[8] = { ERM_TOSS.MOD_NAME.."--arbiter--6", { { 0.0, 0.1 } } }
+    res[9] = { ERM_TOSS.MOD_NAME.."--reaver--6", { { 0.0, 0.1 } } }
+    res[10] = { ERM_TOSS.MOD_NAME.."--darkarchon--6", { { 0.0, 0.1 } } }
     return res
 end
 
@@ -73,13 +74,13 @@ function ErmToss.make_boss_wrapgate(level, boss_data)
     data:extend({
         {
             type = "unit-spawner",
-            name = MOD_NAME .. "--" .. name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
+            name = ERM_TOSS.MOD_NAME .. "--" .. name .. "--" .. level,
+            localised_name = { "entity-name." .. ERM_TOSS.MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy" },
             max_health = boss_data.nexus_hp[level],
-            order = MOD_NAME .. "--building--" .. name .. "--".. level,
+            order = ERM_TOSS.MOD_NAME .. "--building--" .. name .. "--".. level,
             subgroup = "enemies",
             working_sound = TossSound.building_working_sound("nexus", 1),
             dying_sound = TossSound.building_dying_sound(1),
@@ -124,7 +125,7 @@ function ErmToss.make_boss_wrapgate(level, boss_data)
             dying_trigger_effect = {
                 {
                     type = "script",
-                    effect_id = TRIGGER_BOSS_DIES,
+                    effect_id = ERM_TOSS.TRIGGER_BOSS_DIES,
                 }
             }
         }

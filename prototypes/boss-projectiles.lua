@@ -3,7 +3,7 @@
 --- Created by heyqule.
 --- DateTime: 8/26/2022 11:52 PM
 ---
-require("__erm_toss__/global")
+local ERM_TOSS = require("__erm_toss__/global")
 
 local ERMConfig = require("__enemyracemanager__/lib/global_config")
 local ERMDataHelper = require("__enemyracemanager__/lib/rig/data_helper")
@@ -17,7 +17,7 @@ local create_psystorm_projectile = function(projectile_type)
     projectile_type = projectile_type or 'projectile'
     return     {
         type = "projectile",
-        name = MOD_NAME.."--psystorm--"..projectile_type,
+        name = ERM_TOSS.MOD_NAME.."--psystorm--"..projectile_type,
         flags = { "not-on-map" },
         acceleration = 0,
 
@@ -38,7 +38,7 @@ local create_psystorm_projectile = function(projectile_type)
                     {
                         type = "create-smoke",
                         show_in_tooltip = true,
-                        entity_name = MOD_NAME.."--psystorm"
+                        entity_name = ERM_TOSS.MOD_NAME.."--psystorm"
                     },
                 }
             }
@@ -52,7 +52,7 @@ local create_stasis_projectile = function(projectile_type)
     projectile_type = projectile_type or 'projectile'
     return   {
         type = "projectile",
-        name = MOD_NAME.."--stasis--"..projectile_type,
+        name = ERM_TOSS.MOD_NAME.."--stasis--"..projectile_type,
         flags = { "not-on-map" },
         acceleration = 0,
 
@@ -73,7 +73,7 @@ local create_stasis_projectile = function(projectile_type)
                     {
                         type = "create-smoke",
                         show_in_tooltip = true,
-                        entity_name = MOD_NAME.."--stasis"
+                        entity_name = ERM_TOSS.MOD_NAME.."--stasis"
                     },
                 }
             }
@@ -86,7 +86,7 @@ end
 local create_lighting_strike = function(name, unit_probabilities)
     local aiur_lightning = util.table.deepcopy(data.raw['lightning']['lightning'])
     aiur_lightning.name = 'enemy_erm_toss--'..name..'-lightning--direct'
-    aiur_lightning.damage =  500 * damage_multiplier
+    aiur_lightning.damage = { amount = 500 * damage_multiplier, type = "electric" }
     aiur_lightning.energy = "5000MJ"
 
     for key, options in pairs(unit_probabilities) do
@@ -153,7 +153,7 @@ local create_damage_cloud = function (name, target_effects, radius, duration, co
     duration = duration or 120
     cooldown = cooldown or 15
     return  {
-        name = MOD_NAME.."--"..name,
+        name = ERM_TOSS.MOD_NAME.."--"..name,
         type = "smoke-with-trigger",
         flags = { "not-on-map" },
         show_when_smoke_off = true,
@@ -196,7 +196,7 @@ local create_recall_projectile = function(projectile_type, script_attack)
     projectile_type = projectile_type or 'projectile'
     return   {
         type = "projectile",
-        name = MOD_NAME.."--recall-"..script_attack.."--"..projectile_type,
+        name = ERM_TOSS.MOD_NAME.."--recall-"..script_attack.."--"..projectile_type,
         flags = { "not-on-map" },
         acceleration = 0,
 
@@ -217,7 +217,7 @@ local create_recall_projectile = function(projectile_type, script_attack)
                     {
                         type = "create-smoke",
                         show_in_tooltip = true,
-                        entity_name = MOD_NAME.."--recall-cloud"
+                        entity_name = ERM_TOSS.MOD_NAME.."--recall-cloud"
                     },
                     {
                         type = "script",
@@ -241,7 +241,7 @@ local create_boss_electric_beam = function(name, beam_data)
     local beam_non_light_flags = { "trilinear-filtering" }
     local clone_beam = util.table.deepcopy(data.raw['beam']['laser-beam'])
 
-    clone_beam.name = MOD_NAME..'--'..name..'-'..width..'-'..range..'--beam'
+    clone_beam.name = ERM_TOSS.MOD_NAME..'--'..name..'-'..width..'-'..range..'--beam'
     clone_beam.width = width
     clone_beam.damage_interval = 15
     clone_beam.action_triggered_automatically = true
@@ -437,39 +437,39 @@ data:extend({
                                              show_in_tooltip = true,
                                          }}, 4,120),
     create_lighting_strike('land', {
-        [MOD_NAME.."--zealot--6"] = {1, 4 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--dragoon--6"] = {1, 2 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--darktemplar--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--invis_darktemplar--6"] = {0.2, 2 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--templar--6"] = {0.2, 2 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--reaver--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--darkarchon--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--archon--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--zealot--6"] = {1, 4 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--dragoon--6"] = {1, 2 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--darktemplar--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--invis_darktemplar--6"] = {0.2, 2 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--templar--6"] = {0.2, 2 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--reaver--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--darkarchon--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--archon--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
     }),
     create_lighting_strike('air', {
-        [MOD_NAME.."--scout--6"] = {1, 2 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--corsair--6"] = {1, 1 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--shuttle--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--carrier--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--arbiter--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--scout--6"] = {1, 2 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--corsair--6"] = {1, 1 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--shuttle--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--carrier--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--arbiter--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
     }),
     create_lighting_strike('mixed', {
-        [MOD_NAME.."--zealot--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--dragoon--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--darktemplar--6"] = {0.3, 1 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--invis_darktemplar--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--reaver--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--darkarchon--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--archon--6"] = {0.1, 1 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--scout--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--corsair--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--shuttle--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--carrier--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
-        [MOD_NAME.."--arbiter--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--zealot--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--dragoon--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--darktemplar--6"] = {0.3, 1 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--invis_darktemplar--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--reaver--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--darkarchon--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--archon--6"] = {0.1, 1 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--scout--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--corsair--6"] = {0.5, 2 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--shuttle--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--carrier--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
+        [ERM_TOSS.MOD_NAME.."--arbiter--6"] = {0.2, 1 * ERMConfig.batch_spawn_size},
     }),
-    create_recall_projectile(nil, BOSS_SPAWN_ATTACK),
-    create_recall_projectile(nil, UNITS_SPAWN_ATTACK),
-    create_recall_projectile('falling_projectile', UNITS_SPAWN_ATTACK),
+    create_recall_projectile(nil, ERM_TOSS.BOSS_SPAWN_ATTACK),
+    create_recall_projectile(nil, ERM_TOSS.UNITS_SPAWN_ATTACK),
+    create_recall_projectile('falling_projectile', ERM_TOSS.UNITS_SPAWN_ATTACK),
     create_damage_cloud("recall-cloud", {{
         type = "damage",
         --- process 4 ticks per second
@@ -483,20 +483,20 @@ data:extend({
         animation_scale = 1,
         --- The spawn chance divided by 4 in the function. It acts as % per second when it hits things.
         unit_spawns = {
-            [MOD_NAME.."--zealot--6"] = 0.1,
-            [MOD_NAME.."--dragoon--6"] = 0.05,
-            [MOD_NAME.."--invis_darktemplar--6"] = 0.01,
-            [MOD_NAME.."--archon--6"] = 0.01,
+            [ERM_TOSS.MOD_NAME.."--zealot--6"] = 0.1,
+            [ERM_TOSS.MOD_NAME.."--dragoon--6"] = 0.05,
+            [ERM_TOSS.MOD_NAME.."--invis_darktemplar--6"] = 0.01,
+            [ERM_TOSS.MOD_NAME.."--archon--6"] = 0.01,
         }
     }),
     create_boss_electric_beam('special', {
         range = 1500,
         damage = 130,
         unit_spawns = {
-            [MOD_NAME.."--zealot--6"] = 0.08,
-            [MOD_NAME.."--dragoon--6"] = 0.04,
-            [MOD_NAME.."--darktemplar--6"] = 0.01,
-            [MOD_NAME.."--archon--6"] = 0.01,
+            [ERM_TOSS.MOD_NAME.."--zealot--6"] = 0.08,
+            [ERM_TOSS.MOD_NAME.."--dragoon--6"] = 0.04,
+            [ERM_TOSS.MOD_NAME.."--darktemplar--6"] = 0.01,
+            [ERM_TOSS.MOD_NAME.."--archon--6"] = 0.01,
         }
     })
 })

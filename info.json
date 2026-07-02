@@ -1,18 +1,18 @@
 {
   "name": "erm_toss",
-  "version": "2.0.17",
+  "version": "2.1.0",
   "date": "2021-07-10",
   "title": "ERM - Protoss / Akilea Tribe",
   "author": "heyqule",
   "description": "Add protoss as new enemy force. It features a new planet Aiur and new offensive mechanics. They can optionally spawn on Fulgora.",
-  "factorio_version": "2.0",
+  "factorio_version": "2.1",
   "dependencies": [
-    "base >= 2.0.72",
-    "enemyracemanager >= 2.0.65",
-    "erm_toss_hd_assets >= 2.0.3",
-    "erm_shared_economy >= 1.0.0",
-    "erm_toss_economy >= 1.0.8",
-    "?advanced_spaceship_repair >= 1.0.0",
+    "base >= 2.1.0",
+    "enemyracemanager >= 2.1.0",
+    "erm_toss_hd_assets >= 2.1.0",
+    "erm_shared_economy >= 2.1.0",
+    "erm_toss_economy >= 2.1.0",
+    "? advanced_spaceship_repair >= 2.1.0",
     "? starcraft-music >= 1.0.1",
     "(?) alien-biomes >= 0.7.4"
   ]
