@@ -7,50 +7,51 @@
 local CustomAttackHelper = require("__enemyracemanager__/lib/helper/custom_attack_helper")
 local ERMConfig = require("__enemyracemanager__/lib/global_config")
 
+local ERM_TOSS = require("__erm_toss__/global")
 local CustomAttacks = CustomAttackHelper
 
 function CustomAttacks.process_probe(event)
-    CustomAttackHelper.build(event, MOD_NAME, CustomAttackHelper.get_unit(MOD_NAME, "construction_buildings"))
+    CustomAttackHelper.build(event, ERM_TOSS.MOD_NAME, CustomAttackHelper.get_unit(ERM_TOSS.MOD_NAME, "construction_buildings"))
     event.source_entity.destroy()
 end
 
 function CustomAttacks.process_shuttle(event)
-    local race_settings = CustomAttackHelper.get_race_settings(MOD_NAME)
-    CustomAttackHelper.drop_unit(event, MOD_NAME, "zealot", 2)
+    local race_settings = CustomAttackHelper.get_race_settings(ERM_TOSS.MOD_NAME)
+    CustomAttackHelper.drop_unit(event, ERM_TOSS.MOD_NAME, "zealot", 2)
     if CustomAttackHelper.can_spawn(75) then
-        CustomAttackHelper.drop_unit(event, MOD_NAME, CustomAttackHelper.get_unit(MOD_NAME, "droppable_units"))
+        CustomAttackHelper.drop_unit(event, ERM_TOSS.MOD_NAME, CustomAttackHelper.get_unit(ERM_TOSS.MOD_NAME, "droppable_units"))
     end
     if race_settings.tier == 3 and CustomAttackHelper.can_spawn(30) then
-        CustomAttackHelper.drop_unit(event, MOD_NAME, "dragoon", 2)
+        CustomAttackHelper.drop_unit(event, ERM_TOSS.MOD_NAME, "dragoon", 2)
 
         if CustomAttackHelper.can_spawn(20) then
-            CustomAttackHelper.drop_unit(event, MOD_NAME, CustomAttackHelper.get_unit(MOD_NAME, "droppable_units"), 1)
+            CustomAttackHelper.drop_unit(event, ERM_TOSS.MOD_NAME, CustomAttackHelper.get_unit(ERM_TOSS.MOD_NAME, "droppable_units"), 1)
         end
     end
 end
 
 function CustomAttacks.process_carrier(event)
-    CustomAttackHelper.drop_unit(event, MOD_NAME, "interceptor", 4)
+    CustomAttackHelper.drop_unit(event, ERM_TOSS.MOD_NAME, "interceptor", 4)
     if CustomAttackHelper.can_spawn(20) then
-        CustomAttackHelper.drop_unit(event, MOD_NAME, "interceptor", 2)
+        CustomAttackHelper.drop_unit(event, ERM_TOSS.MOD_NAME, "interceptor", 2)
     end
     if CustomAttackHelper.can_spawn(10) then
-        CustomAttackHelper.drop_unit(event, MOD_NAME, "interceptor", 2)
+        CustomAttackHelper.drop_unit(event, ERM_TOSS.MOD_NAME, "interceptor", 2)
     end
 end
 
 function CustomAttacks.process_reaver(event)
-    CustomAttackHelper.drop_unit(event, MOD_NAME, "scarab", 1)
+    CustomAttackHelper.drop_unit(event, ERM_TOSS.MOD_NAME, "scarab", 1)
 end
 
 function CustomAttacks.process_boss_units(event, batch_size)
     batch_size = batch_size or 8
-    CustomAttackHelper.drop_boss_units(event, MOD_NAME, ERMConfig.batch_spawn_size * batch_size)
+    CustomAttackHelper.drop_boss_units(event, ERM_TOSS.MOD_NAME, ERMConfig.batch_spawn_size * batch_size)
 end
 
 function CustomAttacks.process_batch_units(event, batch_size)
     batch_size = batch_size or 6
-    CustomAttackHelper.drop_batch_units(event, MOD_NAME, ERMConfig.batch_spawn_size * batch_size)
+    CustomAttackHelper.drop_batch_units(event, ERM_TOSS.MOD_NAME, ERMConfig.batch_spawn_size * batch_size)
 end
 
 ---
@@ -155,7 +156,7 @@ function CustomAttacks.process_crystal(event)
         amount = 1
     end
 
-        CustomAttackHelper.drop_unit(event, MOD_NAME, unit_name, amount)
+        CustomAttackHelper.drop_unit(event, ERM_TOSS.MOD_NAME, unit_name, amount)
 end
 
 return CustomAttacks

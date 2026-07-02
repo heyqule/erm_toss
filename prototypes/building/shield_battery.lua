@@ -14,6 +14,7 @@ local TossSound = require("__erm_toss_hd_assets__/sound")
 local AnimationDB = require("__erm_libs__/prototypes/animation_db")
 local Creep = require("prototypes.creep")
 local enemy_autoplace = require("__enemyracemanager__/prototypes/enemy-autoplace")
+local ERM_TOSS = require("__erm_toss__/global")
 local name = "shield_battery"
 local shortrange_name = "shield_battery_shortrange"
 
@@ -70,13 +71,13 @@ function ErmToss.make_shield_battery(level)
 
         {
             type = "turret",
-            name = MOD_NAME .. "--" .. name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
+            name = ERM_TOSS.MOD_NAME .. "--" .. name .. "--" .. level,
+            localised_name = { "entity-name." .. ERM_TOSS.MOD_NAME .. "--" .. name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
             max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "--building--" .. name .. "--".. level,
+            order = ERM_TOSS.MOD_NAME .. "--building--" .. name .. "--".. level,
             subgroup = "enemies",
             map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             resistances = {
@@ -106,9 +107,9 @@ function ErmToss.make_shield_battery(level)
             starting_attack_animation = attack_animation(),
             starting_attack_speed = 0.02,
             autoplace = enemy_autoplace.enemy_worm_autoplace({
-                probability_expression = "erm_toss_autoplace_base(0, 4)",
-                force = FORCE_NAME,
-                control = AUTOCONTROL_NAME
+                probability_expression = "erm_toss_autoplace_base(0, 5)",
+                force = ERM_TOSS.FORCE_NAME,
+                control = ERM_TOSS.AUTOCONTROL_NAME
             }),
             attack_from_start_frame = true,
             prepare_range = attack_range,
@@ -185,13 +186,13 @@ function ErmToss.make_shield_battery(level)
 
         {
             type = "turret",
-            name = MOD_NAME .. "--" .. shortrange_name .. "--" .. level,
-            localised_name = { "entity-name." .. MOD_NAME .. "--" .. shortrange_name, GlobalConfig.QUALITY_MAPPING[level] },
+            name = ERM_TOSS.MOD_NAME .. "--" .. shortrange_name .. "--" .. level,
+            localised_name = { "entity-name." .. ERM_TOSS.MOD_NAME .. "--" .. shortrange_name, GlobalConfig.QUALITY_MAPPING[level] },
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/buildings/advisor.png",
             icon_size = 64,
             flags = { "placeable-player", "placeable-enemy", },
             max_health = ERM_UnitHelper.get_building_health(hitpoint, max_hitpoint_multiplier,  level),
-            order = MOD_NAME .. "--building--" .. shortrange_name .. "--".. level,
+            order = ERM_TOSS.MOD_NAME .. "--building--" .. shortrange_name .. "--".. level,
             subgroup = "enemies",
             map_color = ERM_UnitHelper.format_map_color(settings.startup["enemy_erm_toss-map-color"].value),
             resistances = {
@@ -222,8 +223,8 @@ function ErmToss.make_shield_battery(level)
             starting_attack_speed = 0.02,
             autoplace = enemy_autoplace.enemy_worm_autoplace({
                 probability_expression = "0",
-                force = FORCE_NAME,
-                control = AUTOCONTROL_NAME
+                force = ERM_TOSS.FORCE_NAME,
+                control = ERM_TOSS.AUTOCONTROL_NAME
             }),
             attack_from_start_frame = true,
             prepare_range = attack_range,

@@ -1,6 +1,6 @@
 ErmToss = {}
 
-require("__erm_toss__/global")
+local ERM_TOSS = require("__erm_toss__/global")
 
 local ErmConfig = require("__enemyracemanager__/lib/global_config")
 
@@ -17,11 +17,11 @@ data:extend(
 
 -- This set of data is used for set up default autoplace calculation.
 data.erm_registered_race = data.erm_registered_race or {}
-data.erm_registered_race[MOD_NAME] = true
+data.erm_registered_race[ERM_TOSS.MOD_NAME] = true
 data.erm_spawn_specs = data.erm_spawn_specs or {}
 table.insert(data.erm_spawn_specs, {
-    mod_name=MOD_NAME,
-    force_name=FORCE_NAME,
+    mod_name=ERM_TOSS.MOD_NAME,
+    force_name=ERM_TOSS.FORCE_NAME,
     moisture=2, -- 1 = Dry and 2 = Wet
     aux=1, -- -- 1 = red desert, 2 = sand
     elevation=3, --1,2,3 (1 low elevation, 2. medium, 3 high elavation)
@@ -117,7 +117,9 @@ if mods["space-age"] and mods['quality'] then
     ErmToss.make_scarab(level)
     ErmToss.make_invis_darktemplar(level)
     for _, unit in pairs(override_units) do
-        data.raw["unit"][MOD_NAME.."--"..unit.."--"..level]["ai_settings"] = boss_unit_ai
+        for key, value in pairs(boss_unit_ai) do
+            data.raw["unit"][ERM_TOSS.MOD_NAME.."--"..unit.."--"..level]["ai_settings"][key] = value
+        end
     end
 
     --- Define boss prototypes data
@@ -158,8 +160,8 @@ if mods["space-age"] and mods['quality'] then
     data.extend({
         {
             type = 'mod-data',
-            name = MOD_NAME..'--boss-attack-data',
-            data_type = MOD_NAME..'.boss_data',
+            name = ERM_TOSS.MOD_NAME..'--boss-attack-data',
+            data_type = ERM_TOSS.MOD_NAME..'.boss_data',
             data = {
                 --- Max assist spawner
                 max_buildable_unit_spawner = {5, 6, 8, 10, 12},
@@ -177,8 +179,8 @@ if mods["space-age"] and mods['quality'] then
     data.extend({
         {
             type = 'mod-data',
-            name = MOD_NAME..'--boss-reward-data',
-            data_type = MOD_NAME..'.boss_reward_data',
+            name = ERM_TOSS.MOD_NAME..'--boss-reward-data',
+            data_type = ERM_TOSS.MOD_NAME..'.boss_reward_data',
             data = {
                 reward_data = {
                     "char_geyser",
@@ -215,39 +217,39 @@ if mods["space-age"] and mods['quality'] then
 
     if DEBUG then
         --- For debug
-        data.raw['mod-data'][MOD_NAME..'--boss-attack-data'].data.idle_attack_interval = {5 * second, 5 * second, 5 * second, 5 * second, 5 * second,}
+        data.raw['mod-data'][ERM_TOSS.MOD_NAME..'--boss-attack-data'].data.idle_attack_interval = {5 * second, 5 * second, 5 * second, 5 * second, 5 * second,}
     end
 
     data.extend({
         {
             type = "kill-achievement",
-            name = MOD_NAME.."--god-poke",
+            name = ERM_TOSS.MOD_NAME.."--god-poke",
             to_kill = "enemy_erm_toss--boss_warpgate--1",
             amount = 1,
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/zealot.png",
             icon_size = 64,
             allow_without_fight = false,
-            order = "z["..MOD_NAME.."]--01-god-poke"
+            order = "z["..ERM_TOSS.MOD_NAME.."]--01-god-poke"
         },
         {
             type = "kill-achievement",
-            name = MOD_NAME.."--god-like",
+            name = ERM_TOSS.MOD_NAME.."--god-like",
             to_kill = "enemy_erm_toss--boss_warpgate--3",
             amount = 1,
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/darktemplar.png",
             icon_size = 64,
             allow_without_fight = false,
-            order = "z["..MOD_NAME.."]--02-god-like"
+            order = "z["..ERM_TOSS.MOD_NAME.."]--02-god-like"
         },
         {
             type = "kill-achievement",
-            name = MOD_NAME.."--god-kill",
+            name = ERM_TOSS.MOD_NAME.."--god-kill",
             to_kill = "enemy_erm_toss--boss_warpgate--5",
             amount = 1,
             icon = "__erm_toss_hd_assets__/graphics/entity/icons/units/archon.png",
             icon_size = 64,
             allow_without_fight = false,
-            order = "z["..MOD_NAME.."]--03-god-kill"
+            order = "z["..ERM_TOSS.MOD_NAME.."]--03-god-kill"
         },
     })
 end
@@ -270,10 +272,10 @@ for i = 1, max_level do
 end
 
 data.erm_land_scout = data.erm_land_scout or {}
-data.erm_land_scout[MOD_NAME] = "zealot"
+data.erm_land_scout[ERM_TOSS.MOD_NAME] = "zealot"
 
 data.erm_aerial_scout = data.erm_aerial_scout or {}
-data.erm_aerial_scout[MOD_NAME] = "scout"
+data.erm_aerial_scout[ERM_TOSS.MOD_NAME] = "scout"
 
 require "prototypes.tips_and_tricks.prototypes"
 require "prototypes.economy"

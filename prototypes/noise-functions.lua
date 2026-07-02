@@ -4,11 +4,12 @@
 --- DateTime: 10/28/2024 10:53 PM
 ---
 
+local ERM_TOSS = require("__erm_toss__/global")
 data:extend{
     {
         type = "autoplace-control",
-        name = AUTOCONTROL_NAME,
-        order = AUTOCONTROL_NAME,
+        name = ERM_TOSS.AUTOCONTROL_NAME,
+        order = ERM_TOSS.AUTOCONTROL_NAME,
         category = "enemy",
         can_be_disabled = false
     },
@@ -21,13 +22,13 @@ data:extend{
     {
         type = "noise-expression",
         name = "erm_toss_base_radius",
-        expression = "sqrt(var('control:"..AUTOCONTROL_NAME..":size')) * (15 + 4 * erm_toss_base_intensity)"
+        expression = "sqrt(var('control:"..ERM_TOSS.AUTOCONTROL_NAME..":size')) * (15 + 4 * erm_toss_base_intensity)"
     },
     {
         type = "noise-expression",
         name = "erm_toss_base_frequency",
         -- bases_per_km2 = 10 + 3 * erm_toss_base_intensity
-        expression = "(0.00001 + 0.000003 * erm_toss_base_intensity) * var('control:"..AUTOCONTROL_NAME..":frequency')"
+        expression = "(0.00001 + 0.000003 * erm_toss_base_intensity) * var('control:"..ERM_TOSS.AUTOCONTROL_NAME..":frequency')"
     },
     {
         type = "noise-expression",

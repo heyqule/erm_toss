@@ -5,39 +5,38 @@
 ---
 
 -- Globals within the mod
-MOD_NAME = "enemy_erm_toss"
-FORCE_NAME = "enemy_erm_toss"
-AUTOCONTROL_NAME = MOD_NAME.."-enemy-base"
+local ERM_TOSS = {
+    MOD_NAME = "enemy_erm_toss",
+    FORCE_NAME = "enemy_erm_toss",
+    AUTOCONTROL_NAME = "enemy_erm_toss".."-enemy-base",
 
+    -- Attack Types for on_script_trigger_effect
+    PROBE_ATTACK = "empts-prb",
+    SHUTTLE_ATTACK = "empts-sht",
+    CARRIER_ATTACK = "empts-car",
+    REAVER_ATTACK = "empts-rea",
+    GUERRILLA_ATTACK = "empts-grl",
 
+    SELF_DESTRUCT_ATTACK = "empts-slf",
+    TIME_TO_LIVE_DIED = "empts-ttld",
+    TIME_TO_LIVE_CREATED = "empts-ttlc",
 
--- Attack Types for on_script_trigger_effect
-PROBE_ATTACK = "empts-prb"
-SHUTTLE_ATTACK = "empts-sht"
-CARRIER_ATTACK = "empts-car"
-REAVER_ATTACK = "empts-rea"
-GUERRILLA_ATTACK = "empts-grl"
+    BOSS_SPAWN_ATTACK = "empts-bs1",
+    UNITS_SPAWN_ATTACK = "empts-bs2",
+    ARBITER_UNITS_SPAWN_ATTACK = "empts-bs3",
 
-SELF_DESTRUCT_ATTACK = "empts-slf"
-TIME_TO_LIVE_DIED = "empts-ttld"
-TIME_TO_LIVE_CREATED = "empts-ttlc"
+    CRYSTAL_TRIGGER = "empts-csl",
 
-BOSS_SPAWN_ATTACK = "empts-bs1"
-UNITS_SPAWN_ATTACK = "empts-bs2"
-ARBITER_UNITS_SPAWN_ATTACK = "empts-bs3"
+    PROTOSS_MAP_COLOR = {r=0, g=192, b=192},
+    PROTOSS_TEAM_COLOR = {r=0, g=192, b=192},
 
-CRYSTAL_TRIGGER = "empts-csl"
+    --- This set must be the same string for boss to function properly.
+    REGISTER_BOSS_RADAR = "embss-rdr",
+    TRIGGER_BOSS_SPAWNED = "embss-spn",
+    TRIGGER_BOSS_DIES = "embss-die",
+    TRIGGER_BOSS_ASSIST_SPAWNED = "embas_spn",
+    TRIGGER_BOSS_ASSIST_DIES = "embas-die",
+    BOSS_SEGMENT_UNIT_DIES = "embsu-die",
+}
 
-PROTOSS_MAP_COLOR = {r=0, g=192, b=192}
-PROTOSS_TEAM_COLOR = {r=0, g=192, b=192}
-
---- This set must be the same string for boss to function properly.
-REGISTER_BOSS_RADAR = "embss-rdr"
-TRIGGER_BOSS_SPAWNED = "embss-spn"
-TRIGGER_BOSS_DIES = "embss-die"
-TRIGGER_BOSS_ASSIST_SPAWNED = "embas_spn"
-TRIGGER_BOSS_ASSIST_DIES = "embas-die"
-BOSS_SEGMENT_UNIT_DIES = "embsu-die"
-
-
-
+return ERM_TOSS

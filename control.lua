@@ -12,7 +12,7 @@ local EmotionConstants = require('__enemyracemanager__/lib/emotion_constants')
 
 local CustomAttacks = require("__erm_toss__/scripts/custom_attacks")
 
-require("__erm_toss__/global")
+local ERM_TOSS = require("__erm_toss__/global")
 -- Constants
 local using_lightning_units = script.active_mods['space-age']
 
@@ -33,7 +33,7 @@ local refresh_army_data = function()
     -- Register Army Units
     for _, prototype in pairs(prototypes.get_entity_filtered({{filter = "type", type = "unit"}})) do
         local nameToken = String.split(prototype.name, "--")
-        if nameToken[1] == MOD_NAME and nameToken[2] == 'controllable' and populations[nameToken[3]] then
+        if nameToken[1] == ERM_TOSS.MOD_NAME and nameToken[2] == 'controllable' and populations[nameToken[3]] then
             remote.call("enemyracemanager","army_units_register", prototype.name, populations[nameToken[3]]);
         end
     end
@@ -41,16 +41,16 @@ local refresh_army_data = function()
     -- Register Auto Deployers
     for _, prototype in pairs(prototypes.get_entity_filtered({{filter = "type", type = "assembling-machine"}})) do
         local nameToken = String.split(prototype.name, "--")
-        if nameToken[1] == MOD_NAME and nameToken[2] == 'controllable' then
+        if nameToken[1] == ERM_TOSS.MOD_NAME and nameToken[2] == 'controllable' then
             remote.call("enemyracemanager","army_deployer_register", prototype.name);
         end
     end
 end
 
 local createRace = function()
-    local force = game.forces[FORCE_NAME]
+    local force = game.forces[ERM_TOSS.FORCE_NAME]
     if not force then
-        force = game.create_force(FORCE_NAME)
+        force = game.create_force(ERM_TOSS.FORCE_NAME)
     end
 
     force.ai_controllable = true;
@@ -58,12 +58,12 @@ local createRace = function()
     force.friendly_fire = true;
 
     if settings.startup["enemyracemanager-free-for-all"].value then
-        ForceHelper.set_friends(game, FORCE_NAME, false)
+        ForceHelper.set_friends(game, ERM_TOSS.FORCE_NAME, false)
     else
-        ForceHelper.set_friends(game, FORCE_NAME, true)
+        ForceHelper.set_friends(game, ERM_TOSS.FORCE_NAME, true)
     end
 
-    ForceHelper.set_neutral_force(game, FORCE_NAME)
+    ForceHelper.set_neutral_force(game, ERM_TOSS.FORCE_NAME)
 
     --- store units created by demolisher for additional evil processing. :)
     storage.lightning_units = storage.lightning_units or {}
@@ -80,16 +80,16 @@ local createRace = function()
 end
 
 local addRaceSettings = function()
-    local race_settings = remote.call("enemyracemanager", "get_race", MOD_NAME)
+    local race_settings = remote.call("enemyracemanager", "get_race", ERM_TOSS.MOD_NAME)
     if race_settings == nil then
         race_settings = {}
     end
 
-    race_settings.race =  race_settings.race or MOD_NAME
+    race_settings.race =  race_settings.race or ERM_TOSS.MOD_NAME
     race_settings.label = {"gui.label-erm_toss"}
     race_settings.tier =  race_settings.tier or 1
     race_settings.is_primitive = race_settings.is_primitive or false
-    race_settings.autoplace_name = race_settings.autoplace_name or AUTOCONTROL_NAME
+    race_settings.autoplace_name = race_settings.autoplace_name or ERM_TOSS.AUTOCONTROL_NAME
     race_settings.attack_meter = race_settings.attack_meter or 0
     race_settings.attack_meter_total = race_settings.attack_meter_total or 0
     race_settings.last_attack_meter_total = race_settings.last_attack_meter_total or 0
@@ -137,24 +137,24 @@ local addRaceSettings = function()
         {{ "cannon_shortrange", "pylon", "shield_battery_shortrange"},{3,2,1}},
     }
     race_settings.featured_groups = {
-        -- Unit list, spawn ratio, unit attack point cost
-        {{"zealot", "dragoon"}, {6, 3}, 25},
-        {{"zealot", "archon"}, {6, 3}, 35},
-        {{"zealot", "dragoon", "archon", "reaver"}, {4, 3, 2, 1}, 30},
-        {{"dragoon","templar", "archon", "darkarchon"}, {5, 1, 1, 1}, 40},
-        {{"darktemplar","templar","archon", "invis_darktemplar"}, {4, 1, 2, 1}, 50},
-        {{"zealot","dragoon","darktemplar","templar","archon","darkarchon", "invis_darktemplar"}, {5,5,2,1,1,1,1}, 25},
-        {{"zealot","dragoon","darktemplar","templar","archon","darkarchon", "reaver", "invis_darktemplar"}, {5,5,3,2,1,1,1,1}, 25},
-        {{"zealot", "darktemplar", "invis_darktemplar"}, {2, 1, 1}, 50} -- 60 units per 3000 points group, since invisibility only apply to turrets.
+        -- Unit list, spawn ratio, unit attack point multiplier 
+        {{"zealot", "dragoon"}, {6, 3}, 1.1},
+        {{"zealot", "archon"}, {6, 3}, 1.1},
+        {{"zealot", "dragoon", "archon", "reaver"}, {4, 3, 2, 1}, 1},
+        {{"dragoon","templar", "archon", "darkarchon"}, {5, 1, 1, 1}, 0.9},
+        {{"darktemplar","templar","archon", "invis_darktemplar"}, {4, 1, 2, 1}, 0.8},
+        {{"zealot","dragoon","darktemplar","templar","archon","darkarchon", "invis_darktemplar"}, {5,5,2,1,1,1,1}, 1.1},
+        {{"zealot","dragoon","darktemplar","templar","archon","darkarchon", "reaver", "invis_darktemplar"}, {5,5,3,2,1,1,1,1}, 1.1},
+        {{"zealot", "darktemplar", "invis_darktemplar"}, {2, 1, 1}, 0.8}
     }
     race_settings.featured_flying_groups = {
-        {{"scout", "corsair"}, {1, 1}, 60},
-        {{"scout", "carrier"}, {7, 1}, 75},
-        {{"corsair", "arbiter"}, {5, 1}, 75},
-        {{"scout", "corsair", "carrier", "arbiter"}, {3,3,1,1}, 75},
-        {{"scout", "carrier", "shuttle"}, {4, 1, 2}, 75},
-        {{"shuttle", "scout"}, {1, 2}, 150},
-        {{"arbiter", "scout"}, {1, 2}, 200}
+        {{"scout", "corsair"}, {1, 1}, 0.7},
+        {{"scout", "carrier"}, {7, 1}, 0.6},
+        {{"corsair", "arbiter"}, {5, 1}, 0.6},
+        {{"scout", "corsair", "carrier", "arbiter"}, {3,3,1,1}, 0.6},
+        {{"scout", "carrier", "shuttle"}, {4, 1, 2}, 0.6},
+        {{"shuttle", "scout"}, {1, 2}, 0.6},
+        {{"arbiter", "scout"}, {1, 2}, 0.6}
     }
 
     race_settings.boss_building = "boss_warpgate"
@@ -188,7 +188,7 @@ local addRaceSettings = function()
     }
 
     for _, item in pairs(prototypes.mod_data) do
-        if item.data_type == MOD_NAME..'.boss_data' then
+        if item.data_type == ERM_TOSS.MOD_NAME..'.boss_data' then
             race_settings.boss_settings = {}
             race_settings.boss_settings = item.data
         end
@@ -196,7 +196,7 @@ local addRaceSettings = function()
 
     remote.call("enemyracemanager", "register_race", race_settings)
 
-    CustomAttacks.get_race_settings(MOD_NAME, true)
+    CustomAttacks.get_race_settings(ERM_TOSS.MOD_NAME, true)
 end
 
 local update_world = function()
@@ -206,8 +206,8 @@ local update_world = function()
     then
         --- =_= map_gen_settings write only support writing the whole block.
         local map_gen = fulgora.map_gen_settings
-        map_gen.autoplace_controls[AUTOCONTROL_NAME] =
-        fulgora.planet.prototype.map_gen_settings.autoplace_controls[AUTOCONTROL_NAME]
+        map_gen.autoplace_controls[ERM_TOSS.AUTOCONTROL_NAME] =
+        fulgora.planet.prototype.map_gen_settings.autoplace_controls[ERM_TOSS.AUTOCONTROL_NAME]
         fulgora.map_gen_settings = map_gen
     end
 end
@@ -231,54 +231,54 @@ end)
 
 local attack_functions =
 {
-    [PROBE_ATTACK] = function(args)
+    [ERM_TOSS.PROBE_ATTACK] = function(args)
         CustomAttacks.process_probe(args)
     end,
-    [SHUTTLE_ATTACK] = function(args)
+    [ERM_TOSS.SHUTTLE_ATTACK] = function(args)
         CustomAttacks.process_shuttle(args)
     end,
-    [CARRIER_ATTACK] = function(args)
+    [ERM_TOSS.CARRIER_ATTACK] = function(args)
         CustomAttacks.process_carrier(args)
     end,
-    [REAVER_ATTACK] = function(args)
+    [ERM_TOSS.REAVER_ATTACK] = function(args)
         CustomAttacks.process_reaver(args)
     end,
-    [SELF_DESTRUCT_ATTACK] = function(args)
+    [ERM_TOSS.SELF_DESTRUCT_ATTACK] = function(args)
         CustomAttacks.process_self_destruct(args)
     end,
-    [TIME_TO_LIVE_DIED] = function(args)
+    [ERM_TOSS.TIME_TO_LIVE_DIED] = function(args)
         CustomAttacks.process_time_to_live_unit_died(args)
     end,
-    [TIME_TO_LIVE_CREATED] = function(args)
+    [ERM_TOSS.TIME_TO_LIVE_CREATED] = function(args)
         CustomAttacks.process_time_to_live_unit_created(args)
     end,
-    [BOSS_SPAWN_ATTACK] = function(args)
+    [ERM_TOSS.BOSS_SPAWN_ATTACK] = function(args)
         CustomAttacks.process_boss_units(args)
-        CustomAttacks.build(args, MOD_NAME, 'pylon')
+        CustomAttacks.build(args, ERM_TOSS.MOD_NAME, 'pylon')
     end,
-    [UNITS_SPAWN_ATTACK] = function(args)
+    [ERM_TOSS.UNITS_SPAWN_ATTACK] = function(args)
         CustomAttacks.process_batch_units(args)
-        CustomAttacks.build(args, MOD_NAME, 'pylon')
+        CustomAttacks.build(args, ERM_TOSS.MOD_NAME, 'pylon')
     end,
-    [ARBITER_UNITS_SPAWN_ATTACK] = function(args)
+    [ERM_TOSS.ARBITER_UNITS_SPAWN_ATTACK] = function(args)
         CustomAttacks.process_batch_units(args, 4)
     end,
-    [GUERRILLA_ATTACK] = function(args)
+    [ERM_TOSS.GUERRILLA_ATTACK] = function(args)
         CustomAttacks.process_guerrilla(args)
     end,
-    [CRYSTAL_TRIGGER] = function(args)
+    [ERM_TOSS.CRYSTAL_TRIGGER] = function(args)
         CustomAttacks.process_crystal(args)
     end,
-    [TRIGGER_BOSS_SPAWNED] = function(args)
+    [ERM_TOSS.TRIGGER_BOSS_SPAWNED] = function(args)
         CustomAttacks.boss_spawned(args)
     end,
-    [TRIGGER_BOSS_ASSIST_DIES] = function(args)
+    [ERM_TOSS.TRIGGER_BOSS_ASSIST_DIES] = function(args)
         CustomAttacks.boss_assisted_spawner_dies(args)
     end
 }
 script.on_event(defines.events.on_script_trigger_effect, function(event)
     if  attack_functions[event.effect_id] and
-            CustomAttacks.valid(event, MOD_NAME)
+            CustomAttacks.valid(event, ERM_TOSS.MOD_NAME)
     then
         attack_functions[event.effect_id](event)
     end
@@ -299,7 +299,7 @@ local valid_unit_types = {
 local on_trigger_created_entity_handlers = {
     ["lightning"] = function(entity, source)
         if is_compatible_lightning[source.name] and valid_unit_types[entity.type]  then
-            entity.force = FORCE_NAME
+            entity.force = ERM_TOSS.FORCE_NAME
             local surface_name = entity.surface.name
             if storage.lightning_units[surface_name] == nil then
                 storage.lightning_units[surface_name] = {}
@@ -339,8 +339,8 @@ end)
 
 --- Spawn attack group periodically once evolution reach 10%
 local max_group_size = settings.global['enemyracemanager-max-group-size'].value
-local dropship_group_size = math.floor(max_group_size / 6)
-local flyer_group_size = math.floor(max_group_size / 4)
+local dropship_group_size = math.floor(max_group_size / 5)
+local flyer_group_size = math.floor(max_group_size / 3)
 local general_attack_group_size = math.floor(max_group_size / 2)
 local can_fly = settings.global['enemyracemanager-flying-squad-enable'].value
 local can_dropship = settings.global['enemyracemanager-dropship-squad-enable'].value
@@ -351,7 +351,7 @@ local min_attack_beacons = 10
 script.on_nth_tick(20 * minute + 13, function(event)
     local fulgora = game.surfaces['fulgora']
     if fulgora and toss_on_fulgora and CustomAttacks.can_spawn(35) then
-        if game.forces[FORCE_NAME].get_evolution_factor(fulgora) < 0.35 then
+        if game.forces[ERM_TOSS.FORCE_NAME].get_evolution_factor(fulgora) < 0.35 then
             return
         end
 
@@ -361,11 +361,11 @@ script.on_nth_tick(20 * minute + 13, function(event)
         end
 
         if can_dropship and CustomAttacks.can_spawn(dropship_chance) then
-            remote.call("enemyracemanager", "generate_dropship_group", FORCE_NAME, dropship_group_size, {surface=fulgora})
+            remote.call("enemyracemanager", "generate_dropship_group", ERM_TOSS.FORCE_NAME, dropship_group_size, {surface=fulgora})
         elseif can_fly and CustomAttacks.can_spawn(fly_chance) then
-            remote.call("enemyracemanager", "generate_flying_group", FORCE_NAME, flyer_group_size, {surface=fulgora})
+            remote.call("enemyracemanager", "generate_flying_group", ERM_TOSS.FORCE_NAME, flyer_group_size, {surface=fulgora})
         else
-            remote.call("enemyracemanager", "generate_attack_group", FORCE_NAME, general_attack_group_size, {surface=fulgora})
+            remote.call("enemyracemanager", "generate_attack_group", ERM_TOSS.FORCE_NAME, general_attack_group_size, {surface=fulgora})
         end
     end
 end)
@@ -373,7 +373,7 @@ end)
 --script.on_nth_tick(15 * minute + 13, function(event)
 --    local aiur = game.surfaces['aiur']
 --    if aiur and CustomAttacks.can_spawn(35) then
---        if game.forces[FORCE_NAME].get_evolution_factor(aiur) < 0.35 then
+--        if game.forces[ERM_TOSS.FORCE_NAME].get_evolution_factor(aiur) < 0.35 then
 --            return
 --        end
 --
@@ -383,11 +383,11 @@ end)
 --        end
 --
 --        if can_dropship and CustomAttacks.can_spawn(dropship_chance) then
---            remote.call("enemyracemanager", "generate_dropship_group", FORCE_NAME, dropship_group_size, {surface=aiur})
+--            remote.call("enemyracemanager", "generate_dropship_group", ERM_TOSS.FORCE_NAME, dropship_group_size, {surface=aiur})
 --        elseif can_fly and CustomAttacks.can_spawn(fly_chance) then
---            remote.call("enemyracemanager", "generate_flying_group", FORCE_NAME, flyer_group_size, {surface=aiur})
+--            remote.call("enemyracemanager", "generate_flying_group", ERM_TOSS.FORCE_NAME, flyer_group_size, {surface=aiur})
 --        else
---            remote.call("enemyracemanager", "generate_attack_group", FORCE_NAME, general_attack_group_size, {surface=aiur})
+--            remote.call("enemyracemanager", "generate_attack_group", ERM_TOSS.FORCE_NAME, general_attack_group_size, {surface=aiur})
 --        end
 --    end
 --end)
