@@ -106,7 +106,7 @@ function ErmToss.make_darkarchon(level)
             movement_speed = ERM_UnitHelper.get_movement_speed(base_movement_speed, incremental_movement_speed,  level),
             absorptions_to_join_attack = { pollution = ERM_UnitHelper.get_pollution_attack(pollution_to_join_attack, level)},
             distraction_cooldown = distraction_cooldown,
-            ai_settings = AiHelper.get_enemy_unit_settings(2),
+            ai_settings = AiHelper.get_enemy_unit_settings(3),
             steering = {
                 move = {
                     radius = 4,

@@ -27,49 +27,61 @@ All units start with same base health point as original Starcraft. They have uni
 
 #### Tier 1 Units
 ##### Zealot 
-- Attack: Melee 
+- Attack: Melee
+- Unit Supply: 2
 ##### Dragoon
 - Attack: Electric
+- Unit Supply: 2
 
 
 #### Tier 2 Units
 ##### Scout
 - Attack: Explosion
+- Unit Supply: 2
 
 ##### Corsair
 - Attack: Electric, 10% to cast disrupt, which slow units to 33% for 5s
+- Unit Supply: 2
 
 ##### Probe
 - Build Cannon / Pylon / Shield Battery (heal units in a radius)
-
+- Unit Supply: 2
 
 #### Tier 3 Units
 ##### Carrier AOE
 - spawns 5-8 killable interceptor every 12s @ Legendary tier
 - Attack: Electric
+- Unit Supply: 4
 
 ##### Arbiter AOE
 - Attack: Cold (4 radius AOE), 3% to cast recall, which summons a few units
+- Unit Supply: 3
 
 ##### Templar AOE
 - Attack: Electric (5 radius AOE)
+- Unit Supply: 3 
 
 ##### Dark Templar
 - Attack: Physical (2 radius AOE)
+- Unit Supply: 2
 
 ##### Invisible Dark Templar
 - Attack: Physical (2 radius AOE)
 - Can not be targeted by some turrets.
+- Unit Supply: 2
 
 ##### Archon
 - Attack: Electric (3 radius AOE)
+- Unit Supply: 4
 
 ##### DarkArchon
 - Attack: Explosion (a 3 radius AOE, and 33% to cast a 5 radius DOT attack),
+- Unit Supply: 3
 
 #### Reaver 
 - spawns 1 killable scarab every 5s @ Legendary tier
 - Attack: Explosion, Electric (3 radius AOE)
+- Unit Supply: 3
 
 Physical resistance: 85, Weak elemental resistance: 75, Elemental resistance: 80 with some exceptions.
 

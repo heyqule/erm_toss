@@ -1,4 +1,11 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.1
+Date: 2026-07-02
+
+  Changes:
+    - Changed Dark archon unit supply  2 -> 3
+
+---------------------------------------------------------------------------------------------------
 Version: 2.1.0
 Date: 2026-07-01
 
@@ -12,7 +19,7 @@ Date: 2026-07-01
   Changes:
     - Adjusted unit spawn tables to some unit spawners.
     - Adjusted race setting data and unit prototypes to work with size_in_group changes.
-  
+
   Bugfixes:
     - Fixed preset issue where aiur resource did not change when selecting ERM ones.    
 
