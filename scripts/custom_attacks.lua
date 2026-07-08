@@ -108,7 +108,7 @@ function CustomAttacks.lightning_units_attack()
 
             if surface_group then
                 if CustomAttacks.can_spawn(10) then
-                    remote.call("enemyracemanager", "build_base_formation", surface_group)
+                    remote.call("enemyracemanager", "create_build_group", surface_group)
                 else
                     remote.call("enemyracemanager", "process_attack_position", {
                         group = surface_group,

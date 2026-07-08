@@ -1,4 +1,14 @@
 ---------------------------------------------------------------------------------------------------
+Version: 2.1.2
+Date: 2026-07-08
+
+  Changes:
+    - [Probe] changed proxy build (warmup) time from 5s - 1s to 8s - 5s.
+  
+  Bugfixes:
+    - Fixed lightning unit attack was using invalid base building function.
+
+---------------------------------------------------------------------------------------------------
 Version: 2.1.1
 Date: 2026-07-02
 

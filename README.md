@@ -67,7 +67,8 @@ All units start with same base health point as original Starcraft. They have uni
 
 ##### Invisible Dark Templar
 - Attack: Physical (2 radius AOE)
-- Can not be targeted by some turrets.
+- Can only be targeted by electric turrets (laser, tesla).
+- Players and army units can target them.
 - Unit Supply: 2
 
 ##### Archon
