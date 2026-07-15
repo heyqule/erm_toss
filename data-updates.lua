@@ -4,6 +4,7 @@
 --- DateTime: 10/29/2024 2:29 AM
 ---
 local ERM_TOSS = require("__erm_toss__/global")
+local ERM_SETTING_CONST = require("__enemyracemanager__/setting-constants")
 
 require("prototypes.update-teamcolour")
 
@@ -33,7 +34,7 @@ if map_gen_settings then
         print('ERM_TOSS: Nauvis AutoControl:')
         print(serpent.block(data.raw.planet.nauvis.map_gen_settings.autoplace_controls))
 
-    elseif nauvis_enemy_settings == NAUVIS_MIXED then
+    elseif nauvis_enemy_settings == ERM_SETTING_CONST.NAUVIS_MIXED then
         nauvis_autocontrols[ERM_TOSS.AUTOCONTROL_NAME] = {}
 
         print('ERM_TOSS: Nauvis AutoControl:')
