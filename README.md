@@ -1,3 +1,7 @@
+### IMPORTANT NOTICE:
+
+EMR for Factorio 2.1 build is now available. Double check the settings since some default setting have changed.
+
 # ERM_Protoss
 Add Protoss to factorio as biters.
 
@@ -6,13 +10,15 @@ This mod is created as an educational demo for [Enemy Race Manager](https://mods
 Discord:  [https://discord.gg/BwWXygyEyQ](https://discord.gg/BwWXygyEyQ)
 
 
-#### Changes in 2.0
-- Support Factorio 2.0
-- Default to HD graphic. erm_toss_hd is no longer required.
-- New unit: Invisible Dark Templar, low health with exceptional resistance and high damage dealer.
-- [space-age] Protoss on Fulgora
-- [space-age] Planet Aiur as new planet. Home of Legendary forces.
-- This is an experimental release.
+#### Feature List
+- Add Protoss units and structures as a new enemy force.
+- [space-age] Protoss on Fulgora.  They may spawn with lightning strikes. (Both features are optional)
+- [space-age] Planet Aiur as new planet. Home of Legendary forces.  Features 2 new mineral types and one gas type.  Lightning may spawn protoss units.
+- [space-age] Space route to Aiur are patrolled by Protoss aerial units.  Requires different ship building strategy.
+- [space-age] Recipes to build sythetic protoss army and biter eggs for science.
+- [space-age] Beat the boss, Warpgate, on planet Aiur for rewards
+- Additional details in Feature Details section. 
+
 
 #### Licenses
 Lua code files are licensed under GNU LGPLv3
@@ -29,6 +35,7 @@ All units start with same base health point as original Starcraft. They have uni
 ##### Zealot 
 - Attack: Melee
 - Unit Supply: 2
+
 ##### Dragoon
 - Attack: Electric
 - Unit Supply: 2
@@ -98,4 +105,4 @@ Physical resistance: 85, Weak elemental resistance: 75, Elemental resistance: 80
 - Intense lighting storm which may summon protoss units.
 - New resources, 2 types of minerals and one gas geyser.
 - When interplanetary attack is enabled, killing an unit spawner on Aiur will activate it.
-- Master control entity: Warpgate. Defeat it for rewards. (Experimental)
+- Master control entity: Warpgate. Defeat it for rewards. 
