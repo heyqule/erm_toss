@@ -1251,33 +1251,10 @@ data.rso_ignore_planets = data.rso_ignore_planets or {}
 data.rso_ignore_planets['aiur'] = true
 
 if mods['erm_starcraft_music'] then
-    local source_path = "__erm_starcraft_music__/sounds/"
-    data:extend({
-        {
-            type = "ambient-sound",
-            planet = "aiur",
-            track_type = "main-track",
-            name = "aiur-protoss-1",
-            sound = { filename = source_path .. "Protoss One.ogg" }
-        },
-        {
-            type = "ambient-sound",
-            planet = "aiur",
-            track_type = "main-track",
-            name = "aiur-protoss-2",
-            sound = { filename = source_path .. "Protoss Two.ogg" }
-        },
-        {
-            type = "ambient-sound",
-            planet = "aiur",
-            track_type = "main-track",
-            name = "aiur-protoss-3",
-            sound = { filename = source_path .. "Protoss Three.ogg" }
-        },
-    })
+    local MusicSetup = require('__erm_starcraft_music__/music_setup')
+    MusicSetup.add_track_to("p1", { "aiur" })
+    MusicSetup.add_track_to("p2", { "aiur" })
+    MusicSetup.add_track_to("p3", { "aiur" })
 else
-    local sound_data = SoundUtil.dupe_planet_music('fulgora','aiur')
-    if table_size(sound_data) > 0 then
-        data:extend(sound_data)
-    end
+    SoundUtil.dupe_planet_music('fulgora','aiur')
 end 
